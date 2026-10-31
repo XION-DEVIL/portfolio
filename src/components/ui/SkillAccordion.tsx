@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import { ChevronDown } from 'lucide-react';
 // Remove framer-motion layout animations inside accordion to fix forced reflow issues.
 // Use simple CSS transitions instead.
 
-let skillAccordionIdCounter = 0;
-
+// useId is hydration-safe (a module-level counter diverged between server and client).
 export default function SkillAccordion({ title, children, icon: Icon }: { title: string; children: React.ReactNode; icon: any }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [panelId] = useState(() => `skill-panel-${++skillAccordionIdCounter}`);
-  const [buttonId] = useState(() => `skill-btn-${skillAccordionIdCounter}`);
+  const uid = useId();
+  const panelId = `skill-panel${uid}`;
+  const buttonId = `skill-btn${uid}`;
 
   return (
     <div className="border-b border-white/10 last:border-0">
