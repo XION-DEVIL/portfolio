@@ -1,6 +1,6 @@
 import { useState, memo } from 'react';
 import { Check, Mail, MapPin, Linkedin, Github, Search, ExternalLink, Copy } from 'lucide-react';
-import Button from '../components/ui/Button';
+import Button from '../components/ui/PortfolioButton';
 import HlsVideo from '../components/HlsVideo';
 import Dock from '../components/Dock';
 

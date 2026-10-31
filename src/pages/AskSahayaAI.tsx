@@ -3,7 +3,7 @@ import { Link } from '@/lib/router-compat';
 import { ArrowLeft, Send, Sparkles, User, Bot } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SITE_URL, createBreadcrumbSchema, askSahayaAIAppSchema } from '../seo';
-import Button from '../components/ui/Button';
+import Button from '../components/ui/PortfolioButton';
 
 type Message = {
   id: string;

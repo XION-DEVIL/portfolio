@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import HlsVideo from '../components/HlsVideo';
 import SectionBadge from '../components/ui/SectionBadge';
-import Button from '../components/ui/Button';
+import Button from '../components/ui/PortfolioButton';
 
 interface AboutSectionProps {
   setShowResume: (show: boolean) => void;
