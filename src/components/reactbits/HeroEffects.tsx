@@ -51,7 +51,7 @@ export function HeroBadge() {
       metal="black"
       strapColor="#0a0a0a"
       cardColor="#0b0b14"
-      size={0.32}
+      size={0.58}
       strapLength={0.2}
       breeze={0.3}
       intro={false}
