@@ -1,1 +1,77 @@
-{"source": "code-archive", "artifact": "remix-of-remix-of-santo-portfolio-import-check-main.zip", "generated_at": "2026-10-31", "capabilities": [{"capability": "code", "source": "TanStack Start v1 (Lovable template), React 19, Tailwind v4", "outcome": "copy src/, public/, config into project; add framer-motion, gsap, hls.js, ogl, react-pdf, three", "status": "done", "next_action": null}, {"capability": "schema", "source": "none detected", "outcome": "static portfolio, no database", "status": "n/a", "next_action": null}, {"capability": "records", "source": "none detected", "outcome": "content is bundled in src/data.ts and public assets", "status": "n/a", "next_action": null}, {"capability": "auth identities", "source": "none detected", "outcome": "no sign-in in source", "status": "n/a", "next_action": null}, {"capability": "authorization", "source": "none detected", "outcome": "no protected routes", "status": "n/a", "next_action": null}, {"capability": "uploaded file bytes", "source": "public/profile.jpg, profile.webp, profile-sm.webp, og-image.jpg, resume.pdf, fonts", "outcome": "copied into public/", "status": "done", "next_action": null}, {"capability": "external providers", "source": "none detected (HlsVideo bundled component; no third-party API keys)", "outcome": "n/a", "status": "n/a", "next_action": null}, {"capability": "public endpoints / webhooks / schedules", "source": "none detected", "outcome": "n/a", "status": "n/a", "next_action": null}, {"capability": "cutover", "source": "n/a", "outcome": "no external backend", "status": "n/a", "next_action": null}, {"capability": "verification", "source": "dev server + browser", "outcome": "routes render, hero ID card contained on mobile and desktop", "status": "pending", "next_action": "verify build and hero bounds on both viewports"}]}
+{
+ "source": "code-archive",
+ "artifact": "remix-of-remix-of-santo-portfolio-import-check-main.zip",
+ "generated_at": "2026-10-31",
+ "capabilities": [
+  {
+   "capability": "code",
+   "source": "TanStack Start v1 (Lovable template), React 19, Tailwind v4",
+   "outcome": "copy src/, public/, config into project; add framer-motion, gsap, hls.js, ogl, react-pdf, three",
+   "status": "done",
+   "next_action": null
+  },
+  {
+   "capability": "schema",
+   "source": "none detected",
+   "outcome": "static portfolio, no database",
+   "status": "n/a",
+   "next_action": null
+  },
+  {
+   "capability": "records",
+   "source": "none detected",
+   "outcome": "content is bundled in src/data.ts and public assets",
+   "status": "n/a",
+   "next_action": null
+  },
+  {
+   "capability": "auth identities",
+   "source": "none detected",
+   "outcome": "no sign-in in source",
+   "status": "n/a",
+   "next_action": null
+  },
+  {
+   "capability": "authorization",
+   "source": "none detected",
+   "outcome": "no protected routes",
+   "status": "n/a",
+   "next_action": null
+  },
+  {
+   "capability": "uploaded file bytes",
+   "source": "public/profile.jpg, profile.webp, profile-sm.webp, og-image.jpg, resume.pdf, fonts",
+   "outcome": "copied into public/",
+   "status": "done",
+   "next_action": null
+  },
+  {
+   "capability": "external providers",
+   "source": "none detected (HlsVideo bundled component; no third-party API keys)",
+   "outcome": "n/a",
+   "status": "n/a",
+   "next_action": null
+  },
+  {
+   "capability": "public endpoints / webhooks / schedules",
+   "source": "none detected",
+   "outcome": "n/a",
+   "status": "n/a",
+   "next_action": null
+  },
+  {
+   "capability": "cutover",
+   "source": "n/a",
+   "outcome": "no external backend",
+   "status": "n/a",
+   "next_action": null
+  },
+  {
+   "capability": "verification",
+   "source": "dev server + browser",
+   "outcome": "build OK; all routes render 200; tests pass; no console errors; hero badge contained on mobile/tablet/desktop",
+   "status": "verified",
+   "next_action": null
+  }
+ ]
+}
