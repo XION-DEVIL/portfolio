@@ -1,0 +1,24 @@
+# Sahaya Savari F
+
+> AI Engineer · Python Developer · Full Stack Developer · M.Sc. Artificial Intelligence Student
+
+Portfolio and professional website of Sahaya Savari F.
+
+## Pages
+
+- [Home](https://sahayasavari.dev/): Portfolio home page with hero overview, skill highlights, and contact information.
+- [Projects](https://sahayasavari.dev/projects): Engineering portfolio showcasing AI/ML applications, full-stack systems, and open-source tools.
+- [Resume](https://sahayasavari.dev/resume): Interactive resume viewer, education, career milestones, and verified skill credentials.
+- [Blog](https://sahayasavari.dev/blog): Technical articles on autonomous AI agents, Python data engineering, React performance, and modern web architectures.
+- [Recruiter Summary](https://sahayasavari.dev/recruiter): Concise summary for recruiters and hiring managers highlighting core competencies and availability.
+- [AI & Machine Learning](https://sahayasavari.dev/ai): In-depth overview of Artificial Intelligence, Deep Learning, and LLM engineering expertise.
+
+## Featured Projects
+
+- [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): LLM-powered educational platform transforming study materials into adaptive quizzes and summaries.
+- [Daily Spark](https://sahayasavari.dev/projects/daily-spark): Offline-first habit and streak tracking application built with React, TypeScript, and IndexedDB.
+- [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React 19, Vite 7, Tailwind CSS v4, and static HTML pre-rendering.
+
+## Optional
+
+- [Full LLM Context](https://sahayasavari.dev/llms-full.txt): Comprehensive background dossier and technical details for LLM indexing agents.
