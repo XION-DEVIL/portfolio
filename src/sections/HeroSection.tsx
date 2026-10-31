@@ -101,7 +101,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <div className="relative order-1 md:order-2 shrink-0 group md:mr-24 lg:mr-32">
                 <div className="relative w-[200px] h-[290px] sm:w-[230px] sm:h-[330px] lg:w-[260px] lg:h-[370px]">
                   <ClientOnly fallback={<img src="/profile.jpg" alt="Sahaya Savari F" width={400} height={400} className="w-40 h-40 mx-auto mt-24 rounded-full object-cover object-top" />}>
-                    <div className="absolute -inset-x-[70px] -top-6 -bottom-[160px] sm:-inset-x-[80px] sm:-bottom-[170px] md:-inset-x-[160px] md:-bottom-[150px] lg:-inset-x-[220px]">
+                    <div className="absolute -inset-x-[70px] -top-6 -bottom-6 sm:-inset-x-[80px] md:-inset-x-[160px] lg:-inset-x-[220px]">
                       <Suspense fallback={null}><HeroBadge /></Suspense>
                     </div>
                   </ClientOnly>
