@@ -51,7 +51,7 @@ export function HeroBadge() {
       metal="black"
       strapColor="#0a0a0a"
       cardColor="#0b0b14"
-      size={0.58}
+      size={0.64}
       strapLength={0.2}
       breeze={0.3}
       intro={false}
@@ -70,7 +70,7 @@ export function HeroName() {
       trigger="hover"
       particleSize={2}
       density={2}
-      fontSize="clamp(3rem, 9vw, 8rem)"
+      fontSize="clamp(3.3rem, 9.8vw, 8.8rem)"
       fontWeight={800}
       fontFamily="inherit"
       glow
