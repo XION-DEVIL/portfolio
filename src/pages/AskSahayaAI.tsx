@@ -4,6 +4,7 @@ import { ArrowLeft, Send, Sparkles, User, Bot } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SITE_URL, createBreadcrumbSchema, askSahayaAIAppSchema } from '../seo';
 import Button from '../components/ui/PortfolioButton';
+import { answerQuestion, SUGGESTIONS } from '../lib/sahayaKnowledge';
 
 type Message = {
   id: string;
@@ -108,7 +109,7 @@ export default function AskSahayaAI() {
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-white/20' : 'bg-white text-black'}`}>
                   {msg.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                 </div>
-                <div className={`p-4 rounded-lg min-w-0 break-words max-w-[80%] font-body text-sm leading-relaxed ${msg.role === 'user' ? 'bg-foreground/10 text-foreground rounded-tr-none' : 'bg-primary text-portfolio-ink rounded-tl-none'}`}>
+                <div className={`p-4 rounded-lg min-w-0 break-words whitespace-pre-line max-w-[80%] font-body text-sm leading-relaxed ${msg.role === 'user' ? 'bg-foreground/10 text-foreground rounded-tr-none' : 'bg-primary text-portfolio-ink rounded-tl-none'}`}>
                   {msg.content}
                 </div>
               </div>
@@ -129,11 +130,7 @@ export default function AskSahayaAI() {
           </div>
           <div className="p-4 border-t border-white/10 bg-black/50">
             <div className="flex flex-wrap gap-2 mb-3" aria-label="Suggested questions">
-              {[
-                ['Skills', 'What are your core technical skills?'],
-                ['Experience', 'Tell me about your experience.'],
-                ['Contact', 'How can I contact Sahaya?'],
-              ].map(([label, question]) => <Button key={label} variant="glass" disabled={isTyping} className="!px-3 !py-2 !min-h-[36px] !text-xs" onClick={() => { setInput(question); inputRef.current?.focus(); }}>{label}</Button>)}
+              {SUGGESTIONS.map(([label, question]) => <Button key={label} variant="glass" disabled={isTyping} className="!px-3 !py-2 !min-h-[36px] !text-xs" onClick={() => ask(question)}>{label}</Button>)}
             </div>
             <form onSubmit={handleSend} className="relative">
               <input
