@@ -4,6 +4,7 @@ import { ArrowLeft, Send, Sparkles, User, Bot } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SITE_URL, createBreadcrumbSchema, askSahayaAIAppSchema } from '../seo';
 import Button from '../components/ui/PortfolioButton';
+import { answerQuestion, SUGGESTIONS } from '../lib/sahayaKnowledge';
 
 type Message = {
   id: string;
@@ -60,35 +61,21 @@ export default function AskSahayaAI() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isTyping) return;
-
-    const userMessage: Message = { id: Date.now().toString(), role: 'user', content: input.trim() };
+  const ask = (text: string) => {
+    if (!text.trim() || isTyping) return;
+    const userMessage: Message = { id: Date.now().toString(), role: 'user', content: text.trim() };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsTyping(true);
-
-    // Mock AI response logic (would be replaced with actual API call)
     setTimeout(() => {
-      const response = generateMockResponse(userMessage.content);
-      setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'ai', content: response }]);
+      setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'ai', content: answerQuestion(userMessage.content) }]);
       setIsTyping(false);
-    }, 1200);
+    }, 600);
   };
 
-  const generateMockResponse = (query: string) => {
-    const lowerQuery = query.toLowerCase();
-    if (lowerQuery.includes('skills') || lowerQuery.includes('tech') || lowerQuery.includes('stack')) {
-      return "Sahaya is an AI Engineer and Full Stack Developer focused on Artificial Intelligence, Machine Learning, Python, React, TypeScript, Firebase, Vite, Tailwind CSS, and FastAPI. You can check out his full skills section on the home page!";
-    }
-    if (lowerQuery.includes('experience') || lowerQuery.includes('work') || lowerQuery.includes('job')) {
-      return "Sahaya is currently an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy. He has built production-style portfolio projects including PrepMind AI and Daily Spark, demonstrating Machine Learning, Python Developer, frontend, and backend capabilities.";
-    }
-    if (lowerQuery.includes('contact') || lowerQuery.includes('hire') || lowerQuery.includes('email')) {
-      return "You can reach Sahaya via email at contact@sahayasavari.dev, or connect with him on LinkedIn (linkedin.com/in/sahaya-savari). He's currently available for internships and entry-level roles!";
-    }
-    return "That's an interesting question! While I'm just a simple mock AI right now, Sahaya is actively working on connecting me to a real LLM backend. For now, try asking about his skills, experience, or how to contact him!";
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
+    ask(input);
   };
 
   return (
@@ -122,7 +109,7 @@ export default function AskSahayaAI() {
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-white/20' : 'bg-white text-black'}`}>
                   {msg.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                 </div>
-                <div className={`p-4 rounded-lg min-w-0 break-words max-w-[80%] font-body text-sm leading-relaxed ${msg.role === 'user' ? 'bg-foreground/10 text-foreground rounded-tr-none' : 'bg-primary text-portfolio-ink rounded-tl-none'}`}>
+                <div className={`p-4 rounded-lg min-w-0 break-words whitespace-pre-line max-w-[80%] font-body text-sm leading-relaxed ${msg.role === 'user' ? 'bg-foreground/10 text-foreground rounded-tr-none' : 'bg-primary text-portfolio-ink rounded-tl-none'}`}>
                   {msg.content}
                 </div>
               </div>
@@ -143,11 +130,7 @@ export default function AskSahayaAI() {
           </div>
           <div className="p-4 border-t border-white/10 bg-black/50">
             <div className="flex flex-wrap gap-2 mb-3" aria-label="Suggested questions">
-              {[
-                ['Skills', 'What are your core technical skills?'],
-                ['Experience', 'Tell me about your experience.'],
-                ['Contact', 'How can I contact Sahaya?'],
-              ].map(([label, question]) => <Button key={label} variant="glass" disabled={isTyping} className="!px-3 !py-2 !min-h-[36px] !text-xs" onClick={() => { setInput(question); inputRef.current?.focus(); }}>{label}</Button>)}
+              {SUGGESTIONS.map(([label, question]) => <Button key={label} variant="glass" disabled={isTyping} className="!px-3 !py-2 !min-h-[36px] !text-xs" onClick={() => ask(question)}>{label}</Button>)}
             </div>
             <form onSubmit={handleSend} className="relative">
               <input
