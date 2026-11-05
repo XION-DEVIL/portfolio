@@ -1,24 +1,15 @@
-# SANTO Portfolio Import Check
+# Sahaya Savari Portfolio
 
-Import this uploaded portfolio ZIP exactly as-is with no modifications. Verify the app builds and runs.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/f6121160-1a3d-478d-8154-289158be85f1).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Personal portfolio built with React, TanStack Start, and Vite.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev
 ```
+
+## GitHub Pages
+
+The included workflow deploys the static site when changes are pushed to `main`.
+In repository **Settings → Pages**, select **GitHub Actions** as the source.
