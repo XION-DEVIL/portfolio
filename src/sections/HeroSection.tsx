@@ -28,13 +28,22 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
     if (prefersReducedMotion || constrainedConnection) return;
 
-    const loadHeroVideo = () => setShouldLoadVideo(true);
-    const timer = window.setTimeout(loadHeroVideo, 1500);
-    window.addEventListener('load', loadHeroVideo, { once: true });
+    // Delay video load until well after LCP is recorded (~2.5s).
+    // The browser finalises LCP on the first user interaction or when a new
+    // largest paint hasn't occurred for a while.  By waiting 3.5s we guarantee
+    // the video never becomes the LCP candidate.
+    const loadHeroVideo = () => {
+      // Use requestIdleCallback where available so we don't block main thread
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => setShouldLoadVideo(true), { timeout: 2000 });
+      } else {
+        setShouldLoadVideo(true);
+      }
+    };
+    const timer = window.setTimeout(loadHeroVideo, 3500);
 
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener('load', loadHeroVideo);
     };
   }, []);
 
@@ -51,6 +60,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             height={540}
             fetchPriority="low"
             decoding="async"
+            loading="lazy"
             className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
               isVideoLoaded ? 'opacity-0 md:opacity-0' : 'opacity-40'
             }`}
@@ -100,7 +110,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
               <div className="relative order-1 md:order-2 shrink-0 group md:mr-24 lg:mr-32">
                 <div className="relative w-[200px] h-[290px] sm:w-[230px] sm:h-[330px] lg:w-[260px] lg:h-[370px]">
-                  <ClientOnly fallback={<img src="/profile.jpg" alt="Sahaya Savari F" width={400} height={400} className="w-40 h-40 mx-auto mt-24 rounded-full object-cover object-top" />}>
+                  <ClientOnly fallback={<img src={`${import.meta.env.BASE_URL}profile.jpg`} alt="Sahaya Savari F" width={400} height={400} className="w-40 h-40 mx-auto mt-24 rounded-full object-cover object-top" />}>
                     <div className="absolute -inset-x-[70px] -top-6 -bottom-6 sm:-inset-x-[80px] md:-inset-x-[160px] lg:-inset-x-[220px]">
                       <Suspense fallback={null}><HeroBadge /></Suspense>
                     </div>
