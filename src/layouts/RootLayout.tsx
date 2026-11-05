@@ -13,6 +13,7 @@ const ResumeViewer = lazy(() => import('../components/ResumeViewer'));
 const CommandPalette = lazy(() => import('../components/CommandPalette'));
 
 export default function RootLayout() {
+  const appBase = import.meta.env.BASE_URL;
   const [showResume, setShowResume] = useState(false);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ export default function RootLayout() {
     if (location.pathname !== '/') {
       navigate(`/#${cleanId}`);
     } else {
-      window.history.pushState(null, '', `/#${cleanId}`);
+      window.history.pushState(null, '', `${appBase}#${cleanId}`);
       scrollToSection(cleanId, { behavior: 'smooth' });
     }
   };
@@ -46,7 +47,7 @@ export default function RootLayout() {
     if (location.pathname === '/') {
       e.preventDefault();
       if (window.location.hash) {
-        window.history.pushState(null, '', '/');
+        window.history.pushState(null, '', appBase);
       }
       scrollToSection('home', { behavior: 'smooth' });
       setActiveSection('home');
@@ -282,16 +283,16 @@ export default function RootLayout() {
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
                 <Link to="/" onClick={handleHomeClick} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Home</Link>
-                <a href="/#about" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/70 hover:text-white'}`}>About</a>
+                <a href={`${appBase}#about`} onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/70 hover:text-white'}`}>About</a>
                 <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Resume</Link>
                 <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Blog</Link>
-                <a href="/#skills" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Skills</a>
+                <a href={`${appBase}#skills`} onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Skills</a>
                 <Link to="/projects" className={`text-sm font-body font-medium transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-white/70 hover:text-white'}`}>Projects</Link>
-                <a href="/#certifications" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Certs</a>
+                <a href={`${appBase}#certifications`} onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Certs</a>
               </div>
               <div className="flex items-center gap-3">
                 <a
-                  href="/resume.pdf"
+                  href={`${appBase}resume.pdf`}
                   download
                   className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-sm"
                   aria-label="Download CV (Resume PDF)"
@@ -300,7 +301,7 @@ export default function RootLayout() {
                   <span className="hidden lg:inline">Download CV</span>
                 </a>
                 <a
-                  href="/#contact"
+                  href={`${appBase}#contact`}
                   onClick={(e) => handleNavClick(e, 'contact')}
                   className="hidden md:flex relative text-sm font-medium rounded-full h-10 pl-6 pr-14 group transition-all duration-500 hover:pl-14 hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center"
                   aria-label="Get in touch — jump to contact section"
@@ -338,13 +339,13 @@ export default function RootLayout() {
           >
             <nav className="flex flex-col items-center gap-6 my-auto" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
               <Link to="/" onClick={handleHomeClick} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
-              <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
+              <a href={`${appBase}#about`} onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
               <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
               <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
-              <a href="/#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
+              <a href={`${appBase}#skills`} onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
               <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
-              <a href="/#certifications" onClick={(e) => handleNavClick(e, 'certifications')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
-              <a href="/resume.pdf" download onClick={() => setMobileMenuOpen(false)} className="text-xl sm:text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2 mt-2">
+              <a href={`${appBase}#certifications`} onClick={(e) => handleNavClick(e, 'certifications')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
+              <a href={`${appBase}resume.pdf`} download onClick={() => setMobileMenuOpen(false)} className="text-xl sm:text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2 mt-2">
                 <Download size={20} /> Download Resume PDF
               </a>
             </nav>

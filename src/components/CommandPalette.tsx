@@ -5,7 +5,7 @@ import { PROJECTS } from '../data';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import { scrollToSection } from '../utils/navigation';
 
-import { useNavigate } from '@/lib/router-compat';
+import { useNavigate, useLocation } from '@/lib/router-compat';
 
 interface CommandPaletteProps {
   onClose: () => void;
@@ -23,6 +23,7 @@ interface CommandItem {
 
 export default function CommandPalette({ onClose, onOpenResume }: CommandPaletteProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [search, setSearch] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,11 +63,7 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
       category: 'Actions',
       icon: BookOpen,
       action: () => {
-        if (window.location.pathname !== '/') {
-          navigate('/#blog');
-        } else {
-          window.location.hash = 'blog';
-        }
+        navigate('/blog');
         onClose();
       }
     });
@@ -112,10 +109,10 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
         action: () => {
           if (lnk.url.startsWith('#')) {
             const cleanId = lnk.url.replace(/^#/, '');
-            if (window.location.pathname !== '/') {
+            if (location.pathname !== '/') {
               navigate(`/#${cleanId}`);
             } else {
-              window.history.pushState(null, '', `/#${cleanId}`);
+              window.history.pushState(null, '', `${import.meta.env.BASE_URL}#${cleanId}`);
               scrollToSection(cleanId, { behavior: 'smooth' });
             }
           } else {
@@ -127,7 +124,7 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
     });
 
     return list;
-  }, [navigate, onOpenResume, onClose]);
+  }, [navigate, location.pathname, onOpenResume, onClose]);
 
   // Filter items
   const filtered = useMemo(() => {

@@ -5,7 +5,7 @@ import SEOHead from '../components/SEOHead';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { SITE_URL, createBreadcrumbSchema } from '../seo';
 
-const RESUME_FILE_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+const RESUME_FILE_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
 
 const ResumeViewer = lazy(() => import('../components/ResumeViewer'));
 

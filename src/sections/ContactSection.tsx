@@ -4,7 +4,7 @@ import Button from '../components/ui/PortfolioButton';
 import HlsVideo from '../components/HlsVideo';
 import Dock from '../components/Dock';
 
-const RESUME_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
 
 interface ContactSectionProps {
   setShowCommandPalette: (v: boolean) => void;

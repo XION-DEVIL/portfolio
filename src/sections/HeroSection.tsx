@@ -14,7 +14,7 @@ interface HeroSectionProps {
 // Mux poster — high quality WebP ambient visual (7.2 KB)
 const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=960';
 
-const RESUME_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
