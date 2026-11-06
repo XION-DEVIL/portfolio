@@ -1,10 +1,16 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, lazy, Suspense } from 'react';
 import { useParams, Link } from '@/lib/router-compat';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { CASE_STUDIES } from '../data/caseStudies';
 import { SITE_URL, createBreadcrumbSchema } from '../seo';
 import NotFound from './NotFound';
+
+// Lazy loaded interactive project simulators
+const NelSyncSimulator = lazy(() => import('../components/simulators/NelSyncSimulator'));
+const PrepMindSimulator = lazy(() => import('../components/simulators/PrepMindSimulator'));
+const DailySparkSimulator = lazy(() => import('../components/simulators/DailySparkSimulator'));
+const ArchitectureInspector = lazy(() => import('../components/simulators/ArchitectureInspector'));
 
 export default function ProjectDetails() {
   const { projectId } = useParams();
@@ -97,6 +103,18 @@ export default function ProjectDetails() {
             <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Overview</h2>
             <p className="text-base font-body leading-relaxed text-white/80">{project.overview}</p>
           </section>
+
+          {/* Interactive Project Simulator */}
+          <Suspense fallback={
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center text-xs font-mono text-white/50">
+              Loading interactive engineering sandbox...
+            </div>
+          }>
+            {project.id === 'nelsync-ai' && <NelSyncSimulator />}
+            {project.id === 'prepmind-ai' && <PrepMindSimulator />}
+            {project.id === 'daily-spark' && <DailySparkSimulator />}
+            {project.id === 'portfolio-website' && <ArchitectureInspector />}
+          </Suspense>
 
           <section>
             <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">The Problem</h2>

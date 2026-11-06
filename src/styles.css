@@ -306,3 +306,33 @@
 }
 
 
+
+
+/* Clean ink-saving printable resume stylesheet for recruiters */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+  .no-print, nav, footer, video, canvas {
+    display: none !important;
+  }
+  .pt-32 {
+    padding-top: 1rem !important;
+  }
+  .bg-black {
+    background: transparent !important;
+  }
+  .text-white, .text-white\/70, .text-white\/80, .text-white\/90 {
+    color: #111111 !important;
+  }
+  .text-white\/50 {
+    color: #444444 !important;
+  }
+  .border-white\/10, .border-white\/20 {
+    border-color: #cccccc !important;
+  }
+  .border-l-2 {
+    border-left-color: #333333 !important;
+  }
+}

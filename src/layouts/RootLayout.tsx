@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
-import { ArrowUpRight, Menu, X, Search, Sparkles, Download } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Search, Sparkles, Download, Home, Briefcase, FileText } from 'lucide-react';
 import { Outlet, useNavigate, useLocation, Link } from '@/lib/router-compat';
 
 import ClickSpark from '../components/ClickSpark';
@@ -360,9 +360,59 @@ export default function RootLayout() {
           <Outlet context={{ setShowResume, setShowCommandPalette }} />
         </main>
 
+        {/* Mobile Ergonomic Bottom Thumb-Dock (< 768px) */}
+        <nav
+          aria-label="Mobile quick navigation dock"
+          className="fixed bottom-3 left-1/2 -translate-x-1/2 z-[100] md:hidden px-4 py-2 rounded-full border border-white/15 bg-black/85 backdrop-blur-xl flex items-center gap-4 sm:gap-6 shadow-[0_8px_32px_rgba(0,0,0,0.8)] no-print"
+          style={{ paddingBottom: 'calc(0.5rem + env(safe-area-inset-bottom, 0px))' }}
+        >
+          <Link
+            to="/"
+            onClick={handleHomeClick}
+            className={`flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center transition-colors ${activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}
+            aria-label="Home"
+          >
+            <Home size={18} />
+            <span className="text-[9px] font-body">Home</span>
+          </Link>
+          <Link
+            to="/projects"
+            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-white/50 hover:text-white transition-colors"
+            aria-label="Projects"
+          >
+            <Briefcase size={18} />
+            <span className="text-[9px] font-body">Projects</span>
+          </Link>
+          <Link
+            to="/ai"
+            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-amber-300 hover:text-amber-200 transition-colors"
+            aria-label="Ask Sahaya AI"
+          >
+            <Sparkles size={18} />
+            <span className="text-[9px] font-body font-semibold">AI CLI</span>
+          </Link>
+          <Link
+            to="/recruiter"
+            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-white/50 hover:text-white transition-colors"
+            aria-label="Recruiter Summary"
+          >
+            <FileText size={18} />
+            <span className="text-[9px] font-body">Recruiter</span>
+          </Link>
+          <button
+            onClick={() => setShowCommandPalette(true)}
+            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-white/50 hover:text-white transition-colors cursor-pointer"
+            aria-label="Open search command palette"
+          >
+            <Search size={18} />
+            <span className="text-[9px] font-body">Search</span>
+          </button>
+        </nav>
+
+        {/* Desktop Ask Sahaya AI Floating Action Button (>= 768px) */}
         <Link 
           to="/ai"
-          className="fixed bottom-6 right-6 z-[100] w-14 h-14 bg-white text-black rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center justify-center hover:scale-110 transition-transform hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] group"
+          className="hidden md:flex fixed bottom-6 right-6 z-[100] w-14 h-14 bg-white text-black rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] items-center justify-center hover:scale-110 transition-transform hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] group"
           aria-label="Ask Sahaya AI"
         >
           <Sparkles className="w-6 h-6 group-hover:animate-pulse" />

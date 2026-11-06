@@ -1,14 +1,47 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from '@/lib/router-compat';
-import { ArrowLeft, Download, Mail, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Download, Mail, ExternalLink, Copy, Check, Sparkles } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SITE_URL, createBreadcrumbSchema } from '../seo';
 import { EXPERIENCES, HONORS_AND_AWARDS, EDUCATION_HISTORY, PROJECTS } from '../data';
 
 export default function RecruiterMode() {
+  const [copiedAts, setCopiedAts] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState<string>('All');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCopyAts = () => {
+    const atsText = [
+      '# Sahaya Savari F — AI Engineer / Full Stack Developer',
+      'Email: contact@sahayasavari.dev | Portfolio: https://sahayasavari.dev | GitHub: https://github.com/sahaya-savari | LinkedIn: https://www.linkedin.com/in/sahaya-savari',
+      'Availability: Summer/Fall 2026 | Location: Trichy / Madurai, India (Open to Remote / Relocation)',
+      '',
+      '## Professional Summary',
+      'M.Sc. Artificial Intelligence student & B.Sc. Data Science graduate with hands-on industry internship experience in Web Development and Technical SEO at HodoLabs Technologies. Hackathon champion (AIxcelerate 2026 Overall Winner) experienced in developing end-to-end AI applications, Python systems, and scalable React/TypeScript web apps. Actively seeking AI/ML Engineer, Python Developer, or Full Stack Developer roles.',
+      '',
+      '## Core Competencies',
+      '- Languages: Python, TypeScript, JavaScript, SQL',
+      '- AI & ML: Machine Learning, Scikit-Learn, Predictive Modeling, Prompt Pipelines, Structured JSON Validation',
+      '- Frontend & Full Stack: React, Vite, Tailwind CSS, Framer Motion, IndexedDB, Firebase, Supabase, FastAPI',
+      '',
+      '## Top Projects',
+      '- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon. Predictive ML grain spoilage forecasting & procurement supply chain optimization in Python.',
+      '- Daily Spark: Offline-first PWA habit tracker built with React, TypeScript, and IndexedDB with Capacitor Android support.',
+      '- PrepMind AI: Concept ed-tech platform featuring asynchronous Python LLM rubric evaluations and Supabase relational data modeling.',
+      '- Portfolio Website: High-performance SPA with sub-second TTI, manual Vite chunk splitting, and WCAG AA accessibility.',
+      '',
+      '## Education',
+      '- M.Sc. Artificial Intelligence (2024–2026) — St. Joseph\'s College (Autonomous), Trichy',
+      '- B.Sc. Data Science (2021–2024) — St. Joseph\'s College (Autonomous), Trichy'
+    ].join('\n');
+
+    navigator.clipboard.writeText(atsText);
+    setCopiedAts(true);
+    setTimeout(() => setCopiedAts(false), 2500);
+  };
 
   const recruiterSchema = useMemo(() => {
     const breadcrumb = createBreadcrumbSchema([
@@ -54,13 +87,25 @@ export default function RecruiterMode() {
               <a href="https://www.linkedin.com/in/sahaya-savari" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors"><ExternalLink className="w-4 h-4" /> linkedin.com/in/sahaya-savari</a>
             </div>
           </div>
-          <button 
-            onClick={() => window.print()}
-            className="no-print hidden sm:flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-medium text-sm hover:scale-105 transition-transform"
-          >
-            <Download className="w-4 h-4" />
-            Save as PDF
-          </button>
+          <div className="no-print flex items-center gap-3">
+            <button
+              onClick={handleCopyAts}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-xs sm:text-sm transition-all cursor-pointer ${
+                copiedAts ? 'bg-emerald-400 text-black font-semibold' : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+              }`}
+              title="Copy formatted candidate summary for ATS / hiring managers"
+            >
+              {copiedAts ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              <span>{copiedAts ? 'ATS Copied!' : 'Copy ATS Summary'}</span>
+            </button>
+            <button 
+              onClick={() => window.print()}
+              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-medium text-xs sm:text-sm hover:scale-105 transition-transform cursor-pointer"
+            >
+              <Download className="w-4 h-4" />
+              Save as PDF
+            </button>
+          </div>
         </header>
 
         <section className="mb-12">
@@ -124,9 +169,31 @@ export default function RecruiterMode() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Top Projects</h2>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest">Top Projects</h2>
+            <div className="no-print flex items-center gap-1.5 flex-wrap">
+              <span className="text-xs font-mono text-white/50 mr-1 flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-amber-400" /> Match:
+              </span>
+              {['All', 'Python', 'Machine Learning', 'React', 'TypeScript', 'Supabase', 'IndexedDB'].map((skill) => (
+                <button
+                  key={skill}
+                  onClick={() => setSelectedSkill(skill)}
+                  className={`px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
+                    selectedSkill === skill
+                      ? 'bg-white text-black font-semibold'
+                      : 'bg-white/5 border border-white/10 text-white/60 hover:text-white'
+                  }`}
+                >
+                  {skill}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="space-y-8">
-            {PROJECTS.map((project) => (
+            {PROJECTS
+              .filter(p => selectedSkill === 'All' || p.stack.toLowerCase().includes(selectedSkill.toLowerCase()) || p.techStack.some(t => t.toLowerCase().includes(selectedSkill.toLowerCase())))
+              .map((project) => (
               <div key={project.id}>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                   <div className="flex items-center gap-2">

@@ -46,6 +46,7 @@ interface HeroSectionProps {
 }
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+const HERO_POSTER = `${import.meta.env.BASE_URL}hero-ambient-poster.webp`;
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -86,14 +87,17 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       {/* Background ambient visual on all screens (gradient backdrop + deferred video) */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div className="relative w-full h-full flex items-center justify-center">
-          {/* Ambient CSS glow backdrop — guaranteed zero broken image icons */}
-          <div
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
-              isVideoLoaded ? 'opacity-0' : 'opacity-100'
+          {/* Ambient botanical poster image — local asset, loads instantly with zero delay & zero broken icons */}
+          <img
+            src={HERO_POSTER}
+            alt=""
+            width={960}
+            height={540}
+            fetchPriority="high"
+            decoding="async"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              isVideoLoaded ? 'opacity-0' : 'opacity-60'
             }`}
-            style={{
-              background: 'radial-gradient(circle at 50% 30%, rgba(30, 58, 45, 0.35) 0%, rgba(10, 15, 20, 0.8) 60%, #000000 100%)',
-            }}
             aria-hidden="true"
           />
 
@@ -101,6 +105,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           {shouldLoadVideo && (
             <video
               src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
+              poster={HERO_POSTER}
               autoPlay
               loop
               muted
