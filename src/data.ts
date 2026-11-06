@@ -326,8 +326,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
       "Data Wrangling",
       "Exploratory Data Analysis"
     ],
-    desc: "Completed the IBM Data Analyst Professional Certificate covering Excel, SQL, Python, Data Visualization, Dashboards, Data Analysis, Relational Databases, Jupyter Notebooks, and IBM Cognos Analytics through hands-on projects and real-world datasets.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80"
+    desc: "Completed the IBM Data Analyst Professional Certificate covering Excel, SQL, Python, Data Visualization, Dashboards, Data Analysis, Relational Databases, Jupyter Notebooks, and IBM Cognos Analytics through hands-on projects and real-world datasets."
   },
   {
     prefix: "🥈",
@@ -346,8 +345,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
       "Model Evaluation",
       "Data Analysis"
     ],
-    desc: "Completed NPTEL IIT Madras certification in Introduction to Machine Learning (Tamil), covering machine learning fundamentals, classification, regression, model evaluation, and practical AI concepts.",
-    image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=800&auto=format&fit=crop&q=80"
+    desc: "Completed NPTEL IIT Madras certification in Introduction to Machine Learning (Tamil), covering machine learning fundamentals, classification, regression, model evaluation, and practical AI concepts."
   },
   {
     prefix: "🥉",
@@ -355,15 +353,15 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     issuer: "National Institute of Electronics and Information Technology (NIELIT)",
     issueDate: "March 2026",
     credentialId: "2026030427766558-105732",
-    verifyUrl: "",
+    verifyUrl: "https://www.nielit.gov.in/",
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
     skills: [
       "Prompt Engineering",
       "Accurate Prompting",
       "Generative AI",
       "Responsible AI"
     ],
-    desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&auto=format&fit=crop&q=80"
+    desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications."
   }
 ];
 
@@ -424,8 +422,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "September 2026",
     badge: "🏆 1st Place",
     desc: "Led Team NelSync AI to 1st place overall with 'Smart Paddy Procurement Optimization' — an AI-driven agricultural supply chain forecasting platform.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&auto=format&fit=crop&q=80"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   },
   {
     title: "1st Place Winner",
@@ -434,8 +431,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🥇 Winner",
     desc: "Won first place in advanced computer science, algorithms, AI concepts, and software engineering quiz competition.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&auto=format&fit=crop&q=80"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   },
   {
     title: "Runner-up (2nd Place)",
@@ -444,8 +440,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🥈 Runner-up",
     desc: "Competed in offensive security, binary exploitation, web vulnerabilities, and reverse engineering challenges.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   },
   {
     title: "1st Place Winner",
@@ -454,8 +449,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🥇 1st Place",
     desc: "Awarded top honors for technical design and software presentation among competing postgraduate STEM departments.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   },
   {
     title: "Lead Event Organizer",
@@ -464,8 +458,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🎯 Leadership",
     desc: "Orchestrated algorithmic puzzle design, participant coordination, and live event management for 100+ attendees.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   }
 ];
 
@@ -501,21 +494,50 @@ export const STATS = [
   ['4+', 'Client Technical Audits']
 ];
 
-export const CERTIFICATIONS = [
+export interface CertificationCategory {
+  icon: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  items: {
+    name: string;
+    tag?: string;
+  }[];
+}
+
+export const CERTIFICATIONS: CertificationCategory[] = [
   { 
     icon: 'database', 
     title: 'Data Analytics', 
-    items: [{ name: "IBM Data Analyst Course" }] 
+    subtitle: 'IBM & Specialized Industry Courses',
+    desc: 'Exploratory data analysis, SQL querying, Python analytics pipelines, and dynamic dashboard creation.',
+    items: [
+      { name: "IBM Data Analyst Professional Certificate", tag: "Professional Cert" },
+      { name: "Python for Data Science, AI & Development", tag: "Core Python" },
+      { name: "Relational Databases, SQL & Data Modeling", tag: "Databases" }
+    ] 
   },
   { 
     icon: 'code', 
     title: 'Information Technology', 
-    items: [{ name: "Honours Diploma in Information Technology" }] 
+    subtitle: 'Technical Diplomas & Systems',
+    desc: 'Foundational computer science, software architecture, responsive UI development, and version control.',
+    items: [
+      { name: "Honours Diploma in Information Technology", tag: "Honours Diploma" },
+      { name: "Modern Web Architecture & Full Stack Principles", tag: "Web Eng" },
+      { name: "Git, GitHub & Collaborative Agile Pipelines", tag: "DevOps" }
+    ] 
   },
   { 
     icon: 'brain', 
     title: 'Business Intelligence', 
-    items: [{ name: "Mastering Excel Data Analysis & Dashboard Reporting" }] 
+    subtitle: 'Analytics & Reporting Systems',
+    desc: 'Executive business intelligence, spreadsheet modeling, automated data cleaning, and KPI analysis.',
+    items: [
+      { name: "Mastering Excel Data Analysis & Dashboard Reporting", tag: "BI & Reporting" },
+      { name: "KPI Decomposition & Executive Presentation", tag: "Strategy" },
+      { name: "Data Cleaning, Transformation & Pipeline Automation", tag: "Data Prep" }
+    ] 
   }
 ];
 

@@ -38,23 +38,23 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
           <h2 className="text-fluid-contact-heading font-heading font-bold text-white tracking-tight leading-[0.8] mb-8 md:mb-12">Let's Build <br/> Something.</h2>
           <p className="text-white/60 font-body font-light text-xl max-w-2xl mx-auto mb-10 md:mb-16">I'm open to new projects, internships, and collaborations where AI, Machine Learning, Python, React, TypeScript, Firebase, and full-stack product thinking can create real-world impact.</p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-2">
+            <div className="liquid-glass-strong p-1.5 sm:p-2 rounded-full font-body flex items-center gap-2 border border-white/10 hover:border-white/20 transition-all shadow-lg backdrop-blur-xl">
               <button
                 type="button"
                 onClick={copyEmail}
-                className="liquid-glass-strong px-4 sm:px-8 py-4 rounded-full font-body font-medium text-base sm:text-lg flex items-center gap-3 min-h-[48px] text-foreground hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
+                className="flex items-center gap-3 px-4 sm:px-6 py-2.5 rounded-full hover:bg-white/5 text-white font-medium text-base sm:text-lg transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                 aria-label={copied ? 'Email copied to clipboard' : 'Copy email address to clipboard'}
                 title="Click to copy email address"
               >
-                {copied ? <Check className="w-5 h-5 shrink-0 text-emerald-400" /> : <Mail className="w-5 h-5 shrink-0" />}
-                <span>{copied ? 'Email Copied!' : copyError ? 'Copy failed — click mail' : 'contact@sahayasavari.dev'}</span>
-                {!copied && <Copy className="w-4 h-4 shrink-0 opacity-40 group-hover:opacity-80 transition-opacity" />}
+                {copied ? <Check className="w-5 h-5 shrink-0 text-emerald-400" /> : <Mail className="w-5 h-5 shrink-0 text-white/80" />}
+                <span className="text-white">{copied ? 'Email Copied!' : copyError ? 'Copy failed' : 'contact@sahayasavari.dev'}</span>
+                {!copied && <Copy className="w-4 h-4 shrink-0 opacity-40 group-hover:opacity-90 transition-opacity ml-1" />}
               </button>
               <a
                 href="mailto:contact@sahayasavari.dev"
-                className="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:scale-105 transition-all"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                 title="Send email via mail client"
-                aria-label="Open mail client to send email"
+                aria-label="Open default mail client to email contact@sahayasavari.dev"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
