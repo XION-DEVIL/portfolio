@@ -452,12 +452,12 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   },
   {
-    title: "1st Place Winner",
-    event: "Technical Treasure Hunt & Logic Challenge — AION 2K26 Symposium",
+    title: "Lead Event Organizer & Winner",
+    event: "Treasure Titans — AION 2K26 Technical Symposium",
     organizer: "Department of AI, St. Joseph's College",
     date: "2026",
-    badge: "🥇 1st Place",
-    desc: "Secured 1st place in algorithmic problem-solving, rapid technical reasoning, and cryptographic logic challenges.",
+    badge: "🎯 Leadership & Win",
+    desc: "Led event organization, algorithmic puzzle design, participant coordination for 100+ attendees, and secured top recognition in technical problem-solving.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   }
 ];
