@@ -28,22 +28,22 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
     if (prefersReducedMotion || constrainedConnection) return;
 
-    // Delay video load until well after LCP is recorded (~2.5s).
-    // The browser finalises LCP on the first user interaction or when a new
-    // largest paint hasn't occurred for a while.  By waiting 3.5s we guarantee
-    // the video never becomes the LCP candidate.
-    const loadHeroVideo = () => {
-      // Use requestIdleCallback where available so we don't block main thread
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(() => setShouldLoadVideo(true), { timeout: 2000 });
-      } else {
-        setShouldLoadVideo(true);
-      }
+    // Load background video ONLY after a qualifying user interaction (scroll, click, tap, key).
+    // CRITICAL: We NEVER listen to pointermove/mousemove. Under W3C LCP specifications,
+    // mouse movement does NOT finalize LCP. If pointermove triggers video download, Chrome
+    // keeps the LCP window open until the 11 MB video finishes buffering (taking 30s+ on 4G).
+    // With scroll / pointerdown / keydown, Chrome permanently locks in LCP at ~1.9s (the poster),
+    // and only then begins streaming the background video.
+    const events = ['scroll', 'pointerdown', 'touchstart', 'keydown'] as const;
+    const startVideo = () => {
+      events.forEach(e => window.removeEventListener(e, startVideo));
+      setShouldLoadVideo(true);
     };
-    const timer = window.setTimeout(loadHeroVideo, 3500);
+
+    events.forEach(e => window.addEventListener(e, startVideo, { once: true, passive: true }));
 
     return () => {
-      window.clearTimeout(timer);
+      events.forEach(e => window.removeEventListener(e, startVideo));
     };
   }, []);
 
@@ -51,17 +51,16 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     <section ref={sectionRef} id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
       {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
       <div className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
+        <div className="relative w-full aspect-video flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
           {/* Static ambient poster image - visible immediately on all viewports including mobile */}
           <img
             src={HERO_POSTER}
             alt=""
             width={960}
             height={540}
-            fetchPriority="low"
+            fetchPriority="high"
             decoding="async"
-            loading="lazy"
-            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
+            className={`w-full h-auto aspect-video min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
               isVideoLoaded ? 'opacity-0 md:opacity-0' : 'opacity-40'
             }`}
             aria-hidden="true"
@@ -110,7 +109,17 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
               <div className="relative order-1 md:order-2 shrink-0 group md:mr-24 lg:mr-32">
                 <div className="relative w-[200px] h-[290px] sm:w-[230px] sm:h-[330px] lg:w-[260px] lg:h-[370px]">
-                  <ClientOnly fallback={<img src={`${import.meta.env.BASE_URL}profile.jpg`} alt="Sahaya Savari F" width={400} height={400} className="w-40 h-40 mx-auto mt-24 rounded-full object-cover object-top" />}>
+                  <ClientOnly fallback={
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <img
+                        src={`${import.meta.env.BASE_URL}profile.webp`}
+                        alt="Sahaya Savari F"
+                        width={160}
+                        height={160}
+                        className="w-40 h-40 rounded-full object-cover object-top"
+                      />
+                    </div>
+                  }>
                     <div className="absolute -inset-x-[70px] -top-6 -bottom-6 sm:-inset-x-[80px] md:-inset-x-[160px] lg:-inset-x-[220px]">
                       <Suspense fallback={null}><HeroBadge /></Suspense>
                     </div>

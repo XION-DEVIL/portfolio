@@ -77,6 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "preload",
+        as: "image",
+        href: "https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=960",
+        type: "image/webp",
+        fetchPriority: "high",
+      },
+      {
+        rel: "preload",
         as: "font",
         type: "font/woff2",
         href: `${import.meta.env.BASE_URL}fonts/font-13.woff2`,
