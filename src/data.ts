@@ -157,7 +157,7 @@ export const PROJECTS: Project[] = [
     tag: "AI & Agriculture", 
     desc: "Overall Champion of the AIxcelerate 2026 AI Innovation Hackathon. An intelligent paddy procurement optimization system combining predictive ML pipelines, yield analytics, and supply-chain logistics.", 
     stack: "Python · Machine Learning · Analytics", 
-    link: "",
+    link: "https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view",
     status: "🏆 Hackathon Champion",
     github: "",
     longDesc: "NelSync AI is an AI-driven agricultural optimization engine designed to streamline paddy procurement for farmers and procurement centers. Built by Team NelSync AI, it earned the 1st Place Overall Championship trophy at the AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon at Dhanalakshmi Srinivasan University.",
@@ -298,6 +298,7 @@ export interface FeaturedCredential {
   credits?: string | number;
   skills?: string[];
   desc?: string;
+  image?: string;
 }
 
 export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
@@ -404,6 +405,7 @@ export interface HonorAward {
   badge: string;
   desc: string;
   linkedinUrl?: string;
+  image?: string;
 }
 
 export const HONORS_AND_AWARDS: HonorAward[] = [

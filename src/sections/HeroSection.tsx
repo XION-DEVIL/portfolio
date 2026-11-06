@@ -84,9 +84,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
   return (
     <section ref={sectionRef} id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
-      {/* Background ambient visual on all screens (gradient backdrop + deferred video) */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="relative w-full h-full flex items-center justify-center">
+      {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
+      <div className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
           {/* Ambient botanical poster image — local asset, loads instantly with zero delay & zero broken icons */}
           <img
             src={HERO_POSTER}
@@ -95,8 +95,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             height={540}
             fetchPriority="high"
             decoding="async"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              isVideoLoaded ? 'opacity-0' : 'opacity-60'
+            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
+              isVideoLoaded ? 'opacity-0 md:opacity-0' : 'opacity-40'
             }`}
             aria-hidden="true"
           />
@@ -114,8 +114,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? 'opacity-60' : 'opacity-20'
+              className={`absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded ? 'opacity-40' : 'opacity-0'
               }`}
               aria-hidden="true"
             />

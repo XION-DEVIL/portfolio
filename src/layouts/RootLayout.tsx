@@ -4,7 +4,6 @@ import { Outlet, useNavigate, useLocation, Link } from '@/lib/router-compat';
 
 import ClickSpark from '../components/ClickSpark';
 import ErrorBoundary from '../components/ErrorBoundary';
-import AstralPreloader from '../components/AstralPreloader';
 import { lockScroll, unlockScroll, forceUnlockScroll } from '../utils/scrollLock';
 import { scrollToSection, revealLazySections, initLazyPreload } from '../utils/navigation';
 const SiteCursor = lazy(() => import('../components/reactbits/SiteCursor'));
@@ -239,7 +238,6 @@ export default function RootLayout() {
 
   return (
     <ClickSpark sparkColor='#FFFFFF' sparkSize={8} sparkRadius={14} sparkCount={8} duration={350}>
-      <AstralPreloader />
       {enableSiteCursor && (
         <Suspense fallback={null}>
           <SiteCursor />

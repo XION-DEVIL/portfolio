@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Sparkles, AlertTriangle, CheckCircle2, Truck, RefreshCw } from 'lucide-react';
+import { Sparkles, AlertTriangle, CheckCircle2, Truck, RefreshCw, Play } from 'lucide-react';
 
 export default function NelSyncSimulator() {
   const [moisture, setMoisture] = useState<number>(14.5);
@@ -77,13 +77,24 @@ export default function NelSyncSimulator() {
           <h3 className="text-xl font-heading tracking-tight">Grain Moisture & Spoilage Predictor</h3>
           <p className="text-xs text-white/60 font-body">Simulate the AIxcelerate 2026 winning procurement logistics forecasting pipeline.</p>
         </div>
-        <button
-          onClick={handleReset}
-          className="inline-flex items-center gap-1.5 text-xs text-white/60 hover:text-white px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 transition-colors self-start sm:self-auto cursor-pointer"
-          title="Reset to baseline values"
-        >
-          <RefreshCw className="w-3 h-3" /> Reset
-        </button>
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          <a
+            href="https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-black bg-white hover:bg-white/90 px-3.5 py-1.5 rounded-lg font-semibold transition-all shadow cursor-pointer"
+            title="Watch the hackathon video demo on Google Drive"
+          >
+            <Play className="w-3 h-3 fill-black" /> Video Demo
+          </a>
+          <button
+            onClick={handleReset}
+            className="inline-flex items-center gap-1.5 text-xs text-white/60 hover:text-white px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 transition-colors cursor-pointer"
+            title="Reset to baseline values"
+          >
+            <RefreshCw className="w-3 h-3" /> Reset
+          </button>
+        </div>
       </div>
 
       {/* Sliders Grid */}
@@ -210,3 +221,4 @@ export default function NelSyncSimulator() {
     </div>
   );
 }
+

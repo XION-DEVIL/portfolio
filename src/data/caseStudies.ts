@@ -46,6 +46,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Rapid prototype validation and domain-specific feature engineering drive hackathon success.',
       'Communicating technical AI models clearly to interdisciplinary judging panels is critical.'
     ],
+    demoUrl: 'https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view',
     statusBadge: '🏆 1st Place Overall Champion — AIxcelerate 2026'
   },
   'prepmind-ai': {

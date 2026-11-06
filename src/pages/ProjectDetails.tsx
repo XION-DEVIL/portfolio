@@ -77,7 +77,7 @@ export default function ProjectDetails() {
                 rel="noreferrer"
                 className="flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full font-medium text-sm hover:scale-105 transition-transform"
               >
-                View Live Demo <ExternalLink className="w-4 h-4" />
+                {project.id === 'nelsync-ai' ? 'Watch Video Demo' : 'View Live Demo'} <ExternalLink className="w-4 h-4" />
               </a>
             ) : null}
             {project.githubUrl && project.githubUrl !== 'https://github.com/sahaya-savari' ? (

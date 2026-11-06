@@ -169,6 +169,17 @@ const ExperienceSection = memo(() => {
                     <p className="text-sm font-body font-light text-white/70 leading-relaxed mb-4">
                       {award.desc}
                     </p>
+
+                    {award.image && (
+                      <div className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video bg-black/40">
+                        <img
+                          src={award.image}
+                          alt={`${award.title} certificate / proof`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <div className="pt-4 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-3 text-xs font-body text-white/60">

@@ -75,12 +75,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "image/webp",
         fetchPriority: "high",
       },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
-        rel: "preload",
-        as: "font",
-        type: "font/woff2",
-        href: `${import.meta.env.BASE_URL}fonts/font-13.woff2`,
-        crossOrigin: "anonymous",
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap",
       },
       {
         rel: "preload",

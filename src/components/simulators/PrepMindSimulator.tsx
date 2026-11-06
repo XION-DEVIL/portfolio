@@ -194,3 +194,4 @@ export default function PrepMindSimulator() {
     </div>
   );
 }
+

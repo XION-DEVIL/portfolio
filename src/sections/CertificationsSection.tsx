@@ -58,6 +58,16 @@ const CertificationsSection = memo(() => {
                     </div>
                   </div>
                   <h4 className="font-heading italic text-xl md:text-2xl text-white mb-3 leading-tight tracking-tight">{cred.title}</h4>
+                  {cred.image && (
+                    <div className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video bg-black/40">
+                      <img
+                        src={cred.image}
+                        alt={`${cred.title} certificate`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   {cred.desc && (
                     <p className="text-white/60 font-body font-light text-xs leading-relaxed mb-4">
                       {cred.desc}
