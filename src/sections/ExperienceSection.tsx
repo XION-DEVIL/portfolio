@@ -15,7 +15,7 @@ const ExperienceSection = memo(() => {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
             <SectionBadge>Proven Track Record</SectionBadge>
-            <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">
+            <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">
               Work Experience &amp; <br />
               Hackathon Honors.
             </h2>
@@ -81,7 +81,7 @@ const ExperienceSection = memo(() => {
                         {exp.location}
                       </span>
                     </div>
-                    <h3 className="text-xl md:text-2xl font-heading italic text-white mb-1">
+                    <h3 className="text-xl md:text-2xl font-heading font-bold text-white mb-1">
                       {exp.role}
                     </h3>
                     <div className="flex items-center gap-3">
@@ -160,7 +160,7 @@ const ExperienceSection = memo(() => {
                       <span className="text-xs font-mono text-white/50">{award.date}</span>
                     </div>
 
-                    <h3 className={`font-heading italic text-white mb-2 ${isGrandChampion ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
+                    <h3 className={`font-heading font-bold text-white mb-2 ${isGrandChampion ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
                       {award.title}
                     </h3>
                     <p className="text-xs font-mono text-white/60 uppercase tracking-wider mb-3">

@@ -129,7 +129,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = DEFAULT_R
         onClick={e => e.stopPropagation()}
       >
         <div className="hidden md:flex flex-col border-r border-white/20 pr-6 mr-2">
-          <span className="text-white font-heading italic text-lg leading-none">Sahaya Savari F</span>
+          <span className="text-white font-heading font-bold text-lg leading-none">Sahaya Savari F</span>
           <span className="text-white/50 font-body text-[10px] uppercase tracking-widest mt-1">M.Sc Artificial Intelligence • Resume</span>
         </div>
         <div className="flex items-center gap-2 border-r border-white/20 pr-6">

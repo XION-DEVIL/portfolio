@@ -71,7 +71,7 @@ export default function ResumePage() {
               <FileText className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl md:text-4xl font-heading italic">Curriculum Vitae</h1>
+              <h1 className="text-3xl md:text-4xl font-heading font-bold">Curriculum Vitae</h1>
               <p className="text-white/60 font-body text-sm">Sahaya Savari · AI/ML & Full Stack Developer</p>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default function ResumePage() {
                   <FileText className="w-8 h-8 text-purple-300" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-heading italic text-xl text-white">Curriculum Vitae</h3>
+                  <h3 className="font-heading font-bold text-xl text-white">Curriculum Vitae</h3>
                   <p className="text-white/60 text-xs font-body max-w-xs mx-auto leading-relaxed">
                     Tap below to open or download the complete PDF resume directly on your device.
                   </p>

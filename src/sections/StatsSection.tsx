@@ -22,7 +22,7 @@ const StatsSection = memo(() => {
         <div className="py-6 md:py-12 text-center">
           <div className="mb-8">
             <SectionBadge>Snapshot</SectionBadge>
-            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-heading italic text-white tracking-tight mb-4">Creative Mind. AI Heart.</h2>
+            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-heading font-bold text-white tracking-tight mb-4">Creative Mind. AI Heart.</h2>
             <p className="text-white/60 font-body font-light text-sm max-w-md mx-auto">A quick look at the numbers behind my continuous learning and building journey.</p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12">

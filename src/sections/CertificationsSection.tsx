@@ -23,7 +23,7 @@ const CertificationsSection = memo(() => {
       <div className="max-w-screen-xl mx-auto">
         <div className="mb-12 text-center">
           <SectionBadge>Learning Journey</SectionBadge>
-          <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">Certificates &amp; Courses</h2>
+          <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9]">Certificates &amp; Courses</h2>
           <p className="text-white/50 font-body font-light mt-6 max-w-xl mx-auto">Focused on building practical, project-ready skills in Artificial Intelligence, Machine Learning, Python development, data analytics, and software development.</p>
         </div>
 
@@ -31,7 +31,7 @@ const CertificationsSection = memo(() => {
         <div className="mb-12 md:mb-20 lg:mb-24">
           <div className="flex items-center gap-3 justify-center mb-10">
             <Award className="w-6 h-6 text-white/50 animate-pulse" aria-hidden="true" />
-            <h3 className="font-heading italic text-3xl text-white tracking-tight">Featured Credentials</h3>
+            <h3 className="font-heading font-bold text-3xl text-white tracking-tight">Featured Credentials</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
             {FEATURED_CREDENTIALS.map((cred) => (
@@ -57,7 +57,7 @@ const CertificationsSection = memo(() => {
                       <span className="text-[10px] font-mono uppercase tracking-widest text-white/60 text-right">{cred.issuer}</span>
                     </div>
                   </div>
-                  <h4 className="font-heading italic text-xl md:text-2xl text-white mb-3 leading-tight tracking-tight">{cred.title}</h4>
+                  <h4 className="font-heading font-bold text-xl md:text-2xl text-white mb-3 leading-tight tracking-tight">{cred.title}</h4>
                   {cred.image && (
                     <div className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video bg-black/40">
                       <img
@@ -151,7 +151,7 @@ const CertificationsSection = memo(() => {
         {/* LEARNING JOURNEY TIMELINE */}
         <div className="mb-16 lg:mb-24">
           <div className="flex items-center gap-3 justify-center mb-10">
-            <h3 className="font-heading italic text-3xl text-white/60 tracking-tight">The Learning Journey</h3>
+            <h3 className="font-heading font-bold text-3xl text-white/60 tracking-tight">The Learning Journey</h3>
           </div>
           <div className="max-w-4xl mx-auto relative">
             <div className="absolute top-0 bottom-0 left-[28px] md:left-1/2 w-[2px] bg-gradient-to-b from-white/0 via-white/10 to-white/0 -translate-x-1/2"></div>
@@ -170,7 +170,7 @@ const CertificationsSection = memo(() => {
                 </div>
                 <div className="ml-12 md:ml-0 md:w-1/2 p-6 liquid-glass rounded-2xl md:mx-8 border border-white/5 hover:bg-white/5 transition-colors">
                   <span className="text-[10px] font-mono text-white/60 uppercase tracking-widest">{item.year}</span>
-                  <h4 className="text-xl font-heading italic text-white mt-2 mb-2">{item.title}</h4>
+                  <h4 className="text-xl font-heading font-bold text-white mt-2 mb-2">{item.title}</h4>
                   <p className="text-sm font-body text-white/60 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -181,7 +181,7 @@ const CertificationsSection = memo(() => {
         {/* EXISTING CATEGORIES TABS */}
         <div>
           <div className="flex items-center gap-3 justify-center mb-10">
-            <h3 className="font-heading italic text-3xl text-white/60 tracking-tight">Browse by Category</h3>
+            <h3 className="font-heading font-bold text-3xl text-white/60 tracking-tight">Browse by Category</h3>
           </div>
           
           {/* Mobile Category Dropdown Selector */}

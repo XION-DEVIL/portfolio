@@ -148,7 +148,7 @@
 }
 
 @utility heading-primary {
-  @apply font-heading italic text-white tracking-tight leading-[0.9];
+  @apply font-heading font-bold text-white tracking-tight leading-[0.9];
 }
 
 @utility body-text {

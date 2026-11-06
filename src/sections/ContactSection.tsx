@@ -35,7 +35,7 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
       </div>
       <div className="relative z-10 max-w-screen-xl mx-auto">
         <div className="text-center mb-16 md:mb-24 lg:mb-32">
-          <h2 className="text-fluid-contact-heading font-heading italic text-white tracking-tight leading-[0.8] mb-8 md:mb-12">Let's Build <br/> Something.</h2>
+          <h2 className="text-fluid-contact-heading font-heading font-bold text-white tracking-tight leading-[0.8] mb-8 md:mb-12">Let's Build <br/> Something.</h2>
           <p className="text-white/60 font-body font-light text-xl max-w-2xl mx-auto mb-10 md:mb-16">I'm open to new projects, internships, and collaborations where AI, Machine Learning, Python, React, TypeScript, Firebase, and full-stack product thinking can create real-world impact.</p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <div className="flex items-center gap-2">
@@ -74,9 +74,9 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
           {/* Left Column: Logo & Name */}
           <div className="flex items-center justify-center lg:justify-start gap-3">
             <div className="w-8 h-8 liquid-glass rounded-full flex items-center justify-center border border-white/20" aria-hidden="true">
-              <span className="font-heading text-sm italic">S</span>
+              <span className="font-heading text-sm font-bold">S</span>
             </div>
-            <span className="font-heading italic text-lg tracking-tight text-white">Sahaya Savari F</span>
+            <span className="font-heading font-bold text-lg tracking-tight text-white">Sahaya Savari F</span>
           </div>
           
           {/* Middle Column: Social Links Dock (Centered) */}

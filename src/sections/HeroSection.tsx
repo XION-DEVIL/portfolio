@@ -162,7 +162,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4">
-              <span className="font-heading italic text-fluid-hero-role text-white/70">I am an</span>
+              <span className="font-heading font-normal text-fluid-hero-role text-white/80">I am an</span>
               <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
                   texts={["AI Engineer", "M.Sc. AI Student", "Python Developer", "Full Stack Developer"]}
@@ -210,7 +210,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <div className="md:col-span-2 space-y-6">
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
                   <div>
-                    <h2 className="text-white font-heading italic text-lg leading-none">Recruiter Quick View</h2>
+                    <h2 className="text-white font-heading font-bold text-lg leading-none">Recruiter Quick View</h2>
                     <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">Candidate profile summary</span>
                   </div>
                   <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1.5 shrink-0">

@@ -48,7 +48,7 @@ const ArticleCard = ({ article, onRead }: { article: Article; onRead: () => void
             <span>{article.readingTime} min read</span>
           </div>
         </div>
-        <h3 className="font-heading italic text-xl text-white mb-2 group-hover:text-purple-300 transition-colors">
+        <h3 className="font-heading font-bold text-xl text-white mb-2 group-hover:text-purple-300 transition-colors">
           {article.title}
         </h3>
         <p className="text-sm font-body font-light text-white/70 mb-6 flex-1 line-clamp-3">
@@ -83,7 +83,7 @@ const BlogSection = memo(() => {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
             <div className="max-w-2xl">
               <SectionBadge>Writings & Articles</SectionBadge>
-              <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">
+              <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">
                 Developer Blog &amp; <br/> Technical Insights.
               </h2>
               <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed">

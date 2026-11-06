@@ -328,7 +328,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
 
           {/* Candidate Value Highlight */}
           <div className="text-center mt-2 space-y-1">
-            <p className="font-heading italic text-sm sm:text-base text-white/95 tracking-wide">
+            <p className="font-heading font-bold text-sm sm:text-base text-white/95 tracking-wide">
               {currentPhase.highlight}
             </p>
             <p className="font-mono text-[10px] text-white/60 tracking-tight">

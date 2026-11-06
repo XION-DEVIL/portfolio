@@ -198,7 +198,7 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
             </div>
           </div>
           <Link to={`/projects/${p.id}`} className="focus:outline-none" onClick={(e) => e.stopPropagation()}>
-            <h3 className="font-heading italic text-4xl md:text-5xl lg:text-6xl text-white mb-6 hover:text-white/80 transition-colors">{p.title}</h3>
+            <h3 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 hover:text-white/80 transition-colors">{p.title}</h3>
           </Link>
           <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed mb-8 max-w-xl">{p.desc}</p>
           <div className="flex flex-col sm:flex-row gap-4 text-xs font-body border-l-2 border-white/20 pl-4 py-2">
@@ -324,7 +324,7 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
           </div>
         </div>
         <Link to={`/projects/${p.id}`} className="focus:outline-none" onClick={(e) => e.stopPropagation()}>
-          <h3 className="font-heading italic text-3xl text-white mb-4 hover:text-white/80 transition-colors">{p.title}</h3>
+          <h3 className="font-heading font-bold text-3xl text-white mb-4 hover:text-white/80 transition-colors">{p.title}</h3>
         </Link>
         <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-8 flex-grow">{p.desc}</p>
         <div className="flex flex-col gap-2 mt-auto text-xs font-body border-l-2 border-white/20 pl-3 py-1">
@@ -409,7 +409,7 @@ const ProjectsSection = memo(() => {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
             <div className="max-w-2xl">
               <SectionBadge>Selected Work</SectionBadge>
-              <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">AI-Powered <br/> Projects.</h2>
+              <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">AI-Powered <br/> Projects.</h2>
               <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
                 Explore my portfolio of production-grade software applications, Machine Learning models, and Artificial Intelligence solutions. Each featured project showcases full stack architecture built with Python, React, TypeScript, FastAPI, and Firebase—combining structured LLM prompt pipelines, real-time databases, and responsive UI design.
               </p>
@@ -479,7 +479,7 @@ const ProjectsSection = memo(() => {
             <div className="flex flex-col items-center justify-center py-20 px-6 rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-xl text-center space-y-4">
               <Search className="w-10 h-10 text-white/20" aria-hidden="true" />
               <div>
-                <h3 className="font-heading italic text-2xl text-white">No Matching Projects</h3>
+                <h3 className="font-heading font-bold text-2xl text-white">No Matching Projects</h3>
                 <p className="text-white/70 font-body font-light text-sm mt-1 max-w-sm">
                   We couldn't find any projects matching "<span className="text-white/90">{search}</span>" in this filter category. Try another keyword.
                 </p>

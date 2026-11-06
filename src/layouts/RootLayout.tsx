@@ -266,7 +266,7 @@ export default function RootLayout() {
             <div className="max-w-screen-xl mx-auto flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Link to="/" onClick={handleHomeClick} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="SF — Sahaya Savari F Home">
-                  <span className="font-heading text-lg italic" aria-hidden="true">SF</span>
+                  <span className="font-heading text-lg font-bold" aria-hidden="true">SF</span>
                 </Link>
                 <span className="font-body text-xs font-medium tracking-widest hidden lg:flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
@@ -339,14 +339,14 @@ export default function RootLayout() {
             onKeyDown={handleMobileMenuKeyDown}
           >
             <nav className="flex flex-col items-center gap-6 my-auto" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
-              <Link to="/" onClick={handleHomeClick} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
-              <a href={`${appBase}#about`} onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
-              <a href={`${appBase}#experience`} onClick={(e) => handleNavClick(e, 'experience')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Experience</a>
-              <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
-              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
-              <a href={`${appBase}#skills`} onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
-              <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
-              <a href={`${appBase}#certifications`} onClick={(e) => handleNavClick(e, 'certifications')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
+              <Link to="/" onClick={handleHomeClick} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
+              <a href={`${appBase}#about`} onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
+              <a href={`${appBase}#experience`} onClick={(e) => handleNavClick(e, 'experience')} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Experience</a>
+              <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
+              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
+              <a href={`${appBase}#skills`} onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
+              <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
+              <a href={`${appBase}#certifications`} onClick={(e) => handleNavClick(e, 'certifications')} className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
               <a href={`${appBase}resume.pdf`} download onClick={() => setMobileMenuOpen(false)} className="text-xl sm:text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2 mt-2">
                 <Download size={20} /> Download Resume PDF
               </a>

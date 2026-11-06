@@ -11,7 +11,7 @@ const OpenSourceSection = memo(() => {
           {/* Header & Description Column */}
           <div className="lg:col-span-6 space-y-6">
             <SectionBadge>Community & Code</SectionBadge>
-            <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">
+            <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9]">
               Open Source & <br /> GitHub Engineering.
             </h2>
             <p className="text-white/60 font-body font-light text-lg leading-relaxed">
@@ -39,7 +39,7 @@ const OpenSourceSection = memo(() => {
               <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
                 <GitPullRequest className="w-5 h-5 text-purple-400" aria-hidden="true" />
               </div>
-              <h3 className="font-heading italic text-xl text-white">Modular Architecture</h3>
+              <h3 className="font-heading font-bold text-xl text-white">Modular Architecture</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
                 Writing reusable Python libraries, custom React hooks, and standalone REST API utilities designed for easy integration and developer adoption.
               </p>
@@ -49,7 +49,7 @@ const OpenSourceSection = memo(() => {
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                 <GitCommit className="w-5 h-5 text-blue-400" aria-hidden="true" />
               </div>
-              <h3 className="font-heading italic text-xl text-white">Version Control & CI/CD</h3>
+              <h3 className="font-heading font-bold text-xl text-white">Version Control & CI/CD</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
                 Maintaining disciplined Git commit hygiene, comprehensive README documentation, continuous testing pipelines, and Dockerized environments.
               </p>
@@ -59,7 +59,7 @@ const OpenSourceSection = memo(() => {
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                 <Terminal className="w-5 h-5 text-emerald-400" aria-hidden="true" />
               </div>
-              <h3 className="font-heading italic text-xl text-white">Developer Tooling</h3>
+              <h3 className="font-heading font-bold text-xl text-white">Developer Tooling</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
                 Creating command-line interface tools, evaluation scripts for Machine Learning models, and automated build workflows for rapid prototyping.
               </p>
@@ -69,7 +69,7 @@ const OpenSourceSection = memo(() => {
               <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
                 <Star className="w-5 h-5 text-amber-400" aria-hidden="true" />
               </div>
-              <h3 className="font-heading italic text-xl text-white">Community & Learning</h3>
+              <h3 className="font-heading font-bold text-xl text-white">Community & Learning</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
                 Engaging with open-source project discussions, sharing bug fixes, and providing detailed implementation guides for full-stack AI applications.
               </p>

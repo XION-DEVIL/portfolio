@@ -58,7 +58,7 @@ const SkillsMatrix = memo(function SkillsMatrix() {
     <div className="w-full mt-12 md:mt-24 space-y-8">
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">
         <div>
-          <h3 className="font-heading italic text-3xl text-white">Skills Evidence Matrix</h3>
+          <h3 className="font-heading font-bold text-3xl text-white">Skills Evidence Matrix</h3>
           <p className="text-white/50 font-body font-light text-sm mt-2">
             Every technical claim is validated by projects, certifications, and academic work. No unsupported claims.
           </p>
@@ -73,7 +73,7 @@ const SkillsMatrix = memo(function SkillsMatrix() {
           >
             <div>
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
-                <h4 className="font-heading italic text-xl text-white group-hover:text-blue-300 transition-colors">
+                <h4 className="font-heading font-bold text-xl text-white group-hover:text-blue-300 transition-colors">
                   {data.skill}
                 </h4>
                 <CheckCircle className="w-4 h-4 text-green-400" />

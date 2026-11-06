@@ -29,7 +29,7 @@ export default function DevDashboard() {
                 </div>
                 <div>
                   <span className="block text-[10px] font-mono text-white/70 uppercase tracking-wider">{stat.label}</span>
-                  <span className="block text-xl font-heading italic text-white">{stat.value}</span>
+                  <span className="block text-xl font-heading font-bold text-white">{stat.value}</span>
                 </div>
               </div>
               <p className="text-white/70 font-body font-light text-xs leading-relaxed">
@@ -43,7 +43,7 @@ export default function DevDashboard() {
       {/* Research & Topic Exploration */}
       <div className="p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-2xl">
         <div className="mb-8 border-b border-white/5 pb-4">
-          <h3 className="font-heading italic text-2xl text-white">Research & Learning Focus</h3>
+          <h3 className="font-heading font-bold text-2xl text-white">Research & Learning Focus</h3>
           <p className="text-white/70 font-body font-light text-xs mt-1">
             Core subjects and methodologies actively explored through studies and application design.
           </p>
@@ -53,7 +53,7 @@ export default function DevDashboard() {
           {topics.map((topic, idx) => (
             <div key={idx} className="space-y-2">
               <div className="flex items-center justify-between">
-                <h4 className="font-heading italic text-lg text-white/95">{topic.name}</h4>
+                <h4 className="font-heading font-bold text-lg text-white/95">{topic.name}</h4>
                 <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1">
                   <CheckCircle className="w-2.5 h-2.5" /> {topic.level}
                 </span>

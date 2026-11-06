@@ -118,7 +118,7 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
               <span>By Sahaya Savari F</span>
             </div>
 
-            <h1 id="reader-article-title" className="text-2xl sm:text-3xl md:text-4xl font-heading italic text-white tracking-tight leading-tight mb-4">
+            <h1 id="reader-article-title" className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white tracking-tight leading-tight mb-4">
               {article.title}
             </h1>
 
@@ -173,7 +173,7 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
           <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <p className="text-xs font-mono uppercase tracking-wider text-white/50 mb-1">Author</p>
-              <h4 className="text-base font-heading italic text-white">Sahaya Savari F</h4>
+              <h4 className="text-base font-heading font-bold text-white">Sahaya Savari F</h4>
               <p className="text-xs text-white/60">M.Sc. AI Student &amp; Full Stack Developer · Overall Champion AIxcelerate 2026</p>
             </div>
 

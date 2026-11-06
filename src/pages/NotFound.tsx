@@ -18,8 +18,8 @@ export default function NotFound() {
         robots="noindex, nofollow"
       />
       <div className="pt-32 pb-24 px-6 max-w-screen-md mx-auto min-h-screen bg-black text-white flex flex-col items-center justify-center text-center selection:bg-white selection:text-black">
-        <h1 className="text-9xl font-heading italic tracking-tight mb-4 text-white/20">404</h1>
-        <h2 className="text-3xl font-heading italic tracking-tight mb-6">Page Not Found</h2>
+        <h1 className="text-9xl font-heading font-bold tracking-tight mb-4 text-white/20">404</h1>
+        <h2 className="text-3xl font-heading font-bold tracking-tight mb-6">Page Not Found</h2>
         <p className="text-lg font-body text-white/60 mb-12 max-w-md">
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>

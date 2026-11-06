@@ -23,7 +23,7 @@ export default function SkillAccordion({ title, children, icon: Icon }: { title:
           <div className="liquid-glass-strong w-10 h-10 flex items-center justify-center rounded-full" aria-hidden="true">
             <Icon className="w-5 h-5 text-white/80" />
           </div>
-          <span className="font-heading italic text-2xl md:text-3xl text-white/70 group-hover:text-white transition-colors">{title}</span>
+          <span className="font-heading font-bold text-2xl md:text-3xl text-white/70 group-hover:text-white transition-colors">{title}</span>
         </div>
         <div 
           className="transition-transform duration-300 ease-out" 

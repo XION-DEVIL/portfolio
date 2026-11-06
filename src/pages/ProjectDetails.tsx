@@ -66,7 +66,7 @@ export default function ProjectDetails() {
         </Link>
         
         <header className="mb-12 border-b border-white/10 pb-8">
-          <h1 className="text-4xl font-heading italic tracking-tight mb-4">{project.title}</h1>
+          <h1 className="text-4xl font-heading font-bold tracking-tight mb-4">{project.title}</h1>
           <p className="text-xl font-body text-white/70 mb-6">{project.tagline}</p>
           
           <div className="flex flex-wrap gap-4">

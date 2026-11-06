@@ -156,7 +156,7 @@ export default function AskSahayaAI() {
               <Sparkles className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-heading italic tracking-tight">Ask Sahaya AI</h1>
+              <h1 className="text-3xl font-heading font-bold tracking-tight">Ask Sahaya AI</h1>
               <p className="text-sm font-body text-foreground/50">Portfolio assistant · Demo</p>
             </div>
           </div>

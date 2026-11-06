@@ -36,7 +36,7 @@ const SkillsSection = memo(() => {
       <div className="max-w-screen-xl mx-auto relative z-10">
         <div className="mb-12">
           <SectionBadge>Capabilities</SectionBadge>
-          <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Core Proficiencies <br/> & Technical Pillars.</h2>
+          <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">Core Proficiencies <br/> & Technical Pillars.</h2>
           <p className="text-white/60 font-body font-light text-lg max-w-2xl">A structured overview of my technical capabilities across Artificial Intelligence, Machine Learning, Python development, and full-stack web development with React, TypeScript, and Firebase.</p>
         </div>
 
@@ -44,7 +44,7 @@ const SkillsSection = memo(() => {
         <Marquee>{['Python', 'React', 'TypeScript', 'FastAPI', 'Firebase', 'SQL', 'Machine Learning', 'Docker'].map(name => <span key={name} className="flex items-center gap-3 whitespace-nowrap font-body text-sm text-foreground/70"><Code className="w-4 h-4" />{name}</span>)}</Marquee>
         <div className="mb-16 py-6 md:py-8">
           <div className="mb-6">
-            <h3 className="font-heading italic text-2xl text-white mb-2">Technologies & Core Tools</h3>
+            <h3 className="font-heading font-bold text-2xl text-white mb-2">Technologies & Core Tools</h3>
             <p className="text-white/60 font-body font-light text-sm max-w-2xl">
               An index of key programming languages, frameworks, backend frameworks, databases, and deployment tooling used across my software development portfolio projects.
             </p>
@@ -196,7 +196,7 @@ const SkillsSection = memo(() => {
                   key="data"
                   className="flex flex-col justify-center items-center w-full animate-fade-in"
                 >
-                  <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Code meets logic.</h3>
+                  <h3 className="font-heading font-bold text-5xl md:text-6xl text-white mb-6 md:mb-8">Code meets logic.</h3>
                   <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
                     Building robust portfolio and production-style applications with Python, React, TypeScript, Firebase, and modern web technologies that deliver clean, reliable experiences.
                   </p>
@@ -211,7 +211,7 @@ const SkillsSection = memo(() => {
                   key="ai"
                   className="flex flex-col justify-center items-center w-full animate-fade-in"
                 >
-                  <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Intelligence by design.</h3>
+                  <h3 className="font-heading font-bold text-5xl md:text-6xl text-white mb-6 md:mb-8">Intelligence by design.</h3>
                   <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
                     Developing Artificial Intelligence and Machine Learning solutions that learn, adapt, and solve real-world problems with precision and purpose.
                   </p>

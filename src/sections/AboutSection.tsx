@@ -24,7 +24,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
       <div className="relative z-10 max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-start">
         <div>
           <SectionBadge>About Me</SectionBadge>
-          <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-12">Building intelligent <br/> AI-powered solutions.</h2>
+          <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-12">Building intelligent <br/> AI-powered solutions.</h2>
           <div className="space-y-8 text-white/60 font-body font-light text-lg leading-relaxed max-w-xl">
             <p>I am <strong>Sahaya Savari</strong>, an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy, and an <strong>AI/ML &amp; Full Stack Developer</strong>. I am deeply passionate about building AI-powered applications, Machine Learning models, and scalable web software that transition from prototypes into production systems.</p>
             <p>My background brings together Python development, REST API engineering with FastAPI, and full stack software development using React, TypeScript, and Firebase. I specialize in transforming complex data requirements into robust backends, accessible UI components, and verifiably reliable intelligent software.</p>
@@ -33,7 +33,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="md:col-span-2 liquid-glass rounded-3xl p-8 overflow-hidden relative border border-white/10 cursor-target">
-             <h3 className="font-heading italic text-3xl text-white mb-6">Recruiter Quick Scan</h3>
+             <h3 className="font-heading font-bold text-3xl text-white mb-6">Recruiter Quick Scan</h3>
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I Do</h4>
@@ -55,7 +55,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
           </div>
 
           <div className="md:col-span-2 liquid-glass-strong rounded-3xl p-8 backdrop-blur-2xl cursor-target">
-            <h3 className="font-heading italic text-3xl text-white mb-6">Why Work With Me</h3>
+            <h3 className="font-heading font-bold text-3xl text-white mb-6">Why Work With Me</h3>
             <div className="grid md:grid-cols-2 gap-8">
               <ul className="space-y-4 text-sm text-white/70 font-body font-light">
                 <li><strong className="text-white font-medium">Problem Solving:</strong> I deeply understand requirements before writing code, prioritizing scalable architecture over quick hacks.</li>
@@ -76,7 +76,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
                   <h4 className="font-mono text-xs tracking-widest text-green-400 uppercase font-bold">Currently Seeking</h4>
                 </div>
-                <h5 className="font-heading italic text-3xl text-white leading-tight">
+                <h5 className="font-heading font-bold text-3xl text-white leading-tight">
                   AI, ML, & Data Engineering Internships
                 </h5>
                 <p className="text-white/60 font-body font-light text-sm leading-relaxed">

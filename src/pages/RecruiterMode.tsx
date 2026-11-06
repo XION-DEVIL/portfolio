@@ -79,7 +79,7 @@ export default function RecruiterMode() {
         
         <header className="mb-12 border-b border-white/10 pb-8 flex justify-between items-start">
           <div>
-            <h1 className="text-4xl font-heading italic tracking-tight mb-2">Sahaya Savari F</h1>
+            <h1 className="text-4xl font-heading font-bold tracking-tight mb-2">Sahaya Savari F</h1>
             <p className="text-xl font-body text-white/70 mb-4">AI Engineer / Full Stack Developer</p>
             <div className="flex flex-wrap gap-4 text-sm font-body text-white/50">
               <a href="mailto:contact@sahayasavari.dev" className="flex items-center gap-1.5 hover:text-white transition-colors"><Mail className="w-4 h-4" /> contact@sahayasavari.dev</a>
@@ -121,7 +121,7 @@ export default function RecruiterMode() {
             {EXPERIENCES.map((exp) => (
               <div key={exp.company + exp.role} className="border-l-2 border-white/20 pl-4">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
-                  <h3 className="text-lg font-heading italic text-white">{exp.role}</h3>
+                  <h3 className="text-lg font-heading font-bold text-white">{exp.role}</h3>
                   <span className="text-xs font-mono text-white/50">{exp.period}</span>
                 </div>
                 <p className="text-sm font-body text-cyan-400 mb-2">{exp.company} · {exp.location}</p>
@@ -197,7 +197,7 @@ export default function RecruiterMode() {
               <div key={project.id}>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-heading italic text-white">{project.title}</h3>
+                    <h3 className="text-lg font-heading font-bold text-white">{project.title}</h3>
                     {project.status.includes('Champion') || project.tag.includes('Champion') || project.tag.includes('1st Place') ? (
                       <span className="text-[10px] font-mono uppercase bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full">🏆 1st Place Champion</span>
                     ) : (
