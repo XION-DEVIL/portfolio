@@ -45,9 +45,6 @@ interface HeroSectionProps {
   setShowResume: (show: boolean) => void;
 }
 
-// Mux poster — high quality WebP ambient visual (7.2 KB)
-const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=960';
-
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
@@ -86,20 +83,17 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
   return (
     <section ref={sectionRef} id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
-      {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
+      {/* Background ambient visual on all screens (gradient backdrop + deferred video) */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div className="relative w-full h-full flex items-center justify-center">
-          {/* Static ambient poster image - visible immediately on all viewports including mobile */}
-          <img
-            src={HERO_POSTER}
-            alt=""
-            width={960}
-            height={540}
-            fetchPriority="high"
-            decoding="async"
-            className={`w-full h-full min-h-[400px] object-cover transition-opacity duration-1000 ${
-              isVideoLoaded ? 'opacity-0' : 'opacity-40'
+          {/* Ambient CSS glow backdrop — guaranteed zero broken image icons */}
+          <div
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
+              isVideoLoaded ? 'opacity-0' : 'opacity-100'
             }`}
+            style={{
+              background: 'radial-gradient(circle at 50% 30%, rgba(30, 58, 45, 0.35) 0%, rgba(10, 15, 20, 0.8) 60%, #000000 100%)',
+            }}
             aria-hidden="true"
           />
 
@@ -112,7 +106,6 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               muted
               playsInline
               preload="auto"
-              poster={HERO_POSTER}
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}

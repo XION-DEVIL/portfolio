@@ -32,3 +32,4 @@
 - **Sizing & Composition:** Removed restrictive `aspect-video` and `md:object-contain` classes, allowing the botanical ambient video to cover the hero background smoothly with rich colors.
 - **Lanyard Badge Static Fallback:** Replaced the circular avatar fallback with an ID Card Badge mockup (strap, clip, and rounded portrait) that matches the 3D Three.js canvas 1:1, eliminating layout shifts and visual popping.
 - **CI Safety:** Added `bun run typecheck` to `.github/workflows/deploy-pages.yml`.
+
