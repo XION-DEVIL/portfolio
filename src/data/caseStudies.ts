@@ -19,6 +19,7 @@ export interface CaseStudy {
   demoUrl?: string;
   githubUrl?: string;
   statusBadge?: string;
+  image?: string;
   relatedArticle?: RelatedArticle;
 }
 
@@ -28,6 +29,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     title: 'NelSync AI',
     seoTitle: 'NelSync AI | AIxcelerate 2026 Champion Project | Sahaya Savari',
     tagline: 'Overall Champion at AIxcelerate 2026 Hackathon',
+    image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1000&auto=format&fit=crop&q=80',
     overview: 'NelSync AI is an AI-driven agricultural supply-chain optimization system built by Team NelSync AI, winning 1st Place Overall Champion at the AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon at Dhanalakshmi Srinivasan University.',
     problem: 'Paddy grain procurement in agricultural belts suffers from unpredictable seasonal supply, procurement center congestion, and lack of real-time predictive scheduling.',
     goals: [
@@ -55,6 +57,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     statusBadge: 'Status: In Development',
     seoTitle: 'PrepMind AI | AI Interview Prep Platform Concept | Sahaya Savari',
     tagline: 'AI-Powered Interview Preparation Platform (In Development)',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&auto=format&fit=crop&q=80',
     overview: 'PrepMind AI is an in-development architectural concept for an interview preparation platform designed to leverage LLM pipelines to simulate realistic technical interviews and provide structured evaluation.',
     problem: 'Candidates often lack accessible environments to practice technical interviews with structured rubric-based feedback.',
     goals: [
@@ -82,6 +85,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     id: 'daily-spark',
     title: 'Daily Spark',
     tagline: 'Minimalist Offline Habit Tracker',
+    image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1000&auto=format&fit=crop&q=80',
     overview: 'A privacy-first, local-storage based habit tracking application designed to help users build consistent routines without the clutter of traditional productivity tools.',
     problem: 'Existing habit trackers are often bloated with social features, notifications, and require constant internet connectivity.',
     goals: [
@@ -112,6 +116,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     title: 'Portfolio Website',
     seoTitle: 'Portfolio Architecture & Engineering | Sahaya Savari',
     tagline: 'High-Performance SPA Portfolio',
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000&auto=format&fit=crop&q=80',
     overview: 'A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.',
     problem: 'Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI Engineer and Full Stack Developer.',
     goals: [

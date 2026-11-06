@@ -98,6 +98,17 @@ export default function ProjectDetails() {
           </div>
         </header>
 
+        {project.image && (
+          <div className="mb-12 rounded-2xl overflow-hidden border border-white/10 aspect-video bg-black/40 shadow-2xl">
+            <img
+              src={project.image}
+              alt={`${project.title} banner`}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        )}
+
         <div className="space-y-12">
           <section>
             <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Overview</h2>

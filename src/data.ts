@@ -137,6 +137,7 @@ export interface Project {
   link: string;
   status: string;
   github: string;
+  image?: string;
   longDesc: string;
   metrics: ProjectMetric[];
   features: string[];
@@ -160,6 +161,7 @@ export const PROJECTS: Project[] = [
     link: "https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view",
     status: "🏆 Hackathon Champion",
     github: "",
+    image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1000&auto=format&fit=crop&q=80",
     longDesc: "NelSync AI is an AI-driven agricultural optimization engine designed to streamline paddy procurement for farmers and procurement centers. Built by Team NelSync AI, it earned the 1st Place Overall Championship trophy at the AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon at Dhanalakshmi Srinivasan University.",
     metrics: [
       { label: "Award", value: "🏆 1st Place Overall" },
@@ -193,6 +195,7 @@ export const PROJECTS: Project[] = [
     link: "https://daily-spark-app-da74b.web.app",
     status: "Live",
     github: "https://github.com/sahaya-savari/daily-spark",
+    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1000&auto=format&fit=crop&q=80",
     longDesc: "Daily Spark is a minimalist productivity app designed to help users build consistent daily routines offline without distraction. Habit logs and streak metrics persist locally on the device via IndexedDB.",
     metrics: [
       { label: "Core Tech", value: "React, IndexedDB" },
@@ -226,6 +229,7 @@ export const PROJECTS: Project[] = [
     link: "",
     status: "In Development",
     github: "",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&auto=format&fit=crop&q=80",
     longDesc: "PrepMind AI transforms static study materials into interactive, adaptive learning experiences. Designed with structured Supabase relational models for user profiles, learning activity, and quiz performance.",
     metrics: [
       { label: "Core Tech", value: "Python, Supabase" },
@@ -259,6 +263,7 @@ export const PROJECTS: Project[] = [
     link: "https://sahayasavari.dev",
     status: "Live",
     github: "https://github.com/sahaya-savari/portfolio",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000&auto=format&fit=crop&q=80",
     longDesc: "A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.",
     metrics: [
       { label: "Core Tech", value: "React, Framer Motion" },
@@ -321,7 +326,8 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
       "Data Wrangling",
       "Exploratory Data Analysis"
     ],
-    desc: "Completed the IBM Data Analyst Professional Certificate covering Excel, SQL, Python, Data Visualization, Dashboards, Data Analysis, Relational Databases, Jupyter Notebooks, and IBM Cognos Analytics through hands-on projects and real-world datasets."
+    desc: "Completed the IBM Data Analyst Professional Certificate covering Excel, SQL, Python, Data Visualization, Dashboards, Data Analysis, Relational Databases, Jupyter Notebooks, and IBM Cognos Analytics through hands-on projects and real-world datasets.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80"
   },
   {
     prefix: "🥈",
@@ -340,7 +346,8 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
       "Model Evaluation",
       "Data Analysis"
     ],
-    desc: "Completed NPTEL IIT Madras certification in Introduction to Machine Learning (Tamil), covering machine learning fundamentals, classification, regression, model evaluation, and practical AI concepts."
+    desc: "Completed NPTEL IIT Madras certification in Introduction to Machine Learning (Tamil), covering machine learning fundamentals, classification, regression, model evaluation, and practical AI concepts.",
+    image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=800&auto=format&fit=crop&q=80"
   },
   {
     prefix: "🥉",
@@ -355,7 +362,8 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
       "Generative AI",
       "Responsible AI"
     ],
-    desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications."
+    desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications.",
+    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&auto=format&fit=crop&q=80"
   }
 ];
 
@@ -416,7 +424,8 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "September 2026",
     badge: "🏆 1st Place",
     desc: "Led Team NelSync AI to 1st place overall with 'Smart Paddy Procurement Optimization' — an AI-driven agricultural supply chain forecasting platform.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+    image: "https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&auto=format&fit=crop&q=80"
   },
   {
     title: "1st Place Winner",
@@ -425,7 +434,8 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🥇 Winner",
     desc: "Won first place in advanced computer science, algorithms, AI concepts, and software engineering quiz competition.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+    image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&auto=format&fit=crop&q=80"
   },
   {
     title: "Runner-up (2nd Place)",
@@ -434,7 +444,8 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🥈 Runner-up",
     desc: "Competed in offensive security, binary exploitation, web vulnerabilities, and reverse engineering challenges.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80"
   },
   {
     title: "1st Place Winner",
@@ -443,7 +454,8 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🥇 1st Place",
     desc: "Awarded top honors for technical design and software presentation among competing postgraduate STEM departments.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80"
   },
   {
     title: "Lead Event Organizer",
@@ -452,7 +464,8 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     date: "2026",
     badge: "🎯 Leadership",
     desc: "Orchestrated algorithmic puzzle design, participant coordination, and live event management for 100+ attendees.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80"
   }
 ];
 

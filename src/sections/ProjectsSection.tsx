@@ -208,6 +208,20 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
             </div>
           </div>
         </div>
+
+        {/* Banner image on the right */}
+        {p.image && (
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video lg:aspect-[16/10] bg-black/40 group-hover:border-white/20 transition-all shadow-2xl">
+            <img
+              src={p.image}
+              alt={`${p.title} banner`}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+          </div>
+        )}
+
         <div className="flex items-center justify-start lg:justify-end gap-3 mt-4 lg:mt-0 lg:absolute lg:top-0 lg:right-0">
           {p.link && (
             <a
@@ -323,6 +337,16 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
             </div>
           </div>
         </div>
+        {p.image && (
+          <div className="rounded-xl overflow-hidden border border-white/10 aspect-[16/9] mb-4 bg-black/40 group-hover:border-white/20 transition-all">
+            <img
+              src={p.image}
+              alt={`${p.title} banner`}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+        )}
         <Link to={`/projects/${p.id}`} className="focus:outline-none" onClick={(e) => e.stopPropagation()}>
           <h3 className="font-heading font-bold text-3xl text-white mb-4 hover:text-white/80 transition-colors">{p.title}</h3>
         </Link>
