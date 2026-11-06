@@ -452,12 +452,12 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   },
   {
-    title: "Lead Event Organizer",
-    event: "'Treasure Titans' Technical Event — AION 2K26 Technical Symposium",
+    title: "1st Place Winner",
+    event: "Technical Treasure Hunt & Logic Challenge — AION 2K26 Symposium",
     organizer: "Department of AI, St. Joseph's College",
     date: "2026",
-    badge: "🎯 Leadership",
-    desc: "Orchestrated algorithmic puzzle design, participant coordination, and live event management for 100+ attendees.",
+    badge: "🥇 1st Place",
+    desc: "Secured 1st place in algorithmic problem-solving, rapid technical reasoning, and cryptographic logic challenges.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari"
   }
 ];
@@ -487,11 +487,33 @@ export const EDUCATION_HISTORY: EducationItem[] = [
   }
 ];
 
-export const STATS = [
-  ['M.Sc', 'Artificial Intelligence'],
-  ['B.Sc', 'Data Science (65%)'],
-  ['🏆 #1', 'AI Hackathon Champion'],
-  ['4+', 'Client Technical Audits']
+export interface StatItem {
+  value: string;
+  label: string;
+  description: string;
+}
+
+export const STATS: StatItem[] = [
+  {
+    value: "🏆 #1",
+    label: "Overall Hackathon Champion",
+    description: "AIxcelerate 2026 Multidisciplinary AI"
+  },
+  {
+    value: "3+",
+    label: "Technical Symposium Wins",
+    description: "BOOTFEST Quiz, CTF & Logic Hunt"
+  },
+  {
+    value: "2+",
+    label: "Times Hackathon Winner",
+    description: "NelSync AI Agriculture & Smart Procurement"
+  },
+  {
+    value: "4+",
+    label: "Client Technical Audits",
+    description: "Enterprise SEO, PageSpeed & Architecture"
+  }
 ];
 
 export interface CertificationCategory {
