@@ -15,9 +15,18 @@ Portfolio and professional website of Sahaya Savari F.
 
 ## Featured Projects
 
-- [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): LLM-powered educational platform transforming study materials into adaptive quizzes and summaries.
+- [NelSync AI](https://sahayasavari.dev/projects/nelsync-ai): Smart Paddy Procurement Optimization system. 1st Place Overall Champion @ AIxcelerate 2026 Hackathon.
+- [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): Adaptive technical interview readiness and quiz platform built with Python, FastAPI, Supabase, and React (In Development).
 - [Daily Spark](https://sahayasavari.dev/projects/daily-spark): Offline-first habit and streak tracking application built with React, TypeScript, and IndexedDB.
-- [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React 19, Vite 7, Tailwind CSS v4, and static HTML pre-rendering.
+- [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React 19, Vite, and hardware-accelerated animations.
+
+## Experience & Honors
+
+- **HodoLabs Technologies Pvt. Ltd.**: Digital Marketing & Technical SEO Intern (Jun 2026–Present) · Web Development Trainee (May–Jun 2026).
+- **🏆 Overall Champion**: AIxcelerate 2026 AI Hackathon (Team NelSync AI) · Dhanalakshmi Srinivasan University.
+- **🥇 1st Place**: State-Level Technical Quiz · BOOTFEST-2K26.
+- **🥈 Runner-Up**: Capture The Flag (CTF) Cybersecurity Challenge · BOOTFEST-2K26.
+- **Education**: M.Sc. Artificial Intelligence @ St. Joseph's College (2025–Present) · B.Sc. Data Science @ Thiagarajar College (2022–2025, 65.06%).
 
 ## Optional
 

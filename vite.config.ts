@@ -50,6 +50,7 @@ export default defineConfig({
               { path: "/recruiter" },
               { path: "/resume" },
               { path: "/projects" },
+              { path: "/projects/nelsync-ai" },
               { path: "/projects/daily-spark" },
               { path: "/projects/prepmind-ai" },
               { path: "/projects/portfolio-website" },

@@ -118,6 +118,7 @@ function RootShell({ children }: { children: ReactNode }) {
         />
         {children}
         <noscript>
+          <style>{`.astral-preloader { display: none !important; }`}</style>
           <div
             style={{
               padding: "2rem",

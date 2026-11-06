@@ -31,6 +31,8 @@ jobs:
           else
             echo "path=/$REPOSITORY/" >> "$GITHUB_OUTPUT"
           fi
+      - name: Type check
+        run: bun run typecheck
       - name: Build static site
         run: bunx vite build
         env:

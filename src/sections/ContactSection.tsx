@@ -1,6 +1,5 @@
 import { useState, memo } from 'react';
 import { Check, Mail, MapPin, Linkedin, Github, Search, ExternalLink, Copy } from 'lucide-react';
-import Button from '../components/ui/PortfolioButton';
 import HlsVideo from '../components/HlsVideo';
 import Dock from '../components/Dock';
 
@@ -38,10 +37,31 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
         <div className="text-center mb-16 md:mb-24 lg:mb-32">
           <h2 className="text-fluid-contact-heading font-heading italic text-white tracking-tight leading-[0.8] mb-8 md:mb-12">Let's Build <br/> Something.</h2>
           <p className="text-white/60 font-body font-light text-xl max-w-2xl mx-auto mb-10 md:mb-16">I'm open to new projects, internships, and collaborations where AI, Machine Learning, Python, React, TypeScript, Firebase, and full-stack product thinking can create real-world impact.</p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a href="mailto:contact@sahayasavari.dev" className="liquid-glass-strong px-4 sm:px-8 py-4 rounded-full font-body font-medium text-base sm:text-lg flex items-center gap-3 min-h-[48px] text-foreground" aria-label="Send email to Sahaya Savari"><Mail className="w-5 h-5 shrink-0" />contact@sahayasavari.dev</a>
-            <Button variant="glass" onClick={copyEmail} aria-label="Copy email address to clipboard" title="Copy email address" className="!p-3 !min-h-[48px] w-12 h-12">{copied ? <Check className="w-5 h-5 text-portfolio-success" /> : <Copy className="w-5 h-5" />}</Button>
-            <span className="sr-only" role="status">{copied ? 'Email copied to clipboard' : copyError ? 'Could not copy email. Use the email link instead.' : ''}</span>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="liquid-glass-strong px-4 sm:px-8 py-4 rounded-full font-body font-medium text-base sm:text-lg flex items-center gap-3 min-h-[48px] text-foreground hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
+                aria-label={copied ? 'Email copied to clipboard' : 'Copy email address to clipboard'}
+                title="Click to copy email address"
+              >
+                {copied ? <Check className="w-5 h-5 shrink-0 text-emerald-400" /> : <Mail className="w-5 h-5 shrink-0" />}
+                <span>{copied ? 'Email Copied!' : copyError ? 'Copy failed — click mail' : 'contact@sahayasavari.dev'}</span>
+                {!copied && <Copy className="w-4 h-4 shrink-0 opacity-40 group-hover:opacity-80 transition-opacity" />}
+              </button>
+              <a
+                href="mailto:contact@sahayasavari.dev"
+                className="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:scale-105 transition-all"
+                title="Send email via mail client"
+                aria-label="Open mail client to send email"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+            <span className="sr-only" role="status" aria-live="polite">
+              {copied ? 'Email copied to clipboard' : copyError ? 'Could not copy email to clipboard.' : ''}
+            </span>
             <a href="https://www.google.com/maps/search/Madurai,+Tamil+Nadu" target="_blank" rel="noopener noreferrer" className="liquid-glass px-8 py-4 rounded-full font-body font-medium text-lg flex items-center gap-3 hover:scale-105 transition-transform min-h-[48px]" aria-label="View location: Madurai, Tamil Nadu on Google Maps">
               <MapPin className="w-5 h-5" aria-hidden="true" /> Madurai, Tamil Nadu
             </a>

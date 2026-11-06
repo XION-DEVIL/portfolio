@@ -1,10 +1,11 @@
 import { BookOpen, Code, Award, CheckCircle } from 'lucide-react';
+import { PROJECTS, FEATURED_CREDENTIALS } from '../data';
 
 export default function DevDashboard() {
   const stats = [
     { label: "M.Sc AI Program", value: "St. Joseph's", icon: BookOpen, desc: "Active research in Generative AI, LLMs, and Neural Network design." },
-    { label: "Major Projects", value: "3 Applications", icon: Code, desc: "PrepMind AI, Daily Spark, and custom responsive web UI engines." },
-    { label: "Credentials Earned", value: "4 Certifications", icon: Award, desc: "Verified IBM Data Analyst, IIT NPTEL ML, NIELIT AI, and HodoLabs Web." }
+    { label: "Major Projects", value: `${PROJECTS.length} Systems`, icon: Code, desc: "NelSync AI (Hackathon Winner), PrepMind AI, Daily Spark, and modern web software." },
+    { label: "Credentials Earned", value: `${FEATURED_CREDENTIALS.length} Specializations`, icon: Award, desc: "Verified IBM Data Analyst Specialization and accredited professional diplomas." }
   ];
 
   const topics = [

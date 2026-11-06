@@ -18,13 +18,40 @@ export interface CaseStudy {
   lessons: string[];
   demoUrl?: string;
   githubUrl?: string;
+  statusBadge?: string;
   relatedArticle?: RelatedArticle;
 }
 
 export const CASE_STUDIES: Record<string, CaseStudy> = {
+  'nelsync-ai': {
+    id: 'nelsync-ai',
+    title: 'NelSync AI',
+    seoTitle: 'NelSync AI | AIxcelerate 2026 Champion Project | Sahaya Savari',
+    tagline: 'Overall Champion at AIxcelerate 2026 Hackathon',
+    overview: 'NelSync AI is an AI-driven agricultural supply-chain optimization system built by Team NelSync AI, winning 1st Place Overall Champion at the AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon at Dhanalakshmi Srinivasan University.',
+    problem: 'Paddy grain procurement in agricultural belts suffers from unpredictable seasonal supply, procurement center congestion, and lack of real-time predictive scheduling.',
+    goals: [
+      'Build a predictive ML model for regional grain yield and procurement volume forecasting.',
+      'Optimize delivery queues and procurement station scheduling.',
+      'Provide intuitive visual dashboards for farmers and procurement officers.'
+    ],
+    solution: 'Designed an integrated Python data science pipeline that analyzes seasonal weather, historical yield, and transit times to forecast arrivals and balance procurement workloads dynamically.',
+    architecture: 'Python-based analytics engine with scikit-learn predictive models and interactive dashboard interface for monitoring procurement trends.',
+    techStack: ['Python', 'Machine Learning', 'Scikit-Learn', 'Pandas', 'Data Modeling', 'Streamlit / Analytics'],
+    challenges: [
+      'Training accurate regression and forecasting models under strict 36-hour hackathon time limits.',
+      'Balancing multi-stakeholder priorities between ground farmers and regional storage facilities.'
+    ],
+    lessons: [
+      'Rapid prototype validation and domain-specific feature engineering drive hackathon success.',
+      'Communicating technical AI models clearly to interdisciplinary judging panels is critical.'
+    ],
+    statusBadge: '🏆 1st Place Overall Champion — AIxcelerate 2026'
+  },
   'prepmind-ai': {
     id: 'prepmind-ai',
     title: 'PrepMind AI',
+    statusBadge: 'Status: In Development',
     seoTitle: 'PrepMind AI | AI Interview Prep Platform Concept | Sahaya Savari',
     tagline: 'AI-Powered Interview Preparation Platform (In Development)',
     overview: 'PrepMind AI is an in-development architectural concept for an interview preparation platform designed to leverage LLM pipelines to simulate realistic technical interviews and provide structured evaluation.',

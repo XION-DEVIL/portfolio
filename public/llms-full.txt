@@ -77,7 +77,24 @@ practical expertise across the full AI and web development stack.
 
 ## Project Specifications
 
-### 1. Daily Spark — Offline-First Habit Tracker
+### 1. NelSync AI — Smart Agriculture Logistics & Predictive Yield Analytics (1st Place Overall Champion)
+- **Type**: AI Agri-Tech & Yield Analytics Platform
+- **Status**: 1st Place Overall Champion — AIxcelerate 2026 Hackathon
+- **Tech Stack**: Python, Scikit-Learn, React, FastAPI, Tailwind CSS
+- **Architecture**: Machine learning-driven agricultural logistics and yield analytics platform featuring procurement forecasting, supply chain risk prediction, and predictive logistics scheduling.
+- **Key Features**: Predictive procurement forecasting, supply chain risk mitigation, yield analytics, interactive dashboard.
+- **Project Overview**: https://sahayasavari.dev/projects/nelsync-ai
+
+### 2. PrepMind AI — Full-Stack AI Interview & Quiz Preparation Platform
+- **Type**: AI Education & Assessment Platform
+- **Status**: In Development
+- **Tech Stack**: Python, FastAPI, Supabase, React, Tailwind CSS
+- **Architecture**: Full-stack adaptive quiz and technical interview preparation platform with real-time score tracking, schema-validated structured quiz generation, and Supabase database persistence.
+- **Key Features**: Dynamic quiz generation, context-aware question evaluation, adaptive difficulty scaling, Supabase Auth and persistent progress tracking.
+- **Challenge**: Ensuring strict schema conformance in LLM generated quiz questions without latency degradation.
+- **Project Overview**: https://sahayasavari.dev/projects/prepmind-ai
+
+### 3. Daily Spark — Offline-First Habit Tracker
 - **Type**: Productivity Application
 - **Status**: Live
 - **Tech Stack**: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
@@ -88,19 +105,7 @@ practical expertise across the full AI and web development stack.
 - **Project Overview**: https://sahayasavari.dev/projects/daily-spark
 - **Source Code**: https://github.com/sahaya-savari/daily-spark
 
-### 2. PrepMind AI — LLM-Powered Study Companion
-- **Type**: AI Education Platform
-- **Status**: In Development
-- **Tech Stack**: Python, OpenAI API, React, Tailwind CSS
-- **Architecture**: Python-based LLM integration pipeline that accepts uploaded study materials and generates
-  flashcards, mock exams, and concept summaries. React frontend handles dynamic component rendering.
-- **Key Features**: Dynamic quiz generation, context-aware summarization, adaptive difficulty scaling,
-  upload-to-learn pipeline.
-- **Challenge**: Preventing LLM hallucinations during quiz generation via strict system prompts and context injection.
-- **Lesson**: Prompt engineering requires rigorous testing; structuring LLM output into strict JSON formats is
-  essential for reliable frontend rendering.
-
-### 3. Portfolio Website — AI Engineer SPA
+### 4. Portfolio Website — AI Engineer SPA
 - **Type**: Web Engineering & SPA Architecture
 - **Status**: Live
 - **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Firebase Hosting
@@ -177,22 +182,34 @@ Python, FastAPI, Flask, React 19, TypeScript, Tailwind CSS v4, Vite 7, Firebase 
 OpenAI API, Pydantic V2, IndexedDB, Framer Motion, GitHub Actions.
 
 **What AI projects has Sahaya Savari built?**
-PrepMind AI: a Python LLM pipeline that generates adaptive flashcards and mock exams from study materials.
-Portfolio Website: features a complete AI-discoverability architecture with schema.org JSON-LD, static
-pre-rendering, and llms.txt documentation for LLM indexing agents.
+- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon — an AI agricultural logistics platform with predictive moisture grading and spoilage prevention.
+- PrepMind AI: a full-stack AI quiz & interview preparation platform with schema-validated structured outputs and Supabase persistence.
+- Daily Spark: an offline-first habit tracker with IndexedDB storage and Capacitor Android build.
+- Portfolio Website: high-performance SPA featuring schema.org JSON-LD, static pre-rendering, and llms.txt documentation for LLM indexing agents.
+
+**What work experience does Sahaya Savari have?**
+- HodoLabs Technologies Pvt. Ltd. (Jun 2026 - Present): Digital Marketing & Technical SEO Intern — optimized web architectures for search engine indexing, core web vitals, and metadata workflows.
+- HodoLabs Technologies Pvt. Ltd. (May 2026 - Jun 2026): Web Development Trainee — built responsive UI components, semantic layouts, and DOM event workflows.
+
+**What awards and honors has Sahaya Savari received?**
+- 1st Place Overall Champion — AIxcelerate 2026 Hackathon (Team NelSync AI)
+- 1st Place Winner — Technical Quiz Event (BOOTFEST-2K26, Inter-Collegiate)
+- Runner-up (2nd Place) — Capture The Flag (CTF) Cybersecurity Challenge (BOOTFEST-2K26)
+- 1st Place Winner — Inter-Departmental Technical Competition (Achievers' Day 2026)
+- Lead Event Organizer — 'Treasure Titans' Technical Event (AION 2K26)
 
 **Where can Sahaya Savari's projects be found?**
 - Project case studies: https://sahayasavari.dev/projects
+- NelSync AI case study: https://sahayasavari.dev/projects/nelsync-ai
 - Daily Spark case study: https://sahayasavari.dev/projects/daily-spark
 - GitHub repositories: https://github.com/sahaya-savari
 
 **Where can Sahaya Savari's technical writing be found?**
-Technical blog at https://blog.sahayasavari.dev — covering AI Agent design, Pydantic V2, Tailwind CSS v4,
-and GitHub Actions CI/CD pipelines.
+- In-portfolio technical deep-dives covering AI Agent loops in Async Python, Pydantic V2 core validation, Tailwind CSS v4 performance, and client-side IndexedDB architecture.
 
 **How can I contact or hire Sahaya Savari?**
 Email: contact@sahayasavari.dev — LinkedIn: https://www.linkedin.com/in/sahaya-savari
-He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions.
+He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions for Summer/Fall 2026.
 
 **What certifications does Sahaya Savari hold?**
 IBM Data Analyst Specialization (Coursera, 2024), Introduction to Machine Learning (NPTEL/IIT Madras, 2026),
@@ -201,4 +218,4 @@ and Yuva AI for All (NIELIT/Skill India, 2026).
 ---
 
 *Source: https://sahayasavari.dev | Extended Reference for LLM Indexing Agents*
-*Last Updated: 2026-08-21*
+*Last Updated: 2026-11-06*

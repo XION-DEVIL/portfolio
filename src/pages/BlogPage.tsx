@@ -60,12 +60,12 @@ export default function BlogPage() {
               <p className="text-white font-medium text-base">Technical Writings by Sahaya Savari (25+ Guides)</p>
             </div>
             <a
-              href="https://blog.sahayasavari.dev/blog"
+              href="https://www.linkedin.com/in/sahaya-savari/recent-activity/all/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-purple-300 hover:text-white font-mono transition-colors"
             >
-              Browse all 25+ guides →
+              Browse articles on LinkedIn →
             </a>
           </div>
           <p className="text-white/70 leading-relaxed">

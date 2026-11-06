@@ -34,7 +34,13 @@
     <loc>https://sahayasavari.dev/ai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-11-06</lastmod>
+  </url>
+  <url>
+    <loc>https://sahayasavari.dev/projects/nelsync-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-11-06</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.dev/projects/prepmind-ai</loc>

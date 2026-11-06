@@ -22,11 +22,12 @@ export default function ProjectDetails() {
       { name: project.title, url: `${SITE_URL}/projects/${project.id}` },
     ]);
 
+    const hasRealRepo = Boolean(project.githubUrl && project.githubUrl !== 'https://github.com/sahaya-savari');
     const codeSchema = {
       "@type": "SoftwareSourceCode",
       "name": project.title,
       "description": project.overview,
-      "codeRepository": project.githubUrl,
+      ...(hasRealRepo ? { "codeRepository": project.githubUrl } : {}),
       "programmingLanguage": project.techStack
     };
 
@@ -63,7 +64,7 @@ export default function ProjectDetails() {
           <p className="text-xl font-body text-white/70 mb-6">{project.tagline}</p>
           
           <div className="flex flex-wrap gap-4">
-            {project.demoUrl && (
+            {project.demoUrl ? (
               <a 
                 href={project.demoUrl} 
                 target="_blank" 
@@ -72,7 +73,7 @@ export default function ProjectDetails() {
               >
                 View Live Demo <ExternalLink className="w-4 h-4" />
               </a>
-            )}
+            ) : null}
             {project.githubUrl && project.githubUrl !== 'https://github.com/sahaya-savari' ? (
               <a 
                 href={project.githubUrl} 
@@ -82,12 +83,11 @@ export default function ProjectDetails() {
               >
                 Source Code <Github className="w-4 h-4" />
               </a>
-            ) : (
-              !project.demoUrl && (
-                <span className="px-5 py-2.5 bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-full font-medium text-sm inline-flex items-center gap-2">
-                  Status: In Development
-                </span>
-              )
+            ) : null}
+            {!project.demoUrl && (
+              <span className="px-5 py-2.5 bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-full font-medium text-sm inline-flex items-center gap-2">
+                {project.statusBadge || 'Status: Prototype Validated'}
+              </span>
             )}
           </div>
         </header>

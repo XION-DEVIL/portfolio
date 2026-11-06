@@ -9,13 +9,12 @@ import IntersectionLazy from '../components/IntersectionLazy';
 
 // Lazy-load remaining sections to optimize initial bundle size & Core Web Vitals
 const AboutSection = lazy(() => import('../sections/AboutSection'));
-const WhatIDoSection = lazy(() => import('../sections/WhatIDoSection'));
+const ExperienceSection = lazy(() => import('../sections/ExperienceSection'));
 const SkillsSection = lazy(() => import('../sections/SkillsSection'));
 const StatsSection = lazy(() => import('../sections/StatsSection'));
 const ProjectsSection = lazy(() => import('../sections/ProjectsSection'));
 const BlogSection = lazy(() => import('../sections/BlogSection'));
 const OpenSourceSection = lazy(() => import('../sections/OpenSourceSection'));
-const CareerGoalsSection = lazy(() => import('../sections/CareerGoalsSection'));
 const CertificationsSection = lazy(() => import('../sections/CertificationsSection'));
 const ContactSection = lazy(() => import('../sections/ContactSection'));
 
@@ -47,10 +46,10 @@ export default function HomePage() {
 
       <div className="section-divider" aria-hidden="true" />
 
-      {/* 2. What I Do */}
-      <div id="what-i-do">
+      {/* 2. Work Experience & Hackathons */}
+      <div id="experience">
         <IntersectionLazy fallbackHeight="80vh">
-          <WhatIDoSection />
+          <ExperienceSection />
         </IntersectionLazy>
       </div>
 
@@ -94,15 +93,6 @@ export default function HomePage() {
       <div id="open-source">
         <IntersectionLazy fallbackHeight="60vh">
           <OpenSourceSection />
-        </IntersectionLazy>
-      </div>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* 7. Career Goals */}
-      <div id="career-goals">
-        <IntersectionLazy fallbackHeight="60vh">
-          <CareerGoalsSection />
         </IntersectionLazy>
       </div>
 

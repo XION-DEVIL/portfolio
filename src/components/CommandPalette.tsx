@@ -88,7 +88,8 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
     const links: { title: string; url: string; sub: string }[] = [
       { title: 'Home Section', url: '#home', sub: 'Scroll to Hero & Top' },
       { title: 'About Section', url: '#about', sub: 'Scroll to Biography & Stats' },
-      { title: 'Skills Section', url: '#skills', sub: 'Scroll to Core Skill Accordions' },
+      { title: 'Experience & Honors', url: '#experience', sub: 'Scroll to HodoLabs & Hackathon Awards' },
+      { title: 'Skills Section', url: '#skills', sub: 'Scroll to Core Skill Domains' },
       { title: 'Projects Gallery', url: '#projects', sub: 'Scroll to Major Applications' },
       { title: 'Certifications & Courses', url: '#certifications', sub: 'Scroll to IBM, NPTEL & NIELIT Certs' },
       { title: 'Contact / Socials', url: '#contact', sub: 'Scroll to Email and Location details' },

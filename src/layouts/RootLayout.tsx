@@ -4,6 +4,7 @@ import { Outlet, useNavigate, useLocation, Link } from '@/lib/router-compat';
 
 import ClickSpark from '../components/ClickSpark';
 import ErrorBoundary from '../components/ErrorBoundary';
+import AstralPreloader from '../components/AstralPreloader';
 import { lockScroll, unlockScroll, forceUnlockScroll } from '../utils/scrollLock';
 import { scrollToSection, revealLazySections, initLazyPreload } from '../utils/navigation';
 const SiteCursor = lazy(() => import('../components/reactbits/SiteCursor'));
@@ -148,7 +149,7 @@ export default function RootLayout() {
       }
     }, { threshold: [0.1, 0.5, 0.9], rootMargin: '-20% 0px -40% 0px' });
 
-    const sectionIds = ['home', 'about', 'skills', 'projects', 'blog', 'certifications', 'contact'];
+    const sectionIds = ['home', 'about', 'experience', 'skills', 'projects', 'blog', 'certifications', 'contact'];
     sectionIds.forEach(id => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -238,6 +239,7 @@ export default function RootLayout() {
 
   return (
     <ClickSpark sparkColor='#FFFFFF' sparkSize={8} sparkRadius={14} sparkCount={8} duration={350}>
+      <AstralPreloader />
       {enableSiteCursor && (
         <Suspense fallback={null}>
           <SiteCursor />
@@ -284,6 +286,7 @@ export default function RootLayout() {
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
                 <Link to="/" onClick={handleHomeClick} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Home</Link>
                 <a href={`${appBase}#about`} onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/70 hover:text-white'}`}>About</a>
+                <a href={`${appBase}#experience`} onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'experience')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'experience' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Experience</a>
                 <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Resume</Link>
                 <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Blog</Link>
                 <a href={`${appBase}#skills`} onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Skills</a>
@@ -340,6 +343,7 @@ export default function RootLayout() {
             <nav className="flex flex-col items-center gap-6 my-auto" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
               <Link to="/" onClick={handleHomeClick} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
               <a href={`${appBase}#about`} onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
+              <a href={`${appBase}#experience`} onClick={(e) => handleNavClick(e, 'experience')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Experience</a>
               <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
               <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
               <a href={`${appBase}#skills`} onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>

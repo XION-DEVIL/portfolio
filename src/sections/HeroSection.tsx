@@ -1,11 +1,45 @@
 import { useEffect, useState, memo, useRef, lazy, Suspense } from 'react';
-import { ClientOnly } from '@tanstack/react-router';
 const HeroBadge = lazy(() => import('../components/reactbits/HeroEffects').then(m => ({ default: m.HeroBadge })));
 const HeroName = lazy(() => import('../components/reactbits/HeroEffects').then(m => ({ default: m.HeroName })));
 import { Play, ArrowUpRight } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
 import FocusText from '../components/FocusText';
 import { RainbowButton } from '../components/magicui/rainbow-button';
+
+// Static Badge Card fallback — visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
+const StaticBadgeCard = () => (
+  <div className="relative w-full h-full flex flex-col items-center justify-start pointer-events-none select-none">
+    {/* Hanging Lanyard Strap & Clip */}
+    <div className="w-5 h-8 bg-[#18181b] border-x border-white/20 flex flex-col items-center justify-end -mb-1 z-10 shadow-md">
+      <div className="w-6 h-2.5 bg-[#27272a] rounded-[2px] border border-white/30" />
+      <div className="w-3 h-2 border-b-2 border-x-2 border-zinc-400 rounded-b-sm" />
+    </div>
+
+    {/* ID Badge Card matching 3D Lanyard aspect ratio & dimensions */}
+    <div className="relative w-[180px] h-[255px] sm:w-[205px] sm:h-[290px] lg:w-[230px] lg:h-[325px] rounded-2xl overflow-hidden border border-white/20 bg-[#0b0b14] shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex items-center justify-center">
+      <img
+        src={`${import.meta.env.BASE_URL}profile.webp`}
+        alt="Sahaya Savari F"
+        width={240}
+        height={340}
+        className="w-full h-full object-cover object-top"
+        loading="eager"
+        decoding="async"
+      />
+      <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-white/10 pointer-events-none" />
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/15 pointer-events-none" />
+    </div>
+  </div>
+);
+
+const StaticHeroName = () => (
+  <span
+    aria-hidden="true"
+    className="text-fluid-hero-title font-body font-black tracking-tight text-white inline-block drop-shadow-[0_0_25px_rgba(129,140,248,0.35)]"
+  >
+    Sahaya Savari&nbsp;F
+  </span>
+);
 
 interface HeroSectionProps {
   setShowResume: (show: boolean) => void;
@@ -20,6 +54,11 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,14 +67,11 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
     if (prefersReducedMotion || constrainedConnection) return;
 
-    // Load background video ONLY after a qualifying user interaction (scroll, click, tap, key).
-    // CRITICAL: We NEVER listen to pointermove/mousemove. Under W3C LCP specifications,
-    // mouse movement does NOT finalize LCP. If pointermove triggers video download, Chrome
-    // keeps the LCP window open until the 11 MB video finishes buffering (taking 30s+ on 4G).
-    // With scroll / pointerdown / keydown, Chrome permanently locks in LCP at ~1.9s (the poster),
-    // and only then begins streaming the background video.
+    // Load botanical ambient video automatically after mount, or immediately on interaction
+    const timer = window.setTimeout(() => setShouldLoadVideo(true), 250);
     const events = ['scroll', 'pointerdown', 'touchstart', 'keydown'] as const;
     const startVideo = () => {
+      window.clearTimeout(timer);
       events.forEach(e => window.removeEventListener(e, startVideo));
       setShouldLoadVideo(true);
     };
@@ -43,6 +79,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     events.forEach(e => window.addEventListener(e, startVideo, { once: true, passive: true }));
 
     return () => {
+      window.clearTimeout(timer);
       events.forEach(e => window.removeEventListener(e, startVideo));
     };
   }, []);
@@ -50,8 +87,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   return (
     <section ref={sectionRef} id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
       {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
-      <div className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="relative w-full aspect-video flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="relative w-full h-full flex items-center justify-center">
           {/* Static ambient poster image - visible immediately on all viewports including mobile */}
           <img
             src={HERO_POSTER}
@@ -60,13 +97,13 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             height={540}
             fetchPriority="high"
             decoding="async"
-            className={`w-full h-auto aspect-video min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
-              isVideoLoaded ? 'opacity-0 md:opacity-0' : 'opacity-40'
+            className={`w-full h-full min-h-[400px] object-cover transition-opacity duration-1000 ${
+              isVideoLoaded ? 'opacity-0' : 'opacity-40'
             }`}
             aria-hidden="true"
           />
 
-          {/* Deferred background video for capable screens */}
+          {/* Ambient botanical background video */}
           {shouldLoadVideo && (
             <video
               src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
@@ -74,13 +111,13 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               loop
               muted
               playsInline
-              preload="none"
+              preload="auto"
               poster={HERO_POSTER}
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
-              className={`absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? 'opacity-40' : 'opacity-0'
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded ? 'opacity-60' : 'opacity-20'
               }`}
               aria-hidden="true"
             />
@@ -101,29 +138,27 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 lg:gap-8 relative w-full max-w-[1000px] mx-auto">
               <h1 className="font-body not-italic font-extrabold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[720px] h-[110px] sm:h-[130px] md:h-[160px] lg:h-[200px]" style={{ fontStyle: 'normal' }}>
                 <span className="sr-only">Sahaya Savari F</span>
-                <ClientOnly fallback={<span aria-hidden="true" className="text-fluid-hero-title">Sahaya Savari&nbsp;F</span>}>
-                  <Suspense fallback={null}><HeroName /></Suspense>
-                </ClientOnly>
+                {isMounted ? (
+                  <Suspense fallback={<StaticHeroName />}>
+                    <HeroName />
+                  </Suspense>
+                ) : (
+                  <StaticHeroName />
+                )}
               </h1>
 
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
               <div className="relative order-1 md:order-2 shrink-0 group md:mr-24 lg:mr-32">
                 <div className="relative w-[200px] h-[290px] sm:w-[230px] sm:h-[330px] lg:w-[260px] lg:h-[370px]">
-                  <ClientOnly fallback={
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <img
-                        src={`${import.meta.env.BASE_URL}profile.webp`}
-                        alt="Sahaya Savari F"
-                        width={160}
-                        height={160}
-                        className="w-40 h-40 rounded-full object-cover object-top"
-                      />
-                    </div>
-                  }>
+                  {isMounted ? (
                     <div className="absolute -inset-x-[70px] -top-6 -bottom-6 sm:-inset-x-[80px] md:-inset-x-[160px] lg:-inset-x-[220px]">
-                      <Suspense fallback={null}><HeroBadge /></Suspense>
+                      <Suspense fallback={<StaticBadgeCard />}>
+                        <HeroBadge />
+                      </Suspense>
                     </div>
-                  </ClientOnly>
+                  ) : (
+                    <StaticBadgeCard />
+                  )}
                 </div>
               </div>
             </div>
@@ -189,19 +224,19 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-xs font-body">
                   <div>
                     <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Education</span>
-                    <span className="text-white/90 font-medium">M.Sc. Artificial Intelligence</span>
+                    <span className="text-white/90 font-medium">M.Sc. AI (Current) · B.Sc. Data Science</span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Location</span>
-                    <span className="text-white/90 font-medium">Trichy / Madurai, India</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Experience</span>
+                    <span className="text-white/90 font-medium">SEO & Web Trainee @ HodoLabs</span>
                   </div>
                   <div>
                     <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Target Roles</span>
-                    <span className="text-white/90 font-medium">AI Engineer, Python Developer, Full Stack Developer</span>
+                    <span className="text-white/90 font-medium">AI Engineer, Python Developer, Full Stack</span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Preference</span>
-                    <span className="text-white/90 font-medium">Open to Remote / Relocation</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Location & Preference</span>
+                    <span className="text-white/90 font-medium">Tamil Nadu, India · Remote / Relocate</span>
                   </div>
                 </div>
 

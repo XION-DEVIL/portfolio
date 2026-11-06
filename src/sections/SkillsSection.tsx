@@ -1,31 +1,37 @@
-import { useState, memo, lazy, Suspense } from 'react';
+import { useState, useEffect, memo, lazy, Suspense } from 'react';
 import { Database, Brain, Code, Terminal } from 'lucide-react';
 import SkillAccordion from '../components/ui/SkillAccordion';
 import SectionBadge from '../components/ui/SectionBadge';
 import SkillsMatrix from '../components/SkillsMatrix';
 import { Marquee } from '../components/magicui/marquee';
-import { ClientOnly } from '@tanstack/react-router';
 
 const Galaxy = lazy(() => import('../components/ui/Galaxy/Galaxy'));
 
 const SkillsSection = memo(() => {
   const [activePillar, setActivePillar] = useState<'Data' | 'AI'>('Data');
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <section aria-label="Skills and capabilities" className="py-16 px-6 relative overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <ClientOnly><Suspense fallback={null}>
-          <Galaxy
-            transparent={true}
-            density={0.7}
-            glowIntensity={0.15}
-            saturation={0.22}
-            rotationSpeed={0.015}
-            twinkleIntensity={0.12}
-            mouseInteraction={true}
-            mouseRepulsion={true}
-          />
-        </Suspense></ClientOnly>
+        {isMounted && (
+          <Suspense fallback={null}>
+            <Galaxy
+              transparent={true}
+              density={0.7}
+              glowIntensity={0.15}
+              saturation={0.22}
+              rotationSpeed={0.015}
+              twinkleIntensity={0.12}
+              mouseInteraction={true}
+              mouseRepulsion={true}
+            />
+          </Suspense>
+        )}
       </div>
       <div className="max-w-screen-xl mx-auto relative z-10">
         <div className="mb-12">
@@ -43,28 +49,42 @@ const SkillsSection = memo(() => {
               An index of key programming languages, frameworks, backend frameworks, databases, and deployment tooling used across my software development portfolio projects.
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: 'Python', category: 'Language' },
-              { name: 'Java', category: 'Language' },
-              { name: 'JavaScript', category: 'Language' },
-              { name: 'TypeScript', category: 'Language' },
-              { name: 'React', category: 'Frontend' },
-              { name: 'Vite', category: 'Build Tool' },
-              { name: 'Tailwind CSS', category: 'Styling' },
-              { name: 'FastAPI', category: 'Backend' },
-              { name: 'Firebase', category: 'Cloud/DB' },
-              { name: 'Git', category: 'Version Control' },
-              { name: 'GitHub', category: 'Platform' },
-              { name: 'Docker', category: 'DevOps' },
-              { name: 'SQL', category: 'Database' },
-              { name: 'Machine Learning', category: 'AI/ML' },
-              { name: 'Artificial Intelligence', category: 'AI/ML' },
-              { name: 'REST APIs', category: 'Architecture' },
-            ].map((tech) => (
-              <div key={tech.name} className="liquid-glass-strong p-3 rounded-xl border border-white/5 hover:border-white/20 transition-colors">
-                <span className="block text-white font-body font-medium text-xs mb-0.5">{tech.name}</span>
-                <span className="block text-[9px] font-mono text-white/70 uppercase tracking-wider">{tech.category}</span>
+              {
+                domain: 'AI & Machine Learning',
+                color: 'text-purple-400',
+                borderColor: 'border-purple-500/20',
+                items: ['Python', 'Machine Learning', 'Artificial Intelligence', 'REST APIs'],
+              },
+              {
+                domain: 'Languages',
+                color: 'text-cyan-400',
+                borderColor: 'border-cyan-500/20',
+                items: ['TypeScript', 'JavaScript', 'Java', 'SQL'],
+              },
+              {
+                domain: 'Frontend & UI',
+                color: 'text-emerald-400',
+                borderColor: 'border-emerald-500/20',
+                items: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+              },
+              {
+                domain: 'Backend & Cloud',
+                color: 'text-amber-400',
+                borderColor: 'border-amber-500/20',
+                items: ['FastAPI', 'Firebase', 'Docker', 'Git & GitHub'],
+              },
+            ].map((group) => (
+              <div key={group.domain} className="liquid-glass p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                <h4 className={`text-xs font-mono font-bold uppercase tracking-widest mb-4 ${group.color}`}>{group.domain}</h4>
+                <div className="space-y-2">
+                  {group.items.map((tech) => (
+                    <div key={tech} className={`px-3 py-2 rounded-xl bg-white/[0.03] border ${group.borderColor} text-center`}>
+                      <span className="text-white font-body font-medium text-xs">{tech}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

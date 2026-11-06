@@ -82,7 +82,7 @@ export default function ResumePage() {
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Professional Positioning</h2>
             <p className="text-white/90 leading-relaxed">
-              M.Sc. Artificial Intelligence student specializing in Machine Learning engineering, Python backend services, and modern React full-stack applications. Available for AI/ML and software engineering internships in Summer/Fall 2026.
+              M.Sc. Artificial Intelligence student specializing in Machine Learning engineering, Python backend services, and modern React full-stack applications. Available for AI/ML and software engineering internships & full-time roles (2026-2027).
             </p>
           </div>
 
@@ -101,7 +101,7 @@ export default function ResumePage() {
           </div>
 
           <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <span><strong>Selected Projects:</strong> PrepMind AI, Daily Spark, Portfolio Architecture</span>
+            <span><strong>Selected Projects:</strong> NelSync AI (1st Place Hackathon Winner), PrepMind AI, Daily Spark, Portfolio Architecture</span>
             <a href={RESUME_FILE_URL} download="Sahaya_Savari_Resume.pdf" className="text-purple-300 hover:text-white underline font-medium">Download Official Resume (PDF)</a>
           </div>
         </section>

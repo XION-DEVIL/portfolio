@@ -52,7 +52,7 @@
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
   }
-  #home, #about, #what-i-do, #skills, #projects, #blog, #open-source, #career-goals, #certifications, #contact {
+  #home, #about, #experience, #skills, #projects, #blog, #open-source, #certifications, #contact {
     scroll-margin-top: 80px;
   }
   body {
