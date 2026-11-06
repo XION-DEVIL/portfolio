@@ -1,8 +1,7 @@
 // @ts-nocheck
 
-
-import { useEffect, useRef } from 'react';
-import './ParticleText.css';
+import { useEffect, useRef } from "react";
+import "./ParticleText.css";
 
 const INHERIT = /^(currentcolor|inherit)$/i;
 const TONES = 12;
@@ -17,20 +16,20 @@ const SCAN_FADE = [0, 0.12, 0.42, 0.78, 1, 0.78, 0.42, 0.12, 0];
 const FADE_FLOOR = { gather: 0, rain: 0.55, spiral: 0.45, scan: 0.35 };
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
-const easeInFall = t => Math.pow(t, 1.7);
-const easeInOutCubic = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-const fadeAlpha = level => 0.35 + (0.65 * level) / (FADES - 1);
-const wrapHalfTurn = angle => (((angle % Math.PI) + Math.PI * 1.5) % Math.PI) - Math.PI / 2;
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+const easeInFall = (t) => Math.pow(t, 1.7);
+const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const fadeAlpha = (level) => 0.35 + (0.65 * level) / (FADES - 1);
+const wrapHalfTurn = (angle) => (((angle % Math.PI) + Math.PI * 1.5) % Math.PI) - Math.PI / 2;
 
 const resolveFontSize = (value, container, fontWeight, fontFamily) => {
-  if (typeof value === 'number') return value;
+  if (typeof value === "number") return value;
 
-  const probe = document.createElement('span');
-  probe.textContent = 'M';
-  probe.style.position = 'absolute';
-  probe.style.visibility = 'hidden';
-  probe.style.pointerEvents = 'none';
+  const probe = document.createElement("span");
+  probe.textContent = "M";
+  probe.style.position = "absolute";
+  probe.style.visibility = "hidden";
+  probe.style.pointerEvents = "none";
   probe.style.fontSize = value;
   probe.style.fontWeight = String(fontWeight);
   probe.style.fontFamily = fontFamily;
@@ -40,25 +39,27 @@ const resolveFontSize = (value, container, fontWeight, fontFamily) => {
   return size;
 };
 
-const waitForFonts = async font => {
-  if (!('fonts' in document)) return;
+const waitForFonts = async (font) => {
+  if (!("fonts" in document)) return;
 
   try {
     await document.fonts.load(font);
-  } catch {}
+  } catch (e) {
+    void e;
+  }
 
   await document.fonts.ready;
 };
 
 const ParticleText = ({
-  text = 'React Bits',
+  text = "React Bits",
   particleSize = 2,
   density = 4,
-  color = 'currentColor',
-  highlightColor = '#ff5a36',
-  highlightMode = 'motion',
-  shape = 'circle',
-  intro = 'gather',
+  color = "currentColor",
+  highlightColor = "#ff5a36",
+  highlightMode = "motion",
+  shape = "circle",
+  intro = "gather",
   scatter = 180,
   gatherDuration = 1600,
   stagger = 420,
@@ -67,13 +68,13 @@ const ParticleText = ({
   pointerRepel = 40,
   repelRadius = 120,
   idleDrift = 0.7,
-  trigger = 'mount',
-  fontSize = 'clamp(3rem, 12vw, 8rem)',
+  trigger = "mount",
+  fontSize = "clamp(3rem, 12vw, 8rem)",
   fontWeight = 800,
-  fontFamily = 'inherit',
+  fontFamily = "inherit",
   glow = true,
-  className = '',
-  style
+  className = "",
+  style,
 }) => {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
@@ -102,7 +103,7 @@ const ParticleText = ({
       fontSize,
       fontWeight,
       fontFamily,
-      glow
+      glow,
     };
     wakeRef.current();
   });
@@ -110,28 +111,28 @@ const ParticleText = ({
   useEffect(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
-    const layer = document.createElement('canvas');
-    const layerCtx = layer.getContext('2d');
-    const probe = document.createElement('canvas');
+    const ctx = canvas?.getContext("2d");
+    const layer = document.createElement("canvas");
+    const layerCtx = layer.getContext("2d");
+    const probe = document.createElement("canvas");
     probe.width = 1;
     probe.height = 1;
-    const probeCtx = probe.getContext('2d', { willReadFrequently: true });
+    const probeCtx = probe.getContext("2d", { willReadFrequently: true });
     if (!container || !canvas || !ctx || !layerCtx || !probeCtx) return undefined;
 
-    const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const motionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     let reducedMotion = !!motionQuery?.matches;
     let particles = [];
     let raf = 0;
     let sampleFrame = 0;
     let buildId = 0;
     let introPending = true;
-    let sampledKey = '';
-    let sampledText = '';
-    let requestedSize = '';
+    let sampledKey = "";
+    let sampledText = "";
+    let requestedSize = "";
     let gathering = false;
     let gatherStart = 0;
-    let introMode = 'gather';
+    let introMode = "gather";
     let bursting = false;
     let width = 0;
     let height = 0;
@@ -139,9 +140,9 @@ const ParticleText = ({
     let last = 0;
     let visible = true;
     let alive = true;
-    let colorKey = '';
+    let colorKey = "";
     let palette = [];
-    let glowColor = '#000000';
+    let glowColor = "#000000";
     let accent = { r: 0, g: 0, b: 0 };
     const bounds = { left: 0, right: 0, top: 0, bottom: 0 };
     const swirl = { x: 0, y: 0, aspect: 1 };
@@ -149,28 +150,28 @@ const ParticleText = ({
     const buckets = Array.from({ length: TONES * FADES }, () => []);
     const pointer = { active: false, x: 0, y: 0, smoothX: 0, smoothY: 0 };
 
-    const family = s =>
-      !s.fontFamily || s.fontFamily === 'inherit'
-        ? window.getComputedStyle(container).fontFamily || 'sans-serif'
+    const family = (s) =>
+      !s.fontFamily || s.fontFamily === "inherit"
+        ? window.getComputedStyle(container).fontFamily || "sans-serif"
         : s.fontFamily;
-    const layoutKey = s => [s.text, s.fontSize, s.fontWeight, family(s), s.density].join('|');
+    const layoutKey = (s) => [s.text, s.fontSize, s.fontWeight, family(s), s.density].join("|");
     const sizeKey = () => {
       const rect = container.getBoundingClientRect();
       return `${Math.floor(rect.width)}x${Math.floor(rect.height)}@${Math.min(window.devicePixelRatio || 1, 2)}`;
     };
 
-    const toRgb = value => {
+    const toRgb = (value) => {
       probeCtx.clearRect(0, 0, 1, 1);
-      probeCtx.fillStyle = '#000000';
+      probeCtx.fillStyle = "#000000";
       probeCtx.fillStyle = value;
       probeCtx.fillRect(0, 0, 1, 1);
       const [r, g, b] = probeCtx.getImageData(0, 0, 1, 1).data;
       return { r, g, b };
     };
 
-    const ensureColors = s => {
-      const current = window.getComputedStyle(container).color || '#000000';
-      const pick = value => (!value || INHERIT.test(String(value).trim()) ? current : value);
+    const ensureColors = (s) => {
+      const current = window.getComputedStyle(container).color || "#000000";
+      const pick = (value) => (!value || INHERIT.test(String(value).trim()) ? current : value);
       const base = pick(s.color);
       const highlight = pick(s.highlightColor);
       const key = `${base}|${highlight}`;
@@ -190,12 +191,12 @@ const ParticleText = ({
 
     const travelTime = (s, particle) => {
       if (reducedMotion) return 1;
-      if (introMode === 'scan') return s.gatherDuration * 0.4;
-      if (introMode === 'rain') return s.gatherDuration * (0.45 + particle.depth * 0.3);
+      if (introMode === "scan") return s.gatherDuration * 0.4;
+      if (introMode === "rain") return s.gatherDuration * (0.45 + particle.depth * 0.3);
       return s.gatherDuration;
     };
 
-    const startIntro = initial => {
+    const startIntro = (initial) => {
       const s = settingsRef.current;
       if (!particles.length || !s) return;
       introMode = s.intro;
@@ -211,7 +212,7 @@ const ParticleText = ({
       scan.duration = Math.max(200, s.gatherDuration * 0.8);
       let reach = 1;
 
-      if (introMode === 'spiral') {
+      if (introMode === "spiral") {
         for (const particle of particles) {
           const dx = particle.targetX - swirl.x;
           const dy = (particle.targetY - swirl.y) * swirl.aspect;
@@ -226,27 +227,33 @@ const ParticleText = ({
         let startX;
         let startY;
 
-        if (introMode === 'rain') {
+        if (introMode === "rain") {
           startX = particle.targetX + (particle.depth - 0.9) * 16;
           startY = -12 - particle.depth * 30 - particle.seed * height * 0.22;
           delay = particle.seed * s.stagger * 1.3;
-        } else if (introMode === 'spiral') {
-          particle.startRadius = particle.radius * (1.04 + particle.depth * 0.22) + spread * 0.3 * particle.seed;
-          particle.swirl = (1.5 + 2.6 * (1 - particle.radius / reach)) * (0.85 + particle.seed * 0.3);
+        } else if (introMode === "spiral") {
+          particle.startRadius =
+            particle.radius * (1.04 + particle.depth * 0.22) + spread * 0.3 * particle.seed;
+          particle.swirl =
+            (1.5 + 2.6 * (1 - particle.radius / reach)) * (0.85 + particle.seed * 0.3);
           const angle = particle.heading + particle.swirl;
           startX = swirl.x + Math.cos(angle) * particle.startRadius;
           startY = swirl.y + (Math.sin(angle) * particle.startRadius) / swirl.aspect;
           delay = particle.seed * s.stagger;
-        } else if (introMode === 'scan') {
+        } else if (introMode === "scan") {
           const along = (particle.targetX - scan.from) / Math.max(1, scan.to - scan.from);
           startX = particle.targetX + 3 + particle.seed * 8;
-          startY = scan.top + ((particle.seed * 7.31 + particle.depth * 3.7) % 1) * (scan.bottom - scan.top);
+          startY =
+            scan.top +
+            ((particle.seed * 7.31 + particle.depth * 3.7) % 1) * (scan.bottom - scan.top);
           delay = along * scan.duration + particle.seed * s.stagger * 0.15;
         } else {
           const angle = particle.seed * TAU;
           const distance = spread * (0.35 + particle.depth * 0.75);
-          startX = particle.targetX + Math.cos(angle) * distance + (particle.seed - 0.5) * spread * 0.45;
-          startY = particle.targetY + Math.sin(angle) * distance + (particle.depth - 0.9) * spread * 0.45;
+          startX =
+            particle.targetX + Math.cos(angle) * distance + (particle.seed - 0.5) * spread * 0.45;
+          startY =
+            particle.targetY + Math.sin(angle) * distance + (particle.depth - 0.9) * spread * 0.45;
         }
 
         particle.startX = startX;
@@ -276,7 +283,8 @@ const ParticleText = ({
         const distance = Math.hypot(dx, dy);
         if (distance > radius) continue;
         const falloff = 1 - distance / radius;
-        const power = 950 * strength * (0.2 + 0.8 * falloff * falloff) * (0.65 + particle.depth * 0.45);
+        const power =
+          950 * strength * (0.2 + 0.8 * falloff * falloff) * (0.65 + particle.depth * 0.45);
         const angle = Math.atan2(dy, dx) + (particle.seed - 0.5) * 0.9;
         particle.vx += Math.cos(angle) * power;
         particle.vy += Math.sin(angle) * power;
@@ -288,7 +296,7 @@ const ParticleText = ({
 
     const drawGroup = (target, group, base, shape) => {
       target.beginPath();
-      if (shape === 'line') {
+      if (shape === "line") {
         for (const particle of group) {
           const dx = Math.cos(particle.angle) * particle.length * 0.5;
           const dy = Math.sin(particle.angle) * particle.length * 0.5;
@@ -299,7 +307,7 @@ const ParticleText = ({
         return;
       }
 
-      const square = shape === 'square';
+      const square = shape === "square";
       for (const particle of group) {
         const size = square ? base : Math.max(0.6, base * (0.75 + particle.weight * 0.45));
         if (square || size <= 2.1) {
@@ -314,12 +322,15 @@ const ParticleText = ({
 
     const drawScan = (now, s) => {
       const progress = (now - gatherStart) / scan.duration;
-      if (introMode !== 'scan' || progress < 0 || progress > 1.3 || reducedMotion) return false;
+      if (introMode !== "scan" || progress < 0 || progress > 1.3 || reducedMotion) return false;
       const x = scan.from + (scan.to - scan.from) * clamp(progress, 0, 1);
       const alpha = clamp(progress / 0.08, 0, 1) * clamp((1.3 - progress) / 0.3, 0, 1);
       const gradient = ctx.createLinearGradient(0, scan.top, 0, scan.bottom);
       SCAN_FADE.forEach((level, i) => {
-        gradient.addColorStop(i / (SCAN_FADE.length - 1), `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${level})`);
+        gradient.addColorStop(
+          i / (SCAN_FADE.length - 1),
+          `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${level})`,
+        );
       });
       ctx.globalAlpha = alpha * 0.85;
       ctx.fillStyle = gradient;
@@ -329,12 +340,12 @@ const ParticleText = ({
       }
       ctx.fillRect(x - 0.75, scan.top, 1.5, scan.bottom - scan.top);
       ctx.shadowBlur = 0;
-      ctx.shadowColor = 'transparent';
+      ctx.shadowColor = "transparent";
       ctx.globalAlpha = 1;
       return true;
     };
 
-    const step = now => {
+    const step = (now) => {
       const s = settingsRef.current;
       if (!s) return false;
       const dt = last ? Math.min(0.05, Math.max(0, (now - last) / 1000)) : 1 / 60;
@@ -350,12 +361,15 @@ const ParticleText = ({
 
       const repel = pointer.active && !reducedMotion && s.pointerRepel > 0 && s.repelRadius > 0;
       const drift = !reducedMotion && s.idleDrift > 0;
-      const motionHeat = s.highlightMode !== 'gradient';
-      const lines = s.shape === 'line';
+      const motionHeat = s.highlightMode !== "gradient";
+      const lines = s.shape === "line";
       const floor = gathering ? (FADE_FLOOR[introMode] ?? 0) : 0;
       const time = now * 0.001;
       const sizeBase = Math.max(0.1, Number(s.particleSize) || 0);
-      const restLength = Math.max(2, sizeBase * 0.8 + Math.max(2, Math.floor(Number(s.density) || 0)) * 0.7);
+      const restLength = Math.max(
+        2,
+        sizeBase * 0.8 + Math.max(2, Math.floor(Number(s.density) || 0)) * 0.7,
+      );
       let complete = true;
       let moving = false;
       let settling = false;
@@ -371,15 +385,15 @@ const ParticleText = ({
         if (gathering) {
           const local = (now - gatherStart - particle.delay) / Math.max(1, travelTime(s, particle));
           progress = clamp(local, 0, 1);
-          if (introMode === 'scan' && local < 0) hidden = true;
-          if (introMode === 'spiral') {
+          if (introMode === "scan" && local < 0) hidden = true;
+          if (introMode === "spiral") {
             const eased = easeInOutCubic(progress);
             const radius = particle.startRadius + (particle.radius - particle.startRadius) * eased;
             const angle = particle.heading + particle.swirl * (1 - eased);
             baseX = swirl.x + Math.cos(angle) * radius;
             baseY = swirl.y + (Math.sin(angle) * radius) / swirl.aspect;
           } else {
-            const eased = introMode === 'rain' ? easeInFall(progress) : easeOutCubic(progress);
+            const eased = introMode === "rain" ? easeInFall(progress) : easeOutCubic(progress);
             baseX = particle.startX + (particle.targetX - particle.startX) * eased;
             baseY = particle.startY + (particle.targetY - particle.startY) * eased;
           }
@@ -439,9 +453,11 @@ const ParticleText = ({
 
         const heat = motionHeat
           ? clamp(
-              (Math.hypot(particle.x - particle.targetX, particle.y - particle.targetY) - HEAT_DEADZONE) / HEAT_RANGE,
+              (Math.hypot(particle.x - particle.targetX, particle.y - particle.targetY) -
+                HEAT_DEADZONE) /
+                HEAT_RANGE,
               0,
-              1
+              1,
             )
           : particle.tone;
         const tone = Math.round(heat * (TONES - 1));
@@ -460,7 +476,7 @@ const ParticleText = ({
       const strokeWidth = Math.max(1, sizeBase * 0.65);
       if (lines) {
         ctx.lineWidth = strokeWidth;
-        ctx.lineCap = 'round';
+        ctx.lineCap = "round";
       }
 
       if (s.glow) {
@@ -470,7 +486,7 @@ const ParticleText = ({
         layerCtx.fillStyle = glowColor;
         layerCtx.strokeStyle = glowColor;
         layerCtx.lineWidth = strokeWidth;
-        layerCtx.lineCap = 'round';
+        layerCtx.lineCap = "round";
         let lit = false;
         for (let fade = 0; fade < FADES; fade++) {
           for (let tone = 1; tone < TONES; tone++) {
@@ -487,7 +503,7 @@ const ParticleText = ({
           ctx.shadowBlur = (3 + sizeBase * 1.5) * dpr;
           ctx.drawImage(layer, 0, 0, width, height);
           ctx.shadowBlur = 0;
-          ctx.shadowColor = 'transparent';
+          ctx.shadowColor = "transparent";
         }
       }
 
@@ -508,7 +524,7 @@ const ParticleText = ({
       return gathering || moving || repel || drift || bursting || scanning;
     };
 
-    const frame = now => {
+    const frame = (now) => {
       raf = 0;
       if (!alive) return;
       const s = settingsRef.current;
@@ -552,11 +568,11 @@ const ParticleText = ({
       await waitForFonts(font);
       if (currentBuild !== buildId || !alive) return;
 
-      const offscreen = document.createElement('canvas');
-      const offCtx = offscreen.getContext('2d', { willReadFrequently: true });
+      const offscreen = document.createElement("canvas");
+      const offCtx = offscreen.getContext("2d", { willReadFrequently: true });
       if (!offCtx) return;
 
-      const content = String(s.text || ' ');
+      const content = String(s.text || " ");
       const maxTextWidth = nextWidth * 0.92;
       offCtx.font = font;
       let metrics = offCtx.measureText(content);
@@ -582,9 +598,9 @@ const ParticleText = ({
       offscreen.height = textHeight + padding * 2;
       offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
       offCtx.font = font;
-      offCtx.textAlign = 'left';
-      offCtx.textBaseline = 'alphabetic';
-      offCtx.fillStyle = '#ffffff';
+      offCtx.textAlign = "left";
+      offCtx.textBaseline = "alphabetic";
+      offCtx.fillStyle = "#ffffff";
       offCtx.fillText(content, padding - left, padding + ascent);
 
       const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
@@ -598,7 +614,7 @@ const ParticleText = ({
             targets.push({
               x: nextWidth / 2 - offscreen.width / 2 + x,
               y: nextHeight / 2 - offscreen.height / 2 + y,
-              alpha: alpha / 255
+              alpha: alpha / 255,
             });
           }
         }
@@ -658,7 +674,7 @@ const ParticleText = ({
           radius: 0,
           heading: 0,
           startRadius: 0,
-          swirl: 0
+          swirl: 0,
         };
       });
       bursting = false;
@@ -689,13 +705,13 @@ const ParticleText = ({
       });
     }
 
-    const locate = event => {
+    const locate = (event) => {
       const rect = canvas.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
     };
 
-    const handlePointerMove = event => {
+    const handlePointerMove = (event) => {
       locate(event);
       if (!pointer.active) {
         pointer.smoothX = pointer.x;
@@ -710,28 +726,28 @@ const ParticleText = ({
       wake();
     };
 
-    const handlePointerEnter = event => {
+    const handlePointerEnter = (event) => {
       handlePointerMove(event);
-      if (settingsRef.current?.trigger === 'hover') startIntro(false);
+      if (settingsRef.current?.trigger === "hover") startIntro(false);
     };
 
-    const handlePointerDown = event => {
+    const handlePointerDown = (event) => {
       const s = settingsRef.current;
-      if (!s || s.trigger === 'click' || !s.clickBurst || reducedMotion) return;
+      if (!s || s.trigger === "click" || !s.clickBurst || reducedMotion) return;
       const rect = canvas.getBoundingClientRect();
       burst(event.clientX - rect.left, event.clientY - rect.top);
     };
 
     const handleClick = () => {
-      if (settingsRef.current?.trigger === 'click') startIntro(false);
+      if (settingsRef.current?.trigger === "click") startIntro(false);
     };
 
-    const handleReduceMotionChange = event => {
+    const handleReduceMotionChange = (event) => {
       reducedMotion = event.matches;
       if (reducedMotion) {
         gathering = false;
         bursting = false;
-        particles.forEach(particle => {
+        particles.forEach((particle) => {
           particle.x = particle.targetX;
           particle.y = particle.targetY;
           particle.ox = 0;
@@ -743,12 +759,12 @@ const ParticleText = ({
       wake();
     };
 
-    motionQuery?.addEventListener?.('change', handleReduceMotionChange);
-    canvas.addEventListener('pointerenter', handlePointerEnter);
-    canvas.addEventListener('pointermove', handlePointerMove);
-    canvas.addEventListener('pointerleave', handlePointerLeave);
-    canvas.addEventListener('pointerdown', handlePointerDown);
-    canvas.addEventListener('click', handleClick);
+    motionQuery?.addEventListener?.("change", handleReduceMotionChange);
+    canvas.addEventListener("pointerenter", handlePointerEnter);
+    canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("pointerleave", handlePointerLeave);
+    canvas.addEventListener("pointerdown", handlePointerDown);
+    canvas.addEventListener("click", handleClick);
 
     const resizeObserver = new ResizeObserver(() => {
       if (sizeKey() !== requestedSize) queueSample(false);
@@ -763,10 +779,14 @@ const ParticleText = ({
 
     const themeObserver = new MutationObserver(wake);
     for (const node of [document.documentElement, document.body]) {
-      if (node) themeObserver.observe(node, { attributes: true, attributeFilter: ['class', 'style', 'data-theme'] });
+      if (node)
+        themeObserver.observe(node, {
+          attributes: true,
+          attributeFilter: ["class", "style", "data-theme"],
+        });
     }
-    const schemeQuery = window.matchMedia?.('(prefers-color-scheme: dark)');
-    schemeQuery?.addEventListener?.('change', wake);
+    const schemeQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
+    schemeQuery?.addEventListener?.("change", wake);
 
     sampleText();
 
@@ -777,13 +797,13 @@ const ParticleText = ({
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       themeObserver.disconnect();
-      schemeQuery?.removeEventListener?.('change', wake);
-      motionQuery?.removeEventListener?.('change', handleReduceMotionChange);
-      canvas.removeEventListener('pointerenter', handlePointerEnter);
-      canvas.removeEventListener('pointermove', handlePointerMove);
-      canvas.removeEventListener('pointerleave', handlePointerLeave);
-      canvas.removeEventListener('pointerdown', handlePointerDown);
-      canvas.removeEventListener('click', handleClick);
+      schemeQuery?.removeEventListener?.("change", wake);
+      motionQuery?.removeEventListener?.("change", handleReduceMotionChange);
+      canvas.removeEventListener("pointerenter", handlePointerEnter);
+      canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerleave", handlePointerLeave);
+      canvas.removeEventListener("pointerdown", handlePointerDown);
+      canvas.removeEventListener("click", handleClick);
       if (raf) cancelAnimationFrame(raf);
       if (sampleFrame) cancelAnimationFrame(sampleFrame);
     };

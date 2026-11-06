@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback, useRef, memo } from 'react';
-import { Download, FileText, ArrowRight, Award } from 'lucide-react';
+import { useState, useEffect, useCallback, useRef, memo } from "react";
+import { Download, FileText, ArrowRight, Award } from "lucide-react";
 
 interface AstralPreloaderProps {
   onComplete?: () => void;
 }
 
-const SESSION_KEY = 'sf_preloader_shown';
+const SESSION_KEY = "sf_preloader_shown";
 const DURATION_MS = 850; // Ultra-snappy 850ms total time for high productivity & optimal LCP
 const FADE_OUT_MS = 250;
 const READY_DELAY_MS = 150;
@@ -20,39 +20,39 @@ interface TelemetryPhase {
 const PHASES: TelemetryPhase[] = [
   {
     minPct: 0,
-    badge: 'CORE_INIT',
-    highlight: 'NEURAL WORKSPACE INITIALIZING',
-    subtext: 'Calibrating AI workflows & production runtime...',
+    badge: "CORE_INIT",
+    highlight: "NEURAL WORKSPACE INITIALIZING",
+    subtext: "Calibrating AI workflows & production runtime...",
   },
   {
     minPct: 25,
-    badge: 'HONORS',
-    highlight: '🏆 AIXCELERATE 2026 OVERALL CHAMPION',
-    subtext: 'NelSync AI · Agri-Logistics & Predictive Grading',
+    badge: "HONORS",
+    highlight: "🏆 AIXCELERATE 2026 OVERALL CHAMPION",
+    subtext: "NelSync AI · Agri-Logistics & Predictive Grading",
   },
   {
     minPct: 50,
-    badge: 'EXPERIENCE',
-    highlight: 'HODOLABS TECHNOLOGIES PVT. LTD.',
-    subtext: 'Digital Marketing & Technical SEO Intern · Web Trainee',
+    badge: "EXPERIENCE",
+    highlight: "HODOLABS TECHNOLOGIES PVT. LTD.",
+    subtext: "Digital Marketing & Technical SEO Intern · Web Trainee",
   },
   {
     minPct: 75,
-    badge: 'EDUCATION',
-    highlight: 'M.SC. ARTIFICIAL INTELLIGENCE',
+    badge: "EDUCATION",
+    highlight: "M.SC. ARTIFICIAL INTELLIGENCE",
     subtext: "St. Joseph's College (Current) · B.Sc. Data Science (Graduated)",
   },
   {
     minPct: 92,
-    badge: 'STACK',
-    highlight: 'PYTHON · FASTAPI · REACT · TYPESCRIPT',
-    subtext: 'High-throughput ML APIs & modern responsive frontend',
+    badge: "STACK",
+    highlight: "PYTHON · FASTAPI · REACT · TYPESCRIPT",
+    subtext: "High-throughput ML APIs & modern responsive frontend",
   },
   {
     minPct: 100,
-    badge: 'SYSTEM_READY',
-    highlight: 'PORTFOLIO CALIBRATION COMPLETE',
-    subtext: 'Welcome to Sahaya Savari’s engineering space',
+    badge: "SYSTEM_READY",
+    highlight: "PORTFOLIO CALIBRATION COMPLETE",
+    subtext: "Welcome to Sahaya Savari’s engineering space",
   },
 ];
 
@@ -71,22 +71,42 @@ function easeOutCubic(t: number): number {
 }
 
 /* ─── Corner Bracket HUD Component ─── */
-function Corner({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) {
+function Corner({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
   const size = 16;
   const thickness = 1.5;
-  const color = 'rgba(255, 255, 255, 0.45)';
+  const color = "rgba(255, 255, 255, 0.45)";
 
   const base: React.CSSProperties = {
-    position: 'absolute',
+    position: "absolute",
     width: size,
     height: size,
   };
 
   const borders: Record<string, React.CSSProperties> = {
-    tl: { top: 0, left: 0, borderTop: `${thickness}px solid ${color}`, borderLeft: `${thickness}px solid ${color}` },
-    tr: { top: 0, right: 0, borderTop: `${thickness}px solid ${color}`, borderRight: `${thickness}px solid ${color}` },
-    bl: { bottom: 0, left: 0, borderBottom: `${thickness}px solid ${color}`, borderLeft: `${thickness}px solid ${color}` },
-    br: { bottom: 0, right: 0, borderBottom: `${thickness}px solid ${color}`, borderRight: `${thickness}px solid ${color}` },
+    tl: {
+      top: 0,
+      left: 0,
+      borderTop: `${thickness}px solid ${color}`,
+      borderLeft: `${thickness}px solid ${color}`,
+    },
+    tr: {
+      top: 0,
+      right: 0,
+      borderTop: `${thickness}px solid ${color}`,
+      borderRight: `${thickness}px solid ${color}`,
+    },
+    bl: {
+      bottom: 0,
+      left: 0,
+      borderBottom: `${thickness}px solid ${color}`,
+      borderLeft: `${thickness}px solid ${color}`,
+    },
+    br: {
+      bottom: 0,
+      right: 0,
+      borderBottom: `${thickness}px solid ${color}`,
+      borderRight: `${thickness}px solid ${color}`,
+    },
   };
 
   return <div style={{ ...base, ...borders[position] }} aria-hidden="true" />;
@@ -99,7 +119,10 @@ function SegmentedLine({ width = 280, activePct = 0 }: { width?: number; activeP
   const activeSegments = Math.round((activePct / 100) * segmentCount);
 
   return (
-    <div style={{ display: 'flex', gap: 4, justifyContent: 'center', alignItems: 'center', width }} aria-hidden="true">
+    <div
+      style={{ display: "flex", gap: 4, justifyContent: "center", alignItems: "center", width }}
+      aria-hidden="true"
+    >
       {segments.map((i) => {
         const isActive = i < activeSegments;
         return (
@@ -108,9 +131,9 @@ function SegmentedLine({ width = 280, activePct = 0 }: { width?: number; activeP
             style={{
               flex: i % 4 === 0 ? 2 : 1,
               height: 2,
-              backgroundColor: isActive ? 'rgba(255, 255, 255, 0.75)' : 'rgba(255, 255, 255, 0.12)',
+              backgroundColor: isActive ? "rgba(255, 255, 255, 0.75)" : "rgba(255, 255, 255, 0.12)",
               borderRadius: 1,
-              transition: 'background-color 100ms ease',
+              transition: "background-color 100ms ease",
             }}
           />
         );
@@ -132,18 +155,20 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const preloaderRef = useRef<HTMLDivElement>(null);
 
-  const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+  const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 
   // SSR-safe session and environment check
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       setShouldRender(false);
       return;
     }
 
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isBotOrLighthouse = Boolean(navigator.webdriver || /HeadlessChrome|Lighthouse/i.test(navigator.userAgent));
-    const alreadyShown = sessionStorage.getItem(SESSION_KEY) === 'true';
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isBotOrLighthouse = Boolean(
+      navigator.webdriver || /HeadlessChrome|Lighthouse/i.test(navigator.userAgent),
+    );
+    const alreadyShown = sessionStorage.getItem(SESSION_KEY) === "true";
 
     if (alreadyShown || isReducedMotion || isBotOrLighthouse) {
       setShouldRender(false);
@@ -171,8 +196,8 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
 
       const fadeTimer = setTimeout(() => {
         setRemoved(true);
-        if (typeof window !== 'undefined') {
-          sessionStorage.setItem(SESSION_KEY, 'true');
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem(SESSION_KEY, "true");
         }
         onComplete?.();
       }, FADE_OUT_MS);
@@ -187,7 +212,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
   useEffect(() => {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      timeoutsRef.current.forEach(t => clearTimeout(t));
+      timeoutsRef.current.forEach((t) => clearTimeout(t));
       timeoutsRef.current = [];
     };
   }, []);
@@ -227,7 +252,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
     if (shouldRender !== true) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'Escape' || e.key === 'Enter') {
+      if (e.key === " " || e.key === "Escape" || e.key === "Enter") {
         e.preventDefault();
         if (skippedRef.current || completedRef.current) return;
         skippedRef.current = true;
@@ -236,8 +261,8 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [shouldRender, finishPreloader]);
 
   const handleManualSkip = () => {
@@ -258,7 +283,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
       className="astral-preloader fixed inset-0 z-[10000] bg-black text-white flex flex-col justify-between p-6 sm:p-10 select-none overflow-hidden"
       style={{
         opacity: fadingOut ? 0 : 1,
-        transform: fadingOut ? 'scale(1.02)' : 'scale(1)',
+        transform: fadingOut ? "scale(1.02)" : "scale(1)",
         transition: `opacity ${FADE_OUT_MS}ms cubic-bezier(0.16, 1, 0.3, 1), transform ${FADE_OUT_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`,
       }}
       tabIndex={-1}
@@ -272,7 +297,10 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
       </span>
 
       {/* Top HUD Telemetry Bar (aria-hidden for screen-readers) */}
-      <div className="flex items-center justify-between text-[10px] sm:text-xs font-mono text-white/50 tracking-wider" aria-hidden="true">
+      <div
+        className="flex items-center justify-between text-[10px] sm:text-xs font-mono text-white/50 tracking-wider"
+        aria-hidden="true"
+      >
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-white/80">SAHAYA SAVARI F · SYSTEM INITIALIZATION</span>
@@ -304,9 +332,9 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
         <div
           className="relative my-4 px-8 py-5 rounded-2xl flex flex-col items-center justify-center"
           style={{
-            width: 'min(90vw, 360px)',
-            background: 'rgba(255, 255, 255, 0.02)',
-            backdropFilter: 'blur(10px)',
+            width: "min(90vw, 360px)",
+            background: "rgba(255, 255, 255, 0.02)",
+            backdropFilter: "blur(10px)",
           }}
         >
           <Corner position="tl" />
@@ -323,7 +351,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
 
           {/* Large Dynamic Percentage Counter */}
           <div className="font-mono text-4xl sm:text-5xl font-light text-white tracking-widest leading-none my-1">
-            {String(percentage).padStart(3, '\u2007')}%
+            {String(percentage).padStart(3, "\u2007")}%
           </div>
 
           {/* Candidate Value Highlight */}
@@ -343,9 +371,14 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
 
       {/* Bottom Productive Shortcuts & Candidate Telemetry */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10 z-20">
-        <div className="text-[10px] font-mono text-white/40 text-center sm:text-left" aria-hidden="true">
+        <div
+          className="text-[10px] font-mono text-white/40 text-center sm:text-left"
+          aria-hidden="true"
+        >
           <span>STATUS: </span>
-          <span className="text-emerald-400 font-semibold">{percentage >= 100 ? 'READY' : 'STREAMING ASSETS'}</span>
+          <span className="text-emerald-400 font-semibold">
+            {percentage >= 100 ? "READY" : "STREAMING ASSETS"}
+          </span>
           <span className="ml-2 hidden md:inline">· 0.8s responsive startup</span>
         </div>
 

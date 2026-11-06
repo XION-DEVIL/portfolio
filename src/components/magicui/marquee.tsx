@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 /** Lightweight marquee with hover, keyboard and reduced-motion pause states. */
 export function Marquee({ children }: { children: ReactNode }) {

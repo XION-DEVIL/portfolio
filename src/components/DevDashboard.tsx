@@ -1,22 +1,50 @@
-import { BookOpen, Code, Award, CheckCircle } from 'lucide-react';
-import { PROJECTS, FEATURED_CREDENTIALS } from '../data';
+import { BookOpen, Code, Award, CheckCircle } from "lucide-react";
+import { PROJECTS, FEATURED_CREDENTIALS } from "../data";
 
 export default function DevDashboard() {
   const stats = [
-    { label: "M.Sc AI Program", value: "St. Joseph's", icon: BookOpen, desc: "Active research in Generative AI, LLMs, and Neural Network design." },
-    { label: "Major Projects", value: `${PROJECTS.length} Systems`, icon: Code, desc: "NelSync AI (Hackathon Winner), PrepMind AI, Daily Spark, and modern web software." },
-    { label: "Credentials Earned", value: `${FEATURED_CREDENTIALS.length} Specializations`, icon: Award, desc: "Verified IBM Data Analyst Specialization and accredited professional diplomas." }
+    {
+      label: "M.Sc AI Program",
+      value: "St. Joseph's",
+      icon: BookOpen,
+      desc: "Active research in Generative AI, LLMs, and Neural Network design.",
+    },
+    {
+      label: "Major Projects",
+      value: `${PROJECTS.length} Systems`,
+      icon: Code,
+      desc: "NelSync AI (Hackathon Winner), PrepMind AI, Daily Spark, and modern web software.",
+    },
+    {
+      label: "Credentials Earned",
+      value: `${FEATURED_CREDENTIALS.length} Specializations`,
+      icon: Award,
+      desc: "Verified IBM Data Analyst Specialization and accredited professional diplomas.",
+    },
   ];
 
   const topics = [
-    { name: "Generative AI", level: "Active Exploration", details: "Structured prompt injection, schema mapping validation, token context window optimization." },
-    { name: "Machine Learning", level: "Core Studies", details: "Loss parameter tuning, predictive classification models, exploratory data regressions." },
-    { name: "Data Analytics", level: "Practical Competency", details: "Relational schema layouts, dashboard reporting, business metric modeling." }
+    {
+      name: "Generative AI",
+      level: "Active Exploration",
+      details:
+        "Structured prompt injection, schema mapping validation, token context window optimization.",
+    },
+    {
+      name: "Machine Learning",
+      level: "Core Studies",
+      details:
+        "Loss parameter tuning, predictive classification models, exploratory data regressions.",
+    },
+    {
+      name: "Data Analytics",
+      level: "Practical Competency",
+      details: "Relational schema layouts, dashboard reporting, business metric modeling.",
+    },
   ];
 
   return (
     <div className="w-full mt-10 md:mt-20 text-left space-y-8 md:space-y-12">
-      
       {/* Metrics Row */}
       <div className="grid md:grid-cols-3 gap-6">
         {stats.map((stat, idx) => {
@@ -28,8 +56,12 @@ export default function DevDashboard() {
                   <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-mono text-white/70 uppercase tracking-wider">{stat.label}</span>
-                  <span className="block text-xl font-heading font-bold text-white">{stat.value}</span>
+                  <span className="block text-[10px] font-mono text-white/70 uppercase tracking-wider">
+                    {stat.label}
+                  </span>
+                  <span className="block text-xl font-heading font-bold text-white">
+                    {stat.value}
+                  </span>
                 </div>
               </div>
               <p className="text-white/70 font-body font-light text-xs leading-relaxed">
@@ -45,10 +77,11 @@ export default function DevDashboard() {
         <div className="mb-8 border-b border-white/5 pb-4">
           <h3 className="font-heading font-bold text-2xl text-white">Research & Learning Focus</h3>
           <p className="text-white/70 font-body font-light text-xs mt-1">
-            Core subjects and methodologies actively explored through studies and application design.
+            Core subjects and methodologies actively explored through studies and application
+            design.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8">
           {topics.map((topic, idx) => (
             <div key={idx} className="space-y-2">
@@ -65,7 +98,6 @@ export default function DevDashboard() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }

@@ -1,5 +1,5 @@
 let lockCount = 0;
-let originalOverflow = '';
+let originalOverflow = "";
 
 /**
  * Safely locks body scroll by adding overflow: hidden.
@@ -7,11 +7,11 @@ let originalOverflow = '';
  * without race conditions.
  */
 export const lockScroll = () => {
-  if (typeof document === 'undefined') return;
-  
+  if (typeof document === "undefined") return;
+
   if (lockCount === 0) {
     originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   }
   lockCount++;
 };
@@ -21,17 +21,15 @@ export const lockScroll = () => {
  * Only unlocks when all locks are released.
  */
 export const unlockScroll = () => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
   lockCount = Math.max(0, lockCount - 1);
   if (lockCount === 0) {
-    document.body.style.overflow = originalOverflow || '';
+    document.body.style.overflow = originalOverflow || "";
   }
 };
 
 export const forceUnlockScroll = () => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
   lockCount = 0;
-  document.body.style.overflow = originalOverflow || '';
+  document.body.style.overflow = originalOverflow || "";
 };
-
-

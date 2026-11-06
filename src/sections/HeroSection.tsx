@@ -1,10 +1,14 @@
-import { useEffect, useState, memo, useRef, lazy, Suspense } from 'react';
-const HeroBadge = lazy(() => import('../components/reactbits/HeroEffects').then(m => ({ default: m.HeroBadge })));
-const HeroName = lazy(() => import('../components/reactbits/HeroEffects').then(m => ({ default: m.HeroName })));
-import { Play, ArrowUpRight } from 'lucide-react';
-import RotatingText from '../components/RotatingText';
-import FocusText from '../components/FocusText';
-import { RainbowButton } from '../components/magicui/rainbow-button';
+import { useEffect, useState, memo, useRef, lazy, Suspense } from "react";
+const HeroBadge = lazy(() =>
+  import("../components/reactbits/HeroEffects").then((m) => ({ default: m.HeroBadge })),
+);
+const HeroName = lazy(() =>
+  import("../components/reactbits/HeroEffects").then((m) => ({ default: m.HeroName })),
+);
+import { Play, ArrowUpRight } from "lucide-react";
+import RotatingText from "../components/RotatingText";
+import FocusText from "../components/FocusText";
+import { RainbowButton } from "../components/magicui/rainbow-button";
 
 // Static Badge Card fallback — visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
 const StaticBadgeCard = () => (
@@ -45,7 +49,7 @@ interface HeroSectionProps {
   setShowResume: (show: boolean) => void;
 }
 
-const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 const HERO_POSTER = `${import.meta.env.BASE_URL}hero-ambient-poster.webp`;
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
@@ -59,33 +63,44 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   }, []);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-    const constrainedConnection = connection?.saveData || /2g/.test(connection?.effectiveType || '');
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const connection = (
+      navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+    ).connection;
+    const constrainedConnection =
+      connection?.saveData || /2g/.test(connection?.effectiveType || "");
 
     if (prefersReducedMotion || constrainedConnection) return;
 
     // Load botanical ambient video automatically after mount, or immediately on interaction
     const timer = window.setTimeout(() => setShouldLoadVideo(true), 250);
-    const events = ['scroll', 'pointerdown', 'touchstart', 'keydown'] as const;
+    const events = ["scroll", "pointerdown", "touchstart", "keydown"] as const;
     const startVideo = () => {
       window.clearTimeout(timer);
-      events.forEach(e => window.removeEventListener(e, startVideo));
+      events.forEach((e) => window.removeEventListener(e, startVideo));
       setShouldLoadVideo(true);
     };
 
-    events.forEach(e => window.addEventListener(e, startVideo, { once: true, passive: true }));
+    events.forEach((e) => window.addEventListener(e, startVideo, { once: true, passive: true }));
 
     return () => {
       window.clearTimeout(timer);
-      events.forEach(e => window.removeEventListener(e, startVideo));
+      events.forEach((e) => window.removeEventListener(e, startVideo));
     };
   }, []);
 
   return (
-    <section ref={sectionRef} id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
+    <section
+      ref={sectionRef}
+      id="home"
+      aria-label="Introduction"
+      className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent"
+    >
       {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
-      <div className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <div
+        className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
           {/* Ambient botanical poster image — local asset, loads instantly with zero delay & zero broken icons */}
           <img
@@ -96,7 +111,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             fetchPriority="high"
             decoding="async"
             className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
-              isVideoLoaded ? 'opacity-0 md:opacity-0' : 'opacity-40'
+              isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-40"
             }`}
             aria-hidden="true"
           />
@@ -115,7 +130,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
               className={`absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? 'opacity-40' : 'opacity-0'
+                isVideoLoaded ? "opacity-40" : "opacity-0"
               }`}
               aria-hidden="true"
             />
@@ -123,18 +138,29 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
         </div>
       </div>
       <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1]" aria-hidden="true" />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1]"
+        aria-hidden="true"
+      />
 
       {/* Main hero content */}
       <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full">
         <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
           <div className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
-            <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
+            <span
+              className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
+              aria-hidden="true"
+            ></span>
+            <span className="text-xs font-body font-medium text-white/80">
+              Open to Opportunities · Summer/Fall 2026
+            </span>
           </div>
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 lg:gap-8 relative w-full max-w-[1000px] mx-auto">
-              <h1 className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[720px] h-[110px] sm:h-[130px] md:h-[160px] lg:h-[200px]" style={{ fontStyle: 'normal' }}>
+              <h1
+                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[720px] h-[110px] sm:h-[130px] md:h-[160px] lg:h-[200px]"
+                style={{ fontStyle: "normal" }}
+              >
                 <span className="sr-only">Sahaya Savari F</span>
                 {isMounted ? (
                   <Suspense fallback={<StaticHeroName />}>
@@ -162,10 +188,17 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4">
-              <span className="font-heading font-normal text-fluid-hero-role text-white/80">I am an</span>
+              <span className="font-heading font-normal text-fluid-hero-role text-white/80">
+                I am an
+              </span>
               <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
-                  texts={["AI Engineer", "M.Sc. AI Student", "Python Developer", "Full Stack Developer"]}
+                  texts={[
+                    "AI Engineer",
+                    "M.Sc. AI Student",
+                    "Python Developer",
+                    "Full Stack Developer",
+                  ]}
                   mainClassName="px-3.5 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
                   staggerFrom="last"
                   splitBy="words"
@@ -183,15 +216,24 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
           {/* LCP Text: Rendered immediately with optimal contrast */}
           <p className="text-white/75 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed">
-            M.Sc. Artificial Intelligence student building Machine Learning applications, Python automation tools, and responsive web software with React and TypeScript. Highlighting verified engineering projects for Summer/Fall 2026 opportunities.
+            M.Sc. Artificial Intelligence student building Machine Learning applications, Python
+            automation tools, and responsive web software with React and TypeScript. Highlighting
+            verified engineering projects for Summer/Fall 2026 opportunities.
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
             <RainbowButton onClick={() => setShowResume(true)} aria-label="View Resume">
               View Resume
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+              <ArrowUpRight
+                className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                aria-hidden="true"
+              />
             </RainbowButton>
-            <a href="#projects" className="text-white/70 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]" aria-label="View Projects">
+            <a
+              href="#projects"
+              className="text-white/70 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]"
+              aria-label="View Projects"
+            >
               View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
             </a>
           </div>
@@ -200,9 +242,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           <div
             className="mt-12 w-full max-w-4xl rounded-3xl border border-white/[0.08] transition-all duration-700"
             style={{
-              background: 'rgba(10, 10, 14, 0.65)',
-              backdropFilter: 'blur(20px)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.4)',
+              background: "rgba(10, 10, 14, 0.65)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.4)",
             }}
           >
             <div className="grid md:grid-cols-3 gap-8 p-6 md:p-8 text-left">
@@ -210,39 +252,72 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <div className="md:col-span-2 space-y-6">
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
                   <div>
-                    <h2 className="text-white font-heading font-bold text-lg leading-none">Recruiter Quick View</h2>
-                    <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">Candidate profile summary</span>
+                    <h2 className="text-white font-heading font-bold text-lg leading-none">
+                      Recruiter Quick View
+                    </h2>
+                    <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">
+                      Candidate profile summary
+                    </span>
                   </div>
                   <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1.5 shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
+                    <span
+                      className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
+                      aria-hidden="true"
+                    />
                     Available Summer/Fall 2026
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-xs font-body">
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Education</span>
-                    <span className="text-white/90 font-medium">M.Sc. AI (Current) · B.Sc. Data Science</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Education
+                    </span>
+                    <span className="text-white/90 font-medium">
+                      M.Sc. AI (Current) · B.Sc. Data Science
+                    </span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Experience</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Experience
+                    </span>
                     <span className="text-white/90 font-medium">SEO & Web Trainee @ HodoLabs</span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Target Roles</span>
-                    <span className="text-white/90 font-medium">AI Engineer, Python Developer, Full Stack</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Target Roles
+                    </span>
+                    <span className="text-white/90 font-medium">
+                      AI Engineer, Python Developer, Full Stack
+                    </span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Location & Preference</span>
-                    <span className="text-white/90 font-medium">Tamil Nadu, India · Remote / Relocate</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Location & Preference
+                    </span>
+                    <span className="text-white/90 font-medium">
+                      Tamil Nadu, India · Remote / Relocate
+                    </span>
                   </div>
                 </div>
 
                 <div className="pt-2">
-                  <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">Primary Stack</span>
+                  <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">
+                    Primary Stack
+                  </span>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Python', 'Artificial Intelligence', 'Machine Learning', 'React', 'TypeScript', 'Firebase'].map(skill => (
-                      <span key={skill} className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70">
+                    {[
+                      "Python",
+                      "Artificial Intelligence",
+                      "Machine Learning",
+                      "React",
+                      "TypeScript",
+                      "Firebase",
+                    ].map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -282,7 +357,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                   >
                     GitHub
                   </a>
-                  <span className="text-white/10" aria-hidden="true">|</span>
+                  <span className="text-white/10" aria-hidden="true">
+                    |
+                  </span>
                   <a
                     href="https://www.linkedin.com/in/sahaya-savari"
                     target="_blank"
@@ -303,7 +380,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           className="mt-8 md:mt-12 flex flex-col items-center gap-4 shrink-0 pointer-events-none w-full"
           aria-hidden="true"
         >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">What I work with</div>
+          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">
+            What I work with
+          </div>
           <FocusText prefix="Data AI Analytics" focusText="GenAI" className="" />
         </div>
       </div>

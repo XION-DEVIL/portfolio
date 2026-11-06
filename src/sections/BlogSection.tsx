@@ -1,9 +1,9 @@
-import { memo, useState, useCallback } from 'react';
-import { Link } from '@/lib/router-compat';
-import { ArrowUpRight, BookOpen, Clock, Calendar, ExternalLink } from 'lucide-react';
-import { ARTICLES, Article } from '../data';
-import SectionBadge from '../components/ui/SectionBadge';
-import ArticleReaderModal from '../components/ArticleReaderModal';
+import { memo, useState, useCallback } from "react";
+import { Link } from "@/lib/router-compat";
+import { ArrowUpRight, BookOpen, Clock, Calendar, ExternalLink } from "lucide-react";
+import { ARTICLES, Article } from "../data";
+import SectionBadge from "../components/ui/SectionBadge";
+import ArticleReaderModal from "../components/ArticleReaderModal";
 
 const ArticleCard = ({ article, onRead }: { article: Article; onRead: () => void }) => {
   return (
@@ -13,7 +13,7 @@ const ArticleCard = ({ article, onRead }: { article: Article; onRead: () => void
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onRead();
         }
@@ -21,8 +21,8 @@ const ArticleCard = ({ article, onRead }: { article: Article; onRead: () => void
       aria-label={`Read article: ${article.title}`}
     >
       <div className="relative h-48 w-full overflow-hidden">
-        <img 
-          src={article.image} 
+        <img
+          src={article.image}
           alt={article.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
@@ -78,29 +78,31 @@ const BlogSection = memo(() => {
     <>
       <section aria-label="Featured Articles" className="py-16 px-6 relative overflow-hidden">
         <div className="max-w-screen-xl mx-auto relative z-10">
-          
           {/* Header Row */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
             <div className="max-w-2xl">
               <SectionBadge>Writings & Articles</SectionBadge>
               <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">
-                Developer Blog &amp; <br/> Technical Insights.
+                Developer Blog &amp; <br /> Technical Insights.
               </h2>
               <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed">
-                Practical engineering write-ups covering computer vision in agriculture, technical SEO &amp; Core Web Vitals optimization, offline-first React state management, and high-throughput async Python backends.
+                Practical engineering write-ups covering computer vision in agriculture, technical
+                SEO &amp; Core Web Vitals optimization, offline-first React state management, and
+                high-throughput async Python backends.
               </p>
             </div>
             <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
-              Interactive engineering notes with architecture breakdown and executive takeaways. Click any card to read inline.
+              Interactive engineering notes with architecture breakdown and executive takeaways.
+              Click any card to read inline.
             </p>
           </div>
 
           {/* Articles Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
             {ARTICLES.map((article) => (
-              <ArticleCard 
-                key={article.title} 
-                article={article} 
+              <ArticleCard
+                key={article.title}
+                article={article}
                 onRead={() => setSelectedArticle(article)}
               />
             ))}
@@ -126,15 +128,11 @@ const BlogSection = memo(() => {
               <ExternalLink className="w-3.5 h-3.5 opacity-60" />
             </a>
           </div>
-
         </div>
       </section>
 
       {/* Interactive Reader Modal */}
-      <ArticleReaderModal 
-        article={selectedArticle} 
-        onClose={handleCloseModal} 
-      />
+      <ArticleReaderModal article={selectedArticle} onClose={handleCloseModal} />
     </>
   );
 });

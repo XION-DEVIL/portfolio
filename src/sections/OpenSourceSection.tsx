@@ -1,13 +1,15 @@
-import { memo } from 'react';
-import { GitCommit, GitPullRequest, Github, Star, Terminal } from 'lucide-react';
-import SectionBadge from '../components/ui/SectionBadge';
+import { memo } from "react";
+import { GitCommit, GitPullRequest, Github, Star, Terminal } from "lucide-react";
+import SectionBadge from "../components/ui/SectionBadge";
 
 const OpenSourceSection = memo(() => {
   return (
-    <section aria-label="Open Source Contributions and GitHub Activity" className="py-16 px-6 relative overflow-hidden">
+    <section
+      aria-label="Open Source Contributions and GitHub Activity"
+      className="py-16 px-6 relative overflow-hidden"
+    >
       <div className="max-w-screen-xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
-          
           {/* Header & Description Column */}
           <div className="lg:col-span-6 space-y-6">
             <SectionBadge>Community & Code</SectionBadge>
@@ -15,9 +17,11 @@ const OpenSourceSection = memo(() => {
               Open Source & <br /> GitHub Engineering.
             </h2>
             <p className="text-white/60 font-body font-light text-lg leading-relaxed">
-              I actively build, share, and contribute to open-source developer tools, Artificial Intelligence utilities, and full-stack software repositories on GitHub. I believe in clean code, transparent documentation, and reproducible architectures.
+              I actively build, share, and contribute to open-source developer tools, Artificial
+              Intelligence utilities, and full-stack software repositories on GitHub. I believe in
+              clean code, transparent documentation, and reproducible architectures.
             </p>
-            
+
             <div className="pt-2 flex flex-wrap gap-4">
               <a
                 href="https://github.com/sahaya-savari"
@@ -34,14 +38,14 @@ const OpenSourceSection = memo(() => {
 
           {/* GitHub Activity Metrics & Feature Cards */}
           <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
-            
             <div className="liquid-glass rounded-2xl p-6 border border-white/10 space-y-3 hover:border-white/20 transition-colors">
               <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
                 <GitPullRequest className="w-5 h-5 text-purple-400" aria-hidden="true" />
               </div>
               <h3 className="font-heading font-bold text-xl text-white">Modular Architecture</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                Writing reusable Python libraries, custom React hooks, and standalone REST API utilities designed for easy integration and developer adoption.
+                Writing reusable Python libraries, custom React hooks, and standalone REST API
+                utilities designed for easy integration and developer adoption.
               </p>
             </div>
 
@@ -51,7 +55,8 @@ const OpenSourceSection = memo(() => {
               </div>
               <h3 className="font-heading font-bold text-xl text-white">Version Control & CI/CD</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                Maintaining disciplined Git commit hygiene, comprehensive README documentation, continuous testing pipelines, and Dockerized environments.
+                Maintaining disciplined Git commit hygiene, comprehensive README documentation,
+                continuous testing pipelines, and Dockerized environments.
               </p>
             </div>
 
@@ -61,7 +66,8 @@ const OpenSourceSection = memo(() => {
               </div>
               <h3 className="font-heading font-bold text-xl text-white">Developer Tooling</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                Creating command-line interface tools, evaluation scripts for Machine Learning models, and automated build workflows for rapid prototyping.
+                Creating command-line interface tools, evaluation scripts for Machine Learning
+                models, and automated build workflows for rapid prototyping.
               </p>
             </div>
 
@@ -71,12 +77,11 @@ const OpenSourceSection = memo(() => {
               </div>
               <h3 className="font-heading font-bold text-xl text-white">Community & Learning</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                Engaging with open-source project discussions, sharing bug fixes, and providing detailed implementation guides for full-stack AI applications.
+                Engaging with open-source project discussions, sharing bug fixes, and providing
+                detailed implementation guides for full-stack AI applications.
               </p>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

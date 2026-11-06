@@ -1,7 +1,7 @@
-import { useEffect, useRef, memo } from 'react';
-import { X, Calendar, Clock, Share2, ExternalLink, CheckCircle2, Bookmark } from 'lucide-react';
-import { Article } from '../data';
-import { lockScroll, unlockScroll } from '../utils/scrollLock';
+import { useEffect, useRef, memo } from "react";
+import { X, Calendar, Clock, Share2, ExternalLink, CheckCircle2, Bookmark } from "lucide-react";
+import { Article } from "../data";
+import { lockScroll, unlockScroll } from "../utils/scrollLock";
 
 interface ArticleReaderModalProps {
   article: Article | null;
@@ -26,16 +26,16 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
     }, 50);
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         e.preventDefault();
         onClose();
         return;
       }
 
       // Trap Tab key within the modal
-      if (e.key === 'Tab' && modalRef.current) {
+      if (e.key === "Tab" && modalRef.current) {
         const focusable = modalRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
         );
         if (focusable.length === 0) return;
 
@@ -52,19 +52,19 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       clearTimeout(focusTimer);
       unlockScroll();
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
       previousFocusRef.current?.focus?.();
     };
   }, [article, onClose]);
 
   if (!article) return null;
 
-  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(article.url || 'https://www.linkedin.com/in/sahaya-savari')}`;
+  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(article.url || "https://www.linkedin.com/in/sahaya-savari")}`;
 
   return (
     <div
@@ -79,8 +79,8 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
         className="liquid-glass border border-white/20 w-full max-w-3xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col relative shadow-[0_25px_70px_rgba(0,0,0,0.8)]"
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: 'rgba(10, 10, 14, 0.92)',
-          boxShadow: '0 0 0 1px rgba(255,255,255,0.08), 0 30px 80px rgba(0,0,0,0.9)',
+          background: "rgba(10, 10, 14, 0.92)",
+          boxShadow: "0 0 0 1px rgba(255,255,255,0.08), 0 30px 80px rgba(0,0,0,0.9)",
         }}
       >
         {/* Sticky Header Bar */}
@@ -118,7 +118,10 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
               <span>By Sahaya Savari F</span>
             </div>
 
-            <h1 id="reader-article-title" className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white tracking-tight leading-tight mb-4">
+            <h1
+              id="reader-article-title"
+              className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white tracking-tight leading-tight mb-4"
+            >
               {article.title}
             </h1>
 
@@ -147,7 +150,10 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
               </div>
               <ul className="space-y-2">
                 {article.keyTakeaways.map((takeaway, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/80 font-light">
+                  <li
+                    key={i}
+                    className="flex items-start gap-2.5 text-xs sm:text-sm text-white/80 font-light"
+                  >
                     <CheckCircle2 size={15} className="text-emerald-400 shrink-0 mt-0.5" />
                     <span>{takeaway}</span>
                   </li>
@@ -164,7 +170,8 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
               </div>
             ) : (
               <p>
-                Full technical write-up, architectural schemas, and reproducible benchmarking notes for this engineering topic are published and maintained in my technical journal.
+                Full technical write-up, architectural schemas, and reproducible benchmarking notes
+                for this engineering topic are published and maintained in my technical journal.
               </p>
             )}
           </div>
@@ -172,9 +179,13 @@ const ArticleReaderModal = memo(({ article, onClose }: ArticleReaderModalProps) 
           {/* Author Bio Box */}
           <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-mono uppercase tracking-wider text-white/50 mb-1">Author</p>
+              <p className="text-xs font-mono uppercase tracking-wider text-white/50 mb-1">
+                Author
+              </p>
               <h4 className="text-base font-heading font-bold text-white">Sahaya Savari F</h4>
-              <p className="text-xs text-white/60">M.Sc. AI Student &amp; Full Stack Developer · Overall Champion AIxcelerate 2026</p>
+              <p className="text-xs text-white/60">
+                M.Sc. AI Student &amp; Full Stack Developer · Overall Champion AIxcelerate 2026
+              </p>
             </div>
 
             <div className="flex items-center gap-2">

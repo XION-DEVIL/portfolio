@@ -1,6 +1,6 @@
 // Site-wide HUD crosshair cursor (browser-only, loaded lazily after the first mouse move).
-import type { ComponentType } from 'react';
-import CrosshairRaw from './Crosshair';
+import type { ComponentType } from "react";
+import CrosshairRaw from "./Crosshair";
 
 // The source component is untyped JS; give it permissive prop types.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

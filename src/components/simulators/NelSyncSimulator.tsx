@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Sparkles, AlertTriangle, CheckCircle2, Truck, RefreshCw, Play } from 'lucide-react';
+import React, { useState, useMemo } from "react";
+import { Sparkles, AlertTriangle, CheckCircle2, Truck, RefreshCw, Play } from "lucide-react";
 
 export default function NelSyncSimulator() {
   const [moisture, setMoisture] = useState<number>(14.5);
@@ -16,45 +16,46 @@ export default function NelSyncSimulator() {
     const timeFactor = transitDays / 5;
 
     // Predicted Spoilage Probability %
-    const rawRisk = (moistureDelta * 8.5) * tempFactor * (1 + timeFactor * 0.4);
+    const rawRisk = moistureDelta * 8.5 * tempFactor * (1 + timeFactor * 0.4);
     const spoilageRisk = Math.min(99.2, Math.max(1.8, Number(rawRisk.toFixed(1))));
 
     // Quality Grade assignment
-    let grade: 'Grade A (Export)' | 'Grade B (Commercial)' | 'Grade C (Immediate Mill)' | 'Reject / Biofuel';
+    let grade:
+      "Grade A (Export)" | "Grade B (Commercial)" | "Grade C (Immediate Mill)" | "Reject / Biofuel";
     let gradeColor: string;
     let badgeBg: string;
 
     if (moisture <= 14.0 && temperature <= 28 && transitDays <= 5) {
-      grade = 'Grade A (Export)';
-      gradeColor = 'text-emerald-400';
-      badgeBg = 'bg-emerald-500/10 border-emerald-500/30';
+      grade = "Grade A (Export)";
+      gradeColor = "text-emerald-400";
+      badgeBg = "bg-emerald-500/10 border-emerald-500/30";
     } else if (moisture <= 16.5 && spoilageRisk < 35) {
-      grade = 'Grade B (Commercial)';
-      gradeColor = 'text-blue-400';
-      badgeBg = 'bg-blue-500/10 border-blue-500/30';
+      grade = "Grade B (Commercial)";
+      gradeColor = "text-blue-400";
+      badgeBg = "bg-blue-500/10 border-blue-500/30";
     } else if (spoilageRisk < 65) {
-      grade = 'Grade C (Immediate Mill)';
-      gradeColor = 'text-amber-400';
-      badgeBg = 'bg-amber-500/10 border-amber-500/30';
+      grade = "Grade C (Immediate Mill)";
+      gradeColor = "text-amber-400";
+      badgeBg = "bg-amber-500/10 border-amber-500/30";
     } else {
-      grade = 'Reject / Biofuel';
-      gradeColor = 'text-rose-400';
-      badgeBg = 'bg-rose-500/10 border-rose-500/30';
+      grade = "Reject / Biofuel";
+      gradeColor = "text-rose-400";
+      badgeBg = "bg-rose-500/10 border-rose-500/30";
     }
 
     // Logistics Dispatch Priority
-    let priority: 'Normal Routine' | 'Priority Scheduled' | 'Emergency Expedited';
+    let priority: "Normal Routine" | "Priority Scheduled" | "Emergency Expedited";
     let priorityColor: string;
 
     if (spoilageRisk > 50 || moisture > 18) {
-      priority = 'Emergency Expedited';
-      priorityColor = 'text-rose-400 border-rose-500/40 bg-rose-500/10';
+      priority = "Emergency Expedited";
+      priorityColor = "text-rose-400 border-rose-500/40 bg-rose-500/10";
     } else if (spoilageRisk > 25 || transitDays > 5) {
-      priority = 'Priority Scheduled';
-      priorityColor = 'text-amber-400 border-amber-500/40 bg-amber-500/10';
+      priority = "Priority Scheduled";
+      priorityColor = "text-amber-400 border-amber-500/40 bg-amber-500/10";
     } else {
-      priority = 'Normal Routine';
-      priorityColor = 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10';
+      priority = "Normal Routine";
+      priorityColor = "text-emerald-400 border-emerald-500/40 bg-emerald-500/10";
     }
 
     return { spoilageRisk, grade, gradeColor, badgeBg, priority, priorityColor };
@@ -74,8 +75,12 @@ export default function NelSyncSimulator() {
             <Sparkles className="w-3.5 h-3.5" />
             Interactive Hackathon ML Model Simulator
           </div>
-          <h3 className="text-xl font-heading tracking-tight">Grain Moisture & Spoilage Predictor</h3>
-          <p className="text-xs text-white/60 font-body">Simulate the AIxcelerate 2026 winning procurement logistics forecasting pipeline.</p>
+          <h3 className="text-xl font-heading tracking-tight">
+            Grain Moisture & Spoilage Predictor
+          </h3>
+          <p className="text-xs text-white/60 font-body">
+            Simulate the AIxcelerate 2026 winning procurement logistics forecasting pipeline.
+          </p>
         </div>
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <a
@@ -149,7 +154,9 @@ export default function NelSyncSimulator() {
         <div className="space-y-2">
           <div className="flex justify-between items-center text-xs font-body">
             <span className="text-white/70">Transit / Storage Time:</span>
-            <span className="font-mono font-semibold text-sky-300">{transitDays} {transitDays === 1 ? 'day' : 'days'}</span>
+            <span className="font-mono font-semibold text-sky-300">
+              {transitDays} {transitDays === 1 ? "day" : "days"}
+            </span>
           </div>
           <input
             type="range"
@@ -179,14 +186,22 @@ export default function NelSyncSimulator() {
               {analysis.spoilageRisk}%
             </span>
             <span className="text-[10px] text-white/50 font-body">
-              {analysis.spoilageRisk < 20 ? 'Optimal' : analysis.spoilageRisk < 50 ? 'Moderate' : 'High Risk'}
+              {analysis.spoilageRisk < 20
+                ? "Optimal"
+                : analysis.spoilageRisk < 50
+                  ? "Moderate"
+                  : "High Risk"}
             </span>
           </div>
           {/* Progress bar */}
           <div className="w-full h-1.5 bg-white/10 rounded-full mt-3 overflow-hidden">
             <div
               className={`h-full transition-all duration-300 ${
-                analysis.spoilageRisk < 25 ? 'bg-emerald-400' : analysis.spoilageRisk < 60 ? 'bg-amber-400' : 'bg-rose-500'
+                analysis.spoilageRisk < 25
+                  ? "bg-emerald-400"
+                  : analysis.spoilageRisk < 60
+                    ? "bg-amber-400"
+                    : "bg-rose-500"
               }`}
               style={{ width: `${analysis.spoilageRisk}%` }}
             />
@@ -196,12 +211,20 @@ export default function NelSyncSimulator() {
         {/* Prediction 2: Quality Grade */}
         <div className={`p-4 rounded-xl border ${analysis.badgeBg} flex flex-col justify-between`}>
           <div className="text-xs font-body text-white/60 mb-1">Paddy Quality Grade</div>
-          <div className={`text-lg font-heading tracking-tight font-semibold ${analysis.gradeColor} flex items-center gap-1.5`}>
-            {analysis.spoilageRisk < 40 ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <AlertTriangle className="w-4 h-4 shrink-0" />}
+          <div
+            className={`text-lg font-heading tracking-tight font-semibold ${analysis.gradeColor} flex items-center gap-1.5`}
+          >
+            {analysis.spoilageRisk < 40 ? (
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
+            ) : (
+              <AlertTriangle className="w-4 h-4 shrink-0" />
+            )}
             {analysis.grade}
           </div>
           <div className="text-[10px] text-white/50 mt-2 font-mono">
-            {moisture <= 14 ? 'Moisture within standard limits' : 'High moisture increases spoilage'}
+            {moisture <= 14
+              ? "Moisture within standard limits"
+              : "High moisture increases spoilage"}
           </div>
         </div>
 
@@ -210,15 +233,18 @@ export default function NelSyncSimulator() {
           <div className="text-xs font-body text-white/60 mb-1 flex items-center gap-1.5">
             <Truck className="w-3.5 h-3.5" /> Logistics Priority
           </div>
-          <div className={`text-sm font-body font-semibold px-3 py-1.5 rounded-lg border inline-flex items-center gap-2 ${analysis.priorityColor}`}>
+          <div
+            className={`text-sm font-body font-semibold px-3 py-1.5 rounded-lg border inline-flex items-center gap-2 ${analysis.priorityColor}`}
+          >
             {analysis.priority}
           </div>
           <div className="text-[10px] text-white/50 mt-2 font-mono">
-            {analysis.priority === 'Emergency Expedited' ? 'Immediate silo allocation required' : 'Standard regional transit queue'}
+            {analysis.priority === "Emergency Expedited"
+              ? "Immediate silo allocation required"
+              : "Standard regional transit queue"}
           </div>
         </div>
       </div>
     </div>
   );
 }
-

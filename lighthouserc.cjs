@@ -36,15 +36,9 @@ module.exports = {
       numberOfRuns: 3,
       settings: {
         // Default mobile emulation; opt into desktop via env for a second run.
-        preset:
-          process.env.LHCI_FORM_FACTOR === "desktop" ? "desktop" : undefined,
+        preset: process.env.LHCI_FORM_FACTOR === "desktop" ? "desktop" : undefined,
         // Only gate the categories we care about; skip PWA category noise.
-        onlyCategories: [
-          "performance",
-          "seo",
-          "accessibility",
-          "best-practices",
-        ],
+        onlyCategories: ["performance", "seo", "accessibility", "best-practices"],
       },
     },
     assert: {
@@ -52,17 +46,11 @@ module.exports = {
       aggregationMethod: "median-run",
       assertions: {
         // --- Core Web Vitals budgets (the contract) ---------------------
-        "largest-contentful-paint": [
-          "error",
-          { maxNumericValue: LCP_BUDGET_MS },
-        ],
+        "largest-contentful-paint": ["error", { maxNumericValue: LCP_BUDGET_MS }],
         "cumulative-layout-shift": ["error", { maxNumericValue: CLS_BUDGET }],
         "total-blocking-time": ["error", { maxNumericValue: INP_BUDGET_MS }],
         // Direct INP audit where the Lighthouse build exposes it (else ignored).
-        "interaction-to-next-paint": [
-          "warn",
-          { maxNumericValue: INP_BUDGET_MS },
-        ],
+        "interaction-to-next-paint": ["warn", { maxNumericValue: INP_BUDGET_MS }],
 
         // --- Category floors (target top Lighthouse scores) -------------
         "categories:performance": ["error", { minScore: 0.9 }],
@@ -78,4 +66,3 @@ module.exports = {
     },
   },
 };
-

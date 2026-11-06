@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, useState } from 'react';
+import { useRef, useEffect, useCallback, useState } from "react";
 
 /**
  * CLS-5 Fix:
@@ -13,14 +13,14 @@ import { useRef, useEffect, useCallback, useState } from 'react';
  * The canvas is absolutely/fixed positioned so it never affects document flow.
  */
 const ClickSpark = ({
-  sparkColor = '#fff',
+  sparkColor = "#fff",
   sparkSize = 10,
   sparkRadius = 15,
   sparkCount = 8,
   duration = 400,
-  easing = 'ease-out',
+  easing = "ease-out",
   extraScale = 1.0,
-  children
+  children,
 }: any) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<any[]>([]);
@@ -29,8 +29,8 @@ const ClickSpark = ({
 
   // Evaluate performance constraints on mount
   useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isLowEnd = (navigator.hardwareConcurrency || 4) <= 4;
     setIsDisabled(isMobile || isReducedMotion || isLowEnd);
   }, []);
@@ -42,7 +42,7 @@ const ClickSpark = ({
     sparkCount,
     duration,
     easing,
-    extraScale
+    extraScale,
   });
 
   useEffect(() => {
@@ -53,16 +53,20 @@ const ClickSpark = ({
       sparkCount,
       duration,
       easing,
-      extraScale
+      extraScale,
     };
   }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easing, extraScale]);
 
   const easeFunc = useCallback((t: number, easeType: string) => {
     switch (easeType) {
-      case 'linear': return t;
-      case 'ease-in': return t * t;
-      case 'ease-in-out': return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-      default: return t * (2 - t);
+      case "linear":
+        return t;
+      case "ease-in":
+        return t * t;
+      case "ease-in-out":
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      default:
+        return t * (2 - t);
     }
   }, []);
 
@@ -76,46 +80,56 @@ const ClickSpark = ({
       canvas.height = window.innerHeight;
     };
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas, { passive: true });
-    return () => window.removeEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+    return () => window.removeEventListener("resize", resizeCanvas);
   }, [isDisabled]);
 
-  const draw = useCallback((timestamp: number) => {
-    const canvas = canvasRef.current;
-    if (!canvas) { isAnimatingRef.current = false; return; }
-    const ctx = canvas.getContext('2d');
-    if (!ctx) { isAnimatingRef.current = false; return; }
+  const draw = useCallback(
+    (timestamp: number) => {
+      const canvas = canvasRef.current;
+      if (!canvas) {
+        isAnimatingRef.current = false;
+        return;
+      }
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        isAnimatingRef.current = false;
+        return;
+      }
 
-    const { sparkColor, sparkSize, sparkRadius, duration, easing, extraScale } = configRef.current;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    sparksRef.current = sparksRef.current.filter(spark => {
-      const elapsed = timestamp - spark.startTime;
-      if (elapsed >= duration) return false;
-      const progress = elapsed / duration;
-      const eased = easeFunc(progress, easing);
-      const distance = eased * sparkRadius * extraScale;
-      const lineLength = sparkSize * (1 - eased);
-      const x1 = spark.x + distance * Math.cos(spark.angle);
-      const y1 = spark.y + distance * Math.sin(spark.angle);
-      const x2 = spark.x + (distance + lineLength) * Math.cos(spark.angle);
-      const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle);
-      ctx.strokeStyle = sparkColor;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.stroke();
-      return true;
-    });
-
-    if (sparksRef.current.length > 0) {
-      requestAnimationFrame(draw);
-    } else {
-      isAnimatingRef.current = false;
+      const { sparkColor, sparkSize, sparkRadius, duration, easing, extraScale } =
+        configRef.current;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-  }, [easeFunc]);
+
+      sparksRef.current = sparksRef.current.filter((spark) => {
+        const elapsed = timestamp - spark.startTime;
+        if (elapsed >= duration) return false;
+        const progress = elapsed / duration;
+        const eased = easeFunc(progress, easing);
+        const distance = eased * sparkRadius * extraScale;
+        const lineLength = sparkSize * (1 - eased);
+        const x1 = spark.x + distance * Math.cos(spark.angle);
+        const y1 = spark.y + distance * Math.sin(spark.angle);
+        const x2 = spark.x + (distance + lineLength) * Math.cos(spark.angle);
+        const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle);
+        ctx.strokeStyle = sparkColor;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        return true;
+      });
+
+      if (sparksRef.current.length > 0) {
+        requestAnimationFrame(draw);
+      } else {
+        isAnimatingRef.current = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    },
+    [easeFunc],
+  );
 
   useEffect(() => {
     if (isDisabled) return;
@@ -129,7 +143,7 @@ const ClickSpark = ({
           x: e.clientX,
           y: e.clientY,
           angle: (2 * Math.PI * i) / sparkCount,
-          startTime: now
+          startTime: now,
         }));
         sparksRef.current.push(...newSparks);
         if (!isAnimatingRef.current) {
@@ -139,8 +153,8 @@ const ClickSpark = ({
       }, 0);
     };
 
-    window.addEventListener('click', handleClick, { passive: true });
-    return () => window.removeEventListener('click', handleClick);
+    window.addEventListener("click", handleClick, { passive: true });
+    return () => window.removeEventListener("click", handleClick);
   }, [draw, isDisabled]);
 
   // CLS-5 Fix: ALWAYS render children in a fragment — never in a wrapping div.
@@ -152,14 +166,14 @@ const ClickSpark = ({
           ref={canvasRef}
           aria-hidden="true"
           style={{
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
-            width: '100vw',
-            height: '100vh',
-            pointerEvents: 'none',
+            width: "100vw",
+            height: "100vh",
+            pointerEvents: "none",
             zIndex: 9999,
-            userSelect: 'none'
+            userSelect: "none",
           }}
         />
       )}

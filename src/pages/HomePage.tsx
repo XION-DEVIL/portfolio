@@ -1,22 +1,22 @@
-import { lazy } from 'react';
-import { useOutletContext } from '@/lib/router-compat';
-import SEOHead from '../components/SEOHead';
-import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, homeSchema } from '../seo';
+import { lazy } from "react";
+import { useOutletContext } from "@/lib/router-compat";
+import SEOHead from "../components/SEOHead";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, homeSchema } from "../seo";
 
 // Import Hero directly for above-the-fold fast rendering
-import HeroSection from '../sections/HeroSection';
-import IntersectionLazy from '../components/IntersectionLazy';
+import HeroSection from "../sections/HeroSection";
+import IntersectionLazy from "../components/IntersectionLazy";
 
 // Lazy-load remaining sections to optimize initial bundle size & Core Web Vitals
-const AboutSection = lazy(() => import('../sections/AboutSection'));
-const ExperienceSection = lazy(() => import('../sections/ExperienceSection'));
-const SkillsSection = lazy(() => import('../sections/SkillsSection'));
-const StatsSection = lazy(() => import('../sections/StatsSection'));
-const ProjectsSection = lazy(() => import('../sections/ProjectsSection'));
-const BlogSection = lazy(() => import('../sections/BlogSection'));
-const OpenSourceSection = lazy(() => import('../sections/OpenSourceSection'));
-const CertificationsSection = lazy(() => import('../sections/CertificationsSection'));
-const ContactSection = lazy(() => import('../sections/ContactSection'));
+const AboutSection = lazy(() => import("../sections/AboutSection"));
+const ExperienceSection = lazy(() => import("../sections/ExperienceSection"));
+const SkillsSection = lazy(() => import("../sections/SkillsSection"));
+const StatsSection = lazy(() => import("../sections/StatsSection"));
+const ProjectsSection = lazy(() => import("../sections/ProjectsSection"));
+const BlogSection = lazy(() => import("../sections/BlogSection"));
+const OpenSourceSection = lazy(() => import("../sections/OpenSourceSection"));
+const CertificationsSection = lazy(() => import("../sections/CertificationsSection"));
+const ContactSection = lazy(() => import("../sections/ContactSection"));
 
 export default function HomePage() {
   const { setShowResume, setShowCommandPalette } = useOutletContext<{
@@ -26,17 +26,13 @@ export default function HomePage() {
 
   return (
     <>
-      <SEOHead 
-        title={DEFAULT_TITLE}
-        description={DEFAULT_DESCRIPTION}
-        schema={homeSchema}
-      />
-      
+      <SEOHead title={DEFAULT_TITLE} description={DEFAULT_DESCRIPTION} schema={homeSchema} />
+
       {/* Hero Section */}
       <HeroSection setShowResume={setShowResume} />
 
       <div className="section-divider" aria-hidden="true" />
-      
+
       {/* 1. About Me */}
       <div id="about">
         <IntersectionLazy fallbackHeight="100vh">

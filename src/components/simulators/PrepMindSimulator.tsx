@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
-import { Sparkles, CheckCircle2, XCircle, Terminal, HelpCircle, ArrowRight, RotateCcw } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Sparkles,
+  CheckCircle2,
+  XCircle,
+  Terminal,
+  HelpCircle,
+  ArrowRight,
+  RotateCcw,
+} from "lucide-react";
 
 interface Question {
   id: number;
@@ -14,46 +22,52 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 1,
-    topic: 'Python Async & FastAPI',
-    question: 'In FastAPI, why should CPU-bound ML model inference be run in a ProcessPoolExecutor or dedicated worker rather than directly inside an async def endpoint?',
+    topic: "Python Async & FastAPI",
+    question:
+      "In FastAPI, why should CPU-bound ML model inference be run in a ProcessPoolExecutor or dedicated worker rather than directly inside an async def endpoint?",
     options: [
-      'Async def endpoints in Python run on the main asyncio event loop; CPU-bound tasks block all other concurrent requests.',
-      'FastAPI strictly disallows numpy or scikit-learn imports inside async def routines.',
-      'Async functions cannot access memory greater than 512 MB in Python 3.12.',
-      'The Python GIL prevents asyncio from executing network I/O calls.'
+      "Async def endpoints in Python run on the main asyncio event loop; CPU-bound tasks block all other concurrent requests.",
+      "FastAPI strictly disallows numpy or scikit-learn imports inside async def routines.",
+      "Async functions cannot access memory greater than 512 MB in Python 3.12.",
+      "The Python GIL prevents asyncio from executing network I/O calls.",
     ],
     correct: 0,
-    explanation: 'Python asyncio is cooperative single-threaded multitasking. A CPU-bound task executes continuously on the main thread, freezing the event loop and blocking all other concurrent HTTP connections until it finishes. Offloading to a process pool or task worker maintains microsecond async latency.',
-    schemaCheck: 'PydanticV2: EvaluationRubric(latency_score=0.98, concurrency_safe=True)'
+    explanation:
+      "Python asyncio is cooperative single-threaded multitasking. A CPU-bound task executes continuously on the main thread, freezing the event loop and blocking all other concurrent HTTP connections until it finishes. Offloading to a process pool or task worker maintains microsecond async latency.",
+    schemaCheck: "PydanticV2: EvaluationRubric(latency_score=0.98, concurrency_safe=True)",
   },
   {
     id: 2,
-    topic: 'ML & Data Pipelines',
-    question: 'When deploying a scikit-learn regression model for real-time inference, why is computing feature scaling using StandardScaler.fit_transform on incoming production batches considered a critical data leakage / evaluation flaw?',
+    topic: "ML & Data Pipelines",
+    question:
+      "When deploying a scikit-learn regression model for real-time inference, why is computing feature scaling using StandardScaler.fit_transform on incoming production batches considered a critical data leakage / evaluation flaw?",
     options: [
-      'StandardScaler only works on training labels, not features.',
-      'It recalculates mean and variance from the test batch instead of using frozen training distributions, leading to inconsistent prediction skew.',
-      'It forces the model to retraining on every inference call, creating disk write lockups.',
-      'Scikit-learn transforms do not serialize to ONNX or pickle.'
+      "StandardScaler only works on training labels, not features.",
+      "It recalculates mean and variance from the test batch instead of using frozen training distributions, leading to inconsistent prediction skew.",
+      "It forces the model to retraining on every inference call, creating disk write lockups.",
+      "Scikit-learn transforms do not serialize to ONNX or pickle.",
     ],
     correct: 1,
-    explanation: 'In production inference, pipelines must apply transform() using the pre-fitted parameters (mean and standard deviation) learned strictly from the training dataset. Refitting on the test batch causes test-set distribution leakage and unreliable predictions.',
-    schemaCheck: 'PydanticV2: FeatureValidation(pipeline_leakage=False, scaler_frozen=True)'
+    explanation:
+      "In production inference, pipelines must apply transform() using the pre-fitted parameters (mean and standard deviation) learned strictly from the training dataset. Refitting on the test batch causes test-set distribution leakage and unreliable predictions.",
+    schemaCheck: "PydanticV2: FeatureValidation(pipeline_leakage=False, scaler_frozen=True)",
   },
   {
     id: 3,
-    topic: 'React 19 & Architecture',
-    question: 'How does client-side state hydration benefit from lazy IntersectionObserver rendering in media-heavy portfolio web applications?',
+    topic: "React 19 & Architecture",
+    question:
+      "How does client-side state hydration benefit from lazy IntersectionObserver rendering in media-heavy portfolio web applications?",
     options: [
-      'It completely removes the need for JavaScript bundles on the client.',
-      'It defers off-screen DOM tree construction and heavy canvas/video mounts until the viewport reaches the threshold, preserving 60fps first paint.',
-      'It converts React components into native Web Workers automatically.',
-      'It forces Vite to load all assets via HTTP/3 only.'
+      "It completely removes the need for JavaScript bundles on the client.",
+      "It defers off-screen DOM tree construction and heavy canvas/video mounts until the viewport reaches the threshold, preserving 60fps first paint.",
+      "It converts React components into native Web Workers automatically.",
+      "It forces Vite to load all assets via HTTP/3 only.",
     ],
     correct: 1,
-    explanation: 'IntersectionObserver prevents the browser from executing expensive layout calculation, Canvas rendering, and video decoders for sections deep down the page during initial load, ensuring sub-100ms Total Blocking Time (TBT).',
-    schemaCheck: 'PydanticV2: CoreWebVitals(tbt_target="<200ms", lcp_target="<2500ms")'
-  }
+    explanation:
+      "IntersectionObserver prevents the browser from executing expensive layout calculation, Canvas rendering, and video decoders for sections deep down the page during initial load, ensuring sub-100ms Total Blocking Time (TBT).",
+    schemaCheck: 'PydanticV2: CoreWebVitals(tbt_target="<200ms", lcp_target="<2500ms")',
+  },
 ];
 
 export default function PrepMindSimulator() {
@@ -69,9 +83,9 @@ export default function PrepMindSimulator() {
     if (selectedOption !== null) return; // Prevent changing after answer
     setSelectedOption(idx);
     setShowExplanation(true);
-    setAnsweredCount(prev => prev + 1);
+    setAnsweredCount((prev) => prev + 1);
     if (idx === currentQ.correct) {
-      setScore(prev => prev + 1);
+      setScore((prev) => prev + 1);
     }
   };
 
@@ -99,7 +113,10 @@ export default function PrepMindSimulator() {
             Interactive AI Interview & Quiz Sandbox
           </div>
           <h3 className="text-xl font-heading tracking-tight">Technical Interview Evaluator</h3>
-          <p className="text-xs text-white/60 font-body">Experience how PrepMind AI validates engineering concepts with structured schema feedback.</p>
+          <p className="text-xs text-white/60 font-body">
+            Experience how PrepMind AI validates engineering concepts with structured schema
+            feedback.
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="text-xs font-mono px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80">
@@ -118,8 +135,12 @@ export default function PrepMindSimulator() {
       {/* Question Card */}
       <div className="mt-6">
         <div className="flex items-center justify-between text-xs text-white/50 mb-3 font-mono">
-          <span>Topic: <strong className="text-sky-300 font-semibold">{currentQ.topic}</strong></span>
-          <span>Question {currentIdx + 1} of {QUESTIONS.length}</span>
+          <span>
+            Topic: <strong className="text-sky-300 font-semibold">{currentQ.topic}</strong>
+          </span>
+          <span>
+            Question {currentIdx + 1} of {QUESTIONS.length}
+          </span>
         </div>
 
         <h4 className="text-base sm:text-lg font-body font-medium leading-relaxed mb-6 text-white/95">
@@ -132,14 +153,15 @@ export default function PrepMindSimulator() {
             const isSelected = selectedOption === i;
             const isCorrect = i === currentQ.correct;
 
-            let btnStyle = 'border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20 text-white/80';
+            let btnStyle =
+              "border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20 text-white/80";
             if (showExplanation) {
               if (isCorrect) {
-                btnStyle = 'border-emerald-500/50 bg-emerald-500/10 text-emerald-200 font-medium';
+                btnStyle = "border-emerald-500/50 bg-emerald-500/10 text-emerald-200 font-medium";
               } else if (isSelected) {
-                btnStyle = 'border-rose-500/50 bg-rose-500/10 text-rose-200';
+                btnStyle = "border-rose-500/50 bg-rose-500/10 text-rose-200";
               } else {
-                btnStyle = 'border-white/5 bg-transparent opacity-40 text-white/60';
+                btnStyle = "border-white/5 bg-transparent opacity-40 text-white/60";
               }
             }
 
@@ -154,8 +176,12 @@ export default function PrepMindSimulator() {
                   {String.fromCharCode(65 + i)}
                 </span>
                 <span className="flex-grow pt-0.5">{opt}</span>
-                {showExplanation && isCorrect && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
-                {showExplanation && isSelected && !isCorrect && <XCircle className="w-5 h-5 text-rose-400 shrink-0" />}
+                {showExplanation && isCorrect && (
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                )}
+                {showExplanation && isSelected && !isCorrect && (
+                  <XCircle className="w-5 h-5 text-rose-400 shrink-0" />
+                )}
               </button>
             );
           })}
@@ -194,4 +220,3 @@ export default function PrepMindSimulator() {
     </div>
   );
 }
-

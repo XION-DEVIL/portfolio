@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from "react";
 
 interface IntersectionLazyProps {
   children: React.ReactNode;
@@ -21,7 +21,10 @@ interface IntersectionLazyProps {
  * The `rootMargin: '400px'` pre-loads content well before it enters view, so the
  * content is fully rendered and height is already stable when the user scrolls to it.
  */
-export default function IntersectionLazy({ children, fallbackHeight = '100vh' }: IntersectionLazyProps) {
+export default function IntersectionLazy({
+  children,
+  fallbackHeight = "100vh",
+}: IntersectionLazyProps) {
   // Identical initial markup on the server and client prevents hydration recovery.
   const [hasIntersected, setHasIntersected] = useState(true);
   const [isStable, setIsStable] = useState(true);
@@ -36,7 +39,7 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
       setHasIntersected(true);
     };
 
-    window.addEventListener('reveal-lazy-sections', onReveal);
+    window.addEventListener("reveal-lazy-sections", onReveal);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,12 +48,12 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
           observer.disconnect();
         }
       },
-      { rootMargin: '400px' }
+      { rootMargin: "400px" },
     );
 
     if (wrapperRef.current) observer.observe(wrapperRef.current);
     return () => {
-      window.removeEventListener('reveal-lazy-sections', onReveal);
+      window.removeEventListener("reveal-lazy-sections", onReveal);
       observer.disconnect();
     };
   }, [hasIntersected]);
@@ -86,25 +89,14 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
 
   // Before intersection: stable placeholder div with fixed height
   if (!hasIntersected) {
-    return (
-      <div
-        ref={wrapperRef}
-        style={{ minHeight: fallbackHeight }}
-        aria-hidden="false"
-      />
-    );
+    return <div ref={wrapperRef} style={{ minHeight: fallbackHeight }} aria-hidden="false" />;
   }
 
   // While content has loaded but height hasn't stabilised yet: keep minHeight
   // so scroll position doesn't jump as children paint
   return (
-    <div
-      ref={wrapperRef}
-      style={isStable ? undefined : { minHeight: fallbackHeight }}
-    >
-      <Suspense fallback={<div style={{ minHeight: fallbackHeight }} />}>
-        {children}
-      </Suspense>
+    <div ref={wrapperRef} style={isStable ? undefined : { minHeight: fallbackHeight }}>
+      <Suspense fallback={<div style={{ minHeight: fallbackHeight }} />}>{children}</Suspense>
     </div>
   );
 }

@@ -1,7 +1,13 @@
 // Thin bridge so the imported portfolio components keep their original
 // Link / useNavigate / useLocation / useParams / Outlet usage while running
 // on TanStack Router.
-import { createContext, forwardRef, useContext, type AnchorHTMLAttributes, type ReactNode } from "react";
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  type AnchorHTMLAttributes,
+  type ReactNode,
+} from "react";
 import {
   Link as TanLink,
   Outlet as TanOutlet,
@@ -44,7 +50,9 @@ export function useLocation() {
   };
 }
 
-export function useParams<T extends Record<string, string | undefined> = Record<string, string | undefined>>() {
+export function useParams<
+  T extends Record<string, string | undefined> = Record<string, string | undefined>,
+>() {
   return (useTanParams as any)({ strict: false }) as T;
 }
 

@@ -1,10 +1,10 @@
-import { m as motion } from 'framer-motion';
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { m as motion } from "framer-motion";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 const buildKeyframes = (from: any, steps: any[]) => {
   const keys = new Set([...Object.keys(from), ...steps.flatMap((s: any) => Object.keys(s))]);
   const keyframes: any = {};
-  keys.forEach(k => {
+  keys.forEach((k) => {
     keyframes[k] = [from[k], ...steps.map((s: any) => s[k])];
   });
   return keyframes;
@@ -25,20 +25,20 @@ const buildKeyframes = (from: any, steps: any[]) => {
  * visual artifact is clipped.
  */
 const BlurText = ({
-  text = '',
+  text = "",
   delay = 200,
-  className = '',
-  as: Component = 'p',
-  animateBy = 'words',
+  className = "",
+  as: Component = "p",
+  animateBy = "words",
   threshold = 0.1,
-  rootMargin = '0px',
+  rootMargin = "0px",
   animationFrom,
   animationTo,
   easing = (t: any) => t,
   onAnimationComplete,
-  stepDuration = 0.35
+  stepDuration = 0.35,
 }: any) => {
-  const elements = animateBy === 'words' ? text.split(' ') : text.split('');
+  const elements = animateBy === "words" ? text.split(" ") : text.split("");
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -51,7 +51,7 @@ const BlurText = ({
           if (ref.current) observer.unobserve(ref.current);
         }
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
@@ -60,17 +60,14 @@ const BlurText = ({
   // CLS-2 Fix: No Y translation — pure opacity+blur fade only.
   // Previously: { filter: 'blur(10px)', opacity: 0, y: -50 } caused in-flow reflow.
   // Now: { filter: 'blur(10px)', opacity: 0 } — no layout-affecting properties change.
-  const defaultFrom = useMemo(
-    () => ({ filter: 'blur(10px)', opacity: 0 }),
-    []
-  );
+  const defaultFrom = useMemo(() => ({ filter: "blur(10px)", opacity: 0 }), []);
 
   const defaultTo = useMemo(
     () => [
-      { filter: 'blur(5px)', opacity: 0.5 },
-      { filter: 'blur(0px)', opacity: 1 }
+      { filter: "blur(5px)", opacity: 0.5 },
+      { filter: "blur(0px)", opacity: 1 },
     ],
-    []
+    [],
   );
 
   const fromSnapshot = animationFrom ?? defaultFrom;
@@ -78,22 +75,22 @@ const BlurText = ({
   const stepCount = toSnapshots.length + 1;
   const totalDuration = stepDuration * (stepCount - 1);
   const times = Array.from({ length: stepCount }, (_, i) =>
-    stepCount === 1 ? 0 : i / (stepCount - 1)
+    stepCount === 1 ? 0 : i / (stepCount - 1),
   );
 
   const animateKeyframes = useMemo(
     () => buildKeyframes(fromSnapshot, toSnapshots),
-    [fromSnapshot, toSnapshots]
+    [fromSnapshot, toSnapshots],
   );
 
   return (
-    <Component ref={ref} className={className} style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Component ref={ref} className={className} style={{ display: "flex", flexWrap: "wrap" }}>
       {elements.map((segment: string, index: number) => {
         const spanTransition: any = {
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
-          ease: easing
+          ease: easing,
         };
         return (
           <motion.span
@@ -104,8 +101,8 @@ const BlurText = ({
             transition={spanTransition}
             onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
           >
-            {segment === ' ' ? '\u00A0' : segment}
-            {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
+            {segment === " " ? "\u00A0" : segment}
+            {animateBy === "words" && index < elements.length - 1 && "\u00A0"}
           </motion.span>
         );
       })}

@@ -1,5 +1,15 @@
-import React, { useState } from 'react';
-import { Sparkles, Wifi, WifiOff, CheckCircle2, Circle, Flame, Database, Plus, RefreshCw } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Sparkles,
+  Wifi,
+  WifiOff,
+  CheckCircle2,
+  Circle,
+  Flame,
+  Database,
+  Plus,
+  RefreshCw,
+} from "lucide-react";
 
 interface Habit {
   id: string;
@@ -9,36 +19,38 @@ interface Habit {
 }
 
 const INITIAL_HABITS: Habit[] = [
-  { id: '1', name: 'Review ML Paper / ArXiv Feed', streak: 14, completed: true },
-  { id: '2', name: 'Write 50 Lines of Async Python', streak: 21, completed: true },
-  { id: '3', name: '30-Minute Cardiovascular Fitness', streak: 8, completed: false },
-  { id: '4', name: 'System Design / LeetCode Practice', streak: 5, completed: false },
+  { id: "1", name: "Review ML Paper / ArXiv Feed", streak: 14, completed: true },
+  { id: "2", name: "Write 50 Lines of Async Python", streak: 21, completed: true },
+  { id: "3", name: "30-Minute Cardiovascular Fitness", streak: 8, completed: false },
+  { id: "4", name: "System Design / LeetCode Practice", streak: 5, completed: false },
 ];
 
 export default function DailySparkSimulator() {
   const [isAirplaneMode, setIsAirplaneMode] = useState<boolean>(true);
   const [habits, setHabits] = useState<Habit[]>(INITIAL_HABITS);
-  const [lastSyncOp, setLastSyncOp] = useState<string>('IndexedDB: IDBTransaction(readonly=false) committed 0ms');
-  const [newHabitName, setNewHabitName] = useState<string>('');
+  const [lastSyncOp, setLastSyncOp] = useState<string>(
+    "IndexedDB: IDBTransaction(readonly=false) committed 0ms",
+  );
+  const [newHabitName, setNewHabitName] = useState<string>("");
 
-  const completedCount = habits.filter(h => h.completed).length;
+  const completedCount = habits.filter((h) => h.completed).length;
   const totalCount = habits.length;
   const progressPercent = Math.round((completedCount / (totalCount || 1)) * 100);
-  const maxStreak = Math.max(...habits.map(h => h.streak), 0);
+  const maxStreak = Math.max(...habits.map((h) => h.streak), 0);
 
   const toggleHabit = (id: string) => {
-    setHabits(prev =>
-      prev.map(h => {
+    setHabits((prev) =>
+      prev.map((h) => {
         if (h.id === id) {
           const nextState = !h.completed;
           return {
             ...h,
             completed: nextState,
-            streak: nextState ? h.streak + 1 : Math.max(0, h.streak - 1)
+            streak: nextState ? h.streak + 1 : Math.max(0, h.streak - 1),
           };
         }
         return h;
-      })
+      }),
     );
     setLastSyncOp(`IndexedDB: Put record #${id} -> store: "habits" (0 latency)`);
   };
@@ -51,16 +63,16 @@ export default function DailySparkSimulator() {
       id: newId,
       name: newHabitName.trim(),
       streak: 1,
-      completed: true
+      completed: true,
     };
-    setHabits(prev => [...prev, newHabit]);
-    setNewHabitName('');
+    setHabits((prev) => [...prev, newHabit]);
+    setNewHabitName("");
     setLastSyncOp(`IndexedDB: Auto-increment primary key -> record #${newId} persisted`);
   };
 
   const handleReset = () => {
     setHabits(INITIAL_HABITS);
-    setLastSyncOp('IndexedDB: Reset to mock seed state');
+    setLastSyncOp("IndexedDB: Reset to mock seed state");
   };
 
   return (
@@ -73,7 +85,9 @@ export default function DailySparkSimulator() {
             Offline-First IndexedDB Sandbox
           </div>
           <h3 className="text-xl font-heading tracking-tight">Offline Habit & Streak Engine</h3>
-          <p className="text-xs text-white/60 font-body">Test zero-latency local data mutations without relying on any cloud server.</p>
+          <p className="text-xs text-white/60 font-body">
+            Test zero-latency local data mutations without relying on any cloud server.
+          </p>
         </div>
 
         {/* Airplane Mode Toggle */}
@@ -81,16 +95,24 @@ export default function DailySparkSimulator() {
           <button
             onClick={() => {
               setIsAirplaneMode(!isAirplaneMode);
-              setLastSyncOp(isAirplaneMode ? 'Network reconnected: Background sync queued' : 'Airplane mode enabled: Running 100% locally on IndexedDB');
+              setLastSyncOp(
+                isAirplaneMode
+                  ? "Network reconnected: Background sync queued"
+                  : "Airplane mode enabled: Running 100% locally on IndexedDB",
+              );
             }}
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-body transition-all cursor-pointer ${
               isAirplaneMode
-                ? 'bg-amber-500/15 border border-amber-500/30 text-amber-300'
-                : 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-300'
+                ? "bg-amber-500/15 border border-amber-500/30 text-amber-300"
+                : "bg-emerald-500/15 border border-emerald-500/30 text-emerald-300"
             }`}
           >
-            {isAirplaneMode ? <WifiOff className="w-3.5 h-3.5" /> : <Wifi className="w-3.5 h-3.5" />}
-            <span>{isAirplaneMode ? 'Airplane Mode (Offline)' : 'Online Connected'}</span>
+            {isAirplaneMode ? (
+              <WifiOff className="w-3.5 h-3.5" />
+            ) : (
+              <Wifi className="w-3.5 h-3.5" />
+            )}
+            <span>{isAirplaneMode ? "Airplane Mode (Offline)" : "Online Connected"}</span>
           </button>
           <button
             onClick={handleReset}
@@ -105,13 +127,21 @@ export default function DailySparkSimulator() {
       {/* Metrics Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6">
         <div className="p-3.5 rounded-xl border border-white/5 bg-black/40">
-          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">Today's Progress</div>
-          <div className="text-xl font-heading font-semibold text-white mt-1">{progressPercent}%</div>
-          <div className="text-[10px] text-white/40 font-mono mt-0.5">{completedCount} of {totalCount} completed</div>
+          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">
+            Today's Progress
+          </div>
+          <div className="text-xl font-heading font-semibold text-white mt-1">
+            {progressPercent}%
+          </div>
+          <div className="text-[10px] text-white/40 font-mono mt-0.5">
+            {completedCount} of {totalCount} completed
+          </div>
         </div>
 
         <div className="p-3.5 rounded-xl border border-white/5 bg-black/40">
-          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">Max Streak</div>
+          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">
+            Max Streak
+          </div>
           <div className="text-xl font-heading font-semibold text-amber-400 mt-1 flex items-center gap-1.5">
             <Flame className="w-4 h-4 text-amber-400" /> {maxStreak} Days
           </div>
@@ -119,7 +149,9 @@ export default function DailySparkSimulator() {
         </div>
 
         <div className="p-3.5 rounded-xl border border-white/5 bg-black/40">
-          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">Storage Engine</div>
+          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">
+            Storage Engine
+          </div>
           <div className="text-xl font-heading font-semibold text-purple-300 mt-1 flex items-center gap-1.5">
             <Database className="w-4 h-4 text-purple-400" /> IndexedDB
           </div>
@@ -127,7 +159,9 @@ export default function DailySparkSimulator() {
         </div>
 
         <div className="p-3.5 rounded-xl border border-white/5 bg-black/40">
-          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">Client Latency</div>
+          <div className="text-[10px] text-white/50 uppercase tracking-widest font-mono">
+            Client Latency
+          </div>
           <div className="text-xl font-heading font-semibold text-emerald-400 mt-1">0.1 ms</div>
           <div className="text-[10px] text-white/40 font-mono mt-0.5">Hardware-level fast</div>
         </div>
@@ -141,8 +175,8 @@ export default function DailySparkSimulator() {
             onClick={() => toggleHabit(h.id)}
             className={`w-full text-left p-3.5 rounded-xl border transition-all flex items-center justify-between gap-3 cursor-pointer ${
               h.completed
-                ? 'border-purple-500/30 bg-purple-500/[0.08] text-white'
-                : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.05] text-white/70'
+                ? "border-purple-500/30 bg-purple-500/[0.08] text-white"
+                : "border-white/10 bg-white/[0.02] hover:bg-white/[0.05] text-white/70"
             }`}
           >
             <div className="flex items-center gap-3">
@@ -151,7 +185,9 @@ export default function DailySparkSimulator() {
               ) : (
                 <Circle className="w-5 h-5 text-white/30 shrink-0" />
               )}
-              <span className={`text-sm font-body ${h.completed ? 'line-through text-white/60' : 'text-white/90'}`}>
+              <span
+                className={`text-sm font-body ${h.completed ? "line-through text-white/60" : "text-white/90"}`}
+              >
                 {h.name}
               </span>
             </div>
@@ -188,4 +224,3 @@ export default function DailySparkSimulator() {
     </div>
   );
 }
-
