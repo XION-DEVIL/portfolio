@@ -35,7 +35,7 @@ const StaticBadgeCard = () => (
 const StaticHeroName = () => (
   <span
     aria-hidden="true"
-    className="text-fluid-hero-title font-body font-black tracking-tight text-white inline-block drop-shadow-[0_0_25px_rgba(129,140,248,0.35)]"
+    className="text-fluid-hero-title font-heading font-bold tracking-tight text-white inline-block drop-shadow-[0_0_25px_rgba(129,140,248,0.35)]"
   >
     Sahaya Savari&nbsp;F
   </span>
@@ -134,7 +134,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           </div>
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 lg:gap-8 relative w-full max-w-[1000px] mx-auto">
-              <h1 className="font-body not-italic font-extrabold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[720px] h-[110px] sm:h-[130px] md:h-[160px] lg:h-[200px]" style={{ fontStyle: 'normal' }}>
+              <h1 className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[720px] h-[110px] sm:h-[130px] md:h-[160px] lg:h-[200px]" style={{ fontStyle: 'normal' }}>
                 <span className="sr-only">Sahaya Savari F</span>
                 {isMounted ? (
                   <Suspense fallback={<StaticHeroName />}>

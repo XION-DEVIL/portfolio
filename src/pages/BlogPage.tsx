@@ -57,7 +57,7 @@ export default function BlogPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10">
             <div>
               <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Engineering Journal &amp; Publications</h2>
-              <p className="text-white font-medium text-base">Technical Writings by Sahaya Savari (25+ Guides)</p>
+              <p className="text-white font-medium text-base">Technical Writings &amp; Engineering Notes</p>
             </div>
             <a
               href="https://www.linkedin.com/in/sahaya-savari/recent-activity/all/"
@@ -69,7 +69,7 @@ export default function BlogPage() {
             </a>
           </div>
           <p className="text-white/70 leading-relaxed">
-            Welcome to my technical engineering blog. Here I document practical development insights, architectural patterns, and production engineering notes across Artificial Intelligence, Machine Learning pipelines, Python backend services with FastAPI, full-stack React and TypeScript web development, and DevOps CI/CD automation. Over 25 in-depth guides are published and updated on the dedicated blog platform.
+            Welcome to my technical engineering blog. Here I document practical development insights, architectural patterns, and engineering notes across Artificial Intelligence, Machine Learning pipelines, Python backend services with FastAPI, and full-stack React and TypeScript web development.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-white/10 text-xs">
             <div>

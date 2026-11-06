@@ -92,7 +92,7 @@ export default function ProjectDetails() {
             ) : null}
             {!project.demoUrl && (
               <span className="px-5 py-2.5 bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-full font-medium text-sm inline-flex items-center gap-2">
-                {project.statusBadge || 'Status: Prototype Validated'}
+                {project.statusBadge || 'Status: In Development'}
               </span>
             )}
           </div>

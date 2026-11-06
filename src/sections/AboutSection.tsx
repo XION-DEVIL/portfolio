@@ -106,7 +106,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   </div>
                   <div>
                     <span className="text-white/60 block font-mono text-[9px] uppercase tracking-wider mb-1">Value Contribution</span>
-                    <span className="text-white/80 font-body text-sm block font-light leading-relaxed">Building end-to-end intelligent apps (PrepMind AI, Daily Spark) and validating data workflows, achieving up to 99.7% LLM structured-output reliability.</span>
+                    <span className="text-white/80 font-body text-sm block font-light leading-relaxed">Building end-to-end intelligent applications (Daily Spark offline PWA, PrepMind AI concept) and implementing schema-validated data workflows using Python, FastAPI, and React.</span>
                   </div>
                 </div>
 

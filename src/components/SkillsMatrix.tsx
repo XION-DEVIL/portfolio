@@ -11,45 +11,45 @@ interface SkillEvidence {
 const EVIDENCE_DATA: SkillEvidence[] = [
   {
     skill: "Python",
-    project: "PrepMind AI & Daily Spark",
+    project: "NelSync AI & PrepMind AI",
     certification: "IBM Data Analyst Specialization",
-    experience: "Generative AI Engineer projects"
+    experience: "Python ML pipelines & academic projects"
   },
   {
     skill: "AI/ML",
-    project: "PrepMind AI (LLM Quiz Gen)",
+    project: "NelSync AI (Hackathon Winner)",
     certification: "IIT Madras NPTEL Machine Learning",
-    experience: "M.Sc. Artificial Intelligence studies"
+    experience: "M.Sc. Artificial Intelligence studies & labs"
   },
   {
     skill: "Data Analytics",
-    project: "Daily Spark (Firebase logs analysis)",
+    project: "NelSync AI & Daily Spark",
     certification: "IBM Data Analyst Specialization",
-    experience: "IT & Data Analytics coursework"
+    experience: "B.Sc. Data Science & analytics coursework"
   },
   {
     skill: "SQL",
-    project: "Daily Spark (Firebase & Querying)",
+    project: "PrepMind AI & Daily Spark",
     certification: "IBM Data Analyst Specialization",
-    experience: "M.Sc. Database Systems syllabus"
+    experience: "Database Systems & data modeling syllabus"
   },
   {
     skill: "React",
-    project: "PrepMind AI & Portfolio Site",
-    certification: "Web Dev and Software Eng",
-    experience: "Generative AI Engineer projects"
+    project: "Daily Spark & Portfolio Website",
+    certification: "Web Dev & Software Engineering",
+    experience: "Frontend web projects & internship practice"
   },
   {
     skill: "Firebase",
-    project: "Daily Spark",
-    certification: "Web Dev and Software Eng",
-    experience: "Generative AI Engineer projects"
+    project: "Daily Spark & Portfolio Hosting",
+    certification: "Web Dev & Software Engineering",
+    experience: "Full-stack project deployment & hosting"
   },
   {
-    skill: "Git",
-    project: "Portfolio Website (Version Control)",
+    skill: "Git & GitHub",
+    project: "Portfolio Website & Open Source",
     certification: "IBM Data Analyst Specialization",
-    experience: "Open Source Contributor"
+    experience: "Version control hygiene & collaborative projects"
   }
 ];
 
@@ -60,7 +60,7 @@ const SkillsMatrix = memo(function SkillsMatrix() {
         <div>
           <h3 className="font-heading font-bold text-3xl text-white">Skills Evidence Matrix</h3>
           <p className="text-white/50 font-body font-light text-sm mt-2">
-            Every technical claim is validated by projects, certifications, and academic work. No unsupported claims.
+            Every technical skill listed is grounded in academic coursework, verified certifications, or real engineering projects.
           </p>
         </div>
       </div>

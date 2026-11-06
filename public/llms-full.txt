@@ -182,7 +182,7 @@ Python, FastAPI, Flask, React 19, TypeScript, Tailwind CSS v4, Vite 7, Firebase 
 OpenAI API, Pydantic V2, IndexedDB, Framer Motion, GitHub Actions.
 
 **What AI projects has Sahaya Savari built?**
-- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon — an AI agricultural logistics platform with predictive moisture grading and spoilage prevention.
+- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon — an AI agricultural logistics platform with predictive procurement forecasting and supply chain analytics.
 - PrepMind AI: a full-stack AI quiz & interview preparation platform with schema-validated structured outputs and Supabase persistence.
 - Daily Spark: an offline-first habit tracker with IndexedDB storage and Capacitor Android build.
 - Portfolio Website: high-performance SPA featuring schema.org JSON-LD, static pre-rendering, and llms.txt documentation for LLM indexing agents.

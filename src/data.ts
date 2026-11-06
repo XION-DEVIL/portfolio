@@ -97,9 +97,9 @@ Every habit completion triggers spring physics driven by CSS transforms rather t
     url: `${BLOG_URL}/blog/fastapi-async-ai-pipelines`,
     category: "Python & Backend",
     keyTakeaways: [
-      "Pydantic V2 Rust core reduced schema serialization latency by 75% under high-concurrency LLM streaming.",
-      "Strict JSON schema enforcement with few-shot error fallback prevented generative hallucinations in grading.",
-      "Async worker pools with Supabase connection pooling comfortably handled 200+ concurrent interview sessions."
+      "Pydantic V2 schemas enforce deterministic rubric scoring and type safety prior to frontend rendering.",
+      "Strict JSON schema enforcement with structured outputs prevents parser crashes and unformatted model outputs.",
+      "Asynchronous endpoints in FastAPI provide non-blocking concurrency for streaming interactive AI evaluations."
     ],
     content: `In generative AI applications like PrepMind AI, evaluating candidate technical interview answers in real-time requires balancing LLM inference latency with deterministic schema validation.
 
