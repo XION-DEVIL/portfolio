@@ -25,6 +25,7 @@
 ## 2. Project Purpose
 
 The portfolio serves four primary functions:
+
 1. **Recruiter & Career Hub**: Presenting an ATS-friendly candidate summary, interactive resume viewer, and technical background for AI/ML, Python, and Full-Stack internship/full-time opportunities (Summer/Fall 2026).
 2. **Technical Showcase**: Displaying production case studies, system architecture details, interactive demos, and GitHub source repositories for major projects.
 3. **Thought Leadership**: Linking to published engineering articles on Python AI agent design, Pydantic V2, Tailwind CSS v4, and DevOps CI/CD pipelines.
@@ -36,21 +37,21 @@ The portfolio serves four primary functions:
 
 Verified from `package.json`, `vite.config.ts`, and project dependencies:
 
-| Category | Technology | Exact Version | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Core Framework** | React | `19.2.3` | UI Component Tree |
-| **Language** | TypeScript | `5.9.3` | Type Safety |
-| **Build Tool** | Vite | `7.2.4` | Development & SSR Bundle Build |
-| **Routing** | React Router | `^7.18.1` | Client & Server Memory Routing |
-| **Styling** | Tailwind CSS | `4.1.17` | Utility-First Styling System |
-| **Animations** | Framer Motion | `^12.38.0` | Motion Animations |
-| **Animations** | GSAP | `^3.15.0` | Micro-interactions |
-| **Icons** | Lucide React | `^0.577.0` | Tree-shakeable SVG Icons |
-| **PDF Viewer** | React-PDF / PDF.js | `^10.4.1` | In-App Resume PDF Viewer |
-| **Media Streaming** | HLS.js | `^1.6.15` | Hero Video HLS Stream |
-| **WebGL Graphics** | OGL | `^1.0.11` | Interactive Background Effects |
-| **SEO Head** | React Helmet Async | `^3.0.0` | Dynamic Title & Meta Tag Management |
-| **Hosting** | Firebase Hosting | CDN Edge | Global Static Hosting |
+| Category            | Technology         | Exact Version | Purpose                             |
+| :------------------ | :----------------- | :------------ | :---------------------------------- |
+| **Core Framework**  | React              | `19.2.3`      | UI Component Tree                   |
+| **Language**        | TypeScript         | `5.9.3`       | Type Safety                         |
+| **Build Tool**      | Vite               | `7.2.4`       | Development & SSR Bundle Build      |
+| **Routing**         | React Router       | `^7.18.1`     | Client & Server Memory Routing      |
+| **Styling**         | Tailwind CSS       | `4.1.17`      | Utility-First Styling System        |
+| **Animations**      | Framer Motion      | `^12.38.0`    | Motion Animations                   |
+| **Animations**      | GSAP               | `^3.15.0`     | Micro-interactions                  |
+| **Icons**           | Lucide React       | `^0.577.0`    | Tree-shakeable SVG Icons            |
+| **PDF Viewer**      | React-PDF / PDF.js | `^10.4.1`     | In-App Resume PDF Viewer            |
+| **Media Streaming** | HLS.js             | `^1.6.15`     | Hero Video HLS Stream               |
+| **WebGL Graphics**  | OGL                | `^1.0.11`     | Interactive Background Effects      |
+| **SEO Head**        | React Helmet Async | `^3.0.0`      | Dynamic Title & Meta Tag Management |
+| **Hosting**         | Firebase Hosting   | CDN Edge      | Global Static Hosting               |
 
 ---
 
@@ -75,6 +76,7 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 ```
 
 ### Pre-rendering Implementation Mechanics
+
 1. **Server Entry (`src/entry-server.tsx`)**: Imports all route components synchronously and exposes a `render(url: string)` function wrapping the React tree in `<HelmetProvider>`, `<MemoryRouter initialEntries={[url]}>`, and `<Routes>`.
 2. **Build Integration (`scripts/prerender-seo.js`)**:
    - Compiles `src/entry-server.tsx` into `.tmp-server/entry-server.js`.
@@ -89,17 +91,17 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 
 ## 5. Public Pre-rendered Routes Matrix
 
-| Route | Page Component | Prerender Target | Indexable Role |
-| :--- | :--- | :--- | :--- |
-| `/` | `HomePage.tsx` | `dist/index.html` | Homepage & Brand Identity Hub |
-| `/projects` | `ProjectsPage.tsx` | `dist/projects/index.html` | Projects Catalog |
-| `/resume` | `ResumePage.tsx` | `dist/resume/index.html` | Curriculum Vitae & Resume Viewer |
-| `/blog` | `BlogPage.tsx` | `dist/blog/index.html` | Technical Articles & Writings |
-| `/recruiter` | `RecruiterMode.tsx` | `dist/recruiter/index.html` | Recruiter Overview & Quick View |
-| `/ai` | `AskSahayaAI.tsx` | `dist/ai/index.html` | Interactive AI Assistant Showcase |
-| `/projects/prepmind-ai` | `ProjectDetails.tsx` | `dist/projects/prepmind-ai/index.html` | Case Study: PrepMind AI |
-| `/projects/daily-spark` | `ProjectDetails.tsx` | `dist/projects/daily-spark/index.html` | Case Study: Daily Spark |
-| `/projects/portfolio-website` | `ProjectDetails.tsx` | `dist/projects/portfolio-website/index.html` | Case Study: Portfolio Website |
+| Route                         | Page Component       | Prerender Target                             | Indexable Role                    |
+| :---------------------------- | :------------------- | :------------------------------------------- | :-------------------------------- |
+| `/`                           | `HomePage.tsx`       | `dist/index.html`                            | Homepage & Brand Identity Hub     |
+| `/projects`                   | `ProjectsPage.tsx`   | `dist/projects/index.html`                   | Projects Catalog                  |
+| `/resume`                     | `ResumePage.tsx`     | `dist/resume/index.html`                     | Curriculum Vitae & Resume Viewer  |
+| `/blog`                       | `BlogPage.tsx`       | `dist/blog/index.html`                       | Technical Articles & Writings     |
+| `/recruiter`                  | `RecruiterMode.tsx`  | `dist/recruiter/index.html`                  | Recruiter Overview & Quick View   |
+| `/ai`                         | `AskSahayaAI.tsx`    | `dist/ai/index.html`                         | Interactive AI Assistant Showcase |
+| `/projects/prepmind-ai`       | `ProjectDetails.tsx` | `dist/projects/prepmind-ai/index.html`       | Case Study: PrepMind AI           |
+| `/projects/daily-spark`       | `ProjectDetails.tsx` | `dist/projects/daily-spark/index.html`       | Case Study: Daily Spark           |
+| `/projects/portfolio-website` | `ProjectDetails.tsx` | `dist/projects/portfolio-website/index.html` | Case Study: Portfolio Website     |
 
 ---
 
@@ -127,21 +129,23 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 - **Blog Domain**: [https://blog.sahayasavari.dev](https://blog.sahayasavari.dev)
 - **Archive Catalog**: [https://blog.sahayasavari.dev/blog](https://blog.sahayasavari.dev/blog) (25+ Guides)
 - **Featured Articles**:
-  1. *Building Autonomous AI Agents from Scratch in Async Python* ([Read Article](https://blog.sahayasavari.dev/blog/ai-agents-from-scratch))
-  2. *Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture* ([Read Article](https://blog.sahayasavari.dev/blog/pydantic-v2-guide))
-  3. *Tailwind CSS v4 Guide: Oxide Engine, @theme Directive & Dynamic Utilities* ([Read Article](https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide))
-  4. *GitHub Actions CI/CD Pipelines: Automated Testing, Linting & Container Deployment* ([Read Article](https://blog.sahayasavari.dev/blog/github-actions-ci-cd))
+  1. _Building Autonomous AI Agents from Scratch in Async Python_ ([Read Article](https://blog.sahayasavari.dev/blog/ai-agents-from-scratch))
+  2. _Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture_ ([Read Article](https://blog.sahayasavari.dev/blog/pydantic-v2-guide))
+  3. _Tailwind CSS v4 Guide: Oxide Engine, @theme Directive & Dynamic Utilities_ ([Read Article](https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide))
+  4. _GitHub Actions CI/CD Pipelines: Automated Testing, Linting & Container Deployment_ ([Read Article](https://blog.sahayasavari.dev/blog/github-actions-ci-cd))
 
 ---
 
 ## 8. SEO, Schema & Entity Architecture
 
 ### Implementation Source Files
+
 - [`src/seo.ts`](file:///d:/GITHUB/portfolio/src/seo.ts) — Schema.org JSON-LD definitions and site constants.
 - [`src/components/SEOHead.tsx`](file:///d:/GITHUB/portfolio/src/components/SEOHead.tsx) — React Helmet component for page metadata.
 - [`scripts/prerender-seo.js`](file:///d:/GITHUB/portfolio/scripts/prerender-seo.js) — Post-build static pre-rendering script.
 
 ### Schema.org Graph Architecture
+
 - **Person URI Node Anchor**: `@id: "https://sahayasavari.dev/#person"`
   - `name`: Sahaya Savari F
   - `alternateName`: Sahaya Savari
@@ -160,6 +164,7 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 - **Identity Links**: `<link rel="me">` tags in `index.html` and `SEOHead.tsx` connecting the portfolio domain to GitHub and LinkedIn for consistent identity graph linkage.
 
 ### AI Discoverability (AEO & GEO)
+
 - **Robots.txt**: Open indexing policy with explicit `Allow: /` directives for major search engines (Googlebot, Bingbot, etc.) and AI discovery systems (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, Bytespider) with sitemap declaration pointing to `https://sahayasavari.dev/sitemap.xml`.
 - `/llms.txt` (5,816 bytes): Machine-readable markdown with canonical identity, projects, technical skills, published articles, Q&A, and official links for LLM indexing agents.
 - `/llms-full.txt` (10,256 bytes): Extended technical reference with metadata header, project architecture details, verifiable certification credential IDs, and factual Q&A for deep LLM retrieval.
@@ -216,6 +221,7 @@ portfolio/
 ## 11. Development & Deployment Workflows
 
 ### Commands
+
 ```bash
 # Install dependencies
 npm install

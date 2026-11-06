@@ -2,7 +2,7 @@
 
 **Website:** [https://sahayasavari.dev](https://sahayasavari.dev)  
 **GitHub:** [https://github.com/sahaya-savari/portfolio](https://github.com/sahaya-savari/portfolio)  
-**Candidate Profile:** Sahaya Savari F (*M.Sc. Artificial Intelligence Student, St. Joseph's College (Autonomous), Tiruchirappalli, Tamil Nadu, India*).  
+**Candidate Profile:** Sahaya Savari F (_M.Sc. Artificial Intelligence Student, St. Joseph's College (Autonomous), Tiruchirappalli, Tamil Nadu, India_).  
 **Target Roles:** AI/ML Engineer Intern, Python Developer Intern, Full Stack Developer Intern (Summer/Fall 2026 Opportunities).
 
 ---
@@ -12,6 +12,7 @@
 Improve technical search engine optimization (SEO), entity recognition, geographic location context (GEO), Answer Engine Optimization (AEO), AI/LLM discoverability, and social sharing presentation (Open Graph) **WITHOUT website bloat**.
 
 ### Core Principles & Maintenance Rules
+
 - **No Vanity SEO Metrics**: Every change must have tangible candidate discovery value.
 - **Zero Page Bloat**: Do not create thin programmatic pages (`/projects/python`, `/skills/fastapi`, `/ai-engineer-trichy`).
 - **Grounded Factuality**: All content and schema must reflect verified experience. Never invent experience, production clients, users, or metrics.
@@ -25,46 +26,55 @@ Improve technical search engine optimization (SEO), entity recognition, geograph
 The following foundational tasks have already been completed and deployed to production (`https://sahayasavari.dev`).
 
 ### Task H-1: Daily Spark Tech Stack & Architecture Correction
+
 - **Objective**: Align Daily Spark metadata with the official GitHub repository (`sahaya-savari/daily-spark`).
-- **Current State**: Daily Spark is positioned as an *Offline-First habit & daily streak application built with React, TypeScript, Vite, Tailwind CSS, IndexedDB, and Capacitor support for Android*.
+- **Current State**: Daily Spark is positioned as an _Offline-First habit & daily streak application built with React, TypeScript, Vite, Tailwind CSS, IndexedDB, and Capacitor support for Android_.
 - **Status**: `Completed`
 
 ### Task H-2: PrepMind AI Honest Positioning
+
 - **Objective**: Remove generic profile fallbacks and clearly reflect project status.
 - **Current State**: Displays an honest `Status: In Development` badge on `/projects/prepmind-ai` without inventing fake repos or claims.
 - **Status**: `Completed`
 
 ### Task H-3: Complete Purge of NeoBeat
+
 - **Objective**: Remove unwanted/unsupported NeoBeat project references.
 - **Current State**: Completely purged from `src/data.ts`, `src/data/caseStudies.ts`, routes, sitemap, and LLM text files.
 - **Status**: `Completed`
 
 ### Task H-4: Direct Resume PDF Download CTA
+
 - **Objective**: Provide 1-click recruiter access to the resume PDF.
 - **Current State**: `<a href="/resume.pdf" download>` buttons (`Download CV`) live in desktop header and mobile menu.
 - **Status**: `Completed`
 
 ### Task H-5: Grounded Hero Subheadline Refinement
+
 - **Objective**: Align hero text with verified M.Sc. AI student status.
 - **Current State**: Subheadline reflects Python, ML, React, and TypeScript capabilities for Summer/Fall 2026 internships.
 - **Status**: `Completed`
 
 ### Task H-6: Post-Build Automated Sitemap Generation
+
 - **Objective**: Automatically output valid sitemap XML during production build.
 - **Current State**: `scripts/prerender-seo.js` generates `dist/sitemap.xml` with 9 canonical URLs and stable `<lastmod>` date (`2026-08-15`).
 - **Status**: `Completed`
 
 ### Task H-7: LLM Files Synchronization
+
 - **Objective**: Keep AI-readable documentation accurate.
 - **Current State**: `public/llms.txt` and `public/llms-full.txt` updated to reflect single source of truth project data.
 - **Status**: `Completed`
 
 ### Task H-8: Firebase Hosting Deployment & GitHub Push
+
 - **Objective**: Deploy clean build to production target `sahayasavari-dev` (`sahaya-savari-portfolio`) and push commit to `origin/main`.
 - **Current State**: Live site deployed at `https://sahayasavari.dev`; Git working tree clean.
 - **Status**: `Completed`
 
 ### Task H-9: Full SEO + GEO + AEO Implementation Pass
+
 - **Objective**: Implement comprehensive SEO, entity graph, GEO, and AEO signals without unsupported claims or keyword stuffing.
 - **Current State**: Deployed to production. Includes strengthened Person entity (`hasOccupation`, 23-item `knowsAbout`), 4 `TechArticle` nodes on `/blog`, `SoftwareApplication` schema on `/ai`, rewritten `llms.txt` (5,816 bytes) and `llms-full.txt` (10,256 bytes) with canonical identity + factual Q&A, explicit AI crawler directives in `robots.txt`, `rel="me"` identity links, `og:profile` on homepage, and `Content-Type: text/plain; charset=utf-8` for `*.txt` files.
 - **Status**: `Completed`
@@ -78,6 +88,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 0 — Baseline & Safety
 
 #### Task 0.1: Production Baseline Verification
+
 - **Objective**: Re-verify repository cleanliness and build integrity before starting any SEO modifications.
 - **Current State**: 9 pre-rendered routes built in `dist/`, clean git working tree on `main`.
 - **Proposed Change**: Execute safety checks (`git status`, `npx tsc --noEmit`, `npm run build`) before making file changes.
@@ -94,6 +105,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 1 — Route-Specific SEO & Open Graph
 
 #### Task 1.1: Project-Specific Open Graph Meta Tags & Preview Assets
+
 - **Objective**: Provide unique Open Graph titles, descriptions, and preview cards for project detail routes.
 - **Current State**: Detail routes (`/projects/daily-spark`, `/projects/prepmind-ai`, `/projects/portfolio-website`) currently share generic homepage Open Graph preview image (`/og-image.jpg`).
 - **Proposed Change**: Create custom 1200x630 preview image assets for each project card (`/og-daily-spark.jpg`, `/og-prepmind-ai.jpg`, `/og-portfolio.jpg`) and inject route-specific `og:image`, `og:title`, and `twitter:image` tags in `scripts/prerender-seo.js`.
@@ -106,6 +118,7 @@ The following foundational tasks have already been completed and deployed to pro
 - **Status**: `Planned`
 
 #### Task 1.2: `SoftwareApplication` JSON-LD Schema on Project Pages
+
 - **Objective**: Add explicit structured data to software project pages for rich search engine indexing.
 - **Current State**: Project detail pages use generic `BreadcrumbList` schema.
 - **Proposed Change**: Inject `SoftwareApplication` JSON-LD schema on `/projects/daily-spark` (`operatingSystem: "Web, Android"`, `applicationCategory: "ProductivityApplication"`) and `/projects/portfolio-website`.
@@ -122,6 +135,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 2 — Entity SEO & Person Schema
 
 #### Task 2.1: Institutional & Educational Schema Linkage
+
 - **Objective**: Connect candidate identity (`#person`) to academic degree and institution in JSON-LD.
 - **Current State**: `Person` schema in `src/seo.ts` includes `affiliation: { name: "St. Joseph's College (Autonomous), Trichy" }`.
 - **Proposed Change**: Add formal `alumniOf` node referencing Wikipedia URI (`https://en.wikipedia.org/wiki/St._Joseph%27s_College,_Tiruchirappalli`) and explicit degree credential `M.Sc. Artificial Intelligence (2024 – 2026)`.
@@ -134,6 +148,7 @@ The following foundational tasks have already been completed and deployed to pro
 - **Status**: `Planned`
 
 #### Task 2.2: Selective Skill Mapping (`knowsAbout`)
+
 - **Objective**: Ensure core verified technical domains are linked to candidate entity without schema bloat.
 - **Current State**: `knowsAbout` array in `src/seo.ts` lists plain text skill strings.
 - **Proposed Change**: Maintain verified skill strings (`Artificial Intelligence`, `Machine Learning`, `Python`, `React`, `TypeScript`, `IndexedDB`, `Capacitor Android`, `FastAPI`). Evaluate whether external Wikidata URIs add indexing value; if they increase payload size without rich result benefits, do NOT implement.
@@ -150,6 +165,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 3 — GEO / Educational Location Signals
 
 #### Task 3.1: Academic Location Context Integration
+
 - **Objective**: Embed authentic geographic context (Tiruchirappalli, Tamil Nadu, India) into educational schema and candidate profile text.
 - **Current State**: Institution name is present; city/state coordinates are implicit in paragraph text.
 - **Proposed Change**: Add `address` property to `EducationalOrganization` schema node (`addressLocality: "Tiruchirappalli"`, `addressRegion: "Tamil Nadu"`, `addressCountry: "IN"`). Update `#about` section to state location context naturally.
@@ -162,6 +178,7 @@ The following foundational tasks have already been completed and deployed to pro
 - **Status**: `Planned`
 
 #### Task 3.2: GEO Anti-Pattern Enforcement (DO NOT IMPLEMENT)
+
 - **Objective**: Prevent harmful local business SEO practices on a personal developer portfolio.
 - **Current State**: 0 local business schemas exist.
 - **Proposed Change**: Explicitly forbid creating `LocalBusiness` schema, fake business addresses, or city landing pages (`/ai-engineer-trichy`, `/python-developer-india`).
@@ -178,9 +195,10 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 4 — AEO / Recruiter Question Coverage
 
 #### Task 4.1: Semantic Q&A Accordion on `/recruiter`
+
 - **Objective**: Improve Answer Engine Optimization (AEO) and 30-second recruiter scanability.
 - **Current State**: `/recruiter` (`RecruiterMode.tsx`) features structured cards for skills, education, and credentials, but lacks a conversational Q&A block.
-- **Proposed Change**: Add an accessible `<details>` / `<summary>` accordion block containing 5–7 factual candidate Q&As (*Degree & College, Internship Availability timeline, Core Tech Stack, Verified Projects, Location, Resume PDF link*).
+- **Proposed Change**: Add an accessible `<details>` / `<summary>` accordion block containing 5–7 factual candidate Q&As (_Degree & College, Internship Availability timeline, Core Tech Stack, Verified Projects, Location, Resume PDF link_).
 - **Files / Areas**: `src/pages/RecruiterMode.tsx`.
 - **Priority**: P1
 - **Expected Value**: AEO / Recruiter UX / Conversion
@@ -194,6 +212,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 5 — AI / LLM Discoverability
 
 #### Task 5.1: `llms.txt` Standard Compliance (llmstxt.org)
+
 - **Objective**: Structure `public/llms.txt` according to the standardized `llmstxt.org` specification for AI crawlers.
 - **Current State**: `public/llms.txt` (5,816 bytes) and `public/llms-full.txt` (10,256 bytes) rewritten with canonical identity section, factual Q&A, metadata header, project descriptions, articles, certifications, and official links. Both served with `Content-Type: text/plain; charset=utf-8`.
 - **Files / Areas**: `public/llms.txt`, `public/llms-full.txt`.
@@ -209,6 +228,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 6 — Blog ↔ Portfolio Authority
 
 #### Task 6.1: Reciprocal Contextual Project-to-Blog Backlinking
+
 - **Objective**: Build natural cross-domain authority between `sahayasavari.dev` and `blog.sahayasavari.dev`.
 - **Current State**: `Daily Spark` case study references `blog.sahayasavari.dev/blog/pydantic-v2-guide`.
 - **Proposed Change**: Verify and add contextual links from relevant technical articles on `blog.sahayasavari.dev` back to project case studies on `sahayasavari.dev/projects/daily-spark`.
@@ -225,6 +245,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 7 — Technical SEO Validation
 
 #### Task 7.1: Comprehensive Metadata & Schema Audit
+
 - **Objective**: Perform automated and manual validation across all 9 pre-rendered routes.
 - **Current State**: Full verification performed. All 9 routes pass: title, description, canonical, og:image, JSON-LD schemas (Person, WebSite, ProfilePage, TechArticle×4, SoftwareApplication), and sitemap.xml validated.
 - **Files / Areas**: `dist/`, `scripts/prerender-seo.js`.
@@ -240,6 +261,7 @@ The following foundational tasks have already been completed and deployed to pro
 ### Phase 8 — Production Verification
 
 #### Task 8.1: Pre-Deployment Build & Firebase Hosting Smoke Test
+
 - **Objective**: Verify live production functionality before completing deployment.
 - **Current State**: Deployed. `npm run build` passes (9/9 routes). Firebase Hosting deploy to `sahayasavari-dev` target completed successfully. Live at `https://sahayasavari.dev`.
 - **Files / Areas**: Firebase Hosting, Production Domain.
@@ -256,19 +278,19 @@ The following foundational tasks have already been completed and deployed to pro
 
 To prevent site bloat, thin content penalties, and keyword cannibalization, the following pages **MUST NOT** be created:
 
-| Page Path | Category | Reason for Exclusion | Status |
-| :--- | :--- | :--- | :---: |
-| `/about` | Standalone Page | Fully covered on Homepage `#about` section; splitting dilutes page authority. | `Cancelled` |
-| `/skills` | Standalone Page | Fully covered on Homepage `#skills` section. | `Cancelled` |
-| `/education` | Standalone Page | Fully covered on Homepage `#about` section and recruiter page. | `Cancelled` |
-| `/certifications` | Standalone Page | Fully covered on Homepage `#certifications` section. | `Cancelled` |
-| `/projects/python` | Tag Filter Page | Thin content duplicate; dynamic category filtering exists on `/projects`. | `Cancelled` |
-| `/projects/react` | Tag Filter Page | Thin content duplicate. | `Cancelled` |
-| `/projects/ai` | Tag Filter Page | Thin content duplicate. | `Cancelled` |
-| `/technologies/python` | Tech Keyword Page | Keyword spam / thin content. | `Cancelled` |
-| `/technologies/react` | Tech Keyword Page | Keyword spam / thin content. | `Cancelled` |
-| `/ai-engineer-trichy` | Local SEO Page | Spammy local SEO anti-pattern. | `Cancelled` |
-| `/python-developer-india` | Geo-Spam Page | Spammy local SEO anti-pattern. | `Cancelled` |
+| Page Path                 | Category          | Reason for Exclusion                                                          |   Status    |
+| :------------------------ | :---------------- | :---------------------------------------------------------------------------- | :---------: |
+| `/about`                  | Standalone Page   | Fully covered on Homepage `#about` section; splitting dilutes page authority. | `Cancelled` |
+| `/skills`                 | Standalone Page   | Fully covered on Homepage `#skills` section.                                  | `Cancelled` |
+| `/education`              | Standalone Page   | Fully covered on Homepage `#about` section and recruiter page.                | `Cancelled` |
+| `/certifications`         | Standalone Page   | Fully covered on Homepage `#certifications` section.                          | `Cancelled` |
+| `/projects/python`        | Tag Filter Page   | Thin content duplicate; dynamic category filtering exists on `/projects`.     | `Cancelled` |
+| `/projects/react`         | Tag Filter Page   | Thin content duplicate.                                                       | `Cancelled` |
+| `/projects/ai`            | Tag Filter Page   | Thin content duplicate.                                                       | `Cancelled` |
+| `/technologies/python`    | Tech Keyword Page | Keyword spam / thin content.                                                  | `Cancelled` |
+| `/technologies/react`     | Tech Keyword Page | Keyword spam / thin content.                                                  | `Cancelled` |
+| `/ai-engineer-trichy`     | Local SEO Page    | Spammy local SEO anti-pattern.                                                | `Cancelled` |
+| `/python-developer-india` | Geo-Spam Page     | Spammy local SEO anti-pattern.                                                | `Cancelled` |
 
 ---
 
@@ -283,17 +305,17 @@ To prevent site bloat, thin content penalties, and keyword cannibalization, the 
 
 ## 📊 Priority & Phase Summary Table
 
-| Phase | Priority | Main Goal | Targets / Files | Expected Value | Status |
-| :--- | :---: | :--- | :--- | :--- | :---: |
-| **Phase 0** | **P0** | Baseline & Safety | Repository | Known-good production baseline | `Completed` |
-| **Phase 1** | **P1** | Route SEO & Open Graph | Case study routes | High (Social previews & CTR) | `Planned` |
-| **Phase 2** | **P1** | Entity SEO & Person Schema | `src/seo.ts` | High (Knowledge Graph recognition) | `Planned` |
-| **Phase 3** | **P2** | GEO / Educational Location | `#about`, JSON-LD, `llms-full.txt` | Medium (Legitimate location context) | `Planned` |
-| **Phase 4** | **P1** | AEO / Recruiter Q&A | `/recruiter` | High (Direct recruiter conversion) | `Planned` |
-| **Phase 5** | **P2** | AI / LLM Discoverability | `llms.txt`, `llms-full.txt` | Medium (Machine-readable accuracy) | `Completed` |
-| **Phase 6** | **P2** | Blog ↔ Portfolio Authority | `/projects/*` & Blog links | Medium (Cross-domain authority) | `Planned` |
-| **Phase 7** | **P1** | Technical SEO Validation | All 9 routes & schemas | Critical (Metadata & Rich Results) | `Completed` |
-| **Phase 8** | **P0** | Production Verification | Build & Firebase Hosting | Critical (Live deployment safety) | `Completed` |
+| Phase       | Priority | Main Goal                  | Targets / Files                    | Expected Value                       |   Status    |
+| :---------- | :------: | :------------------------- | :--------------------------------- | :----------------------------------- | :---------: |
+| **Phase 0** |  **P0**  | Baseline & Safety          | Repository                         | Known-good production baseline       | `Completed` |
+| **Phase 1** |  **P1**  | Route SEO & Open Graph     | Case study routes                  | High (Social previews & CTR)         |  `Planned`  |
+| **Phase 2** |  **P1**  | Entity SEO & Person Schema | `src/seo.ts`                       | High (Knowledge Graph recognition)   |  `Planned`  |
+| **Phase 3** |  **P2**  | GEO / Educational Location | `#about`, JSON-LD, `llms-full.txt` | Medium (Legitimate location context) |  `Planned`  |
+| **Phase 4** |  **P1**  | AEO / Recruiter Q&A        | `/recruiter`                       | High (Direct recruiter conversion)   |  `Planned`  |
+| **Phase 5** |  **P2**  | AI / LLM Discoverability   | `llms.txt`, `llms-full.txt`        | Medium (Machine-readable accuracy)   | `Completed` |
+| **Phase 6** |  **P2**  | Blog ↔ Portfolio Authority | `/projects/*` & Blog links         | Medium (Cross-domain authority)      |  `Planned`  |
+| **Phase 7** |  **P1**  | Technical SEO Validation   | All 9 routes & schemas             | Critical (Metadata & Rich Results)   | `Completed` |
+| **Phase 8** |  **P0**  | Production Verification    | Build & Firebase Hosting           | Critical (Live deployment safety)    | `Completed` |
 
 ---
 

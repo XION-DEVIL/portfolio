@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-heading: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
+  --font-heading:
+    "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
   --radius-full: 9999px;
-  
+
   --color-background: hsl(213 45% 67%);
   --color-foreground: hsl(0 0% 100%);
   --color-primary: hsl(0 0% 100%);
@@ -36,16 +36,48 @@
   --color-5: 90 100% 63%;
 }
 
-.technology-marquee { overflow: hidden; margin: 2rem 0; border-block: 1px solid var(--portfolio-card-border); }
-.technology-marquee-track { display: flex; width: max-content; animation: technology-scroll 35s linear infinite; }
-.technology-marquee-group { display: flex; align-items: center; gap: 3rem; padding: 1.25rem 1.5rem; }
-.technology-marquee:hover .technology-marquee-track, .technology-marquee:focus-within .technology-marquee-track { animation-play-state: paused; }
-@keyframes technology-scroll { to { transform: translateX(-50%); } }
-.career-step { border-inline-start: 2px solid var(--portfolio-card-border); transition: border-color 200ms ease, transform 200ms ease; }
-.career-step:hover { border-color: var(--color-foreground); transform: translateX(3px); }
+.technology-marquee {
+  overflow: hidden;
+  margin: 2rem 0;
+  border-block: 1px solid var(--portfolio-card-border);
+}
+.technology-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: technology-scroll 35s linear infinite;
+}
+.technology-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 1.25rem 1.5rem;
+}
+.technology-marquee:hover .technology-marquee-track,
+.technology-marquee:focus-within .technology-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes technology-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.career-step {
+  border-inline-start: 2px solid var(--portfolio-card-border);
+  transition:
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+.career-step:hover {
+  border-color: var(--color-foreground);
+  transform: translateX(3px);
+}
 @media (prefers-reduced-motion: reduce) {
-  .technology-marquee-track { animation: none; }
-  .career-step:hover { transform: none; }
+  .technology-marquee-track {
+    animation: none;
+  }
+  .career-step:hover {
+    transform: none;
+  }
 }
 
 @layer base {
@@ -53,7 +85,15 @@
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
   }
-  #home, #about, #experience, #skills, #projects, #blog, #open-source, #certifications, #contact {
+  #home,
+  #about,
+  #experience,
+  #skills,
+  #projects,
+  #blog,
+  #open-source,
+  #certifications,
+  #contact {
     scroll-margin-top: 80px;
   }
   body {
@@ -69,7 +109,9 @@
 
   /* Reduce motion for vestibular sensitivity */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -102,15 +144,23 @@
   transform: translate3d(0, 0, 0);
 
   &::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
     border-radius: inherit;
     padding: 1.4px;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
-      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-      rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.15) 80%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -122,21 +172,31 @@
   background-blend-mode: luminosity;
   backdrop-filter: blur(20px);
   border: none;
-  box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow:
+    4px 4px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
 
   &::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
     border-radius: inherit;
     padding: 1.4px;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 20%,
-      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-      rgba(255,255,255,0.2) 80%, rgba(255,255,255,0.5) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.2) 80%,
+      rgba(255, 255, 255, 0.5) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -160,8 +220,8 @@
 }
 
 @utility hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
   }
@@ -169,7 +229,7 @@
 
 @utility section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08) 50%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08) 50%, transparent);
   margin: 0 auto;
   max-width: 80%;
 }
@@ -191,59 +251,6 @@
   font-size: clamp(3.5rem, 10vw, 7.5rem);
 }
 
-/* latin — Barlow 300, 400, 500 (Regular & Medium) */
-@font-face {
-  font-family: 'Barlow';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(/fonts/font-5.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Barlow';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/font-5.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Barlow';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(/fonts/font-5.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin — Barlow 600 */
-@font-face {
-  font-family: 'Barlow';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/fonts/font-5.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext — Instrument Serif italic */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/font-12.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin — Instrument Serif italic */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/font-13.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 @layer utilities {
   @keyframes rainbow-spin {
     from {
@@ -259,7 +266,8 @@
   }
 
   @keyframes portrait-float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate3d(0, 0, 0) rotate(-0.5deg);
     }
     50% {
@@ -272,17 +280,27 @@
   }
 
   @keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
   .animate-rainbow {
     animation: rainbow var(--speed, 2s) infinite linear;
   }
 
   @keyframes scroll-progress-keyframes {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
 
   .scroll-progress-bar {
@@ -306,16 +324,17 @@
   }
 }
 
-
-
-
 /* Clean ink-saving printable resume stylesheet for recruiters */
 @media print {
   body {
     background: #ffffff !important;
     color: #111111 !important;
   }
-  .no-print, nav, footer, video, canvas {
+  .no-print,
+  nav,
+  footer,
+  video,
+  canvas {
     display: none !important;
   }
   .pt-32 {
@@ -324,13 +343,17 @@
   .bg-black {
     background: transparent !important;
   }
-  .text-white, .text-white\/70, .text-white\/80, .text-white\/90 {
+  .text-white,
+  .text-white\/70,
+  .text-white\/80,
+  .text-white\/90 {
     color: #111111 !important;
   }
   .text-white\/50 {
     color: #444444 !important;
   }
-  .border-white\/10, .border-white\/20 {
+  .border-white\/10,
+  .border-white\/20 {
     border-color: #cccccc !important;
   }
   .border-l-2 {

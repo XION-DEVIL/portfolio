@@ -76,7 +76,7 @@ export function HeroName() {
       density={2}
       fontSize="clamp(3.3rem, 9.8vw, 8.8rem)"
       fontWeight={800}
-      fontFamily="inherit"
+      fontFamily="'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
       glow
     />
   );

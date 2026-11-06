@@ -1,5 +1,15 @@
 import { useState, memo } from "react";
-import { Check, Mail, MapPin, Linkedin, Github, Search, ExternalLink, Copy } from "lucide-react";
+import {
+  Check,
+  Mail,
+  MapPin,
+  Linkedin,
+  Github,
+  Search,
+  Copy,
+  ArrowUpRight,
+  ExternalLink,
+} from "lucide-react";
 import HlsVideo from "../components/HlsVideo";
 import Dock from "../components/Dock";
 
@@ -49,40 +59,41 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
             real-world impact.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <div className="liquid-glass-strong p-1.5 sm:p-2 rounded-full font-body flex items-center gap-2 border border-white/10 hover:border-white/20 transition-all shadow-lg backdrop-blur-xl">
+            <div className="liquid-glass-strong rounded-full font-body flex items-center border border-white/10 hover:border-white/20 transition-all shadow-lg backdrop-blur-xl p-1.5 sm:p-2 gap-1.5 sm:gap-2">
+              <a
+                href="mailto:contact@sahayasavari.dev"
+                className="flex items-center gap-2.5 px-4 sm:px-5 py-2 rounded-full hover:bg-white/10 text-white font-medium text-base sm:text-lg transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                aria-label="Send email to contact@sahayasavari.dev"
+                title="Click to send email"
+              >
+                <Mail className="w-5 h-5 shrink-0 text-white/80 group-hover:text-white" />
+                <span className="text-white group-hover:text-white/90">
+                  contact@sahayasavari.dev
+                </span>
+                <ArrowUpRight className="w-4 h-4 shrink-0 text-white/50 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+              <div className="w-[1px] h-6 bg-white/15" aria-hidden="true" />
               <button
                 type="button"
                 onClick={copyEmail}
-                className="flex items-center gap-3 px-4 sm:px-6 py-2.5 rounded-full hover:bg-white/5 text-white font-medium text-base sm:text-lg transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full hover:bg-white/10 text-white/70 hover:text-white font-medium text-xs sm:text-sm transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                 aria-label={
                   copied ? "Email copied to clipboard" : "Copy email address to clipboard"
                 }
-                title="Click to copy email address"
+                title="Copy email address"
               >
                 {copied ? (
-                  <Check className="w-5 h-5 shrink-0 text-emerald-400" />
+                  <>
+                    <Check className="w-4 h-4 shrink-0 text-emerald-400" />
+                    <span className="text-emerald-400 font-semibold">Copied!</span>
+                  </>
                 ) : (
-                  <Mail className="w-5 h-5 shrink-0 text-white/80" />
-                )}
-                <span className="text-white">
-                  {copied
-                    ? "Email Copied!"
-                    : copyError
-                      ? "Copy failed"
-                      : "contact@sahayasavari.dev"}
-                </span>
-                {!copied && (
-                  <Copy className="w-4 h-4 shrink-0 opacity-40 group-hover:opacity-90 transition-opacity ml-1" />
+                  <>
+                    <Copy className="w-4 h-4 shrink-0 opacity-60" />
+                    <span>Copy</span>
+                  </>
                 )}
               </button>
-              <a
-                href="mailto:contact@sahayasavari.dev"
-                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white text-white hover:text-black flex items-center justify-center transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-                title="Send email via mail client"
-                aria-label="Open default mail client to email contact@sahayasavari.dev"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
             </div>
             <span className="sr-only" role="status" aria-live="polite">
               {copied

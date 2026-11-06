@@ -129,8 +129,8 @@ function FocusText({ className = "" }: FocusTextProps) {
                     className="text-4xl md:text-5xl lg:text-6xl leading-none text-white whitespace-nowrap z-10"
                     style={{
                       fontFamily: isGenAI ? "var(--font-heading)" : "var(--font-body)",
-                      fontWeight: isGenAI ? "normal" : 800,
-                      fontStyle: isGenAI ? "italic" : "normal",
+                      fontWeight: isGenAI ? 700 : 800,
+                      fontStyle: "normal",
                       WebkitFontSmoothing: "antialiased",
                     }}
                   >

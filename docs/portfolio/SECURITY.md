@@ -8,12 +8,15 @@ Please send security reports via email to:
 **[contact@sahayasavari.dev](mailto:contact@sahayasavari.dev)**
 
 ### What to Include
+
 When reporting a security issue, please include:
+
 - A description of the vulnerability and its potential security impact.
 - Steps to reproduce the issue (proof-of-concept code, URL endpoints, or headers).
 - Any relevant details regarding affected browsers or configurations.
 
 ### Response & Remediation
+
 Reports will be reviewed as soon as reasonably possible. If a vulnerability is confirmed, remediation and deployment of a fix will be prioritized based on the severity and operational impact of the issue.
 
 ---
@@ -36,6 +39,7 @@ The portfolio application incorporates security best practices across client-sid
 ## Scope
 
 This security policy applies to:
+
 - The production website hosted at [https://sahayasavari.dev](https://sahayasavari.dev)
 - Frontend application source code in the public [sahaya-savari/portfolio](https://github.com/sahaya-savari/portfolio) repository
 

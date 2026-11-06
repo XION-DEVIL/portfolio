@@ -419,7 +419,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
 
       {/* Background Watermark */}
       <div
-        className="absolute bottom-6 right-6 font-heading text-6xl sm:text-8xl font-bold uppercase italic opacity-[0.03] text-white pointer-events-none select-none"
+        className="absolute bottom-6 right-6 font-heading text-6xl sm:text-8xl font-bold uppercase not-italic opacity-[0.03] text-white pointer-events-none select-none"
         aria-hidden="true"
       >
         SAHAYA

@@ -34,16 +34,16 @@ Personal portfolio and technical showcase of **Sahaya Savari F** — AI Engineer
 
 ## 🛠️ Technology Stack
 
-| Layer | Technology |
-| :--- | :--- |
-| **Core Framework** | React 19 (`19.2.3`), TypeScript 5.9 (`5.9.3`) |
-| **Build Tooling** | Vite 7 (`7.2.4`), Node ES Modules |
-| **Routing** | React Router v7 (`^7.18.1`) |
-| **Styling** | Tailwind CSS v4 (`4.1.17`) |
+| Layer               | Technology                                                 |
+| :------------------ | :--------------------------------------------------------- |
+| **Core Framework**  | React 19 (`19.2.3`), TypeScript 5.9 (`5.9.3`)              |
+| **Build Tooling**   | Vite 7 (`7.2.4`), Node ES Modules                          |
+| **Routing**         | React Router v7 (`^7.18.1`)                                |
+| **Styling**         | Tailwind CSS v4 (`4.1.17`)                                 |
 | **Animations & UI** | Framer Motion (`^12.38.0`), GSAP (`^3.15.0`), Lucide React |
-| **Media & Audio** | HLS.js (`^1.6.15`), Web Audio API, OGL WebGL |
-| **Documents** | PDF.js / React-PDF (`^10.4.1`) |
-| **Hosting & Infra** | Firebase Hosting, Cloudflare CDN Edge |
+| **Media & Audio**   | HLS.js (`^1.6.15`), Web Audio API, OGL WebGL               |
+| **Documents**       | PDF.js / React-PDF (`^10.4.1`)                             |
+| **Hosting & Infra** | Firebase Hosting, Cloudflare CDN Edge                      |
 
 ---
 
@@ -124,24 +124,30 @@ portfolio/
 ## ⚡ Development & Deployment
 
 ### Local Development
+
 ```bash
 npm install
 npm run dev
 ```
 
 ### Production Build
+
 Runs Vite client build, builds SSR bundle, and executes static pre-rendering for all routes:
+
 ```bash
 npm run build
 ```
 
 ### Local Production Preview
+
 ```bash
 npm run preview
 ```
 
 ### Deployment
+
 Deploy pre-rendered build output to Firebase Hosting:
+
 ```bash
 npx firebase deploy --only hosting
 ```

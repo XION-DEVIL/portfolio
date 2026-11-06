@@ -565,23 +565,23 @@ export interface StatItem {
 export const STATS: StatItem[] = [
   {
     value: "🏆 #1",
-    label: "Overall Hackathon Champion",
-    description: "AIxcelerate 2026 Multidisciplinary AI",
+    label: "AI Hackathon Champion",
+    description: "NelSync AI · AIxcelerate 2026 Grand Champion",
   },
   {
     value: "3+",
-    label: "Technical Symposium Wins",
-    description: "BOOTFEST Quiz, CTF & Logic Hunt",
+    label: "Symposium Victories",
+    description: "BOOTFEST Quiz, CTF & Achievers' Day",
   },
   {
     value: "2+",
     label: "Times Hackathon Winner",
-    description: "NelSync AI Agriculture & Smart Procurement",
+    description: "AI Agricultural Supply Chain & Real-Time ML",
   },
   {
-    value: "4+",
-    label: "Client Technical Audits",
-    description: "Enterprise SEO, PageSpeed & Architecture",
+    value: "Lead",
+    label: "Symposium Event Organizer",
+    description: "Treasure Titans · AION 2K26 AI Department",
   },
 ];
 

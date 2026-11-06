@@ -39,7 +39,7 @@ export default defineConfig({
   },
   plugins: [
     tanstackStart(
-      isGithubPages
+      isGithubPages || process.env["PRERENDER"] !== "false"
         ? {
             server: { entry: "server" },
             router: { basepath: pagesBase },

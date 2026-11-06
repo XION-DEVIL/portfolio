@@ -26,18 +26,18 @@ Browser Request → Fast Static HTML Load → React 19 Client Hydration
 
 ## 2. Core Technology Stack
 
-| Component Layer | Technology | Version | Architectural Role |
-| :--- | :--- | :--- | :--- |
-| **UI Framework** | React | `19.2.3` | Component-based view tree (`src/App.tsx`, `src/pages/`) |
-| **Language** | TypeScript | `5.9.3` | Type safety and contract enforcement (`tsconfig.json`) |
-| **Build Tooling** | Vite | `7.2.4` | Client bundle compilation & SSR module building (`vite.config.ts`) |
-| **Routing** | React Router | `^7.18.1` | Client MemoryRouter & SSR static routing (`src/App.tsx`) |
-| **Styling** | Tailwind CSS | `4.1.17` | Utility-first styling (`@tailwindcss/vite` 4.1.17) |
-| **Animations** | Framer Motion & GSAP | `^12.38.0` / `^3.15.0` | Declarative page transitions and micro-interactions |
-| **Media & WebGL** | HLS.js & OGL | `^1.6.15` / `^1.0.11` | Video stream handling (`HlsVideo.tsx`) & WebGL background graphics |
-| **Document Viewer** | React-PDF | `^10.4.1` | Lazy-loaded in-app PDF resume viewer modal (`ResumeViewer.tsx`) |
-| **SEO Head** | React Helmet Async | `^3.0.0` | Dynamic `<head>` metadata management (`SEOHead.tsx`) |
-| **Website Hosting** | Firebase Hosting | CDN Edge | Global static hosting and security headers (`firebase.json`) |
+| Component Layer     | Technology           | Version                | Architectural Role                                                 |
+| :------------------ | :------------------- | :--------------------- | :----------------------------------------------------------------- |
+| **UI Framework**    | React                | `19.2.3`               | Component-based view tree (`src/App.tsx`, `src/pages/`)            |
+| **Language**        | TypeScript           | `5.9.3`                | Type safety and contract enforcement (`tsconfig.json`)             |
+| **Build Tooling**   | Vite                 | `7.2.4`                | Client bundle compilation & SSR module building (`vite.config.ts`) |
+| **Routing**         | React Router         | `^7.18.1`              | Client MemoryRouter & SSR static routing (`src/App.tsx`)           |
+| **Styling**         | Tailwind CSS         | `4.1.17`               | Utility-first styling (`@tailwindcss/vite` 4.1.17)                 |
+| **Animations**      | Framer Motion & GSAP | `^12.38.0` / `^3.15.0` | Declarative page transitions and micro-interactions                |
+| **Media & WebGL**   | HLS.js & OGL         | `^1.6.15` / `^1.0.11`  | Video stream handling (`HlsVideo.tsx`) & WebGL background graphics |
+| **Document Viewer** | React-PDF            | `^10.4.1`              | Lazy-loaded in-app PDF resume viewer modal (`ResumeViewer.tsx`)    |
+| **SEO Head**        | React Helmet Async   | `^3.0.0`               | Dynamic `<head>` metadata management (`SEOHead.tsx`)               |
+| **Website Hosting** | Firebase Hosting     | CDN Edge               | Global static hosting and security headers (`firebase.json`)       |
 
 ---
 

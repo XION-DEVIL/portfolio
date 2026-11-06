@@ -56,27 +56,47 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [enableInteractiveEffects, setEnableInteractiveEffects] = useState(false);
 
+  // Performance & CWV: Only load heavy 3D WebGL Lanyard and ParticleText on desktop after actual user interaction
   useEffect(() => {
-    setIsMounted(true);
+    if (typeof window === "undefined") return;
+    const isDesktopWithHover = window.matchMedia(
+      "(min-width: 769px) and (hover: hover) and (pointer: fine)",
+    ).matches;
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!isDesktopWithHover || isReducedMotion) return;
+
+    const onUserInteraction = () => {
+      window.removeEventListener("pointermove", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+      setEnableInteractiveEffects(true);
+    };
+
+    window.addEventListener("pointermove", onUserInteraction, { once: true, passive: true });
+    window.addEventListener("scroll", onUserInteraction, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener("pointermove", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+    };
   }, []);
 
+  // Performance & CWV: Ambient botanical video is deferred until user interaction to preserve LCP & network bandwidth
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const connection = (
       navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
     ).connection;
     const constrainedConnection =
-      connection?.saveData || /2g/.test(connection?.effectiveType || "");
+      connection?.saveData || /(2g|3g)/.test(connection?.effectiveType || "");
 
-    if (prefersReducedMotion || constrainedConnection) return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (prefersReducedMotion || constrainedConnection || isMobile) return;
 
-    // Load botanical ambient video automatically after mount, or immediately on interaction
-    const timer = window.setTimeout(() => setShouldLoadVideo(true), 250);
     const events = ["scroll", "pointerdown", "touchstart", "keydown"] as const;
     const startVideo = () => {
-      window.clearTimeout(timer);
       events.forEach((e) => window.removeEventListener(e, startVideo));
       setShouldLoadVideo(true);
     };
@@ -84,7 +104,6 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     events.forEach((e) => window.addEventListener(e, startVideo, { once: true, passive: true }));
 
     return () => {
-      window.clearTimeout(timer);
       events.forEach((e) => window.removeEventListener(e, startVideo));
     };
   }, []);
@@ -109,8 +128,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             width={960}
             height={540}
             fetchPriority="high"
-            decoding="async"
-            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
+            decoding="sync"
+            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain ${
               isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-40"
             }`}
             aria-hidden="true"
@@ -125,7 +144,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               loop
               muted
               playsInline
-              preload="auto"
+              preload="none"
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
@@ -162,7 +181,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 style={{ fontStyle: "normal" }}
               >
                 <span className="sr-only">Sahaya Savari F</span>
-                {isMounted ? (
+                {enableInteractiveEffects ? (
                   <Suspense fallback={<StaticHeroName />}>
                     <HeroName />
                   </Suspense>
@@ -174,7 +193,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
               <div className="relative order-1 md:order-2 shrink-0 group md:mr-24 lg:mr-32">
                 <div className="relative w-[200px] h-[290px] sm:w-[230px] sm:h-[330px] lg:w-[260px] lg:h-[370px]">
-                  {isMounted ? (
+                  {enableInteractiveEffects ? (
                     <div className="absolute -inset-x-[70px] -top-6 -bottom-6 sm:-inset-x-[80px] md:-inset-x-[160px] lg:-inset-x-[220px]">
                       <Suspense fallback={<StaticBadgeCard />}>
                         <HeroBadge />
@@ -208,7 +227,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                   staggerDuration={0.025}
                   splitLevelClassName="overflow-hidden pb-0.5"
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                  rotationInterval={2500}
+                  rotationInterval={4000}
                 />
               </div>
             </div>

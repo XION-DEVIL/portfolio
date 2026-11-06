@@ -167,11 +167,28 @@ function usePixelCanvas({
   };
 
   useEffect(() => {
-    init();
-    const ro = new ResizeObserver(init);
-    if (containerRef.current) ro.observe(containerRef.current);
+    if (typeof window === "undefined") return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isMobile || isReducedMotion) return;
+
+    let initialized = false;
+    const safeInit = () => {
+      if (!initialized) {
+        initialized = true;
+        init();
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("pointerenter", safeInit, { once: true, passive: true });
+    }
+
     return () => {
-      ro.disconnect();
+      if (container) {
+        container.removeEventListener("pointerenter", safeInit);
+      }
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

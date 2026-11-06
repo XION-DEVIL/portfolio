@@ -3,7 +3,7 @@
 > **Document Type:** Master Migration Runbook, Execution Log, & Technical Audit Record  
 > **Repository:** `sahaya-savari/portfolio` (`D:\GITHUB\portfolio`)  
 > **Status:** Migration Technically Complete — Monitoring Search Index Transition  
-> **Last Updated:** 2026-08-26  
+> **Last Updated:** 2026-08-26
 
 ---
 
@@ -13,15 +13,15 @@ This document serves as the permanent chronological runbook and verification rec
 
 ### Official Identity Matrix
 
-| Entity | Current Canonical Production Identity | Legacy / Historical Identity | Notes / Status |
-| :--- | :--- | :--- | :--- |
-| **Primary Portfolio** | `https://sahayasavari.dev/` | Retired domain | Intended canonical production apex domain |
-| **Technical Blog** | `https://blog.sahayasavari.dev/` | Retired domain | Intended canonical blog subdomain |
-| **Primary Contact Email** | `contact@sahayasavari.dev` | Retired address | Routed via Cloudflare Email Routing to owner mailbox |
-| **Firebase Project** | `sahaya-savari-portfolio` | `my-portfolio-fss` (historical) | Firebase Hosting project backing production CDN |
-| **Firebase Hosting Target** | `sahayasavari-dev` | `sahayasavari` (historical) | Configured in `firebase.json` & `.firebaserc` |
-| **Firebase Default Domains** | `https://sahaya-savari-portfolio.web.app/`<br>`https://sahaya-savari-portfolio.firebaseapp.com/` | Historical default domain | Automatically provided by Firebase; default CDN hostnames |
-| **Owner / Person Entity** | **Sahaya Savari F** (alt: Sahaya Savari) | — | Person schema anchor: `https://sahayasavari.dev/#person` |
+| Entity                       | Current Canonical Production Identity                                                            | Legacy / Historical Identity    | Notes / Status                                            |
+| :--------------------------- | :----------------------------------------------------------------------------------------------- | :------------------------------ | :-------------------------------------------------------- |
+| **Primary Portfolio**        | `https://sahayasavari.dev/`                                                                      | Retired domain                  | Intended canonical production apex domain                 |
+| **Technical Blog**           | `https://blog.sahayasavari.dev/`                                                                 | Retired domain                  | Intended canonical blog subdomain                         |
+| **Primary Contact Email**    | `contact@sahayasavari.dev`                                                                       | Retired address                 | Routed via Cloudflare Email Routing to owner mailbox      |
+| **Firebase Project**         | `sahaya-savari-portfolio`                                                                        | `my-portfolio-fss` (historical) | Firebase Hosting project backing production CDN           |
+| **Firebase Hosting Target**  | `sahayasavari-dev`                                                                               | `sahayasavari` (historical)     | Configured in `firebase.json` & `.firebaserc`             |
+| **Firebase Default Domains** | `https://sahaya-savari-portfolio.web.app/`<br>`https://sahaya-savari-portfolio.firebaseapp.com/` | Historical default domain       | Automatically provided by Firebase; default CDN hostnames |
+| **Owner / Person Entity**    | **Sahaya Savari F** (alt: Sahaya Savari)                                                         | —                               | Person schema anchor: `https://sahayasavari.dev/#person`  |
 
 > [!IMPORTANT]
 > The `.dev` domain is now the single, authoritative canonical production identity for all web, search, structured-data, and communication channels. The legacy `.me` domain is retired from active production references.
@@ -55,18 +55,18 @@ All codebase and metadata changes were performed systematically against active f
 
 ### Modified Categories & Repository File Mappings
 
-| Category | Specific Files Modified in Repository | Changes Applied |
-| :--- | :--- | :--- |
-| **Site Constants & SEO Core** | `src/seo.ts` | Updated `SITE_URL` to `https://sahayasavari.dev`, Person `@id`, WebSite `@id`, ProfilePage `@id`, contact email, and `sameAs` blog link to `https://blog.sahayasavari.dev`. |
-| **SSR Pre-renderer** | `scripts/prerender-seo.js`<br>`src/entry-server.tsx` | Updated site constants, pre-rendered route generator, and automated sitemap builder to emit `https://sahayasavari.dev`. |
-| **Host Enforcement & Head HTML** | `index.html` | Updated canonical baseline, Open Graph URLs, Twitter tags, manifest link, and pre-rendered head injection target. |
-| **XML Sitemap** | `public/sitemap.xml` | Updated all 9 `<loc>` entries to `https://sahayasavari.dev/...`. |
-| **Robots Policy** | `public/robots.txt` | Updated `Sitemap` directive to `https://sahayasavari.dev/sitemap.xml`. |
-| **Machine-Readable LLM Context** | `public/llms.txt`<br>`public/llms-full.txt` | Updated portfolio URLs, blog URLs, contact email, and project links. |
-| **Application UI & Data** | `src/data.ts`<br>`src/data/caseStudies.ts` | Updated project live links, repository URLs, and technical article references to `.dev`. |
-| **Component & Page Views** | `src/pages/BlogPage.tsx`<br>`src/pages/AskSahayaAI.tsx`<br>`src/pages/RecruiterMode.tsx`<br>`src/sections/ContactSection.tsx`<br>`src/components/CommandPalette.tsx` | Updated blog external links, contact email `mailto:` triggers, copy-to-clipboard actions, and deep links. |
-| **Firebase Infrastructure** | `firebase.json`<br>`.firebaserc` | Updated target to `sahayasavari-dev`, project to `sahaya-savari-portfolio`, CSP directives, and cache headers. |
-| **Project Documentation** | `README.md`<br>`PROJECT.md`<br>`AI_PROJECT_CONTEXT.md`<br>`ARCHITECTURE.md`<br>`SECURITY.md`<br>`CONTRIBUTING.md`<br>`CHANGELOG.md` | Synchronized all architectural references, identity baselines, contact information, and changelogs. |
+| Category                         | Specific Files Modified in Repository                                                                                                                                | Changes Applied                                                                                                                                                             |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Site Constants & SEO Core**    | `src/seo.ts`                                                                                                                                                         | Updated `SITE_URL` to `https://sahayasavari.dev`, Person `@id`, WebSite `@id`, ProfilePage `@id`, contact email, and `sameAs` blog link to `https://blog.sahayasavari.dev`. |
+| **SSR Pre-renderer**             | `scripts/prerender-seo.js`<br>`src/entry-server.tsx`                                                                                                                 | Updated site constants, pre-rendered route generator, and automated sitemap builder to emit `https://sahayasavari.dev`.                                                     |
+| **Host Enforcement & Head HTML** | `index.html`                                                                                                                                                         | Updated canonical baseline, Open Graph URLs, Twitter tags, manifest link, and pre-rendered head injection target.                                                           |
+| **XML Sitemap**                  | `public/sitemap.xml`                                                                                                                                                 | Updated all 9 `<loc>` entries to `https://sahayasavari.dev/...`.                                                                                                            |
+| **Robots Policy**                | `public/robots.txt`                                                                                                                                                  | Updated `Sitemap` directive to `https://sahayasavari.dev/sitemap.xml`.                                                                                                      |
+| **Machine-Readable LLM Context** | `public/llms.txt`<br>`public/llms-full.txt`                                                                                                                          | Updated portfolio URLs, blog URLs, contact email, and project links.                                                                                                        |
+| **Application UI & Data**        | `src/data.ts`<br>`src/data/caseStudies.ts`                                                                                                                           | Updated project live links, repository URLs, and technical article references to `.dev`.                                                                                    |
+| **Component & Page Views**       | `src/pages/BlogPage.tsx`<br>`src/pages/AskSahayaAI.tsx`<br>`src/pages/RecruiterMode.tsx`<br>`src/sections/ContactSection.tsx`<br>`src/components/CommandPalette.tsx` | Updated blog external links, contact email `mailto:` triggers, copy-to-clipboard actions, and deep links.                                                                   |
+| **Firebase Infrastructure**      | `firebase.json`<br>`.firebaserc`                                                                                                                                     | Updated target to `sahayasavari-dev`, project to `sahaya-savari-portfolio`, CSP directives, and cache headers.                                                              |
+| **Project Documentation**        | `README.md`<br>`PROJECT.md`<br>`AI_PROJECT_CONTEXT.md`<br>`ARCHITECTURE.md`<br>`SECURITY.md`<br>`CONTRIBUTING.md`<br>`CHANGELOG.md`                                  | Synchronized all architectural references, identity baselines, contact information, and changelogs.                                                                         |
 
 ### Final Verified State of Codebase
 
@@ -81,16 +81,16 @@ All codebase and metadata changes were performed systematically against active f
 
 The portfolio serves exactly **9 active canonical routes**.
 
-| Route Path | Component | Prerender Target File | Canonical URL | Indexing Status |
-| :--- | :--- | :--- | :--- | :--- |
-| `/` | `HomePage.tsx` | `dist/index.html` | `https://sahayasavari.dev` | `index, follow` |
-| `/projects` | `ProjectsPage.tsx` | `dist/projects/index.html` | `https://sahayasavari.dev/projects` | `index, follow` |
-| `/resume` | `ResumePage.tsx` | `dist/resume/index.html` | `https://sahayasavari.dev/resume` | `index, follow` |
-| `/blog` | `BlogPage.tsx` | `dist/blog/index.html` | `https://sahayasavari.dev/blog` | `index, follow` |
-| `/recruiter` | `RecruiterMode.tsx` | `dist/recruiter/index.html` | `https://sahayasavari.dev/recruiter` | `index, follow` |
-| `/ai` | `AskSahayaAI.tsx` | `dist/ai/index.html` | `https://sahayasavari.dev/ai` | `index, follow` |
-| `/projects/prepmind-ai` | `ProjectDetails.tsx` | `dist/projects/prepmind-ai/index.html` | `https://sahayasavari.dev/projects/prepmind-ai` | `index, follow` |
-| `/projects/daily-spark` | `ProjectDetails.tsx` | `dist/projects/daily-spark/index.html` | `https://sahayasavari.dev/projects/daily-spark` | `index, follow` |
+| Route Path                    | Component            | Prerender Target File                        | Canonical URL                                         | Indexing Status |
+| :---------------------------- | :------------------- | :------------------------------------------- | :---------------------------------------------------- | :-------------- |
+| `/`                           | `HomePage.tsx`       | `dist/index.html`                            | `https://sahayasavari.dev`                            | `index, follow` |
+| `/projects`                   | `ProjectsPage.tsx`   | `dist/projects/index.html`                   | `https://sahayasavari.dev/projects`                   | `index, follow` |
+| `/resume`                     | `ResumePage.tsx`     | `dist/resume/index.html`                     | `https://sahayasavari.dev/resume`                     | `index, follow` |
+| `/blog`                       | `BlogPage.tsx`       | `dist/blog/index.html`                       | `https://sahayasavari.dev/blog`                       | `index, follow` |
+| `/recruiter`                  | `RecruiterMode.tsx`  | `dist/recruiter/index.html`                  | `https://sahayasavari.dev/recruiter`                  | `index, follow` |
+| `/ai`                         | `AskSahayaAI.tsx`    | `dist/ai/index.html`                         | `https://sahayasavari.dev/ai`                         | `index, follow` |
+| `/projects/prepmind-ai`       | `ProjectDetails.tsx` | `dist/projects/prepmind-ai/index.html`       | `https://sahayasavari.dev/projects/prepmind-ai`       | `index, follow` |
+| `/projects/daily-spark`       | `ProjectDetails.tsx` | `dist/projects/daily-spark/index.html`       | `https://sahayasavari.dev/projects/daily-spark`       | `index, follow` |
 | `/projects/portfolio-website` | `ProjectDetails.tsx` | `dist/projects/portfolio-website/index.html` | `https://sahayasavari.dev/projects/portfolio-website` | `index, follow` |
 
 > [!WARNING]
@@ -119,6 +119,7 @@ The technical engineering blog was migrated independently to align with the new 
 All changes across the migration were tracked in version control with clean commits and verified working tree states.
 
 ### Affected Repositories
+
 1. `sahaya-savari/portfolio` (Primary portfolio repository)
 2. `sahaya-savari/blog` (Technical blog repository)
 
@@ -144,6 +145,7 @@ b4c0e2d feat: redesign hero floating portrait and fix role text
 ## 7. Firebase Hosting Configuration & Domain Evaluation
 
 ### Configuration Overview
+
 - **Firebase Project ID:** `sahaya-savari-portfolio`
 - **Hosting Target:** `sahayasavari-dev`
 - **Production Custom Domain:** `https://sahayasavari.dev/`
@@ -152,7 +154,9 @@ b4c0e2d feat: redesign hero floating portrait and fix role text
   - `https://sahaya-savari-portfolio.firebaseapp.com/`
 
 ### Evaluation of Default Firebase Hostnames
+
 The default Firebase hostnames (`*.web.app` and `*.firebaseapp.com`) return `HTTP 200 OK` because Firebase Hosting automatically provisions and serves them for every project.
+
 - **Important Technical Conclusion:** The availability of `*.web.app` / `*.firebaseapp.com` is standard Firebase behavior and is **NOT** a migration failure or misconfiguration.
 - **Verified Behavior:** Live testing confirmed that when accessed via the default Firebase hostnames, the served pre-rendered HTML contains:
   - `<link rel="canonical" href="https://sahayasavari.dev/...">`
@@ -179,6 +183,7 @@ The default Firebase hostnames (`*.web.app` and `*.firebaseapp.com`) return `HTT
 ## 9. Google Search Console Migration & Index Transition
 
 ### Actions Executed
+
 1. **Property Verification:** `https://sahayasavari.dev` property added and verified in Google Search Console.
 2. **Sitemap Submission:** Submitted `https://sahayasavari.dev/sitemap.xml` (9 discovered canonical URLs).
 3. **Legacy `.me` Property Handling:** Temporary removal request submitted in Google Search Console for the decommissioned `.me` property to expedite de-indexing.
@@ -186,6 +191,7 @@ The default Firebase hostnames (`*.web.app` and `*.firebaseapp.com`) return `HTT
 5. **Operational Guidance:** The temporary removal status represents Google's internal queue processing. It must be allowed to process naturally and should **not** be repeatedly re-submitted or altered.
 
 ### Technical vs. Indexing Reality
+
 - **Technical Migration:** **100% COMPLETE**. All code, DNS, CDN, schemas, and indexing files are fully deployed and live.
 - **Google Index Migration:** **ONGOING**. Google crawls on its own schedule. Legacy `.me` URLs in search results and search snippets will transition to `.dev` as Google recrawls, updates its index cache, and processes the change of address signals. Instant de-indexing does not exist.
 
@@ -194,11 +200,14 @@ The default Firebase hostnames (`*.web.app` and `*.firebaseapp.com`) return `HTT
 ## 10. Search Visibility, Brand Identity & Favicon Presentation
 
 ### Brand Entity Context
+
 When querying brand terms such as `"Sahaya Savari"` or `"Sahaya Savari F"`:
+
 - Old `.me` cached snippets may temporarily appear in search listings until Google completes its index refresh.
 - The `.dev` domain is structured with explicit Schema.org `Person` entity signals (`name`, `alternateName`, `knowsAbout`, `hasOccupation`, `sameAs`) to establish authority.
 
 ### Favicon & Rich Snippet Clarification
+
 - The site provides valid, standards-compliant favicons (`favicon.png`, `manifest.json`, standard apple-touch icons, SVG icons).
 - **Crucial SEO Fact:** A technically valid favicon implementation does **not** guarantee instant display in Google search results. Google's favicon user-agent (`Google Favicon`) crawls site icons independently, and search presentation is subject to Google's internal cache refresh timelines.
 
@@ -208,22 +217,22 @@ When querying brand terms such as `"Sahaya Savari"` or `"Sahaya Savari F"`:
 
 ### Audit Findings Matrix
 
-| Audit Item | Status | Verified Technical Details |
-| :--- | :--- | :--- |
-| **Canonical Uniformity** | **COMPLETE** | Strictly points to `https://sahayasavari.dev` across all 9 pre-rendered routes. |
-| **XML Sitemap** | **COMPLETE** | Exactly 9 routes listed; valid XML; zero legacy or Firebase URLs. |
-| **Robots.txt** | **COMPLETE** | Valid format; sitemap URL specified; search bots allowed; AI scrapers blocked. |
-| **Metadata Consistency** | **COMPLETE** | `<title>`, `<meta description>`, Open Graph, Twitter Cards synchronized. |
-| **JSON-LD Structured Data** | **COMPLETE** | Person, WebSite, ProfilePage, TechArticle, SoftwareApplication valid and interlinked. |
-| **Internal Hyperlinks** | **COMPLETE** | All navigation and internal links use relative paths or `.dev` canonicals. |
-| **HTTPS Enforcement** | **COMPLETE** | HSTS enabled (`max-age=31536000; includeSubDomains`); HTTPS active across edge. |
-| **Security Headers** | **COMPLETE** | CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy. |
-| **Favicon Implementation** | **COMPLETE** | Valid favicon links declared in `<head>` and `manifest.json`. |
-| **Route Indexability** | **COMPLETE** | No accidental `noindex`, no disallow for standard search bots. |
-| **Zero Stale Links in HTML** | **COMPLETE** | No retired domain occurrences in pre-rendered production output. |
-| **No Firebase URLs in SEO** | **COMPLETE** | No `.web.app` or `.firebaseapp.com` canonicals or metadata. |
-| **SSR Pre-rendering** | **COMPLETE** | Full static HTML pre-rendered for all 9 routes. |
-| **Google Search Recrawl** | **MONITOR** | Googlebot crawling and index cache refresh cycle underway. |
+| Audit Item                     | Status         | Verified Technical Details                                                               |
+| :----------------------------- | :------------- | :--------------------------------------------------------------------------------------- |
+| **Canonical Uniformity**       | **COMPLETE**   | Strictly points to `https://sahayasavari.dev` across all 9 pre-rendered routes.          |
+| **XML Sitemap**                | **COMPLETE**   | Exactly 9 routes listed; valid XML; zero legacy or Firebase URLs.                        |
+| **Robots.txt**                 | **COMPLETE**   | Valid format; sitemap URL specified; search bots allowed; AI scrapers blocked.           |
+| **Metadata Consistency**       | **COMPLETE**   | `<title>`, `<meta description>`, Open Graph, Twitter Cards synchronized.                 |
+| **JSON-LD Structured Data**    | **COMPLETE**   | Person, WebSite, ProfilePage, TechArticle, SoftwareApplication valid and interlinked.    |
+| **Internal Hyperlinks**        | **COMPLETE**   | All navigation and internal links use relative paths or `.dev` canonicals.               |
+| **HTTPS Enforcement**          | **COMPLETE**   | HSTS enabled (`max-age=31536000; includeSubDomains`); HTTPS active across edge.          |
+| **Security Headers**           | **COMPLETE**   | CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy.       |
+| **Favicon Implementation**     | **COMPLETE**   | Valid favicon links declared in `<head>` and `manifest.json`.                            |
+| **Route Indexability**         | **COMPLETE**   | No accidental `noindex`, no disallow for standard search bots.                           |
+| **Zero Stale Links in HTML**   | **COMPLETE**   | No retired domain occurrences in pre-rendered production output.                         |
+| **No Firebase URLs in SEO**    | **COMPLETE**   | No `.web.app` or `.firebaseapp.com` canonicals or metadata.                              |
+| **SSR Pre-rendering**          | **COMPLETE**   | Full static HTML pre-rendered for all 9 routes.                                          |
+| **Google Search Recrawl**      | **MONITOR**    | Googlebot crawling and index cache refresh cycle underway.                               |
 | **Core Web Vitals Field Data** | **UNVERIFIED** | Chrome User Experience Report (CrUX) field data requires real-user traffic accumulation. |
 
 ---
@@ -248,25 +257,27 @@ The portfolio architecture was optimized for AI crawlers, generative engine cita
 An automated verification audit was conducted across all 3 available hostnames for all 9 active routes.
 
 ### Tested Hostnames
+
 1. `https://sahayasavari.dev` (Production Custom Domain)
 2. `https://sahaya-savari-portfolio.web.app` (Firebase Default Domain 1)
 3. `https://sahaya-savari-portfolio.firebaseapp.com` (Firebase Default Domain 2)
 
 ### 27-Point Verification Results
 
-| Route Path | sahayasavari.dev (Custom) | .web.app (Firebase) | .firebaseapp.com (Firebase) | Canonical Target Observed |
-| :--- | :---: | :---: | :---: | :--- |
-| `/` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev` |
-| `/projects` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/projects` |
-| `/resume` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/resume` |
-| `/blog` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/blog` |
-| `/recruiter` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/recruiter` |
-| `/ai` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/ai` |
-| `/projects/prepmind-ai` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/projects/prepmind-ai` |
-| `/projects/daily-spark` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/projects/daily-spark` |
-| `/projects/portfolio-website` | `200 OK` | `200 OK` | `200 OK` | `https://sahayasavari.dev/projects/portfolio-website` |
+| Route Path                    | sahayasavari.dev (Custom) | .web.app (Firebase) | .firebaseapp.com (Firebase) | Canonical Target Observed                             |
+| :---------------------------- | :-----------------------: | :-----------------: | :-------------------------: | :---------------------------------------------------- |
+| `/`                           |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev`                            |
+| `/projects`                   |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/projects`                   |
+| `/resume`                     |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/resume`                     |
+| `/blog`                       |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/blog`                       |
+| `/recruiter`                  |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/recruiter`                  |
+| `/ai`                         |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/ai`                         |
+| `/projects/prepmind-ai`       |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/projects/prepmind-ai`       |
+| `/projects/daily-spark`       |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/projects/daily-spark`       |
+| `/projects/portfolio-website` |         `200 OK`          |      `200 OK`       |          `200 OK`           | `https://sahayasavari.dev/projects/portfolio-website` |
 
 ### Audit Summary
+
 - **Success Rate:** **27/27 (100%)** returned `HTTP 200 OK`.
 - **Canonical Consistency:** All 27 responses served canonical tags pointing to `https://sahayasavari.dev/...`.
 - **Metadata Alignment:** Open Graph, Twitter URLs, and JSON-LD uniformly resolved to `https://sahayasavari.dev/...`.
@@ -359,6 +370,7 @@ CORE WEB VITALS:              UNVERIFIED UNTIL SUFFICIENT FIELD DATA EXISTS
 For historical auditability, the original execution gates and milestones from the migration runbook are recorded below:
 
 ### Chronological Milestones
+
 1. **Phase 1 (Baseline & Repository Safety):** Clean working tree established on `main`; baseline production endpoints audited.
 2. **Phase 2 (DNS & Firebase Target Connection):** Configured apex A record (`199.36.158.100`) and TXT record for Firebase verification; attached `sahayasavari-dev` target.
 3. **Phase 3 (Email Routing Cutover):** Cloudflare Email Routing for `contact@sahayasavari.dev` verified to forward to destination inbox before code reference updates.

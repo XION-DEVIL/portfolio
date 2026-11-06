@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, memo, lazy, Suspense } from "react";
 import { Database, Brain, Code, Terminal } from "lucide-react";
 import SkillAccordion from "../components/ui/SkillAccordion";
 import SectionBadge from "../components/ui/SectionBadge";
@@ -10,13 +10,34 @@ const Galaxy = lazy(() => import("../components/ui/Galaxy/Galaxy"));
 const SkillsSection = memo(() => {
   const [activePillar, setActivePillar] = useState<"Data" | "AI">("Data");
   const [isMounted, setIsMounted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    setIsMounted(true);
+    if (typeof window === "undefined") return;
+    const isDesktop = window.matchMedia("(min-width: 1024px) and (hover: hover)").matches;
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!isDesktop || isReducedMotion) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsMounted(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "250px" },
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section aria-label="Skills and capabilities" className="py-16 px-6 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      aria-label="Skills and capabilities"
+      className="py-16 px-6 relative overflow-hidden"
+    >
       <div className="absolute inset-0 z-0 pointer-events-none">
         {isMounted && (
           <Suspense fallback={null}>

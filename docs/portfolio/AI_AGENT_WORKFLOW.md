@@ -79,6 +79,7 @@ Before taking any action or editing any file:
 
 > [!IMPORTANT]  
 > **Working Tree Safety**: Never assume the repository working tree is clean. If existing uncommitted user changes are detected:
+>
 > - Do NOT overwrite them.
 > - Do NOT reset them (`git reset --hard` / `git checkout .`).
 > - Do NOT stash them automatically (`git stash`).
@@ -89,13 +90,14 @@ Before taking any action or editing any file:
 ## 2. Understand the User Request
 
 Before modifying any source files, analyze the request to determine:
+
 - What exact problem or capability is requested?
 - Which files and components are affected?
 - Is this a bug fix, feature addition, optimization, documentation update, SEO adjustment, infrastructure task, or deployment?
 - Will this change affect production behavior or endpoints?
 - Does the request touch external systems (Cloudflare, Namecheap, Firebase Console, GitHub)?
 
-*Do not implement a broader change than what was requested.*
+_Do not implement a broader change than what was requested._
 
 ---
 
@@ -108,25 +110,27 @@ Always inspect authoritative source files in the repository before making code c
 - **Hosting / Security Task**: Inspect `firebase.json` and `.firebaserc`.
 - **Build / Performance Task**: Inspect `vite.config.ts`, `package.json`, and manual chunking definitions.
 
-*Never modify code based solely on old conversation logs or speculative assumptions.*
+_Never modify code based solely on old conversation logs or speculative assumptions._
 
 ---
 
 ## 4. Distinguish Facts from Assumptions
 
 Categorize every statement and claim using these 4 strict levels:
+
 1. **VERIFIED FROM REPOSITORY**: Confirmed by inspecting source code, configuration files, or local build outputs.
 2. **VERIFIED FROM LIVE PRODUCTION**: Confirmed by performing live HTTP requests to `https://sahayasavari.dev/`.
 3. **VERIFIED FROM USER-PROVIDED INFORMATION**: Provided directly by the website owner.
 4. **NOT INDEPENDENTLY VERIFIED — MANAGED OUTSIDE THE REPOSITORY**: External portal configurations (Namecheap registrar dashboard, Cloudflare SSL/TLS dashboard settings, Search Console / Bing Webmaster Tools portals).
 
-*Never present an inference or guess as a verified fact.*
+_Never present an inference or guess as a verified fact._
 
 ---
 
 ## 5. Check `AI_PROJECT_CONTEXT.md` Non-Negotiable Constraints
 
 Before making architectural changes, verify that the requested change does NOT violate any documented non-negotiable decision in `AI_PROJECT_CONTEXT.md`:
+
 - Do NOT change the website hosting provider (Firebase Hosting).
 - Do NOT change domain DNS records or nameservers without explicit approval.
 - Do NOT disable Cloudflare DNS proxying or edge security settings.
@@ -136,13 +140,14 @@ Before making architectural changes, verify that the requested change does NOT v
 - Do NOT introduce duplicate Schema.org JSON-LD nodes.
 - Do NOT make speculative SEO changes.
 
-*If a requested change conflicts with a documented decision, STOP and ask the user for confirmation.*
+_If a requested change conflicts with a documented decision, STOP and ask the user for confirmation._
 
 ---
 
 ## 6. Create an Implementation Plan
 
 For non-trivial tasks, create an implementation plan before making edits:
+
 - **Problem**: What issue is being resolved?
 - **Evidence**: What log, error trace, or file view proves it?
 - **Files Affected**: Which exact files will be modified?
@@ -155,13 +160,14 @@ For non-trivial tasks, create an implementation plan before making edits:
 ## 7. Ask Clarification Questions When Required
 
 Do **NOT** guess when critical information is missing. Ask the user when:
+
 - Requirements are ambiguous or underspecified.
 - Multiple valid architectural choices exist.
 - An external dashboard change is required (Cloudflare, Namecheap, Firebase Console).
 - Production DNS or hosting settings must be modified.
 - Destructive operations are proposed.
 
-*Do not ask unnecessary questions when the repository itself provides a clear, authoritative answer.*
+_Do not ask unnecessary questions when the repository itself provides a clear, authoritative answer._
 
 ---
 
@@ -177,13 +183,14 @@ Implement the minimal targeted change required to solve the problem cleanly.
   - Redesign UI elements during backend, SEO, or infrastructure tasks.
   - Rewrite working configuration files.
 
-*Preserve existing code conventions, formatting, and single-source-of-truth architectures.*
+_Preserve existing code conventions, formatting, and single-source-of-truth architectures._
 
 ---
 
 ## 9. Protect Secrets & Credentials
 
 Never hardcode, log, or commit sensitive credentials:
+
 - `.env`, `.env.local`, `.env.production`
 - API keys, access tokens, service account keys
 - Passwords, private certificates, SSH keys
@@ -204,6 +211,7 @@ npm run build
 Under the hood, `npm run build` executes `vite build && node scripts/prerender-seo.js`.
 
 Verify that:
+
 - Build exits with code `0`.
 - No compilation errors or broken imports occur.
 - Static HTML files are generated for all **9 active routes** in `dist/`.
@@ -214,6 +222,7 @@ Verify that:
 ## 11. Test the Actual Result
 
 Do not stop at "build succeeded." Test the actual feature or modification:
+
 - **SEO Changes**: Inspect generated `<title>`, `<meta description>`, `canonical`, `robots`, and JSON-LD script tags in `dist/index.html`.
 - **Routing Changes**: Verify component rendering, direct URL routing, refresh behavior, and static pre-rendering in `dist/<route>/index.html`.
 - **UI Changes**: Check desktop and mobile layout rendering, CSS styles, and browser console errors.
@@ -224,12 +233,13 @@ Do not stop at "build succeeded." Test the actual feature or modification:
 ## 12. Review Generated Build Output (`dist/`)
 
 Inspect generated files in `dist/` before deployment:
+
 - `dist/index.html`
 - `dist/<route>/index.html`
 - `dist/sitemap.xml`
 - `dist/robots.txt`
 
-*Never assume generated output is correct merely because the build tool exited without errors.*
+_Never assume generated output is correct merely because the build tool exited without errors._
 
 ---
 
@@ -251,6 +261,7 @@ Before committing changes, execute strict Git validation:
    ```
 
 Confirm that:
+
 - Only intended files are modified.
 - No secrets or credentials are staged.
 - No temporary build artifacts or scratch files are included.
@@ -263,6 +274,7 @@ Confirm that:
 Use clear, descriptive conventional commit messages:
 
 Examples:
+
 - `feat: add project case study for prep-mind`
 - `fix: resolve mobile navigation backdrop blur`
 - `fix(seo): correct canonical URL and title tag`
@@ -270,13 +282,14 @@ Examples:
 - `docs: update AI_PROJECT_CONTEXT.md architecture reference`
 - `refactor: simplify route metadata definitions`
 
-*Never use vague or meaningless commit messages like `update`, `fix`, `changes`, or `work`.*
+_Never use vague or meaningless commit messages like `update`, `fix`, `changes`, or `work`._
 
 ---
 
 ## 15. Git Push Rules
 
 Before pushing commits to remote:
+
 - Confirm current branch is `main`.
 - Confirm remote repository is `origin` (`https://github.com/sahaya-savari/portfolio.git`).
 - Verify clean working tree state.
@@ -289,29 +302,34 @@ Before pushing commits to remote:
 Deployment is **NOT** automatic for every task.
 
 ### Documentation-Only Tasks
-*Examples: Editing `README.md`, `AI_PROJECT_CONTEXT.md`, or `AI_AGENT_WORKFLOW.md`*
+
+_Examples: Editing `README.md`, `AI_PROJECT_CONTEXT.md`, or `AI_AGENT_WORKFLOW.md`_
+
 - **Action**: Commit and push to `origin/main`.
 - **Firebase Deployment**: **NOT REQUIRED**.
 
 ### Source Code / Configuration Tasks Affecting Production
-*Examples: Editing `src/`, `public/`, `firebase.json`, `vite.config.ts`*
+
+_Examples: Editing `src/`, `public/`, `firebase.json`, `vite.config.ts`_
+
 - **Action**: Build, test `dist/`, commit, push to `origin/main`, and deploy to Firebase Hosting:
   ```bash
   npx firebase deploy --only hosting
   ```
 
-*Always use the established Firebase project (`sahaya-savari-portfolio`) and target (`sahayasavari-dev`). Never initialize a new Firebase project.*
+_Always use the established Firebase project (`sahaya-savari-portfolio`) and target (`sahayasavari-dev`). Never initialize a new Firebase project._
 
 ---
 
 ## 17. Production Verification
 
 After executing a production deployment, perform live HTTP verification on production endpoints:
+
 - `https://sahayasavari.dev/` (HTTP 200, title, meta description, canonical, Person JSON-LD)
 - `https://sahayasavari.dev/robots.txt` (HTTP 200, Googlebot & Bingbot allowed)
 - `https://sahayasavari.dev/sitemap.xml` (HTTP 200, 9 active routes)
 
-*Never claim a deployment is complete until live production endpoint health has been verified.*
+_Never claim a deployment is complete until live production endpoint health has been verified._
 
 ---
 
@@ -330,6 +348,7 @@ After executing a production deployment, perform live HTTP verification on produ
 ## 19. External Infrastructure Safety Rules
 
 Respect the separation of infrastructure providers:
+
 - **Namecheap**: Domain Registrar (`sahayasavari.dev`).
 - **Firebase Hosting**: Primary Website Hosting Provider.
 - **Cloudflare**: DNS Proxy, SSL/TLS, Cloudflare Insights, Managed Robots signals, Email Routing.
@@ -342,6 +361,7 @@ Respect the separation of infrastructure providers:
 ## 20. Production Safety & Destructive Operations
 
 For high-risk or destructive operations:
+
 - Deleting production routes or project pages
 - Changing DNS records or nameservers
 - Modifying Firebase hosting targets or project IDs
@@ -366,25 +386,32 @@ Every completed task must end with a clean, structured completion report:
 # Task Completed
 
 ## What Changed
+
 - ...
 
 ## Files Changed
+
 - ...
 
 ## Build Status
+
 - PASS / FAIL / NOT REQUIRED
 
 ## Git Status
+
 - Commit: <hash>
 - Push: origin/main
 
 ## Deployment Status
+
 - Deployed / NOT REQUIRED
 
 ## Live Production Verification
+
 - PASS / FAIL / NOT REQUIRED
 
 ## Categorized Findings
+
 - FIXED: ...
 - VERIFIED: ...
 - NOT CHANGED: ...
@@ -396,6 +423,7 @@ Every completed task must end with a clean, structured completion report:
 ## 23. When to Stop
 
 Stop execution and ask the user for clarification whenever:
+
 - User intent is ambiguous or contradictory.
 - Architectural changes are required.
 - External portal changes (Cloudflare, Namecheap, Firebase Console) are needed.
@@ -407,12 +435,13 @@ Stop execution and ask the user for clarification whenever:
 ## 24. Document Maintenance
 
 Keep document roles strictly separate:
+
 - **`AI_PROJECT_CONTEXT.md`**: WHAT the project is (Architecture & Baseline Facts).
 - **`AI_AGENT_WORKFLOW.md`**: HOW AI agents work (Execution Lifecycle & SOP).
 - **`PROJECT.md`**: Technical development & system context reference.
 - **`README.md`**: Public GitHub repository documentation.
 
-*Do not merge these files into a single document.*
+_Do not merge these files into a single document._
 
 ---
 
@@ -422,6 +451,6 @@ Keep document roles strictly separate:
 > **Evidence > Assumptions.**  
 > **Minimal Targeted Edits > Unnecessary Refactoring.**  
 > **Empirical Runtime Verification > Unverified Claims.**  
-> **Explicit User Approval > Destructive Operations.**  
-> 
-> *Read `AI_PROJECT_CONTEXT.md` before acting. Inspect the repository before editing. Build before deploying. Review diff before committing. Verify live production after deployment.*
+> **Explicit User Approval > Destructive Operations.**
+>
+> _Read `AI_PROJECT_CONTEXT.md` before acting. Inspect the repository before editing. Build before deploying. Review diff before committing. Verify live production after deployment._
