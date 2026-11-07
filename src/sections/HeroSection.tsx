@@ -106,13 +106,30 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     };
   }, []);
 
-  // Ambient botanical flowers video: loads and plays automatically across all screen sizes
+  // Ambient botanical flowers video: loads on user interaction (touch, scroll, click, pointer)
+  // to ensure the instant 7KB poster image serves as the fast <1s LCP without 11MB video contention
   useEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    const connection = (
+      navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+    ).connection;
+    const constrainedConnection =
+      connection?.saveData || /(2g|3g)/.test(connection?.effectiveType || "");
 
-    setShouldLoadVideo(true);
+    if (prefersReducedMotion || constrainedConnection) return;
+
+    const events = ["scroll", "pointerdown", "touchstart", "keydown", "wheel"] as const;
+    const startVideo = () => {
+      events.forEach((e) => window.removeEventListener(e, startVideo));
+      setShouldLoadVideo(true);
+    };
+
+    events.forEach((e) => window.addEventListener(e, startVideo, { once: true, passive: true }));
+
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, startVideo));
+    };
   }, []);
 
   return (
