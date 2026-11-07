@@ -25,6 +25,24 @@ const wrapHalfTurn = (angle) => (((angle % Math.PI) + Math.PI * 1.5) % Math.PI) 
 const resolveFontSize = (value, container, fontWeight, fontFamily) => {
   if (typeof value === "number") return value;
 
+  // Fast math parser for CSS clamp(min, val, max) to avoid DOM mutation and forced reflow
+  const clampMatch =
+    typeof value === "string" &&
+    value.match(/^clamp\(\s*([\d.]+)(rem|px|vw)\s*,\s*([\d.]+)(rem|px|vw)\s*,\s*([\d.]+)(rem|px|vw)\s*\)$/i);
+  if (clampMatch && typeof window !== "undefined") {
+    const toPx = (num: string, unit: string) => {
+      const n = parseFloat(num);
+      if (unit.toLowerCase() === "px") return n;
+      if (unit.toLowerCase() === "rem") return n * 16;
+      if (unit.toLowerCase() === "vw") return (window.innerWidth * n) / 100;
+      return n;
+    };
+    const min = toPx(clampMatch[1], clampMatch[2]);
+    const val = toPx(clampMatch[3], clampMatch[4]);
+    const max = toPx(clampMatch[5], clampMatch[6]);
+    return Math.min(max, Math.max(min, val));
+  }
+
   const probe = document.createElement("span");
   probe.textContent = "M";
   probe.style.position = "absolute";
@@ -43,12 +61,14 @@ const waitForFonts = async (font) => {
   if (!("fonts" in document)) return;
 
   try {
-    await document.fonts.load(font);
+    if (document.fonts.check(font)) return;
+    await Promise.race([
+      document.fonts.load(font),
+      new Promise((resolve) => setTimeout(resolve, 60)),
+    ]);
   } catch (e) {
     void e;
   }
-
-  await document.fonts.ready;
 };
 
 const ParticleText = ({
@@ -170,15 +190,19 @@ const ParticleText = ({
     };
 
     const ensureColors = (s) => {
-      const current = window.getComputedStyle(container).color || "#000000";
+      const base = s.color;
+      const highlight = s.highlightColor;
+      const needsComputed =
+        !base || INHERIT.test(String(base).trim()) || !highlight || INHERIT.test(String(highlight).trim());
+      const current = needsComputed ? window.getComputedStyle(container).color || "#000000" : "";
       const pick = (value) => (!value || INHERIT.test(String(value).trim()) ? current : value);
-      const base = pick(s.color);
-      const highlight = pick(s.highlightColor);
-      const key = `${base}|${highlight}`;
+      const finalBase = pick(base);
+      const finalHighlight = pick(highlight);
+      const key = `${finalBase}|${finalHighlight}`;
       if (key === colorKey) return;
       colorKey = key;
-      const from = toRgb(base);
-      accent = toRgb(highlight);
+      const from = toRgb(finalBase);
+      accent = toRgb(finalHighlight);
       glowColor = `rgb(${accent.r}, ${accent.g}, ${accent.b})`;
       palette = Array.from({ length: TONES }, (_, i) => {
         const t = i / (TONES - 1);
@@ -620,7 +644,10 @@ const ParticleText = ({
         }
       }
 
-      const maxParticles = Math.max(900, Math.min(5200, Math.floor((nextWidth * nextHeight) / 90)));
+      const isMobile = nextWidth < 768;
+      const minP = isMobile ? 480 : 800;
+      const maxP = isMobile ? 1200 : 4800;
+      const maxParticles = Math.max(minP, Math.min(maxP, Math.floor((nextWidth * nextHeight) / (isMobile ? 110 : 90))));
       const stride = Math.max(1, Math.ceil(targets.length / maxParticles));
       const selected = targets.filter((_, index) => index % stride === 0);
       const intro = introPending && !reducedMotion;

@@ -29,10 +29,8 @@ const ClickSpark = ({
 
   // Evaluate performance constraints on mount
   useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isLowEnd = (navigator.hardwareConcurrency || 4) <= 4;
-    setIsDisabled(isMobile || isReducedMotion || isLowEnd);
+    setIsDisabled(isReducedMotion);
   }, []);
 
   const configRef = useRef({

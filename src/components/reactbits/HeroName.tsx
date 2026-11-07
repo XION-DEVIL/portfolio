@@ -16,11 +16,17 @@ export default function HeroName() {
       intro="gather"
       trigger="mount"
       particleSize={2}
-      density={2}
-      fontSize="clamp(2rem, 6.2vw, 6.2rem)"
+      density={3}
+      fontSize="clamp(1.8rem, 5.8vw, 5.8rem)"
       fontWeight={800}
       fontFamily="'JetBrains Mono', monospace"
-      glow
+      glow={false}
+      idleDrift={0.5}
+      pointerRepel={35}
+      repelRadius={85}
+      clickBurst={true}
+      gatherDuration={900}
+      stagger={180}
     />
   );
 }

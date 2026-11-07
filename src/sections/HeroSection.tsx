@@ -8,7 +8,7 @@ import { RainbowButton } from "../components/magicui/rainbow-button";
 
 // Static Badge Card fallback — visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
 const StaticBadgeCard = () => (
-  <div className="relative w-full h-full flex flex-col items-center justify-start pointer-events-none select-none">
+  <div className="relative w-full h-full flex flex-col items-center justify-start pointer-events-none select-none animate-portrait-float">
     {/* Hanging Lanyard Strap & Clip */}
     <div className="w-5 h-8 bg-[#18181b] border-x border-white/20 flex flex-col items-center justify-end -mb-1 z-10 shadow-md">
       <div className="w-6 h-2.5 bg-[#27272a] rounded-[2px] border border-white/30" />
@@ -35,7 +35,17 @@ const StaticBadgeCard = () => (
 const StaticHeroName = () => (
   <span
     aria-hidden="true"
-    className="text-[clamp(1.5rem,5.5vw,5.5rem)] font-heading font-bold tracking-tight text-white whitespace-nowrap inline-block drop-shadow-[0_0_25px_rgba(129,140,248,0.35)]"
+    className="text-[clamp(1.8rem,5.8vw,5.8rem)] font-heading font-extrabold tracking-tight whitespace-nowrap inline-block select-none"
+    style={{
+      backgroundImage:
+        "radial-gradient(circle, #ffffff 42%, #818cf8 50%, transparent 58%)",
+      backgroundSize: "3px 3px",
+      WebkitBackgroundClip: "text",
+      backgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      color: "transparent",
+      filter: "drop-shadow(0 0 16px rgba(129, 140, 248, 0.45))",
+    }}
   >
     Sahaya Savari&nbsp;F
   </span>
@@ -58,15 +68,16 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if ("requestIdleCallback" in window) {
-      const id = (window as Window & { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(
-        () => setIsMounted(true),
-        { timeout: 800 },
-      );
+      const id = (
+        window as Window & {
+          requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number;
+        }
+      ).requestIdleCallback(() => setIsMounted(true), { timeout: 1200 });
       return () => {
         (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
       };
     } else {
-      const timer = setTimeout(() => setIsMounted(true), 150);
+      const timer = setTimeout(() => setIsMounted(true), 300);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -95,7 +106,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     };
   }, []);
 
-  // Performance & CWV: Ambient botanical video is deferred until user interaction to preserve LCP & network bandwidth
+  // Ambient botanical video: plays smoothly on both desktop & mobile, loading right after initial render
   useEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -105,8 +116,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     const constrainedConnection =
       connection?.saveData || /(2g|3g)/.test(connection?.effectiveType || "");
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (prefersReducedMotion || constrainedConnection || isMobile) return;
+    if (prefersReducedMotion || constrainedConnection) return;
 
     const events = ["scroll", "pointerdown", "touchstart", "keydown"] as const;
     const startVideo = () => {
@@ -115,9 +125,12 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     };
 
     events.forEach((e) => window.addEventListener(e, startVideo, { once: true, passive: true }));
+    // Auto-start video after 600ms so mobile & desktop show the flowing background without delay
+    const timer = setTimeout(startVideo, 600);
 
     return () => {
       events.forEach((e) => window.removeEventListener(e, startVideo));
+      clearTimeout(timer);
     };
   }, []);
 
@@ -133,21 +146,12 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
         className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
-          {/* Ambient botanical poster image — local asset, loads cleanly without delaying hero content */}
-          <img
-            src={HERO_POSTER}
-            alt=""
-            width={960}
-            height={540}
-            fetchPriority="high"
-            decoding="async"
-            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain ${
-              isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-40"
-            }`}
-            aria-hidden="true"
-          />
-
+        <div
+          className={`relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0 bg-contain bg-center bg-no-repeat transition-opacity duration-1000 ${
+            isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-40"
+          }`}
+          style={{ backgroundImage: `url(${HERO_POSTER})`, minHeight: "340px" }}
+        >
           {/* Ambient botanical background video */}
           {shouldLoadVideo && (
             <video

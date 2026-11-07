@@ -168,9 +168,8 @@ function usePixelCanvas({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (isMobile || isReducedMotion) return;
+    if (isReducedMotion) return;
 
     let initialized = false;
     const safeInit = () => {
@@ -183,11 +182,13 @@ function usePixelCanvas({
     const container = containerRef.current;
     if (container) {
       container.addEventListener("pointerenter", safeInit, { once: true, passive: true });
+      container.addEventListener("touchstart", safeInit, { once: true, passive: true });
     }
 
     return () => {
       if (container) {
         container.removeEventListener("pointerenter", safeInit);
+        container.removeEventListener("touchstart", safeInit);
       }
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
