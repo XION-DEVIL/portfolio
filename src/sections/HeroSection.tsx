@@ -106,8 +106,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     };
   }, []);
 
-  // Ambient botanical flowers video: loads on user interaction (touch, scroll, click, pointer)
-  // to ensure the instant 7KB poster image serves as the fast <1s LCP without 11MB video contention
+  // Ambient botanical flowers video: loads promptly after initial paint (or immediately on user interaction)
+  // across all screen sizes so flowers and botanical visuals are rich and vibrant
   useEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -119,8 +119,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
     if (prefersReducedMotion || constrainedConnection) return;
 
+    const timer = window.setTimeout(() => setShouldLoadVideo(true), 300);
     const events = ["scroll", "pointerdown", "touchstart", "keydown", "wheel"] as const;
     const startVideo = () => {
+      window.clearTimeout(timer);
       events.forEach((e) => window.removeEventListener(e, startVideo));
       setShouldLoadVideo(true);
     };
@@ -128,6 +130,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     events.forEach((e) => window.addEventListener(e, startVideo, { once: true, passive: true }));
 
     return () => {
+      window.clearTimeout(timer);
       events.forEach((e) => window.removeEventListener(e, startVideo));
     };
   }, []);
@@ -141,10 +144,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     >
       {/* Background ambient visual on all screens (responsive flowers image + flowing video) */}
       <div
-        className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden"
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
+        <div className="relative w-full h-full flex items-center justify-center">
           {/* Ambient botanical flowers poster image */}
           <img
             src={HERO_POSTER}
@@ -153,8 +156,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             height={540}
             fetchPriority="high"
             decoding="async"
-            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
-              isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-50"
+            className={`w-full h-full object-cover object-center transition-opacity duration-1000 ${
+              isVideoLoaded ? "opacity-0" : "opacity-75"
             }`}
             aria-hidden="true"
           />
@@ -172,17 +175,17 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
-              className={`absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? "opacity-50" : "opacity-0"
+              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded ? "opacity-75" : "opacity-0"
               }`}
               aria-hidden="true"
             />
           )}
         </div>
       </div>
-      <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/15 z-0 pointer-events-none" aria-hidden="true" />
       <div
-        className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1]"
+        className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/40 to-transparent z-[1]"
         aria-hidden="true"
       />
 

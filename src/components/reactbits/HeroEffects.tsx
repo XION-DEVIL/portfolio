@@ -59,6 +59,7 @@ export function HeroBadge() {
       strapLength={0.2}
       breeze={0.3}
       intro={false}
+      interactive={true}
     />
   );
 }
