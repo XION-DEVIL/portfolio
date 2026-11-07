@@ -47,6 +47,7 @@ export default defineConfig({
               { path: "/" },
               { path: "/ai" },
               { path: "/blog" },
+              { path: "/experience" },
               { path: "/recruiter" },
               { path: "/resume" },
               { path: "/projects" },

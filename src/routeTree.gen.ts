@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as AiRouteImport } from './routes/ai'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as RecruiterRouteImport } from './routes/recruiter'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
@@ -36,6 +37,11 @@ const AiRoute = AiRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecruiterRoute = RecruiterRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/$': typeof SplatRoute
   '/ai': typeof AiRoute
   '/blog': typeof BlogRoute
+  '/experience': typeof ExperienceRoute
   '/recruiter': typeof RecruiterRoute
   '/resume': typeof ResumeRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/$': typeof SplatRoute
   '/ai': typeof AiRoute
   '/blog': typeof BlogRoute
+  '/experience': typeof ExperienceRoute
   '/recruiter': typeof RecruiterRoute
   '/resume': typeof ResumeRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/$': typeof SplatRoute
   '/ai': typeof AiRoute
   '/blog': typeof BlogRoute
+  '/experience': typeof ExperienceRoute
   '/recruiter': typeof RecruiterRoute
   '/resume': typeof ResumeRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/ai'
     | '/blog'
+    | '/experience'
     | '/recruiter'
     | '/resume'
     | '/projects/$projectId'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/ai'
     | '/blog'
+    | '/experience'
     | '/recruiter'
     | '/resume'
     | '/projects/$projectId'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/ai'
     | '/blog'
+    | '/experience'
     | '/recruiter'
     | '/resume'
     | '/projects/$projectId'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   SplatRoute: typeof SplatRoute
   AiRoute: typeof AiRoute
   BlogRoute: typeof BlogRoute
+  ExperienceRoute: typeof ExperienceRoute
   RecruiterRoute: typeof RecruiterRoute
   ResumeRoute: typeof ResumeRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recruiter': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   SplatRoute: SplatRoute,
   AiRoute: AiRoute,
   BlogRoute: BlogRoute,
+  ExperienceRoute: ExperienceRoute,
   RecruiterRoute: RecruiterRoute,
   ResumeRoute: ResumeRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,

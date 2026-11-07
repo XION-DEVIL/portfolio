@@ -43,6 +43,11 @@ export default function RootLayout() {
     forceUnlockScroll();
     setMobileMenuOpen(false);
 
+    if (cleanId === "experience") {
+      navigate("/experience");
+      return;
+    }
+
     if (location.pathname !== "/") {
       navigate(`/#${cleanId}`);
     } else {
@@ -232,6 +237,11 @@ export default function RootLayout() {
     const cleanId = hash.replace(/^#/, "");
     if (!cleanId) return;
 
+    if (cleanId === "experience") {
+      navigate("/experience");
+      return;
+    }
+
     const cancel = scrollToSection(cleanId, { behavior: "smooth" });
     return () => {
       cancel?.();
@@ -332,14 +342,12 @@ export default function RootLayout() {
                 >
                   About
                 </a>
-                <a
-                  href={`${appBase}#experience`}
-                  onMouseEnter={revealLazySections}
-                  onClick={(e) => handleNavClick(e, "experience")}
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/" && activeSection === "experience" ? "text-white" : "text-white/70 hover:text-white"}`}
+                <Link
+                  to="/experience"
+                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/experience" ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Experience
-                </a>
+                </Link>
                 <Link
                   to="/resume"
                   className={`text-sm font-body font-medium transition-colors ${location.pathname === "/resume" ? "text-white" : "text-white/70 hover:text-white"}`}
@@ -448,13 +456,13 @@ export default function RootLayout() {
               >
                 About
               </a>
-              <a
-                href={`${appBase}#experience`}
-                onClick={(e) => handleNavClick(e, "experience")}
+              <Link
+                to="/experience"
+                onClick={() => setMobileMenuOpen(false)}
                 className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
               >
                 Experience
-              </a>
+              </Link>
               <Link
                 to="/resume"
                 onClick={() => setMobileMenuOpen(false)}
