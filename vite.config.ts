@@ -7,7 +7,6 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
-const isGithubPages = process.env["GITHUB_PAGES"] === "true";
 const pagesBase = normalizeBase(process.env["PAGES_BASE"] ?? "/");
 
 function normalizeBase(base: string) {
@@ -28,7 +27,7 @@ const getResumeHash = () => {
 };
 
 export default defineConfig({
-  base: isGithubPages ? pagesBase : "/",
+  base: process.env["PAGES_BASE"] ? pagesBase : "/",
   define: {
     __RESUME_HASH__: JSON.stringify(getResumeHash()),
   },
@@ -39,10 +38,10 @@ export default defineConfig({
   },
   plugins: [
     tanstackStart(
-      isGithubPages || process.env["PRERENDER"] !== "false"
+      process.env["PRERENDER"] !== "false"
         ? {
             server: { entry: "server" },
-            router: { basepath: pagesBase },
+            router: { basepath: process.env["PAGES_BASE"] ? pagesBase : "/" },
             pages: [
               { path: "/" },
               { path: "/ai" },

@@ -25,19 +25,13 @@ jobs:
       - name: Set the GitHub Pages base path
         id: base
         run: |
-          REPOSITORY="${GITHUB_REPOSITORY#*/}"
-          if [ "$REPOSITORY" = "${GITHUB_REPOSITORY_OWNER}.github.io" ]; then
-            echo "path=/" >> "$GITHUB_OUTPUT"
-          else
-            echo "path=/$REPOSITORY/" >> "$GITHUB_OUTPUT"
-          fi
+          echo "path=/" >> "$GITHUB_OUTPUT"
       - name: Type check
         run: bun run typecheck
       - name: Build static site
-        run: bunx vite build
+        run: bun run build
         env:
-          GITHUB_PAGES: "true"
-          PAGES_BASE: ${{ steps.base.outputs.path }}
+          PAGES_BASE: "/"
       - name: Add Pages fallback files
         run: |
           touch dist/client/.nojekyll
