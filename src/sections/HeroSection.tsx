@@ -35,7 +35,7 @@ const StaticBadgeCard = () => (
 const HeroHeadingName = () => (
   <span
     aria-hidden="true"
-    className="text-[clamp(2.4rem,6.8vw,5.6rem)] font-heading font-black tracking-tight text-white inline-block bg-gradient-to-b from-white via-white/95 to-white/70 bg-clip-text text-transparent drop-shadow-[0_4px_30px_rgba(255,255,255,0.2)] select-none"
+    className="text-[clamp(2.2rem,4.6vw,4.4rem)] font-heading font-bold tracking-tight text-white inline-block bg-gradient-to-b from-white via-white/95 to-white/80 bg-clip-text text-transparent drop-shadow-[0_2px_24px_rgba(255,255,255,0.22)] select-none whitespace-nowrap"
   >
     Sahaya Savari&nbsp;F
   </span>
@@ -171,20 +171,20 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             </span>
           </div>
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 lg:gap-8 relative w-full max-w-[1000px] mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 relative w-full max-w-5xl mx-auto px-4">
               <h1
                 aria-label="Sahaya Savari F"
-                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[850px] flex items-center justify-center whitespace-nowrap overflow-hidden"
+                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-4 md:mb-0 text-center md:text-left shrink-0"
                 style={{ fontStyle: "normal" }}
               >
                 <HeroHeadingName />
               </h1>
 
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
-              <div className="relative order-1 md:order-2 shrink-0 group md:mr-24 lg:mr-32">
-                <div className="relative w-[200px] h-[290px] sm:w-[230px] sm:h-[330px] lg:w-[260px] lg:h-[370px]">
+              <div className="relative order-1 md:order-2 shrink-0 group">
+                <div className="relative w-[185px] h-[265px] sm:w-[215px] sm:h-[305px] lg:w-[235px] lg:h-[335px]">
                   {enableInteractiveEffects ? (
-                    <div className="absolute -inset-x-[70px] -top-6 -bottom-6 sm:-inset-x-[80px] md:-inset-x-[160px] lg:-inset-x-[220px]">
+                    <div className="absolute -inset-x-[60px] -top-6 -bottom-6 sm:-inset-x-[70px] md:-inset-x-[95px] lg:-inset-x-[115px]">
                       <Suspense fallback={<StaticBadgeCard />}>
                         <HeroBadge />
                       </Suspense>
