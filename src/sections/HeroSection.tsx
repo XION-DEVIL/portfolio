@@ -4,6 +4,7 @@ import { Play, ArrowUpRight } from "lucide-react";
 import RotatingText from "../components/RotatingText";
 import FocusText from "../components/FocusText";
 import { RainbowButton } from "../components/magicui/rainbow-button";
+import { Text3DFlip } from "../components/magicui/text-3d-flip";
 
 // Static Badge Card fallback — visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
 const StaticBadgeCard = () => (
@@ -31,14 +32,17 @@ const StaticBadgeCard = () => (
   </div>
 );
 
-// High-fidelity typography heading replacing legacy dot-matrix particle canvas
+// Magic UI Text 3D Flip heading with Plus Jakarta Sans & reduced semibold weight
 const HeroHeadingName = () => (
-  <span
-    aria-hidden="true"
-    className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-heading font-extrabold tracking-tight text-white inline-block bg-gradient-to-b from-white via-white/95 to-white/80 bg-clip-text text-transparent drop-shadow-[0_2px_28px_rgba(255,255,255,0.25)] select-none whitespace-normal sm:whitespace-nowrap leading-[0.95]"
+  <Text3DFlip
+    className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-heading font-semibold tracking-tight text-white inline-flex flex-wrap justify-center md:justify-start leading-[0.95] drop-shadow-[0_2px_24px_rgba(255,255,255,0.22)]"
+    textClassName="text-white"
+    flipTextClassName="text-white/85"
+    staggerDuration={0.035}
+    rotateDirection="top"
   >
-    Sahaya Savari&nbsp;F
-  </span>
+    Sahaya Savari F
+  </Text3DFlip>
 );
 
 interface HeroSectionProps {
@@ -179,7 +183,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 relative w-full max-w-5xl mx-auto px-4">
               <h1
                 aria-label="Sahaya Savari F"
-                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-4 md:mb-0 text-center md:text-left shrink-0"
+                className="font-heading not-italic font-semibold text-white order-2 md:order-1 mb-4 md:mb-0 text-center md:text-left shrink-0"
                 style={{ fontStyle: "normal" }}
               >
                 <HeroHeadingName />

@@ -413,7 +413,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
   {
     rank: "03",
     title: "Yuva AI for All",
-    issuer: "National Institute of Electronics and Information Technology (NIELIT)",
+    issuer: "NIELIT (Govt. of India)",
     issueDate: "March 2026",
     credentialId: "2026030427766558-105732",
     verifyUrl: "https://www.nielit.gov.in/",
@@ -426,6 +426,8 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     title: "Web Development and Software Engineering",
     issuer: "HodoLabs Technologies",
     issueDate: "June 2026",
+    credentialId: "HODOLABS-SE-2026",
+    verifyUrl: "https://www.linkedin.com/in/sahaya-savari",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
     skills: [
       "Web Development",

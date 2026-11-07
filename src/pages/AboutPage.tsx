@@ -1,0 +1,117 @@
+import { useEffect, useMemo, lazy, Suspense } from "react";
+import { Link, useOutletContext } from "@/lib/router-compat";
+import { ArrowLeft, FileText, Sparkles, Briefcase, Award } from "lucide-react";
+import SEOHead from "../components/SEOHead";
+import { SITE_URL, createBreadcrumbSchema } from "../seo";
+
+const AboutSection = lazy(() => import("../sections/AboutSection"));
+
+export default function AboutPage() {
+  const context = useOutletContext<{
+    setShowResume?: (show: boolean) => void;
+  }>();
+  const setShowResume = context?.setShowResume || (() => {});
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const aboutSchema = useMemo(() => {
+    const breadcrumb = createBreadcrumbSchema([
+      { name: "Home", url: SITE_URL },
+      { name: "About", url: `${SITE_URL}/about` },
+    ]);
+    return {
+      "@context": "https://schema.org",
+      "@graph": [
+        breadcrumb,
+        {
+          "@type": "ProfilePage",
+          "@id": `${SITE_URL}/about/#webpage`,
+          url: `${SITE_URL}/about`,
+          name: "About Sahaya Savari F | AI/ML & Full Stack Software Engineer",
+          description:
+            "Biography, academic background at St. Joseph's and Thiagarajar, core philosophy, and engineering story of Sahaya Savari F.",
+          author: { "@id": `${SITE_URL}/#person` },
+        },
+      ],
+    };
+  }, []);
+
+  return (
+    <>
+      <SEOHead
+        title="About Sahaya Savari F | AI/ML & Full Stack Software Engineer"
+        description="Biography, academic background at St. Joseph's and Thiagarajar, core philosophy, and engineering story of Sahaya Savari F."
+        url={`${SITE_URL}/about`}
+        schema={aboutSchema}
+      />
+      <div className="pt-28 pb-16 px-4 md:px-6 max-w-screen-xl mx-auto min-h-screen">
+        <div className="flex items-center justify-between gap-4 mb-8">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors font-body text-sm"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
+
+          <div className="flex items-center gap-3">
+            <Link
+              to="/experience"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 text-xs font-body text-white/80 hover:text-white hover:border-white/40 transition-colors"
+            >
+              <Briefcase className="w-3.5 h-3.5" />
+              Experience
+            </Link>
+            <Link
+              to="/resume"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 text-xs font-body text-white/80 hover:text-white hover:border-white/40 transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              Resume
+            </Link>
+            <Link
+              to="/recruiter"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-body text-white transition-colors"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+              Recruiter Mode
+            </Link>
+          </div>
+        </div>
+
+        <Suspense
+          fallback={
+            <div className="py-24 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white/50" />
+            </div>
+          }
+        >
+          <AboutSection setShowResume={setShowResume} />
+        </Suspense>
+
+        {/* Quick Route Switcher Footer */}
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <Link
+            to="/"
+            className="text-white/60 hover:text-white text-sm font-body transition-colors"
+          >
+            ← Back to Home
+          </Link>
+          <div className="flex items-center gap-4 text-xs font-mono text-white/50">
+            <Link to="/skills" className="hover:text-white transition-colors">
+              Skills →
+            </Link>
+            <Link to="/certifications" className="hover:text-white transition-colors">
+              Certifications →
+            </Link>
+            <Link to="/contact" className="hover:text-white transition-colors">
+              Contact →
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

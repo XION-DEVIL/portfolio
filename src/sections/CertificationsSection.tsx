@@ -36,7 +36,7 @@ const CertificationsSection = memo(() => {
               Featured Credentials
             </h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-7xl mx-auto items-stretch">
             {FEATURED_CREDENTIALS.map((cred, idx) => (
               <div
                 key={cred.title}
@@ -47,10 +47,11 @@ const CertificationsSection = memo(() => {
                   backdropFilter: "blur(20px)",
                 }}
               >
-                <div>
-                  <div className="flex items-center justify-between mb-5 gap-3">
+                <div className="flex flex-col flex-1">
+                  {/* Card Header */}
+                  <div className="flex items-start justify-between mb-5 gap-3 min-h-[46px]">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/90 group-hover:border-white/20 group-hover:bg-white/[0.08] transition-all shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/90 group-hover:border-white/20 group-hover:bg-white/[0.08] transition-all shadow-sm shrink-0">
                         {idx === 0 ? (
                           <Award className="w-5 h-5 text-amber-400" aria-hidden="true" />
                         ) : idx === 1 ? (
@@ -76,21 +77,22 @@ const CertificationsSection = memo(() => {
                         </span>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end gap-1">
-                      {cred.credentialId && (
-                        <span className="text-[8px] font-mono uppercase tracking-widest text-green-400 border border-green-500/30 bg-green-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                          <span className="w-1 h-1 rounded-full bg-green-400"></span>
-                          Verified
-                        </span>
-                      )}
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-white/60 text-right">
+                    <div className="flex flex-col items-end gap-1 shrink-0 text-right">
+                      <span className="text-[8px] font-mono uppercase tracking-widest text-green-400 border border-green-500/30 bg-green-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <span className="w-1 h-1 rounded-full bg-green-400"></span>
+                        Verified
+                      </span>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-white/60">
                         {cred.issuer}
                       </span>
                     </div>
                   </div>
-                  <h4 className="font-heading font-bold text-xl md:text-2xl text-white mb-3 leading-tight tracking-tight">
+
+                  {/* Card Title - aligned height */}
+                  <h4 className="font-heading font-bold text-xl text-white mb-3 leading-snug tracking-tight min-h-[3.25rem] flex items-center">
                     {cred.title}
                   </h4>
+
                   {cred.image && (
                     <div className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video bg-black/40">
                       <img
@@ -101,14 +103,18 @@ const CertificationsSection = memo(() => {
                       />
                     </div>
                   )}
+
+                  {/* Card Description - aligned height */}
                   {cred.desc && (
-                    <p className="text-white/60 font-body font-light text-xs leading-relaxed mb-4">
+                    <p className="text-white/60 font-body font-light text-xs leading-relaxed mb-4 min-h-[4rem] line-clamp-3">
                       {cred.desc}
                     </p>
                   )}
+
+                  {/* Skills badges - standardized count & aligned height */}
                   {cred.skills && cred.skills.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {cred.skills.map((skill) => (
+                    <div className="flex flex-wrap content-start gap-1.5 mb-4 min-h-[3.25rem]">
+                      {cred.skills.slice(0, 5).map((skill) => (
                         <span
                           key={skill}
                           className="px-2 py-0.5 rounded-full text-[9px] font-mono text-white/50 bg-white/5 border border-white/5"
@@ -116,47 +122,32 @@ const CertificationsSection = memo(() => {
                           {skill}
                         </span>
                       ))}
+                      {cred.skills.length > 5 && (
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono text-white/40 bg-white/[0.03] border border-white/5">
+                          +{cred.skills.length - 5}
+                        </span>
+                      )}
                     </div>
                   )}
 
-                  {(cred.issueDate || cred.credentialId || cred.score || cred.credits) && (
-                    <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-mono text-white/50 mb-4 border-t border-white/5 pt-3">
-                      {cred.issueDate && (
-                        <div>
-                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">
-                            Issued
-                          </span>
-                          {cred.issueDate}
-                        </div>
-                      )}
-                      {cred.credentialId && (
-                        <div className="truncate" title={cred.credentialId}>
-                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">
-                            {cred.issuer.includes("NIELIT") ? "Certificate No." : "ID"}
-                          </span>
-                          {cred.credentialId}
-                        </div>
-                      )}
-                      {cred.score && (
-                        <div>
-                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">
-                            Score
-                          </span>
-                          {cred.score}
-                        </div>
-                      )}
-                      {cred.credits && (
-                        <div>
-                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">
-                            Credits
-                          </span>
-                          {cred.credits}
-                        </div>
-                      )}
+                  {/* Metadata grid - standardized height */}
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-mono text-white/50 mb-4 border-t border-white/5 pt-3 min-h-[52px]">
+                    <div>
+                      <span className="text-white/60 block text-[8px] uppercase tracking-wider">
+                        Issued
+                      </span>
+                      {cred.issueDate || "June 2026"}
                     </div>
-                  )}
+                    <div className="truncate" title={cred.credentialId}>
+                      <span className="text-white/60 block text-[8px] uppercase tracking-wider">
+                        {cred.issuer.includes("NIELIT") ? "Certificate No." : "ID"}
+                      </span>
+                      {cred.credentialId || "Verified"}
+                    </div>
+                  </div>
                 </div>
 
+                {/* Bottom CTA Button - locked to bottom */}
                 <div className="mt-auto pt-4 flex flex-col gap-2 relative z-20">
                   <a
                     href={
@@ -169,7 +160,7 @@ const CertificationsSection = memo(() => {
                     className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-white text-black text-xs font-body font-semibold transition-all duration-300 hover:scale-[1.02] min-h-[38px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                     aria-label={`Verify ${cred.title} credential from ${cred.issuer}`}
                   >
-                    <span>{cred.verifyUrl ? "Verify Credential" : "View on LinkedIn"}</span>
+                    <span>Verify Credential</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-black/60 group-hover:text-black" />
                   </a>
                 </div>

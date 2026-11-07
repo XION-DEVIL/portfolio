@@ -11,11 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SplatRouteImport } from './routes/$'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AiRouteImport } from './routes/ai'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as CertificationsRouteImport } from './routes/certifications'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as RecruiterRouteImport } from './routes/recruiter'
 import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects/$projectId'
 
@@ -29,6 +33,11 @@ const SplatRoute = SplatRouteImport.update({
   path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiRoute = AiRouteImport.update({
   id: '/ai',
   path: '/ai',
@@ -37,6 +46,16 @@ const AiRoute = AiRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificationsRoute = CertificationsRouteImport.update({
+  id: '/certifications',
+  path: '/certifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -54,6 +73,11 @@ const ResumeRoute = ResumeRouteImport.update({
   path: '/resume',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SkillsRoute = SkillsRouteImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -68,22 +92,30 @@ const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
+  '/about': typeof AboutRoute
   '/ai': typeof AiRoute
   '/blog': typeof BlogRoute
+  '/certifications': typeof CertificationsRoute
+  '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/recruiter': typeof RecruiterRoute
   '/resume': typeof ResumeRoute
+  '/skills': typeof SkillsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
+  '/about': typeof AboutRoute
   '/ai': typeof AiRoute
   '/blog': typeof BlogRoute
+  '/certifications': typeof CertificationsRoute
+  '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/recruiter': typeof RecruiterRoute
   '/resume': typeof ResumeRoute
+  '/skills': typeof SkillsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/projects': typeof ProjectsIndexRoute
 }
@@ -91,11 +123,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
+  '/about': typeof AboutRoute
   '/ai': typeof AiRoute
   '/blog': typeof BlogRoute
+  '/certifications': typeof CertificationsRoute
+  '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/recruiter': typeof RecruiterRoute
   '/resume': typeof ResumeRoute
+  '/skills': typeof SkillsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/projects/': typeof ProjectsIndexRoute
 }
@@ -104,33 +140,45 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$'
+    | '/about'
     | '/ai'
     | '/blog'
+    | '/certifications'
+    | '/contact'
     | '/experience'
     | '/recruiter'
     | '/resume'
+    | '/skills'
     | '/projects/$projectId'
     | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/$'
+    | '/about'
     | '/ai'
     | '/blog'
+    | '/certifications'
+    | '/contact'
     | '/experience'
     | '/recruiter'
     | '/resume'
+    | '/skills'
     | '/projects/$projectId'
     | '/projects'
   id:
     | '__root__'
     | '/'
     | '/$'
+    | '/about'
     | '/ai'
     | '/blog'
+    | '/certifications'
+    | '/contact'
     | '/experience'
     | '/recruiter'
     | '/resume'
+    | '/skills'
     | '/projects/$projectId'
     | '/projects/'
   fileRoutesById: FileRoutesById
@@ -138,11 +186,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
+  AboutRoute: typeof AboutRoute
   AiRoute: typeof AiRoute
   BlogRoute: typeof BlogRoute
+  CertificationsRoute: typeof CertificationsRoute
+  ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
   RecruiterRoute: typeof RecruiterRoute
   ResumeRoute: typeof ResumeRoute
+  SkillsRoute: typeof SkillsRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
@@ -163,6 +215,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai': {
       id: '/ai'
       path: '/ai'
@@ -175,6 +234,20 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certifications': {
+      id: '/certifications'
+      path: '/certifications'
+      fullPath: '/certifications'
+      preLoaderRoute: typeof CertificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -198,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResumeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/skills': {
+      id: '/skills'
+      path: '/skills'
+      fullPath: '/skills'
+      preLoaderRoute: typeof SkillsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/': {
       id: '/projects/'
       path: '/projects'
@@ -218,11 +298,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
+  AboutRoute: AboutRoute,
   AiRoute: AiRoute,
   BlogRoute: BlogRoute,
+  CertificationsRoute: CertificationsRoute,
+  ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
   RecruiterRoute: RecruiterRoute,
   ResumeRoute: ResumeRoute,
+  SkillsRoute: SkillsRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }

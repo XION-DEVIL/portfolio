@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { ComponentType } from "react";
 import LanyardRaw from "./Lanyard";
 import ParticleTextRaw from "./ParticleText";
+import { Text3DFlip } from "../magicui/text-3d-flip";
 
 // The source components are untyped JS; give them permissive prop types.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -66,8 +67,14 @@ export function HeroBadge() {
 
 export function HeroName() {
   return (
-    <span className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-heading font-extrabold tracking-tight text-white inline-block bg-gradient-to-b from-white via-white/95 to-white/80 bg-clip-text text-transparent drop-shadow-[0_2px_28px_rgba(255,255,255,0.25)] select-none whitespace-normal sm:whitespace-nowrap leading-[0.95]">
-      Sahaya Savari&nbsp;F
-    </span>
+    <Text3DFlip
+      className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-heading font-semibold tracking-tight text-white inline-flex flex-wrap justify-center md:justify-start leading-[0.95] drop-shadow-[0_2px_24px_rgba(255,255,255,0.22)]"
+      textClassName="text-white"
+      flipTextClassName="text-white/85"
+      staggerDuration={0.035}
+      rotateDirection="top"
+    >
+      Sahaya Savari F
+    </Text3DFlip>
   );
 }

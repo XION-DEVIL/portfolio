@@ -6,6 +6,7 @@ import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, homeSchema } from "../seo";
 // Import Hero directly for above-the-fold fast rendering
 import HeroSection from "../sections/HeroSection";
 import IntersectionLazy from "../components/IntersectionLazy";
+import { DotPattern } from "../components/magicui/dot-pattern";
 
 // Lazy-load remaining sections to optimize initial bundle size & Core Web Vitals
 const AboutSection = lazy(() => import("../sections/AboutSection"));
@@ -31,77 +32,89 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection setShowResume={setShowResume} />
 
-      <div className="section-divider" aria-hidden="true" />
+      {/* Content sections between Hero and Contact with DotPattern ambient subtle background */}
+      <div className="relative isolate overflow-hidden">
+        <DotPattern
+          width={28}
+          height={28}
+          cx={1}
+          cy={1}
+          cr={1}
+          className="pointer-events-none fill-white/[0.035] [mask-image:linear-gradient(to_bottom,transparent,white_6rem,white_calc(100%-6rem),transparent)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,white_6rem,white_calc(100%-6rem),transparent)]"
+        />
 
-      {/* 1. About Me */}
-      <div id="about">
-        <IntersectionLazy fallbackHeight="100vh">
-          <AboutSection setShowResume={setShowResume} />
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* 1. About Me */}
+        <div id="about">
+          <IntersectionLazy fallbackHeight="100vh">
+            <AboutSection setShowResume={setShowResume} />
+          </IntersectionLazy>
+        </div>
+
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* 2. Work Experience & Hackathons */}
+        <div id="experience">
+          <IntersectionLazy fallbackHeight="80vh">
+            <ExperienceSection />
+          </IntersectionLazy>
+        </div>
+
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* 3. Technologies & Skills */}
+        <div id="skills">
+          <IntersectionLazy fallbackHeight="80vh">
+            <SkillsSection />
+          </IntersectionLazy>
+        </div>
+
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* Stats Overview */}
+        <IntersectionLazy fallbackHeight="40vh">
+          <StatsSection />
         </IntersectionLazy>
+
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* 4. Featured Projects */}
+        <div id="projects">
+          <IntersectionLazy fallbackHeight="150vh">
+            <ProjectsSection />
+          </IntersectionLazy>
+        </div>
+
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* 5. Developer Blog */}
+        <div id="blog">
+          <IntersectionLazy fallbackHeight="80vh">
+            <BlogSection />
+          </IntersectionLazy>
+        </div>
+
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* 6. Open Source / GitHub */}
+        <div id="open-source">
+          <IntersectionLazy fallbackHeight="60vh">
+            <OpenSourceSection />
+          </IntersectionLazy>
+        </div>
+
+        <div className="section-divider" aria-hidden="true" />
+
+        {/* Certifications */}
+        <div id="certifications">
+          <IntersectionLazy fallbackHeight="100vh">
+            <CertificationsSection />
+          </IntersectionLazy>
+        </div>
+
+        <div className="section-divider" aria-hidden="true" />
       </div>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* 2. Work Experience & Hackathons */}
-      <div id="experience">
-        <IntersectionLazy fallbackHeight="80vh">
-          <ExperienceSection />
-        </IntersectionLazy>
-      </div>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* 3. Technologies & Skills */}
-      <div id="skills">
-        <IntersectionLazy fallbackHeight="80vh">
-          <SkillsSection />
-        </IntersectionLazy>
-      </div>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* Stats Overview */}
-      <IntersectionLazy fallbackHeight="40vh">
-        <StatsSection />
-      </IntersectionLazy>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* 4. Featured Projects */}
-      <div id="projects">
-        <IntersectionLazy fallbackHeight="150vh">
-          <ProjectsSection />
-        </IntersectionLazy>
-      </div>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* 5. Developer Blog */}
-      <div id="blog">
-        <IntersectionLazy fallbackHeight="80vh">
-          <BlogSection />
-        </IntersectionLazy>
-      </div>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* 6. Open Source / GitHub */}
-      <div id="open-source">
-        <IntersectionLazy fallbackHeight="60vh">
-          <OpenSourceSection />
-        </IntersectionLazy>
-      </div>
-
-      <div className="section-divider" aria-hidden="true" />
-
-      {/* Certifications */}
-      <div id="certifications">
-        <IntersectionLazy fallbackHeight="100vh">
-          <CertificationsSection />
-        </IntersectionLazy>
-      </div>
-
-      <div className="section-divider" aria-hidden="true" />
 
       {/* 8. Contact CTA */}
       <div id="contact">

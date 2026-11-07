@@ -21,6 +21,51 @@ type Message = {
   content: string;
 };
 
+function FormattedMessage({ text, isAi }: { text: string; isAi: boolean }) {
+  const lines = text.split("\n");
+  return (
+    <div className="space-y-1.5">
+      {lines.map((line, lIdx) => {
+        if (!line.trim()) return <div key={lIdx} className="h-1.5" />;
+        const parts = line.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/g);
+        return (
+          <p key={lIdx} className="leading-relaxed">
+            {parts.map((part, pIdx) => {
+              if (part.startsWith("**") && part.endsWith("**")) {
+                return (
+                  <strong
+                    key={pIdx}
+                    className={isAi ? "font-bold text-black" : "font-bold text-white"}
+                  >
+                    {part.slice(2, -2)}
+                  </strong>
+                );
+              }
+              const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+              if (linkMatch) {
+                return (
+                  <a
+                    key={pIdx}
+                    href={linkMatch[2]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`underline font-semibold hover:opacity-80 transition-opacity ${
+                      isAi ? "text-blue-800" : "text-blue-300"
+                    }`}
+                  >
+                    {linkMatch[1]}
+                  </a>
+                );
+              }
+              return part;
+            })}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 type TerminalEntry = {
   id: string;
   command: string;
@@ -264,9 +309,13 @@ export default function AskSahayaAI() {
                       )}
                     </div>
                     <div
-                      className={`p-4 rounded-lg min-w-0 break-words whitespace-pre-line max-w-[80%] font-body text-sm leading-relaxed ${msg.role === "user" ? "bg-foreground/10 text-foreground rounded-tr-none" : "bg-primary text-portfolio-ink rounded-tl-none"}`}
+                      className={`p-4 rounded-lg min-w-0 break-words max-w-[85%] font-body text-sm leading-relaxed ${
+                        msg.role === "user"
+                          ? "bg-foreground/10 text-foreground rounded-tr-none"
+                          : "bg-white text-black rounded-tl-none shadow-md"
+                      }`}
                     >
-                      {msg.content}
+                      <FormattedMessage text={msg.content} isAi={msg.role === "ai"} />
                     </div>
                   </div>
                 );
