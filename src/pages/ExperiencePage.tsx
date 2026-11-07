@@ -26,7 +26,7 @@ export default function ExperiencePage() {
           url: `${SITE_URL}/experience`,
           name: "Work Experience & Hackathon Honors | Sahaya Savari F",
           description:
-            "Professional work experience, software engineering internships, technical SEO leadership at HodoLabs, and national AI hackathon championship awards of Sahaya Savari F.",
+            "Professional work experience as Digital Marketing Intern at HodoLabs, technical SEO, web performance, and national AI hackathon championship awards of Sahaya Savari F.",
           author: { "@id": `${SITE_URL}/#person` },
         },
       ],
@@ -37,7 +37,7 @@ export default function ExperiencePage() {
     <>
       <SEOHead
         title="Work Experience & Hackathon Honors | Sahaya Savari F"
-        description="Professional work experience, software engineering internships, technical SEO leadership at HodoLabs, and national AI hackathon championship awards of Sahaya Savari F."
+        description="Professional work experience as Digital Marketing Intern at HodoLabs, technical SEO, web performance, and national AI hackathon championship awards of Sahaya Savari F."
         url={`${SITE_URL}/experience`}
         schema={experienceSchema}
       />

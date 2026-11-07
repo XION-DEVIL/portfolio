@@ -14,13 +14,33 @@ export const revealLazySections = () => {
 };
 
 /**
- * Keep initLazyPreload as a lightweight hook. Lazy sections are loaded on-demand
- * via IntersectionLazy (400px ahead of viewport) or when navigation is initiated.
+ * Preload remaining lazy sections when browser is idle to ensure instant, stable navigation
+ * without blocking first-paint or LCP.
  */
 export const initLazyPreload = () => {
-  // Navigation intent (hover, menu, clicks) already dispatches revealLazySections().
-  // Leaving sections to load via IntersectionObserver prevents massive main-thread
-  // blocking during initial page load and preserves optimal TBT.
+  if (typeof window === "undefined") return;
+  const preload = () => {
+    // Dynamic import fetches bundles into browser HTTP cache during idle frames
+    import("../sections/AboutSection");
+    import("../sections/ExperienceSection");
+    import("../sections/SkillsSection");
+    import("../sections/StatsSection");
+    import("../sections/ProjectsSection");
+    import("../sections/BlogSection");
+    import("../sections/OpenSourceSection");
+    import("../sections/CertificationsSection");
+    import("../sections/ContactSection");
+  };
+
+  if ("requestIdleCallback" in window) {
+    (
+      window as unknown as {
+        requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => void;
+      }
+    ).requestIdleCallback(preload, { timeout: 1800 });
+  } else {
+    setTimeout(preload, 400);
+  }
 };
 
 interface ScrollOptions {

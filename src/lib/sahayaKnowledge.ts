@@ -54,7 +54,7 @@ export function answerQuestion(query: string): string {
       `I have verified, real-time knowledge about Sahaya's software engineering background, artificial intelligence research, hackathon championships, and professional credentials.\n\n` +
       `**Here are popular questions you can ask me:**\n` +
       `• **Hackathons**: *"Tell me about NelSync AI and your championship win."*\n` +
-      `• **Experience**: *"What did you do during your software engineering internship at HodoLabs?"*\n` +
+      `• **Experience**: *"What did you do during your Digital Marketing internship at HodoLabs?"*\n` +
       `• **Projects**: *"What campus problem does VibeCraft solve?"*\n` +
       `• **Skills**: *"What is your machine learning and web tech stack?"*\n` +
       `• **Recruiter**: *"Why should we hire Sahaya for an AI or Full Stack role?"*\n` +

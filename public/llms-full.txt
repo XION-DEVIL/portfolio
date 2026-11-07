@@ -41,12 +41,16 @@ verified hackathon championships, and solid engineering discipline.
 |------------------|---------------------------------------------------|
 | Full Name        | Sahaya Savari F                                   |
 | Public Name      | Sahaya Savari                                     |
+| Headline         | Student AI/ML Engineer \| M.Sc. AI @ SJC \| Digital Marketing Intern @ HodoLabs \| 2x Hackathon Achiever |
 | Portfolio        | https://sahayasavari.dev                          |
-| Technical Blog   | https://blog.sahayasavari.dev                      |
+| Technical Blog   | https://blog.sahayasavari.dev                     |
 | GitHub           | https://github.com/sahaya-savari                  |
-| LinkedIn         | https://www.linkedin.com/in/sahaya-savari          |
-| Email            | contact@sahayasavari.dev                           |
-| Location         | Madurai / Trichy, Tamil Nadu, India               |
+| LinkedIn         | https://www.linkedin.com/in/sahaya-savari         |
+| Primary Email    | sahayasavari.info@gmail.com                       |
+| Secondary Email  | contact@sahayasavari.dev                          |
+| Mobile Phone     | +91 6385648514                                    |
+| Location         | Madurai, Tamil Nadu, India                        |
+| Top Skills       | PostgreSQL, Node.js, React.js                     |
 
 ---
 
@@ -158,53 +162,58 @@ verified hackathon championships, and solid engineering discipline.
 
 ## Education & Certifications
 
-- **M.Sc. Artificial Intelligence** — St. Joseph's College (Autonomous), Tiruchirappalli (Currently Enrolled)
+### Education (LinkedIn Verified)
+1. **Master of Science, AI** — St. Joseph's College (Autonomous), Tiruchirappalli (July 2025 – May 2027)
+2. **Bachelor of Science, Data science** — Thiagarajar College, Madurai (August 2022 – May 2025, 65.06%)
+3. **HSC, BIO-MATHS (Maths Physics Chemistry Biology)** — St. Mary's Higher Secondary School, Madurai (June 2020 – July 2022)
+
+### Certifications (LinkedIn Verified)
 - **IBM Data Analyst Specialization** — IBM via Coursera
   - Issued: August 28, 2024 | Credential ID: DDWFE1NB25DZ
   - Skills: Python, SQL, Excel, Data Analysis, Data Visualization, IBM Cognos Analytics, Data Wrangling
   - Verify: https://www.coursera.org/account/accomplishments/specialization/DDWFE1NB25DZ
+- **Yuva AI for All** — NIELIT / Skill India
+  - Issued: March 2026 | Credential ID: 2026030427766558-105732
+  - Skills: Prompt Engineering, Generative AI, Responsible AI
 - **Introduction to Machine Learning (Tamil)** — NPTEL / IIT Madras
   - Issued: March 2026 | Credential ID: NPTEL26CS73S470101904
   - Skills: Machine Learning, Classification, Regression, Model Evaluation
   - Verify: https://nptel.ac.in/noc/E_Certificate/NOC26CS73S47010190403177914
-- **Yuva AI for All** — NIELIT / Skill India
-  - Issued: March 2026 | Credential ID: 2026030427766558-105732
-  - Skills: Prompt Engineering, Generative AI, Responsible AI
+- **Web Development and Software Engineering** — HodoLabs Technologies
+  - Issued: June 2026 | Credential ID: HODOLABS-SE-2026
+  - Skills: Web Development, Software Engineering, React.js, Node.js, PostgreSQL, REST APIs
 
 ---
 
 ## Frequently Asked Questions
 
 **Who is Sahaya Savari?**
-Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial
-Intelligence at St. Joseph's College (Autonomous), Trichy, India. His work spans Machine Learning systems,
+Sahaya Savari F is a Student AI/ML Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial
+Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli, and a Digital Marketing Intern at HodoLabs. His work spans Machine Learning systems,
 Python APIs, React web applications, and LLM-integrated tools. Portfolio: https://sahayasavari.dev
 
 **What does Sahaya Savari specialize in?**
-He specializes in AI/ML Engineering, Python, Full Stack web development (React, Next.js, TypeScript), and practical AI product integrations with reliable fallback systems.
+He specializes in AI/ML Engineering, Python, PostgreSQL, Node.js, React.js, and practical AI product integrations with reliable fallback systems.
 
 **What technologies does Sahaya Savari use?**
-Python, React, Next.js, TypeScript, Tailwind CSS, Vite, Node.js, PostgreSQL, SQL, Git, GitHub, Gemini API, Vercel, Firebase Hosting, IndexedDB, and Capacitor.
+PostgreSQL, Node.js, React.js, Python, Scikit-learn, Next.js, TypeScript, Tailwind CSS, Vite, SQL, Git, GitHub, Gemini API, Vercel, Firebase Hosting, IndexedDB, and Capacitor.
 
 **What AI projects has Sahaya Savari built?**
-- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon — an AI layer for paddy procurement in Tamil Nadu with predictive procurement, optimization, and supply-chain logistics.
-- VibeCraft 2026: Winner (5th Place of 110 teams) at YUVA'26 — unified campus platform combining Student Attendance Predictor & Planner with Free Class Locator & Smart Search Floor Manager.
+- NelSync AI: Overall Champion at AIxcelerate 2026 Hackathon (66 teams) — an AI layer for paddy procurement in Tamil Nadu with predictive procurement, optimization, and supply-chain logistics.
+- VibeCraft 2026: Winner (Top 5 of 110 teams) at YUVA'26 — unified campus platform combining Student Attendance Predictor & Planner with Free Class Locator & Smart Search Floor Manager.
 - PrepMind AI: a live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and offline-resilient fallback questions.
 - Daily Spark: an offline-first habit tracker with IndexedDB storage and Capacitor Android build.
 - Portfolio Website: high-performance web platform featuring schema.org JSON-LD, static pre-rendering, and llms.txt documentation for LLM indexing agents.
 
 **What work experience does Sahaya Savari have?**
-- HodoLabs Technologies Pvt. Ltd. (Jun 2026 - Present): Digital Marketing & Technical SEO Intern — optimized web architectures for search engine indexing, core web vitals, and metadata workflows.
-- HodoLabs Technologies Pvt. Ltd. (May 2026 - Jun 2026): Web Development Trainee — built responsive UI components, semantic layouts, and DOM event workflows.
+- HodoLabs (June 2026 - Present): Digital Marketing Intern — conducted technical SEO audits, PageSpeed optimizations, site architecture reviews, and web performance workflows across production web properties.
 
 **What awards and honors has Sahaya Savari received?**
-- 1st Place Overall Champion — AIxcelerate 2026 Hackathon (Team NelSync AI, 66 teams)
-- Winner (5th Place of 110 teams) — VibeCraft 2026 Hackathon (Team NeuraGenZers, SRM IST Trichy YUVA'26)
-- 1st Place Winner — Technical Quiz Event (BOOTFEST-2K26, Bishop Heber College PG Dept of CS)
-- Runner-up (2nd Place) — Capture The Flag (CTF) Cybersecurity Challenge (BOOTFEST-2K26)
-- Overall Runner-up — BOOTFEST-2K26 Inter-Collegiate Technical Festival
-- 1st Place Winner (Certificate of Merit) — Inter-Departmental Technical Competition (Achievers' Day 2026, St. Joseph's College)
-- Event In-Charge — 'Treasure Titans' Technical Event (AION 2K26)
+1. AIxcelerate 2026 - Overall Champion (Team NelSync AI, 66 teams) · Dhanalakshmi Srinivasan University
+2. Top 5 Finalist (Out of 110 Teams) - VibeCraft 2026 Hackathon (Team NeuraGenZers, SRM IST Trichy YUVA'26)
+3. BOOTFEST 2K26 - Quiz Winner & Capture The Flag Runner-up (Bishop Heber College PG Dept of CS)
+4. Achievers Day - Interdepartmental Contest Winner (Certificate of Merit) (St. Joseph's College Autonomous)
+5. AION 2K26 – Event In-Charge (Treasure Titans) (Department of AI, St. Joseph's College Autonomous)
 
 **Where can Sahaya Savari's projects be found?**
 - Project case studies: https://sahayasavari.dev/projects
@@ -217,7 +226,7 @@ Python, React, Next.js, TypeScript, Tailwind CSS, Vite, Node.js, PostgreSQL, SQL
 - In-portfolio technical writing covering Core Web Vitals optimization, responsive architecture, and offline-first web applications.
 
 **How can I contact or hire Sahaya Savari?**
-Email: contact@sahayasavari.dev — LinkedIn: https://www.linkedin.com/in/sahaya-savari
+Primary Email: sahayasavari.info@gmail.com — Secondary Email: contact@sahayasavari.dev — Mobile: +91 6385648514 — LinkedIn: https://www.linkedin.com/in/sahaya-savari
 He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions for Summer/Fall 2026.
 
 **What certifications does Sahaya Savari hold?**

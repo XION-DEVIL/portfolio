@@ -59,27 +59,26 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [enableInteractiveEffects, setEnableInteractiveEffects] = useState(false);
 
-  // Interactive 3D Lanyard ID Card (Pull and play physics on all devices)
+  // Interactive 3D Lanyard ID Card (Smooth 60fps desktop physics, crisp GPU CSS float on mobile)
   useEffect(() => {
     if (typeof window === "undefined") return;
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (isReducedMotion) return;
+    const isMobileOrTouch =
+      window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches;
+    if (isReducedMotion || isMobileOrTouch) return;
 
-    // Enable immediately after hydration tick so users can grab and pull right away
     const timer = setTimeout(() => {
       setEnableInteractiveEffects(true);
-    }, 120);
+    }, 150);
 
     const onUserInteraction = () => {
       setEnableInteractiveEffects(true);
     };
     window.addEventListener("pointerdown", onUserInteraction, { once: true, passive: true });
-    window.addEventListener("touchstart", onUserInteraction, { once: true, passive: true });
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener("pointerdown", onUserInteraction);
-      window.removeEventListener("touchstart", onUserInteraction);
     };
   }, []);
 
@@ -209,7 +208,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <span className="font-heading font-medium text-fluid-hero-role text-white/85">
                 I am a
               </span>
-              <div className="w-[300px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
+              <div className="w-full max-w-[340px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
                   texts={[
                     "Student AI/ML Engineer",

@@ -62,4 +62,26 @@ describe("AI Knowledge Engine", () => {
   it("provides non-empty suggestions list", () => {
     expect(SUGGESTIONS.length).toBeGreaterThanOrEqual(4);
   });
+
+  it("verifies public/llms.txt and public/llms-full.txt contain no unverified trainee roles", async () => {
+    const fs = await import("node:fs");
+    const path = await import("node:path");
+
+    const llms = fs.readFileSync(path.resolve(process.cwd(), "public/llms.txt"), "utf-8");
+    const llmsFull = fs.readFileSync(path.resolve(process.cwd(), "public/llms-full.txt"), "utf-8");
+
+    // Must not contain speculative / unverified trainee roles
+    expect(llms).not.toContain("Web Development Trainee");
+    expect(llmsFull).not.toContain("Web Development Trainee");
+
+    // Must contain verified LinkedIn data
+    expect(llms).toContain("Digital Marketing Intern");
+    expect(llms).toContain("sahayasavari.info@gmail.com");
+    expect(llms).toContain("6385648514");
+    expect(llms).toContain("PostgreSQL, Node.js, React.js");
+
+    expect(llmsFull).toContain("Digital Marketing Intern");
+    expect(llmsFull).toContain("sahayasavari.info@gmail.com");
+    expect(llmsFull).toContain("6385648514");
+  });
 });

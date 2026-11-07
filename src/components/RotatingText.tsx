@@ -129,22 +129,39 @@ const RotatingText = forwardRef<any, RotatingTextProps>((props, ref) => {
         className={cn("text-rotate", animating ? "text-rotate-exit" : "text-rotate-enter")}
         aria-hidden="true"
       >
-        {words.map((word: string, wordIndex: number) => (
-          <span key={wordIndex} className={cn("text-rotate-word", splitLevelClassName)}>
-            {splitIntoCharacters(word).map((char: any, charIndex: number) => (
+        {splitBy === "words"
+          ? words.map((word: string, wordIndex: number) => (
               <span
-                key={charIndex}
-                className={cn("text-rotate-element", elementLevelClassName)}
+                key={wordIndex}
+                className={cn(
+                  "text-rotate-word text-rotate-element",
+                  splitLevelClassName,
+                  elementLevelClassName,
+                )}
                 style={{
-                  animationDelay: `${charIndex * staggerDuration}s`,
+                  animationDelay: `${wordIndex * 0.04}s`,
                 }}
               >
-                {char}
+                {word}
+                {wordIndex !== words.length - 1 && <span className="text-rotate-space"> </span>}
+              </span>
+            ))
+          : words.map((word: string, wordIndex: number) => (
+              <span key={wordIndex} className={cn("text-rotate-word", splitLevelClassName)}>
+                {splitIntoCharacters(word).map((char: any, charIndex: number) => (
+                  <span
+                    key={charIndex}
+                    className={cn("text-rotate-element", elementLevelClassName)}
+                    style={{
+                      animationDelay: `${charIndex * Math.min(staggerDuration, 0.015)}s`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                ))}
+                {wordIndex !== words.length - 1 && <span className="text-rotate-space"> </span>}
               </span>
             ))}
-            {wordIndex !== words.length - 1 && <span className="text-rotate-space"> </span>}
-          </span>
-        ))}
       </span>
     </span>
   );

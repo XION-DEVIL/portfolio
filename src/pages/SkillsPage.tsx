@@ -26,7 +26,7 @@ export default function SkillsPage() {
           url: `${SITE_URL}/skills`,
           name: "Technical Skills & Competencies | Sahaya Savari F",
           description:
-            "Technical skill inventory: Python, Machine Learning, Scikit-learn, React, TypeScript, Next.js, SQL, and Full-Stack Engineering by Sahaya Savari F.",
+            "Verified technical skill inventory: PostgreSQL, Node.js, React.js, Python, Machine Learning, Scikit-learn, TypeScript, and Data Analytics by Sahaya Savari F.",
           author: { "@id": `${SITE_URL}/#person` },
         },
       ],
@@ -37,7 +37,7 @@ export default function SkillsPage() {
     <>
       <SEOHead
         title="Technical Skills & Competencies | Sahaya Savari F"
-        description="Technical skill inventory: Python, Machine Learning, Scikit-learn, React, TypeScript, Next.js, SQL, and Full-Stack Engineering by Sahaya Savari F."
+        description="Verified technical skill inventory: PostgreSQL, Node.js, React.js, Python, Machine Learning, Scikit-learn, TypeScript, and Data Analytics by Sahaya Savari F."
         url={`${SITE_URL}/skills`}
         schema={skillsSchema}
       />
