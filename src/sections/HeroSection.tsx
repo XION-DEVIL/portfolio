@@ -47,6 +47,7 @@ interface HeroSectionProps {
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 const HERO_POSTER = `${import.meta.env.BASE_URL}hero-ambient-poster.webp`;
+const HERO_VIDEO = `${import.meta.env.BASE_URL}hero-ambient.mp4`;
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -111,57 +112,56 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       aria-label="Introduction"
       className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent"
     >
-      {/* Background ambient botanical visual (balanced, immersive, seamlessly faded into dark edges) */}
+      {/* Background ambient botanical visual (Hirael Prism architecture: perfectly balanced scale) */}
       <div
-        className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden"
-        style={{
-          maskImage: "radial-gradient(ellipse 85% 70% at 50% 38%, black 40%, transparent 88%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 85% 70% at 50% 38%, black 40%, transparent 88%)",
-        }}
+        className="absolute inset-0 z-0 size-full overflow-hidden pointer-events-none select-none"
         aria-hidden="true"
       >
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Ambient botanical flowers poster image */}
-          <img
-            src={HERO_POSTER}
-            alt=""
-            width={960}
-            height={540}
-            fetchPriority="high"
-            decoding="async"
-            className={`w-full h-full object-cover object-center transition-opacity duration-1000 ${
-              isVideoLoaded ? "opacity-0" : "opacity-65"
+        {/* Ambient botanical flowers poster image */}
+        <img
+          src={HERO_POSTER}
+          alt=""
+          width={1280}
+          height={956}
+          fetchPriority="high"
+          decoding="async"
+          className={`absolute inset-0 size-full object-cover object-center transition-opacity duration-1000 ${
+            isVideoLoaded ? "opacity-0" : "opacity-85"
+          }`}
+          aria-hidden="true"
+        />
+
+        {/* Ambient botanical flowers background video (Prism hero.mp4) */}
+        {shouldLoadVideo && (
+          <video
+            src={HERO_VIDEO}
+            poster={HERO_POSTER}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            width={1280}
+            height={956}
+            onCanPlay={() => setIsVideoLoaded(true)}
+            className={`absolute inset-0 size-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+              isVideoLoaded ? "opacity-85" : "opacity-0"
             }`}
             aria-hidden="true"
           />
+        )}
 
-          {/* Ambient botanical flowers background video */}
-          {shouldLoadVideo && (
-            <video
-              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
-              poster={HERO_POSTER}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              width={1920}
-              height={1080}
-              onCanPlay={() => setIsVideoLoaded(true)}
-              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? "opacity-65" : "opacity-0"
-              }`}
-              aria-hidden="true"
-            />
-          )}
-        </div>
+        {/* Prism-style atmospheric gradient overlays */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-52 md:h-72 bg-gradient-to-t from-black via-black/80 to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 md:h-40 bg-gradient-to-b from-black/70 via-black/30 to-transparent"
+        />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-black/10" />
       </div>
-      <div className="absolute inset-0 bg-black/20 z-0 pointer-events-none" aria-hidden="true" />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-56 md:h-80 bg-gradient-to-t from-black via-black/85 to-transparent z-[1] pointer-events-none"
-        aria-hidden="true"
-      />
 
       {/* Main hero content */}
       <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full">
