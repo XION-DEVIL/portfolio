@@ -37,7 +37,7 @@ const CertificationsSection = memo(() => {
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-6xl mx-auto">
-            {FEATURED_CREDENTIALS.map((cred) => (
+            {FEATURED_CREDENTIALS.map((cred, idx) => (
               <div
                 key={cred.title}
                 className="certificate-card liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative cursor-target h-full"
@@ -48,13 +48,29 @@ const CertificationsSection = memo(() => {
                 }}
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4 gap-2">
-                    <span className="text-3xl select-none" role="img" aria-label="Credential badge">
-                      {cred.prefix}
-                    </span>
+                  <div className="flex items-center justify-between mb-5 gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/90 group-hover:border-white/20 group-hover:bg-white/[0.08] transition-all shadow-sm">
+                        {idx === 0 ? (
+                          <Award className="w-5 h-5 text-amber-400" aria-hidden="true" />
+                        ) : idx === 1 ? (
+                          <Brain className="w-5 h-5 text-indigo-400" aria-hidden="true" />
+                        ) : (
+                          <Code className="w-5 h-5 text-emerald-400" aria-hidden="true" />
+                        )}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[9px] font-mono font-bold tracking-widest text-white/40 uppercase">
+                          Credential {cred.rank || `0${idx + 1}`}
+                        </span>
+                        <span className="text-[11px] font-mono text-white/70">
+                          {idx === 0 ? "Specialization" : idx === 1 ? "IIT Madras" : "NIELIT Certified"}
+                        </span>
+                      </div>
+                    </div>
                     <div className="flex flex-col items-end gap-1">
                       {cred.credentialId && (
-                        <span className="text-[8px] font-mono uppercase tracking-widest text-green-400 border border-green-500/30 bg-green-500/10 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                        <span className="text-[8px] font-mono uppercase tracking-widest text-green-400 border border-green-500/30 bg-green-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
                           <span className="w-1 h-1 rounded-full bg-green-400"></span>
                           Verified
                         </span>

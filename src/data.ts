@@ -164,14 +164,14 @@ export const PROJECTS: Project[] = [
     desc: "Overall Champion of the AIxcelerate 2026 AI Innovation Hackathon. An intelligent paddy procurement optimization system combining predictive ML pipelines, yield analytics, and supply-chain logistics.",
     stack: "Python · Machine Learning · Analytics",
     link: "https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view",
-    status: "🏆 Hackathon Champion",
+    status: "Hackathon Champion",
     github: "",
     image:
       "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1000&auto=format&fit=crop&q=80",
     longDesc:
       "NelSync AI is an AI-driven agricultural optimization engine designed to streamline paddy procurement for farmers and procurement centers. Built by Team NelSync AI, it earned the 1st Place Overall Championship trophy at the AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon at Dhanalakshmi Srinivasan University.",
     metrics: [
-      { label: "Award", value: "🏆 1st Place Overall" },
+      { label: "Award", value: "1st Place Overall" },
       { label: "Domain", value: "Agri-Tech & Supply Chain" },
       { label: "Core Tech", value: "Python, Predictive ML" },
     ],
@@ -351,7 +351,8 @@ export const PROJECTS: Project[] = [
 ];
 
 export interface FeaturedCredential {
-  prefix: string;
+  prefix?: string;
+  rank?: string;
   title: string;
   issuer: string;
   issueDate?: string;
@@ -368,7 +369,7 @@ export interface FeaturedCredential {
 
 export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
   {
-    prefix: "🥇",
+    rank: "01",
     title: "IBM Data Analyst Specialization",
     issuer: "IBM (Coursera)",
     issueDate: "August 28, 2024",
@@ -389,7 +390,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     desc: "Completed the IBM Data Analyst Professional Certificate covering Excel, SQL, Python, Data Visualization, Dashboards, Data Analysis, Relational Databases, Jupyter Notebooks, and IBM Cognos Analytics through hands-on projects and real-world datasets.",
   },
   {
-    prefix: "🥈",
+    rank: "02",
     title: "Introduction to Machine Learning (Tamil)",
     issuer: "NPTEL / IIT Madras",
     issueDate: "March 2026",
@@ -408,7 +409,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     desc: "Completed NPTEL IIT Madras certification in Introduction to Machine Learning (Tamil), covering machine learning fundamentals, classification, regression, model evaluation, and practical AI concepts.",
   },
   {
-    prefix: "🥉",
+    rank: "03",
     title: "Yuva AI for All",
     issuer: "National Institute of Electronics and Information Technology (NIELIT)",
     issueDate: "March 2026",
@@ -487,7 +488,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     event: "AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon",
     organizer: "Dhanalakshmi Srinivasan University",
     date: "September 2026",
-    badge: "🏆 1st Place",
+    badge: "1st Place Overall",
     desc: "Led Team NelSync AI to 1st place overall with 'Smart Paddy Procurement Optimization' — an AI-driven agricultural supply chain forecasting platform.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
@@ -496,7 +497,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     event: "Technical Quiz Event — BOOTFEST-2K26",
     organizer: "Inter-Collegiate Technical Festival",
     date: "2026",
-    badge: "🥇 Winner",
+    badge: "Winner",
     desc: "Won first place in advanced computer science, algorithms, AI concepts, and software engineering quiz competition.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
@@ -505,7 +506,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     event: "Capture The Flag (CTF) Cybersecurity Challenge — BOOTFEST-2K26",
     organizer: "Inter-Collegiate Technical Festival",
     date: "2026",
-    badge: "🥈 Runner-up",
+    badge: "Runner-up",
     desc: "Competed in offensive security, binary exploitation, web vulnerabilities, and reverse engineering challenges.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
@@ -514,7 +515,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     event: "Inter-Departmental Technical Competition — Achievers' Day",
     organizer: "St. Joseph's College (Autonomous)",
     date: "2026",
-    badge: "🥇 1st Place",
+    badge: "1st Place",
     desc: "Awarded top honors for technical design and software presentation among competing postgraduate STEM departments.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
@@ -523,7 +524,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     event: "Treasure Titans — AION 2K26 Technical Symposium",
     organizer: "Department of AI, St. Joseph's College",
     date: "2026",
-    badge: "🎯 Leadership & Win",
+    badge: "Leadership & Win",
     desc: "Led event organization, algorithmic puzzle design, participant coordination for 100+ attendees, and secured top recognition in technical problem-solving.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
@@ -564,7 +565,7 @@ export interface StatItem {
 
 export const STATS: StatItem[] = [
   {
-    value: "🏆 #1",
+    value: "#1",
     label: "AI Hackathon Champion",
     description: "NelSync AI · AIxcelerate 2026 Grand Champion",
   },

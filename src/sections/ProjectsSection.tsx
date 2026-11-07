@@ -1,5 +1,5 @@
 import { useState, memo, useEffect, useRef, useMemo } from "react";
-import { Github, ArrowUpRight, Search, ExternalLink } from "lucide-react";
+import { Github, ArrowUpRight, Search, ExternalLink, Trophy } from "lucide-react";
 import { useNavigate, Link } from "@/lib/router-compat";
 import { PROJECTS, Project } from "../data";
 import SectionBadge from "../components/ui/SectionBadge";
@@ -227,91 +227,108 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       <canvas ref={canvasRef} className="project-pixel-canvas" aria-hidden="true" />
 
       {/* All card content — z-10 above canvas */}
-      <div className="project-card-content grid lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <div className="flex flex-wrap gap-2 mb-6 md:mb-8 min-h-[68px] sm:min-h-[28px] items-start">
-            <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-purple-400 border border-purple-500/30 bg-purple-500/10">
+      <div className="project-card-content flex flex-col h-full">
+        {/* Top Header Row: Badges (left) and Action Buttons (right) */}
+        <div className="flex items-center justify-between gap-3 mb-5">
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-purple-400 border border-purple-500/30 bg-purple-500/10">
               Flagship Project
-            </div>
-            <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
+            </span>
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
               {p.tag}
-            </div>
-            <div
-              className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${p.status === "Live" ? "text-green-400 border-green-500/30 bg-green-500/10" : "text-amber-400 border-amber-500/30 bg-amber-500/10"}`}
+            </span>
+            <span
+              className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
+                p.status.includes("Champion")
+                  ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
+                  : p.status === "Live"
+                    ? "text-green-400 border-green-500/30 bg-green-500/10"
+                    : "text-amber-400 border-amber-500/30 bg-amber-500/10"
+              }`}
             >
-              <span
-                className={`w-1.5 h-1.5 rounded-full ${p.status === "Live" ? "bg-green-400" : "bg-amber-400"}`}
-                aria-hidden="true"
-              />
-              {p.status}
-            </div>
+              {p.status.includes("Champion") ? (
+                <Trophy className="w-3 h-3 text-amber-400 shrink-0" aria-hidden="true" />
+              ) : (
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${p.status === "Live" ? "bg-green-400" : "bg-amber-400"}`}
+                  aria-hidden="true"
+                />
+              )}
+              <span>{p.status}</span>
+            </span>
           </div>
-          <Link
-            to={`/projects/${p.id}`}
-            className="focus:outline-none"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 hover:text-white/80 transition-colors">
-              {p.title}
-            </h3>
-          </Link>
-          <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed mb-8 max-w-xl">
-            {p.desc}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 text-xs font-body border-l-2 border-white/20 pl-4 py-2">
-            <div className="flex items-center gap-2">
-              <span className="text-white/60 uppercase tracking-wider text-[9px]">Stack:</span>
-              <span className="text-white/80">{p.stack.split(" · ").join(" • ")}</span>
+
+          <div className="flex items-center gap-2 shrink-0">
+            {p.link && (
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
+                style={{ background: "transparent", color: "#fff" }}
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`Open ${p.title} live demo in new tab`}
+              >
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </a>
+            )}
+            {p.github && (
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
+                style={{ background: "transparent", color: "#fff" }}
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`View ${p.title} source code on GitHub`}
+              >
+                <Github className="w-4 h-4" aria-hidden="true" />
+              </a>
+            )}
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors border border-white/15"
+              style={{ background: "rgba(255,255,255,0.1)", color: "#fff" }}
+              aria-hidden="true"
+            >
+              <ArrowUpRight className="w-4 h-4" />
             </div>
           </div>
         </div>
 
-        {/* Banner image on the right */}
-        {p.image && (
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video lg:aspect-[16/10] bg-black/40 group-hover:border-white/20 transition-all shadow-2xl">
-            <img
-              src={p.image}
-              alt={`${p.title} banner`}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-          </div>
-        )}
+        {/* Featured Showcase Layout: 2-column on desktop (lg:), clean uniform flow on mobile */}
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center flex-grow">
+          {/* Banner image: top on mobile (<lg), right column on desktop (lg:) */}
+          {p.image && (
+            <div className="order-1 lg:order-2 relative rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 aspect-video lg:aspect-[16/10] bg-black/40 group-hover:border-white/20 transition-all shadow-xl">
+              <img
+                src={p.image}
+                alt={`${p.title} banner`}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            </div>
+          )}
 
-        <div className="flex items-center justify-start lg:justify-end gap-3 mt-4 lg:mt-0 lg:absolute lg:top-0 lg:right-0">
-          {p.link && (
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
-              style={{ background: "transparent", color: "#fff" }}
+          <div className="order-2 lg:order-1 flex flex-col justify-center">
+            <Link
+              to={`/projects/${p.id}`}
+              className="focus:outline-none"
               onClick={(e) => e.stopPropagation()}
-              aria-label={`Open ${p.title} live demo in new tab`}
             >
-              <ExternalLink className="w-5 h-5" aria-hidden="true" />
-            </a>
-          )}
-          {p.github && (
-            <a
-              href={p.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
-              style={{ background: "transparent", color: "#fff" }}
-              onClick={(e) => e.stopPropagation()}
-              aria-label={`View ${p.title} source code on GitHub`}
-            >
-              <Github className="w-5 h-5" aria-hidden="true" />
-            </a>
-          )}
-          <div
-            className="w-12 h-12 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors border border-white/15"
-            style={{ background: "rgba(255,255,255,0.1)", color: "#fff" }}
-            aria-hidden="true"
-          >
-            <ArrowUpRight className="w-5 h-5" />
+              <h3 className="font-heading font-bold text-2xl sm:text-4xl lg:text-5xl text-white mb-3 hover:text-white/80 transition-colors">
+                {p.title}
+              </h3>
+            </Link>
+            <p className="text-white/70 font-body font-light text-sm sm:text-base lg:text-lg leading-relaxed mb-6 max-w-xl">
+              {p.desc}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 text-xs font-body border-l-2 border-white/20 pl-4 py-1.5 mt-auto">
+              <div className="flex items-center gap-2">
+                <span className="text-white/60 uppercase tracking-wider text-[9px]">Stack:</span>
+                <span className="text-white/80">{p.stack.split(" · ").join(" • ")}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -348,33 +365,41 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       <canvas ref={canvasRef} className="project-pixel-canvas" aria-hidden="true" />
 
       {/* Card content — z-10 */}
-      <div className="project-card-content">
-        <div className="flex justify-between items-start mb-6 md:mb-12 min-h-[84px] sm:min-h-[44px]">
-          <div className="flex flex-wrap gap-2">
-            <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
+      <div className="project-card-content flex flex-col h-full">
+        {/* Top Header Row: Badges (left) and Action Buttons (right) */}
+        <div className="flex items-center justify-between gap-3 mb-5">
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
               {p.tag}
-            </div>
-            <div
-              className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
-                p.status === "Live"
-                  ? "text-green-400 border-green-500/30 bg-green-500/10"
-                  : "text-amber-400 border-amber-500/30 bg-amber-500/10"
+            </span>
+            <span
+              className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
+                p.status.includes("Champion")
+                  ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
+                  : p.status === "Live"
+                    ? "text-green-400 border-green-500/30 bg-green-500/10"
+                    : "text-amber-400 border-amber-500/30 bg-amber-500/10"
               }`}
             >
-              <span
-                className={`w-1.5 h-1.5 rounded-full ${p.status === "Live" ? "bg-green-400" : "bg-amber-400"}`}
-                aria-hidden="true"
-              />
-              {p.status}
-            </div>
+              {p.status.includes("Champion") ? (
+                <Trophy className="w-3 h-3 text-amber-400 shrink-0" aria-hidden="true" />
+              ) : (
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${p.status === "Live" ? "bg-green-400" : "bg-amber-400"}`}
+                  aria-hidden="true"
+                />
+              )}
+              <span>{p.status}</span>
+            </span>
           </div>
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-2 shrink-0">
             {p.link && (
               <a
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 min-h-[44px] min-w-[44px] border border-white/15"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
                 style={{ background: "transparent", color: "#fff" }}
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Open ${p.title} live demo in new tab`}
@@ -387,12 +412,12 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
                 href={p.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 min-h-[44px] min-w-[44px] border border-white/15"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
                 style={{ background: "transparent", color: "#fff" }}
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`View ${p.title} source code on GitHub`}
               >
-                <Github className="w-5 h-5" aria-hidden="true" />
+                <Github className="w-4 h-4" aria-hidden="true" />
               </a>
             )}
             <div
@@ -400,12 +425,14 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
               style={{ background: "rgba(255,255,255,0.1)", color: "#fff" }}
               aria-hidden="true"
             >
-              <ArrowUpRight className="w-5 h-5" />
+              <ArrowUpRight className="w-4 h-4" />
             </div>
           </div>
         </div>
+
+        {/* Project Image Banner */}
         {p.image && (
-          <div className="rounded-xl overflow-hidden border border-white/10 aspect-[16/9] mb-4 bg-black/40 group-hover:border-white/20 transition-all">
+          <div className="rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 aspect-video mb-4 bg-black/40 group-hover:border-white/20 transition-all shadow-md">
             <img
               src={p.image}
               alt={`${p.title} banner`}
@@ -414,29 +441,25 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
             />
           </div>
         )}
+
+        {/* Title & Desc */}
         <Link
           to={`/projects/${p.id}`}
           className="focus:outline-none"
           onClick={(e) => e.stopPropagation()}
         >
-          <h3 className="font-heading font-bold text-3xl text-white mb-4 hover:text-white/80 transition-colors">
+          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-2.5 hover:text-white/80 transition-colors">
             {p.title}
           </h3>
         </Link>
-        <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-8 flex-grow">
+        <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-5 flex-grow">
           {p.desc}
         </p>
-        <div className="flex flex-col gap-2 mt-auto text-xs font-body border-l-2 border-white/20 pl-3 py-1">
-          <div className="flex items-center">
-            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Status</span>
-            <span className="text-white/80">{p.status}</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Category</span>
-            <span className="text-white/80">{p.tag}</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Stack</span>
+
+        {/* Tech Stack Meta */}
+        <div className="flex flex-col gap-1.5 mt-auto text-xs font-body border-l-2 border-white/20 pl-3 py-1">
+          <div className="flex items-center gap-2">
+            <span className="text-white/60 uppercase tracking-wider text-[9px]">Stack:</span>
             <span className="text-white/80">{p.stack.split(" · ").join(" • ")}</span>
           </div>
         </div>

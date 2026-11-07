@@ -166,13 +166,18 @@ const ExperienceSection = memo(() => {
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <span
-                        className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${
+                        className={`text-xs font-mono font-bold px-3 py-1 rounded-full border flex items-center gap-1.5 ${
                           isGrandChampion
                             ? "bg-amber-400/20 text-amber-300 border-amber-400/30"
                             : "bg-white/[0.05] text-white/80 border-white/10"
                         }`}
                       >
-                        {award.badge}
+                        {isGrandChampion ? (
+                          <Trophy className="w-3.5 h-3.5 text-amber-400 shrink-0" aria-hidden="true" />
+                        ) : (
+                          <Award className="w-3.5 h-3.5 text-white/70 shrink-0" aria-hidden="true" />
+                        )}
+                        <span>{award.badge}</span>
                       </span>
                       <span className="text-xs font-mono text-white/50">{award.date}</span>
                     </div>

@@ -106,8 +106,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     };
   }, []);
 
-  // Ambient botanical flowers video: loads promptly after initial paint (or immediately on user interaction)
-  // across all screen sizes so flowers and botanical visuals are rich and vibrant
+  // Ambient botanical flowers video: loads on user interaction (touch, scroll, click, pointer, wheel)
+  // so the instant 78KB WebP poster provides an ultra-fast sub-second LCP without 11MB video bandwidth contention
   useEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -119,10 +119,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
     if (prefersReducedMotion || constrainedConnection) return;
 
-    const timer = window.setTimeout(() => setShouldLoadVideo(true), 300);
     const events = ["scroll", "pointerdown", "touchstart", "keydown", "wheel"] as const;
     const startVideo = () => {
-      window.clearTimeout(timer);
       events.forEach((e) => window.removeEventListener(e, startVideo));
       setShouldLoadVideo(true);
     };
@@ -130,7 +128,6 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     events.forEach((e) => window.addEventListener(e, startVideo, { once: true, passive: true }));
 
     return () => {
-      window.clearTimeout(timer);
       events.forEach((e) => window.removeEventListener(e, startVideo));
     };
   }, []);

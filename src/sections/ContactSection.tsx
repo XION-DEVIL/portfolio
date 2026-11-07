@@ -59,41 +59,45 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
             real-world impact.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <div className="liquid-glass-strong rounded-full font-body flex items-center border border-white/10 hover:border-white/20 transition-all shadow-lg backdrop-blur-xl p-1.5 sm:p-2 gap-1.5 sm:gap-2">
-              <a
-                href="mailto:contact@sahayasavari.dev"
-                className="flex items-center gap-2.5 px-4 sm:px-5 py-2 rounded-full hover:bg-white/10 text-white font-medium text-base sm:text-lg transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-                aria-label="Send email to contact@sahayasavari.dev"
-                title="Click to send email"
-              >
-                <Mail className="w-5 h-5 shrink-0 text-white/80 group-hover:text-white" />
-                <span className="text-white group-hover:text-white/90">
-                  contact@sahayasavari.dev
-                </span>
-                <ArrowUpRight className="w-4 h-4 shrink-0 text-white/50 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-              </a>
-              <div className="w-[1px] h-6 bg-white/15" aria-hidden="true" />
+            <div className="liquid-glass-strong rounded-full font-body flex items-center border border-white/10 hover:border-white/20 transition-all shadow-lg backdrop-blur-xl p-1.5 sm:p-2 gap-1 sm:gap-2 max-w-full">
+              {/* Touching the email address copies it to clipboard */}
               <button
                 type="button"
                 onClick={copyEmail}
-                className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full hover:bg-white/10 text-white/70 hover:text-white font-medium text-xs sm:text-sm transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                className="flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-5 py-2 rounded-full hover:bg-white/10 text-white font-medium text-sm sm:text-base md:text-lg transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 touch-manipulation"
                 aria-label={
-                  copied ? "Email copied to clipboard" : "Copy email address to clipboard"
+                  copied
+                    ? "Email copied to clipboard"
+                    : "Copy contact@sahayasavari.dev to clipboard"
                 }
-                title="Copy email address"
+                title="Click to copy email address"
               >
                 {copied ? (
-                  <>
-                    <Check className="w-4 h-4 shrink-0 text-emerald-400" />
-                    <span className="text-emerald-400 font-semibold">Copied!</span>
-                  </>
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-emerald-400" />
                 ) : (
-                  <>
-                    <Copy className="w-4 h-4 shrink-0 opacity-60" />
-                    <span>Copy</span>
-                  </>
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-white/80 group-hover:text-white" />
+                )}
+                <span className="text-white group-hover:text-white/90">
+                  contact@sahayasavari.dev
+                </span>
+                {copied && (
+                  <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full ml-1">
+                    Copied
+                  </span>
                 )}
               </button>
+
+              <div className="w-[1px] h-6 bg-white/15 shrink-0" aria-hidden="true" />
+
+              {/* Right side: Redirect button (mailto:) — clean icon, no 'Copy' letters */}
+              <a
+                href="mailto:contact@sahayasavari.dev"
+                className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:bg-white/15 text-white/70 hover:text-white transition-all group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shrink-0 touch-manipulation"
+                aria-label="Open email client (mailto:contact@sahayasavari.dev)"
+                title="Open mail client"
+              >
+                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
             </div>
             <span className="sr-only" role="status" aria-live="polite">
               {copied
