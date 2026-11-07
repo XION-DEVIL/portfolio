@@ -1,6 +1,5 @@
 import { useEffect, useState, memo, useRef, lazy, Suspense } from "react";
 const HeroBadge = lazy(() => import("../components/reactbits/HeroBadge"));
-const HeroName = lazy(() => import("../components/reactbits/HeroName"));
 import { Play, ArrowUpRight } from "lucide-react";
 import RotatingText from "../components/RotatingText";
 import FocusText from "../components/FocusText";
@@ -9,8 +8,8 @@ import { RainbowButton } from "../components/magicui/rainbow-button";
 // Static Badge Card fallback — visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
 const StaticBadgeCard = () => (
   <div className="relative w-full h-full flex flex-col items-center justify-start pointer-events-none select-none animate-portrait-float">
-    {/* Hanging Lanyard Strap & Clip */}
-    <div className="w-5 h-8 bg-[#18181b] border-x border-white/20 flex flex-col items-center justify-end -mb-1 z-10 shadow-md">
+    {/* Hanging Lanyard Strap & Clip extending gracefully */}
+    <div className="w-5 h-16 bg-gradient-to-b from-transparent via-[#18181b] to-[#18181b] border-x border-white/20 flex flex-col items-center justify-end -mb-1 z-10 shadow-md">
       <div className="w-6 h-2.5 bg-[#27272a] rounded-[2px] border border-white/30" />
       <div className="w-3 h-2 border-b-2 border-x-2 border-zinc-400 rounded-b-sm" />
     </div>
@@ -32,19 +31,11 @@ const StaticBadgeCard = () => (
   </div>
 );
 
-const StaticHeroName = () => (
+// High-fidelity typography heading replacing legacy dot-matrix particle canvas
+const HeroHeadingName = () => (
   <span
     aria-hidden="true"
-    className="text-[clamp(1.8rem,5.8vw,5.8rem)] font-heading font-extrabold tracking-tight whitespace-nowrap inline-block select-none"
-    style={{
-      backgroundImage: "radial-gradient(circle, #ffffff 42%, #818cf8 50%, transparent 58%)",
-      backgroundSize: "3px 3px",
-      WebkitBackgroundClip: "text",
-      backgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      color: "transparent",
-      filter: "drop-shadow(0 0 16px rgba(129, 140, 248, 0.45))",
-    }}
+    className="text-[clamp(2.4rem,6.8vw,5.6rem)] font-heading font-black tracking-tight text-white inline-block bg-gradient-to-b from-white via-white/95 to-white/70 bg-clip-text text-transparent drop-shadow-[0_4px_30px_rgba(255,255,255,0.2)] select-none"
   >
     Sahaya Savari&nbsp;F
   </span>
@@ -61,25 +52,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [enableInteractiveEffects, setEnableInteractiveEffects] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if ("requestIdleCallback" in window) {
-      const id = (
-        window as Window & {
-          requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number;
-        }
-      ).requestIdleCallback(() => setIsMounted(true), { timeout: 1200 });
-      return () => {
-        (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
-      };
-    } else {
-      const timer = setTimeout(() => setIsMounted(true), 300);
-      return () => clearTimeout(timer);
-    }
-  }, []);
 
   // Interactive 3D Lanyard ID Card (Pull and play physics on all devices)
   useEffect(() => {
@@ -106,7 +79,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   }, []);
 
   // Ambient botanical flowers video: loads on user interaction (touch, scroll, click, pointer, wheel)
-  // so the instant 78KB WebP poster provides an ultra-fast sub-second LCP without 11MB video bandwidth contention
+  // so the instant WebP poster provides an ultra-fast sub-second LCP without video bandwidth contention
   useEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -138,9 +111,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       aria-label="Introduction"
       className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent"
     >
-      {/* Background ambient visual on all screens (responsive flowers image + flowing video) */}
+      {/* Background ambient botanical visual (subtle, centered, restrained — not full-screen) */}
       <div
-        className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden"
+        className="absolute top-[2%] sm:top-[6%] md:top-[8%] left-1/2 -translate-x-1/2 w-full max-w-4xl lg:max-w-5xl h-[360px] sm:h-[460px] md:h-[540px] z-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-45 mix-blend-screen"
         aria-hidden="true"
       >
         <div className="relative w-full h-full flex items-center justify-center">
@@ -152,8 +125,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             height={540}
             fetchPriority="high"
             decoding="async"
-            className={`w-full h-full object-cover object-center transition-opacity duration-1000 ${
-              isVideoLoaded ? "opacity-0" : "opacity-75"
+            className={`w-auto h-full max-w-full object-contain object-center transition-opacity duration-1000 ${
+              isVideoLoaded ? "opacity-0" : "opacity-100"
             }`}
             aria-hidden="true"
           />
@@ -167,21 +140,21 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               loop
               muted
               playsInline
-              preload="auto"
+              preload="none"
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
-              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? "opacity-75" : "opacity-0"
+              className={`absolute inset-0 w-auto h-full max-w-full mx-auto object-contain object-center transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded ? "opacity-100" : "opacity-0"
               }`}
               aria-hidden="true"
             />
           )}
         </div>
       </div>
-      <div className="absolute inset-0 bg-black/15 z-0 pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" aria-hidden="true" />
       <div
-        className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/40 to-transparent z-[1]"
+        className="absolute bottom-0 left-0 right-0 h-48 md:h-72 bg-gradient-to-t from-black via-black/80 to-transparent z-[1] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -201,16 +174,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 lg:gap-8 relative w-full max-w-[1000px] mx-auto">
               <h1
                 aria-label="Sahaya Savari F"
-                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[850px] h-[90px] sm:h-[120px] md:h-[150px] lg:h-[180px] flex items-center justify-center whitespace-nowrap overflow-hidden"
+                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[850px] flex items-center justify-center whitespace-nowrap overflow-hidden"
                 style={{ fontStyle: "normal" }}
               >
-                {isMounted ? (
-                  <Suspense fallback={<StaticHeroName />}>
-                    <HeroName />
-                  </Suspense>
-                ) : (
-                  <StaticHeroName />
-                )}
+                <HeroHeadingName />
               </h1>
 
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
