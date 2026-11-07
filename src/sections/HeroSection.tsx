@@ -1,10 +1,6 @@
 import { useEffect, useState, memo, useRef, lazy, Suspense } from "react";
-const HeroBadge = lazy(() =>
-  import("../components/reactbits/HeroEffects").then((m) => ({ default: m.HeroBadge })),
-);
-const HeroName = lazy(() =>
-  import("../components/reactbits/HeroEffects").then((m) => ({ default: m.HeroName })),
-);
+const HeroBadge = lazy(() => import("../components/reactbits/HeroBadge"));
+const HeroName = lazy(() => import("../components/reactbits/HeroName"));
 import { Play, ArrowUpRight } from "lucide-react";
 import RotatingText from "../components/RotatingText";
 import FocusText from "../components/FocusText";
@@ -39,7 +35,7 @@ const StaticBadgeCard = () => (
 const StaticHeroName = () => (
   <span
     aria-hidden="true"
-    className="text-fluid-hero-title font-heading font-bold tracking-tight text-white inline-block drop-shadow-[0_0_25px_rgba(129,140,248,0.35)]"
+    className="text-[clamp(1.5rem,5.5vw,5.5rem)] font-heading font-bold tracking-tight text-white whitespace-nowrap inline-block drop-shadow-[0_0_25px_rgba(129,140,248,0.35)]"
   >
     Sahaya Savari&nbsp;F
   </span>
@@ -56,7 +52,24 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [enableInteractiveEffects, setEnableInteractiveEffects] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if ("requestIdleCallback" in window) {
+      const id = (window as Window & { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(
+        () => setIsMounted(true),
+        { timeout: 800 },
+      );
+      return () => {
+        (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+      };
+    } else {
+      const timer = setTimeout(() => setIsMounted(true), 150);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   // Performance & CWV: Only load heavy 3D WebGL Lanyard and ParticleText on desktop after actual user interaction
   useEffect(() => {
@@ -121,14 +134,14 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
         aria-hidden="true"
       >
         <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
-          {/* Ambient botanical poster image — local asset, loads instantly with zero delay & zero broken icons */}
+          {/* Ambient botanical poster image — local asset, loads cleanly without delaying hero content */}
           <img
             src={HERO_POSTER}
             alt=""
             width={960}
             height={540}
             fetchPriority="high"
-            decoding="sync"
+            decoding="async"
             className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain ${
               isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-40"
             }`}
@@ -177,11 +190,11 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 lg:gap-8 relative w-full max-w-[1000px] mx-auto">
               <h1
-                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[720px] h-[110px] sm:h-[130px] md:h-[160px] lg:h-[200px]"
+                aria-label="Sahaya Savari F"
+                className="font-heading not-italic font-bold text-white order-2 md:order-1 mb-6 md:mb-0 w-full md:w-auto md:flex-1 max-w-[850px] h-[90px] sm:h-[120px] md:h-[150px] lg:h-[180px] flex items-center justify-center whitespace-nowrap overflow-hidden"
                 style={{ fontStyle: "normal" }}
               >
-                <span className="sr-only">Sahaya Savari F</span>
-                {enableInteractiveEffects ? (
+                {isMounted ? (
                   <Suspense fallback={<StaticHeroName />}>
                     <HeroName />
                   </Suspense>

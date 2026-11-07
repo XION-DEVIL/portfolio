@@ -46,9 +46,6 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
-const NOISE_BG =
-  "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')";
-
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -71,6 +68,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "preload",
         as: "image",
+        href: `${import.meta.env.BASE_URL}hero-ambient-poster.webp`,
+        type: "image/webp",
+        fetchPriority: "high",
+      },
+      {
+        rel: "preload",
+        as: "image",
         href: `${import.meta.env.BASE_URL}profile.webp`,
         type: "image/webp",
         fetchPriority: "high",
@@ -80,18 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "preload",
         as: "style",
-        href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap",
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap",
-      },
-      {
-        rel: "preload",
-        as: "image",
-        href: `${import.meta.env.BASE_URL}hero-ambient-poster.webp`,
-        type: "image/webp",
-        fetchPriority: "high",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap",
       },
     ],
   }),
@@ -108,11 +105,6 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body className="bg-black text-white overflow-x-hidden selection:bg-white selection:text-black">
-        {/* Subtle Noise Texture Overlay */}
-        <div
-          className="fixed inset-0 z-[9999] pointer-events-none opacity-[0.015] mix-blend-overlay"
-          style={{ backgroundImage: NOISE_BG }}
-        />
         {children}
         <noscript>
           <style>{`.astral-preloader { display: none !important; }`}</style>

@@ -13,6 +13,7 @@ import SEOHead from "../components/SEOHead";
 import { SITE_URL, createBreadcrumbSchema, askSahayaAIAppSchema } from "../seo";
 import Button from "../components/ui/PortfolioButton";
 import { answerQuestion, SUGGESTIONS } from "../lib/sahayaKnowledge";
+import { sendChatMessage, type ChatMessage } from "../lib/aiService";
 
 type Message = {
   id: string;
@@ -136,23 +137,43 @@ export default function AskSahayaAI() {
     scrollToBottom();
   }, [messages]);
 
-  const ask = (text: string) => {
+  const ask = async (text: string) => {
     if (!text.trim() || isTyping) return;
     const userMessage: Message = { id: Date.now().toString(), role: "user", content: text.trim() };
-    setMessages((prev) => [...prev, userMessage]);
+    const aiMessageId = (Date.now() + 1).toString();
+    const updatedMessages = [...messages, userMessage];
+
+    setMessages(updatedMessages);
     setInput("");
     setIsTyping(true);
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          role: "ai",
-          content: answerQuestion(userMessage.content),
-        },
-      ]);
+
+    try {
+      const chatPayload: ChatMessage[] = updatedMessages.map((m) => ({
+        role: m.role === "ai" ? "assistant" : "user",
+        content: m.content,
+      }));
+
+      // Add placeholder message for streaming response
+      setMessages((prev) => [...prev, { id: aiMessageId, role: "ai", content: "" }]);
+
+      const result = await sendChatMessage(chatPayload, (chunk) => {
+        setMessages((prev) =>
+          prev.map((m) => (m.id === aiMessageId ? { ...m, content: chunk } : m)),
+        );
+      });
+
+      setMessages((prev) =>
+        prev.map((m) => (m.id === aiMessageId ? { ...m, content: result } : m)),
+      );
+    } catch {
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === aiMessageId ? { ...m, content: answerQuestion(userMessage.content) } : m,
+        ),
+      );
+    } finally {
       setIsTyping(false);
-    }, 600);
+    }
   };
 
   const handleSend = (e: React.FormEvent) => {
@@ -222,32 +243,37 @@ export default function AskSahayaAI() {
               aria-live="polite"
               aria-busy={isTyping}
             >
-              {messages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`flex gap-4 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
-                >
+              {messages.map((msg) => {
+                if (!msg.content && isTyping) return null;
+                return (
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === "user" ? "bg-white/20" : "bg-white text-black"}`}
+                    key={msg.id}
+                    className={`flex gap-4 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
                   >
-                    {msg.role === "user" ? (
-                      <User className="w-4 h-4" />
-                    ) : (
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === "user" ? "bg-white/20" : "bg-white text-black"}`}
+                    >
+                      {msg.role === "user" ? (
+                        <User className="w-4 h-4" />
+                      ) : (
+                        <Bot className="w-4 h-4" />
+                      )}
+                    </div>
+                    <div
+                      className={`p-4 rounded-lg min-w-0 break-words whitespace-pre-line max-w-[80%] font-body text-sm leading-relaxed ${msg.role === "user" ? "bg-foreground/10 text-foreground rounded-tr-none" : "bg-primary text-portfolio-ink rounded-tl-none"}`}
+                    >
+                      {msg.content}
+                    </div>
+                  </div>
+                );
+              })}
+              {isTyping &&
+                (!messages[messages.length - 1]?.content ||
+                  messages[messages.length - 1]?.role === "user") && (
+                  <div className="flex gap-4">
+                    <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center shrink-0">
                       <Bot className="w-4 h-4" />
-                    )}
-                  </div>
-                  <div
-                    className={`p-4 rounded-lg min-w-0 break-words whitespace-pre-line max-w-[80%] font-body text-sm leading-relaxed ${msg.role === "user" ? "bg-foreground/10 text-foreground rounded-tr-none" : "bg-primary text-portfolio-ink rounded-tl-none"}`}
-                  >
-                    {msg.content}
-                  </div>
-                </div>
-              ))}
-              {isTyping && (
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center shrink-0">
-                    <Bot className="w-4 h-4" />
-                  </div>
+                    </div>
                   <div className="p-4 rounded-2xl bg-white text-black rounded-tl-none font-body text-sm flex items-center gap-1.5">
                     <span
                       className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"

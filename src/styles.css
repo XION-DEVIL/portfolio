@@ -237,7 +237,8 @@
 
 /* Fluid Typography utilities using CSS clamp() */
 @utility text-fluid-hero-title {
-  font-size: clamp(2.5rem, 8vw + 1rem, 7rem);
+  font-size: clamp(1.5rem, 5.5vw, 5.5rem);
+  white-space: nowrap;
 }
 
 @utility text-fluid-hero-role {

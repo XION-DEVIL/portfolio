@@ -6,6 +6,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { apiChatPlugin } from "./server/apiChatPlugin";
 
 const pagesBase = normalizeBase(process.env["PAGES_BASE"] ?? "/");
 
@@ -60,5 +61,6 @@ export default defineConfig({
     ),
     react(),
     tailwindcss(),
+    apiChatPlugin(),
   ],
 });

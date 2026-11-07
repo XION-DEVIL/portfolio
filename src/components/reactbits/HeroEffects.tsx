@@ -71,10 +71,10 @@ export function HeroName() {
       highlightColor="#818cf8"
       highlightMode="motion"
       intro="gather"
-      trigger="hover"
+      trigger="mount"
       particleSize={2}
       density={2}
-      fontSize="clamp(3.3rem, 9.8vw, 8.8rem)"
+      fontSize="clamp(2rem, 6.2vw, 6.2rem)"
       fontWeight={800}
       fontFamily="'JetBrains Mono', monospace"
       glow
