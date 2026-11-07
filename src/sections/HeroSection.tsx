@@ -35,7 +35,7 @@ const StaticBadgeCard = () => (
 const HeroHeadingName = () => (
   <span
     aria-hidden="true"
-    className="text-[clamp(2.2rem,4.6vw,4.4rem)] font-heading font-bold tracking-tight text-white inline-block bg-gradient-to-b from-white via-white/95 to-white/80 bg-clip-text text-transparent drop-shadow-[0_2px_24px_rgba(255,255,255,0.22)] select-none whitespace-nowrap"
+    className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-heading font-extrabold tracking-tight text-white inline-block bg-gradient-to-b from-white via-white/95 to-white/80 bg-clip-text text-transparent drop-shadow-[0_2px_28px_rgba(255,255,255,0.25)] select-none whitespace-normal sm:whitespace-nowrap leading-[0.95]"
   >
     Sahaya Savari&nbsp;F
   </span>
@@ -201,11 +201,11 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4">
-              <span className="font-heading font-normal text-fluid-hero-role text-white/80">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-5">
+              <span className="font-heading font-medium text-fluid-hero-role text-white/85">
                 I am an
               </span>
-              <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
+              <div className="w-[300px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
                   texts={[
                     "AI Engineer",
@@ -213,7 +213,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     "Python Developer",
                     "Full Stack Developer",
                   ]}
-                  mainClassName="px-3.5 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
+                  mainClassName="px-4 py-1.5 md:px-5 md:py-2 liquid-glass text-white overflow-hidden rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-lg"
                   staggerFrom="last"
                   splitBy="words"
                   initial={{ y: "100%" }}
@@ -229,7 +229,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           </div>
 
           {/* LCP Text: Rendered immediately with optimal contrast */}
-          <p className="text-white/75 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed">
+          <p className="text-white/80 font-body font-light text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mb-8 md:mb-12 leading-relaxed">
             M.Sc. Artificial Intelligence student building Machine Learning applications, Python
             automation tools, and responsive web software with React and TypeScript. Highlighting
             verified engineering projects for Summer/Fall 2026 opportunities.
