@@ -111,9 +111,14 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       aria-label="Introduction"
       className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent"
     >
-      {/* Background ambient botanical visual (subtle, centered, restrained — not full-screen) */}
+      {/* Background ambient botanical visual (balanced, immersive, seamlessly faded into dark edges) */}
       <div
-        className="absolute top-[2%] sm:top-[6%] md:top-[8%] left-1/2 -translate-x-1/2 w-full max-w-4xl lg:max-w-5xl h-[360px] sm:h-[460px] md:h-[540px] z-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-45 mix-blend-screen"
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden"
+        style={{
+          maskImage: "radial-gradient(ellipse 85% 70% at 50% 38%, black 40%, transparent 88%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 85% 70% at 50% 38%, black 40%, transparent 88%)",
+        }}
         aria-hidden="true"
       >
         <div className="relative w-full h-full flex items-center justify-center">
@@ -125,8 +130,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             height={540}
             fetchPriority="high"
             decoding="async"
-            className={`w-auto h-full max-w-full object-contain object-center transition-opacity duration-1000 ${
-              isVideoLoaded ? "opacity-0" : "opacity-100"
+            className={`w-full h-full object-cover object-center transition-opacity duration-1000 ${
+              isVideoLoaded ? "opacity-0" : "opacity-65"
             }`}
             aria-hidden="true"
           />
@@ -144,17 +149,17 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
-              className={`absolute inset-0 w-auto h-full max-w-full mx-auto object-contain object-center transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? "opacity-100" : "opacity-0"
+              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded ? "opacity-65" : "opacity-0"
               }`}
               aria-hidden="true"
             />
           )}
         </div>
       </div>
-      <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/20 z-0 pointer-events-none" aria-hidden="true" />
       <div
-        className="absolute bottom-0 left-0 right-0 h-48 md:h-72 bg-gradient-to-t from-black via-black/80 to-transparent z-[1] pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-56 md:h-80 bg-gradient-to-t from-black via-black/85 to-transparent z-[1] pointer-events-none"
         aria-hidden="true"
       />
 
