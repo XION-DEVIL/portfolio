@@ -70,13 +70,14 @@ const SkillsSection = memo(() => {
         {/* SEO-Friendly Core Technologies Grid */}
         <Marquee>
           {[
+            "PostgreSQL",
+            "Node.js",
+            "React.js",
             "Python",
-            "React",
+            "Machine Learning",
             "TypeScript",
             "Next.js",
-            "Tailwind CSS",
             "SQL",
-            "Machine Learning",
             "Data Analytics",
             "Git & GitHub",
           ].map((name) => (
@@ -95,35 +96,35 @@ const SkillsSection = memo(() => {
               Technologies &amp; Core Tools
             </h3>
             <p className="text-white/60 font-body font-light text-sm max-w-2xl">
-              Languages, libraries, and tools I have actively shipped in live projects, verified in
-              certifications, or practiced in academic labs.
+              Languages, libraries, and tools actively deployed in production, verified in
+              certifications, or practiced in postgraduate AI labs.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
+                domain: "Top LinkedIn Skills",
+                color: "text-emerald-400",
+                borderColor: "border-emerald-500/20",
+                items: ["PostgreSQL", "Node.js", "React.js", "Full Stack"],
+              },
+              {
                 domain: "AI & Machine Learning",
                 color: "text-purple-400",
                 borderColor: "border-purple-500/20",
-                items: ["Python", "Machine Learning", "Data Analytics", "Problem Solving"],
+                items: ["Python", "Machine Learning", "Data Analytics", "Scikit-Learn"],
               },
               {
                 domain: "Languages & Core",
                 color: "text-cyan-400",
                 borderColor: "border-cyan-500/20",
-                items: ["TypeScript", "JavaScript", "SQL", "PostgreSQL"],
-              },
-              {
-                domain: "Frontend & Web",
-                color: "text-emerald-400",
-                borderColor: "border-emerald-500/20",
-                items: ["React", "Next.js", "Tailwind CSS", "Vite"],
+                items: ["TypeScript", "JavaScript", "SQL", "HTML/CSS"],
               },
               {
                 domain: "Tools & Deployment",
                 color: "text-amber-400",
                 borderColor: "border-amber-500/20",
-                items: ["Git & GitHub", "Vercel", "Firebase", "Recharts"],
+                items: ["Git & GitHub", "Vercel", "Firebase", "Responsive UI"],
               },
             ].map((group) => (
               <div

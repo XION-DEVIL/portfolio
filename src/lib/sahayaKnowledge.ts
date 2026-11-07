@@ -5,6 +5,9 @@ import {
   EXPERIENCES,
   HONORS_AND_AWARDS,
   EDUCATION_HISTORY,
+  CONTACT_INFO,
+  TOP_SKILLS,
+  LANGUAGES,
 } from "../data";
 import { CASE_STUDIES } from "../data/caseStudies";
 
@@ -33,10 +36,14 @@ export function answerQuestion(query: string): string {
     ]) &&
     !hasAny(q, [
       "project",
+      "projects",
       "experience",
+      "experiences",
       "skill",
+      "skills",
       "job",
       "hackathon",
+      "hackathons",
       "hire",
       "recruiter",
       "nelsync",
@@ -201,11 +208,11 @@ export function answerQuestion(query: string): string {
   ) {
     return (
       `🎯 **Why Hire Sahaya Savari F:**\n\n` +
-      `1. **Proven Hackathon Champion:** Won 1st Place Overall Champion (66 teams) at AIxcelerate 2026 and Top 5 Winner (110 teams) at VibeCraft 2026 under intense 24-hour sprints.\n` +
-      `2. **Rigorous Academic Base:** Pursuing M.Sc in Artificial Intelligence at St. Joseph's College with B.Sc Computer Science from Thiagarajar College.\n` +
-      `3. **Full-Stack ML Execution:** Bridges the gap between predictive ML models (Python, Scikit-learn) and high-performance interactive interfaces (React 19, TypeScript, Next.js 16, Tailwind).\n` +
-      `4. **Industry-Grade Engineering Discipline:** Hands-on internship experience at HodoLabs Technologies, technical SEO leadership, and rigorous automated testing/WCAG accessibility standards.\n\n` +
-      `*Sahaya is actively available for AI Engineering, Machine Learning, and Full Stack Developer positions.*`
+      `1. **Proven Hackathon Champion:** Won 1st Place Overall Champion (66 teams) at AIxcelerate 2026 and Top 5 Finalist (110 teams) at VibeCraft 2026 under intense sprint conditions.\n` +
+      `2. **Rigorous Academic Base:** Pursuing M.Sc in Artificial Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli with B.Sc. Data science from Thiagarajar College, Madurai.\n` +
+      `3. **Full-Stack & Data Synergy:** Proven proficiency in PostgreSQL, Node.js, and React.js, bridging predictive ML models (Python) to responsive production interfaces.\n` +
+      `4. **Industry-Grade Execution:** Hands-on Digital Marketing Intern experience at HodoLabs, technical SEO expertise, and disciplined web engineering.\n\n` +
+      `*Sahaya is actively available for AI/ML Engineering, Python Development, and Full Stack positions.*`
     );
   }
 
@@ -224,6 +231,8 @@ export function answerQuestion(query: string): string {
       "m.sc",
       "b.sc",
       "cgpa",
+      "school",
+      "hsc",
     ])
   ) {
     return (
@@ -259,7 +268,7 @@ export function answerQuestion(query: string): string {
           `  *Issued:* ${c.issueDate || "2026"} ${c.credentialId ? `| *ID:* ${c.credentialId}` : ""}\n` +
           `  ${c.desc}`,
       ).join("\n\n") +
-      `\n\n*All credentials are fully verified and backed by official issuing authority registries.*`
+      `\n\n*All 4 credentials match Sahaya's official verified records (IBM, NIELIT, NPTEL IIT Madras, and HodoLabs).*`
     );
   }
 
@@ -267,23 +276,36 @@ export function answerQuestion(query: string): string {
   if (
     hasAny(q, [
       "skill",
+      "skills",
+      "competencies",
       "tech",
+      "technology",
+      "technologies",
       "stack",
       "language",
+      "languages",
       "tools",
       "framework",
+      "frameworks",
       "python",
       "react",
       "typescript",
+      "postgresql",
+      "postgres",
+      "node",
+      "nodejs",
+      "node.js",
       "machine learning",
     ])
   ) {
     return (
-      `⚡ **Technical Competencies & Toolchain:**\n\n` +
+      `⚡ **Top Skills & Technical Competencies:**\n\n` +
+      `• **Top Skills (Verified):** ${TOP_SKILLS.join(", ")}.\n` +
       `• **AI & Machine Learning:** Python, Scikit-learn, Regression, Classification, Model Evaluation, Prompt Engineering, Gemini API, Data Wrangling, Pandas, NumPy.\n` +
-      `• **Frontend Engineering:** React 19, Next.js 16, TypeScript, Vite, Tailwind CSS v4, Framer Motion, TanStack Router, Responsive UI, Core Web Vitals optimization.\n` +
-      `• **Backend & Storage:** Node.js, REST APIs, SQL, PostgreSQL, Firebase, IndexedDB, Supabase.\n` +
-      `• **DevOps & Standards:** Git, GitHub Actions, Vercel, Vitest, Lighthouse CI, WCAG AA Accessibility, Linux.`
+      `• **Frontend Engineering:** React.js, Next.js 16, TypeScript, Vite, Tailwind CSS v4, Framer Motion, Responsive Layouts, Core Web Vitals optimization.\n` +
+      `• **Backend & Databases:** Node.js, PostgreSQL, SQL, REST APIs, Firebase, IndexedDB.\n` +
+      `• **Languages Spoken:** ${LANGUAGES.map((l) => `${l.language} (${l.proficiency})`).join(", ")}.\n` +
+      `• **DevOps & Standards:** Git, GitHub Actions, Vercel, Vitest, WCAG AA Accessibility, Linux.`
     );
   }
 
@@ -299,18 +321,22 @@ export function answerQuestion(query: string): string {
       "resume",
       "cv",
       "phone",
+      "mobile",
       "location",
       "talk",
     ])
   ) {
     return (
       `📫 **Get in Touch with Sahaya Savari F:**\n\n` +
-      `• **Email:** [contact@sahayasavari.dev](mailto:contact@sahayasavari.dev)\n` +
-      `• **LinkedIn:** [linkedin.com/in/sahaya-savari](https://www.linkedin.com/in/sahaya-savari)\n` +
-      `• **GitHub:** [github.com/sahaya-savari](https://github.com/sahaya-savari)\n` +
-      `• **Portfolio:** [https://sahayasavari.dev](https://sahayasavari.dev)\n` +
+      `• **Primary Email:** [${CONTACT_INFO.primaryEmail}](mailto:${CONTACT_INFO.primaryEmail})\n` +
+      `• **Secondary Email:** [${CONTACT_INFO.secondaryEmail}](mailto:${CONTACT_INFO.secondaryEmail})\n` +
+      `• **Mobile Phone:** [${CONTACT_INFO.phone}](tel:${CONTACT_INFO.phoneRaw})\n` +
+      `• **Location:** ${CONTACT_INFO.location}\n` +
+      `• **LinkedIn:** [linkedin.com/in/sahaya-savari](${CONTACT_INFO.linkedin})\n` +
+      `• **GitHub:** [github.com/sahaya-savari](${CONTACT_INFO.github})\n` +
+      `• **Portfolio:** [${CONTACT_INFO.website}](${CONTACT_INFO.website})\n` +
       `• **Resume:** [Download PDF Resume](/resume.pdf)\n\n` +
-      `*Based in Tamil Nadu, India — open to remote, hybrid, and onsite opportunities worldwide.*`
+      `*Open to remote, hybrid, and relocation opportunities worldwide.*`
     );
   }
 

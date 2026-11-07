@@ -10,6 +10,24 @@ interface SkillEvidence {
 
 const EVIDENCE_DATA: SkillEvidence[] = [
   {
+    skill: "PostgreSQL",
+    project: "NelSync AI & Relational Schemas",
+    certification: "IBM Data Analyst Specialization",
+    experience: "Relational modeling & B.Sc. Data science",
+  },
+  {
+    skill: "Node.js",
+    project: "PrepMind AI & Web Services",
+    certification: "Web Development and Software Engineering",
+    experience: "Backend service routes & server runtime",
+  },
+  {
+    skill: "React.js",
+    project: "VibeCraft 2026, Daily Spark & PrepMind AI",
+    certification: "Web Development and Software Engineering",
+    experience: "UI architecture & web optimization at HodoLabs",
+  },
+  {
     skill: "Python",
     project: "NelSync AI (Hackathon Champion)",
     certification: "IBM Data Analyst Specialization",
@@ -20,12 +38,6 @@ const EVIDENCE_DATA: SkillEvidence[] = [
     project: "NelSync AI (AIxcelerate 2026)",
     certification: "NPTEL / IIT Madras (ML in Tamil)",
     experience: "M.Sc. Artificial Intelligence studies & labs",
-  },
-  {
-    skill: "React & Next.js",
-    project: "VibeCraft 2026, Daily Spark & PrepMind AI",
-    certification: "Web Development and Software Engineering",
-    experience: "Web development & UI architecture at HodoLabs",
   },
   {
     skill: "TypeScript",
@@ -40,16 +52,10 @@ const EVIDENCE_DATA: SkillEvidence[] = [
     experience: "Responsive styling & mobile-first layouts",
   },
   {
-    skill: "SQL & PostgreSQL",
-    project: "NelSync AI & Relational Lab Schemas",
-    certification: "IBM Data Analyst Specialization",
-    experience: "B.Sc. Data Science relational modeling",
-  },
-  {
     skill: "Data Analytics",
     project: "NelSync AI (Procurement Analytics)",
     certification: "IBM Data Analyst Specialization",
-    experience: "B.Sc. Data Science & analytics coursework",
+    experience: "B.Sc. Data science & analytics coursework",
   },
   {
     skill: "Git & GitHub",

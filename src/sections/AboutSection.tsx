@@ -29,23 +29,26 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
           </h2>
           <div className="space-y-8 text-white/60 font-body font-light text-lg leading-relaxed max-w-xl">
             <p>
-              I am <strong>Sahaya Savari</strong>, an M.Sc. Artificial Intelligence student at St.
+              I am <strong>Sahaya Savari F</strong>, an M.Sc. Artificial Intelligence student at St.
               Joseph's College (Autonomous), Tiruchirappalli, with a strong foundation in B.Sc. Data
-              Science from Thiagarajar College, Madurai.
+              science from Thiagarajar College, Madurai, and currently a Digital Marketing Intern at
+              HodoLabs.
             </p>
             <p>
               My focus centers on{" "}
-              <strong>Artificial Intelligence, Machine Learning, and Cybersecurity</strong>,
-              developed through hands-on engineering projects, competitive hackathons, and practical
-              industry internship experience. I believe exceptional software outcomes require a
-              balance of clean technical execution, teamwork, leadership, clear communication, and
-              dependable coordination.
+              <strong>
+                Artificial Intelligence, Machine Learning, and Full-Stack Web Development
+              </strong>
+              , developed through hands-on engineering projects, competitive hackathons, and
+              practical industry internship experience. I believe exceptional software outcomes
+              require a balance of clean technical execution, teamwork, leadership, clear
+              communication, and dependable coordination.
             </p>
             <p>
               Whether organizing technical symposiums, coordinating multi-stage hackathon
-              deliverables, or shipping resilient web applications with React, Next.js, and Python,
-              I bring disciplined curiosity, focus, and verifiable work to every team I collaborate
-              with.
+              deliverables, or shipping resilient applications with PostgreSQL, Node.js, React.js,
+              and Python, I bring disciplined curiosity, focus, and verifiable work to every team I
+              collaborate with.
             </p>
           </div>
         </div>
@@ -66,11 +69,10 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
               </div>
               <div>
                 <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">
-                  What I Know
+                  Top Skills
                 </h4>
                 <p className="text-sm font-body text-white/80 font-light">
-                  Python, React, TypeScript, Next.js, Tailwind CSS, SQL, Machine Learning, and Data
-                  Analytics.
+                  PostgreSQL, Node.js, React.js, Python, Machine Learning, and Data Analytics.
                 </p>
               </div>
               <div>
@@ -171,7 +173,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                       Key Strengths
                     </span>
                     <span className="text-white/80 font-body text-sm block font-medium">
-                      Python ML &amp; Analytics · React/Next.js Web Apps · Team Leadership &amp;
+                      PostgreSQL, Node.js, React.js · Python &amp; ML · Team Leadership &amp;
                       Coordination
                     </span>
                   </div>

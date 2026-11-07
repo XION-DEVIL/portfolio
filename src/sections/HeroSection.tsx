@@ -207,15 +207,15 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-5">
               <span className="font-heading font-medium text-fluid-hero-role text-white/85">
-                I am an
+                I am a
               </span>
               <div className="w-[300px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
                   texts={[
-                    "AI Engineer",
-                    "M.Sc. AI Student",
-                    "Python Developer",
-                    "Full Stack Developer",
+                    "Student AI/ML Engineer",
+                    "M.Sc. AI @ St. Joseph's",
+                    "Digital Marketing Intern @ HodoLabs",
+                    "2x Hackathon Achiever",
                   ]}
                   mainClassName="px-4 py-1.5 md:px-5 md:py-2 liquid-glass text-white overflow-hidden rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-lg"
                   staggerFrom="last"
@@ -299,14 +299,16 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
                       Experience
                     </span>
-                    <span className="text-white/90 font-medium">SEO & Web Trainee @ HodoLabs</span>
+                    <span className="text-white/90 font-medium">
+                      Digital Marketing Intern @ HodoLabs
+                    </span>
                   </div>
                   <div>
                     <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
                       Target Roles
                     </span>
                     <span className="text-white/90 font-medium">
-                      AI Engineer, Python Developer, Full Stack
+                      AI/ML Engineer, Python Developer, Full Stack
                     </span>
                   </div>
                   <div>
@@ -314,23 +316,23 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                       Location & Preference
                     </span>
                     <span className="text-white/90 font-medium">
-                      Tamil Nadu, India · Remote / Relocate
+                      Madurai / Tamil Nadu · Remote / Relocate
                     </span>
                   </div>
                 </div>
 
                 <div className="pt-2">
                   <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">
-                    Primary Stack
+                    Primary & Top Skills
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {[
+                      "PostgreSQL",
+                      "Node.js",
+                      "React.js",
                       "Python",
-                      "Artificial Intelligence",
                       "Machine Learning",
-                      "React",
-                      "TypeScript",
-                      "Firebase",
+                      "Data Analytics",
                     ].map((skill) => (
                       <span
                         key={skill}

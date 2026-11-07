@@ -107,18 +107,32 @@ export default function ResumePage() {
               <p className="text-xs text-white/60">
                 St. Joseph's College (Autonomous), Tiruchirappalli
               </p>
-              <p className="font-medium text-white mt-1">
-                B.Sc. Data Science (August 2022 – May 2025)
+              <p className="font-medium text-white mt-2">
+                B.Sc. Data science (August 2022 – May 2025)
               </p>
               <p className="text-xs text-white/60">Thiagarajar College, Madurai</p>
+              <p className="font-medium text-white mt-2">HSC, BIO-MATHS (June 2020 – July 2022)</p>
+              <p className="text-xs text-white/60">St. Mary's Higher Secondary School, Madurai</p>
             </div>
             <div>
               <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
-                Core Tech Stack
+                Top Skills &amp; Stack
+              </h3>
+              <p className="text-xs text-white/80 leading-relaxed mb-3">
+                <strong className="text-white">Top Skills:</strong> PostgreSQL, Node.js, React.js
+                <br />
+                <strong className="text-white">AI &amp; Data:</strong> Python, Machine Learning,
+                Data Analytics, Scikit-learn
+                <br />
+                <strong className="text-white">Tools &amp; Web:</strong> TypeScript, Next.js, Vite,
+                Tailwind CSS, Git
+              </p>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
+                Current Role
               </h3>
               <p className="text-xs text-white/80 leading-relaxed">
-                Python, TypeScript, React, Next.js, SQL, Machine Learning, Data Analytics, Firebase,
-                Vite, Tailwind CSS
+                <strong className="text-white">Digital Marketing Intern</strong> @ HodoLabs (June
+                2026 – Present)
               </p>
             </div>
           </div>

@@ -45,6 +45,10 @@ export default defineConfig({
             router: { basepath: process.env["PAGES_BASE"] ? pagesBase : "/" },
             pages: [
               { path: "/" },
+              { path: "/about" },
+              { path: "/skills" },
+              { path: "/certifications" },
+              { path: "/contact" },
               { path: "/ai" },
               { path: "/blog" },
               { path: "/experience" },

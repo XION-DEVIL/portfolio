@@ -31,7 +31,7 @@ export const ARTICLES: Article[] = [
       "Strict aspect-ratio sizing and layout reserve blocks drop Cumulative Layout Shift (CLS) to an absolute 0.00.",
       "Interlinked schema graphs (@graph with Person, WebSite, and TechArticle) maximize search engine entity discovery.",
     ],
-    content: `During my tenure as a Technical SEO Intern at HodoLabs Technologies, the single most common culprit behind poor Google PageSpeed scores was not server latency—it was unmeasured client-side layout thrashing and deferred media rendering.
+    content: `During my tenure as a Digital Marketing Intern at HodoLabs, the single most common culprit behind poor Google PageSpeed scores was not server latency—it was unmeasured client-side layout thrashing and deferred media rendering.
 
 Key optimizations implemented across audit projects:
 
@@ -352,6 +352,34 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export interface LanguageProficiency {
+  language: string;
+  proficiency: string;
+}
+
+export const TOP_SKILLS = ["PostgreSQL", "Node.js", "React.js"] as const;
+
+export const LANGUAGES: LanguageProficiency[] = [
+  { language: "Tamil", proficiency: "Native or Bilingual" },
+  { language: "English", proficiency: "Limited Working" },
+  { language: "Hindi", proficiency: "Elementary" },
+];
+
+export const CONTACT_INFO = {
+  name: "Sahaya Savari F",
+  headline:
+    "Student AI/ML Engineer | M.Sc. Artificial Intelligence @ SJC | Digital Marketing Intern @ HodoLabs | 2x Hackathon Achiever",
+  location: "Madurai, Tamil Nadu, India",
+  primaryEmail: "sahayasavari.info@gmail.com",
+  secondaryEmail: "contact@sahayasavari.dev",
+  phone: "+91 6385648514",
+  phoneDisplay: "+91 6385648514",
+  phoneRaw: "6385648514",
+  linkedin: "https://www.linkedin.com/in/sahaya-savari",
+  github: "https://github.com/sahaya-savari",
+  website: "https://sahayasavari.dev",
+};
+
 export interface FeaturedCredential {
   prefix?: string;
   rank?: string;
@@ -393,6 +421,17 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
   },
   {
     rank: "02",
+    title: "Yuva AI for All",
+    issuer: "NIELIT (Govt. of India)",
+    issueDate: "March 2026",
+    credentialId: "2026030427766558-105732",
+    verifyUrl: "https://www.nielit.gov.in/",
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+    skills: ["Prompt Engineering", "Accurate Prompting", "Generative AI", "Responsible AI"],
+    desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications.",
+  },
+  {
+    rank: "03",
     title: "Introduction to Machine Learning (Tamil)",
     issuer: "NPTEL / IIT Madras",
     issueDate: "March 2026",
@@ -411,17 +450,6 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     desc: "Completed NPTEL IIT Madras certification in Introduction to Machine Learning (Tamil), covering machine learning fundamentals, classification, regression, model evaluation, and practical AI concepts.",
   },
   {
-    rank: "03",
-    title: "Yuva AI for All",
-    issuer: "NIELIT (Govt. of India)",
-    issueDate: "March 2026",
-    credentialId: "2026030427766558-105732",
-    verifyUrl: "https://www.nielit.gov.in/",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    skills: ["Prompt Engineering", "Accurate Prompting", "Generative AI", "Responsible AI"],
-    desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications.",
-  },
-  {
     rank: "04",
     title: "Web Development and Software Engineering",
     issuer: "HodoLabs Technologies",
@@ -432,8 +460,9 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     skills: [
       "Web Development",
       "Software Engineering",
-      "React",
-      "TypeScript",
+      "React.js",
+      "Node.js",
+      "PostgreSQL",
       "REST APIs",
       "Git & GitHub",
       "Responsive UI",
@@ -454,40 +483,25 @@ export interface Experience {
 
 export const EXPERIENCES: Experience[] = [
   {
-    company: "HodoLabs Technologies Pvt. Ltd.",
-    location: "Madurai, Tamil Nadu",
-    role: "Digital Marketing & Technical SEO Intern",
-    period: "Jun 2026 – Present",
+    company: "HodoLabs",
+    location: "Madurai, Tamil Nadu, India",
+    role: "Digital Marketing Intern",
+    period: "June 2026 – Present",
     type: "Internship",
     highlights: [
-      "Conduct in-depth technical SEO audits, site speed & PageSpeed analysis, and architectural optimizations across 4+ client websites.",
-      "Completed comprehensive Phase 2 SEO audits for ZabConnect and NRI Shipping, documenting technical crawlability, content relevance, metadata, and internal link structure improvements.",
-      "Managed Google Business Profiles and maintained structured issue-tracking spreadsheets to prioritize technical remediation and reporting.",
+      "Conduct in-depth technical SEO audits, site architecture reviews, and PageSpeed optimizations across client web properties.",
+      "Analyze organic search visibility, metadata, crawlability, and conversion funnels to drive digital marketing growth.",
+      "Manage Google Business Profiles and structured analytics reporting to measure and enhance digital campaign performance.",
     ],
     skills: [
+      "Digital Marketing",
       "Technical SEO",
-      "PageSpeed Analysis",
-      "Site Architecture",
+      "PageSpeed Optimization",
+      "Web Analytics",
       "Google Business Profile",
-      "Reporting & Analytics",
-    ],
-  },
-  {
-    company: "HodoLabs Technologies Pvt. Ltd.",
-    location: "Madurai, Tamil Nadu",
-    role: "Web Development & Software Engineering Trainee",
-    period: "May 2026 – Jun 2026",
-    type: "Trainee",
-    highlights: [
-      "Completed an intensive software engineering program spanning frontend and backend architecture, software patterns, and Git version control.",
-      "Delivered project-based engineering assignments adhering to responsive design standards and accessible semantic code.",
-    ],
-    skills: [
-      "Full Stack Development",
-      "Git & GitHub",
-      "Software Engineering",
-      "REST APIs",
-      "Responsive UI",
+      "PostgreSQL",
+      "Node.js",
+      "React.js",
     ],
   },
 ];
@@ -514,44 +528,26 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
-    title: "Hackathon Winner (5th Place)",
-    event: "VibeCraft 2026 (YUVA'26)",
+    title: "Top 5 Finalist (Out of 110 Teams)",
+    event: "VibeCraft 2026 Hackathon (YUVA'26)",
     organizer: "SRM IST Trichy",
     date: "February 2026",
-    badge: "Winner (5th of 110 Teams)",
-    desc: "Winner, 5th place out of 110 teams with Team NeuraGenZers, developing two combined campus productivity applications for attendance projection and smart room location.",
+    badge: "Top 5 Finalist (110 Teams)",
+    desc: "Top 5 Finalist out of 110 teams with Team NeuraGenZers, developing two combined campus productivity applications for attendance projection and smart room location.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
-    title: "1st Place Winner",
-    event: "Technical Quiz Event — BOOTFEST-2K26",
+    title: "Quiz Winner & Capture The Flag Runner-up",
+    event: "BOOTFEST 2K26 Inter-Collegiate Technical Symposium",
     organizer: "Bishop Heber College, PG Dept of Computer Science",
     date: "2026",
-    badge: "Winner",
-    desc: "Won first place in advanced computer science, algorithms, AI concepts, and software engineering quiz competition.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-  },
-  {
-    title: "Runner-up (2nd Place)",
-    event: "Capture The Flag (CTF) Cybersecurity Challenge — BOOTFEST-2K26",
-    organizer: "Bishop Heber College, PG Dept of Computer Science",
-    date: "2026",
-    badge: "Runner-up",
-    desc: "Competed in offensive security, binary exploitation, web vulnerabilities, and reverse engineering challenges.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-  },
-  {
-    title: "Overall Runner-up",
-    event: "BOOTFEST-2K26 Inter-Collegiate Technical Festival",
-    organizer: "Bishop Heber College, PG Dept of Computer Science",
-    date: "2026",
-    badge: "Overall Runner-up",
-    desc: "Secured Overall Runner-up across participating collegiate teams in cumulative technical events at BOOTFEST-2K26.",
+    badge: "Winner & Runner-up",
+    desc: "Quiz Winner in advanced algorithms and computer science concepts, and Capture The Flag (CTF) Cybersecurity Challenge Runner-up.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
     title: "Interdepartmental Contest Winner",
-    event: "Achievers' Day Inter-Departmental Competition",
+    event: "Achievers Day Interdepartmental Contest",
     organizer: "St. Joseph's College (Autonomous)",
     date: "2026",
     badge: "Certificate of Merit",
@@ -559,8 +555,8 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
-    title: "Event In-Charge",
-    event: "Treasure Titans — AION 2K26 Technical Symposium",
+    title: "Event In-Charge (Treasure Titans)",
+    event: "AION 2K26 Technical Symposium",
     organizer: "Department of AI, St. Joseph's College",
     date: "2026",
     badge: "Event In-Charge",
@@ -579,20 +575,27 @@ export interface EducationItem {
 
 export const EDUCATION_HISTORY: EducationItem[] = [
   {
-    degree: "M.Sc. Artificial Intelligence",
+    degree: "Master of Science, AI",
     institution: "St. Joseph's College (Autonomous), Tiruchirappalli",
     period: "July 2025 – May 2027",
     grade: "Pursuing",
     focus:
-      "Machine Learning, Deep Learning Architectures, Python Applications & Natural Language Processing.",
+      "Artificial Intelligence, Machine Learning Architectures, Python Applications & Natural Language Processing.",
   },
   {
-    degree: "B.Sc. Data Science",
+    degree: "Bachelor of Science, Data science",
     institution: "Thiagarajar College, Madurai",
     period: "August 2022 – May 2025",
     grade: "65.06%",
     focus:
-      "Statistics, Probability, Linear Algebra, Machine Learning Fundamentals, SQL Database Systems & Data Modeling.",
+      "Data Science, Statistics, Probability, Linear Algebra, Machine Learning Fundamentals & SQL Database Systems.",
+  },
+  {
+    degree: "HSC, BIO-MATHS (Maths Physics Chemistry Biology)",
+    institution: "St. Mary's Higher Secondary School, Madurai",
+    period: "June 2020 – July 2022",
+    grade: "Completed",
+    focus: "Mathematics, Physics, Chemistry & Biology foundational STEM curriculum.",
   },
 ];
 
@@ -609,19 +612,19 @@ export const STATS: StatItem[] = [
     description: "NelSync AI · AIxcelerate 2026 Grand Champion",
   },
   {
-    value: "4",
-    label: "Symposium Awards",
-    description: "BOOTFEST Quiz, CTF, Overall & Achievers' Day",
+    value: "5",
+    label: "Honors & Awards",
+    description: "AIxcelerate, VibeCraft, BOOTFEST, Achievers Day & AION",
   },
   {
     value: "2",
     label: "Hackathons",
-    description: "AIxcelerate '26 (1st of 66) & VibeCraft '26 (5th of 110)",
+    description: "AIxcelerate '26 (1st of 66) & VibeCraft '26 (Top 5 of 110)",
   },
   {
-    value: "Lead",
-    label: "Event In-Charge",
-    description: "AION 2K26 (Treasure Titans) AI Department",
+    value: "4",
+    label: "Verified Credentials",
+    description: "IBM, NIELIT, NPTEL IIT Madras & HodoLabs",
   },
 ];
 
@@ -645,7 +648,7 @@ export const CERTIFICATIONS: CertificationCategory[] = [
     items: [
       { name: "IBM Data Analyst Professional Certificate", tag: "Professional Cert" },
       { name: "Python for Data Science, AI & Development", tag: "Core Python" },
-      { name: "Relational Databases, SQL & Data Modeling", tag: "Databases" },
+      { name: "Relational Databases, SQL & PostgreSQL", tag: "Databases" },
     ],
   },
   {
@@ -655,7 +658,7 @@ export const CERTIFICATIONS: CertificationCategory[] = [
     desc: "Software architecture, responsive UI development, REST API integration, and disciplined version control.",
     items: [
       { name: "Web Development and Software Engineering", tag: "HodoLabs" },
-      { name: "Modern Web Architecture & Responsive Design", tag: "Web Dev" },
+      { name: "React.js & Node.js Architecture", tag: "Top Skills" },
       { name: "Git, GitHub & Collaborative Version Control", tag: "Git Workflow" },
     ],
   },

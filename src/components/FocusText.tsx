@@ -86,7 +86,7 @@ function FocusText({ className = "" }: FocusTextProps) {
     // the track position is measured and updated after mount.
     <div
       ref={containerRef}
-      className={`relative w-full h-[100px] md:h-[140px] flex items-center ${className}`}
+      className={`relative w-full h-[100px] md:h-[140px] flex items-center overflow-hidden ${className}`}
     >
       {/* Centered wide container to prevent browser layout clipping */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[2000px] flex items-center justify-center pointer-events-none">

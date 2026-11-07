@@ -34,7 +34,7 @@ const PHASES: TelemetryPhase[] = [
     minPct: 50,
     badge: "EXPERIENCE",
     highlight: "HODOLABS TECHNOLOGIES PVT. LTD.",
-    subtext: "Digital Marketing & Technical SEO Intern · Web Trainee",
+    subtext: "Digital Marketing Intern @ HodoLabs",
   },
   {
     minPct: 75,

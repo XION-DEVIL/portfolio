@@ -133,15 +133,15 @@ export default function AskSahayaAI() {
         break;
       case "skills":
         output =
-          "• Languages: Python, TypeScript, JavaScript, SQL\n• AI & ML: Machine Learning, Scikit-Learn, Predictive Modeling, Data Analytics\n• Web & Tools: React, Next.js, Vite, Tailwind CSS, Node.js, PostgreSQL, Firebase, Vercel, Git & GitHub";
+          "• Top Skills (Verified): PostgreSQL, Node.js, React.js\n• AI & ML: Python, Machine Learning, Scikit-Learn, Predictive Modeling, Data Analytics\n• Web & Tools: TypeScript, Next.js, Vite, Tailwind CSS, Firebase, Vercel, Git & GitHub\n• Languages: Tamil (Native/Bilingual), English (Limited Working), Hindi (Elementary)";
         break;
       case "experience":
         output =
-          "• Web Development Intern @ HodoLabs Technologies Pvt. Ltd. (Jun 2026 – Present)\n• Technical SEO Intern @ HodoLabs Technologies Pvt. Ltd. (May 2026 – Jun 2026)";
+          "• Digital Marketing Intern @ HodoLabs (June 2026 – Present · Madurai, Tamil Nadu, India)\n  SEO technical audits, site architecture, PageSpeed optimization, and marketing analytics.";
         break;
       case "contact":
         output =
-          "• Email: contact@sahayasavari.dev\n• GitHub: https://github.com/sahaya-savari\n• LinkedIn: https://www.linkedin.com/in/sahaya-savari\n• Portfolio: https://sahayasavari.dev";
+          "• Primary Email: sahayasavari.info@gmail.com\n• Secondary Email: contact@sahayasavari.dev\n• Phone: +91 6385648514\n• Location: Madurai, Tamil Nadu, India\n• LinkedIn: https://www.linkedin.com/in/sahaya-savari\n• GitHub: https://github.com/sahaya-savari\n• Portfolio: https://sahayasavari.dev";
         break;
       case "clear":
         setTerminalHistory([]);

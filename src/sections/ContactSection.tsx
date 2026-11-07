@@ -9,9 +9,11 @@ import {
   Copy,
   ArrowUpRight,
   ExternalLink,
+  Phone,
 } from "lucide-react";
 import HlsVideo from "../components/HlsVideo";
 import Dock from "../components/Dock";
+import { CONTACT_INFO } from "../data";
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 
@@ -20,14 +22,15 @@ interface ContactSectionProps {
 }
 
 const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => {
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const [copyError, setCopyError] = useState(false);
-  const copyEmail = async () => {
+
+  const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText("contact@sahayasavari.dev");
-      setCopied(true);
+      await navigator.clipboard.writeText(text);
+      setCopiedEmail(text);
       setCopyError(false);
-      window.setTimeout(() => setCopied(false), 2000);
+      window.setTimeout(() => setCopiedEmail(null), 2000);
     } catch {
       setCopyError(true);
     }
@@ -53,34 +56,35 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
           <h2 className="text-fluid-contact-heading font-heading font-bold text-white tracking-tight leading-[0.8] mb-8 md:mb-12">
             Let's Build <br /> Something.
           </h2>
-          <p className="text-white/60 font-body font-light text-xl max-w-2xl mx-auto mb-10 md:mb-16">
+          <p className="text-white/60 font-body font-light text-base sm:text-xl max-w-2xl mx-auto mb-10 md:mb-16">
             I'm open to new projects, internships, and collaborations where AI, Machine Learning,
-            Python, React, TypeScript, Firebase, and full-stack product thinking can create
-            real-world impact.
+            PostgreSQL, Node.js, React.js, and product thinking can create real-world impact.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+
+          {/* Contact Actions Grid */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-4xl mx-auto">
+            {/* Primary Email Pill */}
             <div className="liquid-glass-strong rounded-full font-body flex items-center border border-white/10 hover:border-white/20 transition-all shadow-lg backdrop-blur-xl p-1.5 sm:p-2 gap-1 sm:gap-2 max-w-full">
-              {/* Touching the email address copies it to clipboard */}
               <button
                 type="button"
-                onClick={copyEmail}
-                className="flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-5 py-2 rounded-full hover:bg-white/10 text-white font-medium text-sm sm:text-base md:text-lg transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 touch-manipulation"
+                onClick={() => copyToClipboard(CONTACT_INFO.primaryEmail)}
+                className="flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-2 rounded-full hover:bg-white/10 text-white font-medium text-xs sm:text-sm md:text-base transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 touch-manipulation"
                 aria-label={
-                  copied
-                    ? "Email copied to clipboard"
-                    : "Copy contact@sahayasavari.dev to clipboard"
+                  copiedEmail === CONTACT_INFO.primaryEmail
+                    ? "Primary email copied to clipboard"
+                    : `Copy ${CONTACT_INFO.primaryEmail} to clipboard`
                 }
-                title="Click to copy email address"
+                title="Click to copy primary email"
               >
-                {copied ? (
+                {copiedEmail === CONTACT_INFO.primaryEmail ? (
                   <Check className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-emerald-400" />
                 ) : (
-                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-white/80 group-hover:text-white" />
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-emerald-400 group-hover:text-emerald-300" />
                 )}
-                <span className="text-white group-hover:text-white/90">
-                  contact@sahayasavari.dev
+                <span className="text-white group-hover:text-white/90 break-all sm:break-normal">
+                  {CONTACT_INFO.primaryEmail}
                 </span>
-                {copied && (
+                {copiedEmail === CONTACT_INFO.primaryEmail && (
                   <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full ml-1">
                     Copied
                   </span>
@@ -89,31 +93,59 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
 
               <div className="w-[1px] h-6 bg-white/15 shrink-0" aria-hidden="true" />
 
-              {/* Right side: Redirect button (mailto:) — clean icon, no 'Copy' letters */}
               <a
-                href="mailto:contact@sahayasavari.dev"
-                className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:bg-white/15 text-white/70 hover:text-white transition-all group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shrink-0 touch-manipulation"
-                aria-label="Open email client (mailto:contact@sahayasavari.dev)"
+                href={`mailto:${CONTACT_INFO.primaryEmail}`}
+                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-white/15 text-white/70 hover:text-white transition-all group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shrink-0 touch-manipulation"
+                aria-label={`Open email client (mailto:${CONTACT_INFO.primaryEmail})`}
                 title="Open mail client"
               >
                 <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
-            <span className="sr-only" role="status" aria-live="polite">
-              {copied
-                ? "Email copied to clipboard"
-                : copyError
-                  ? "Could not copy email to clipboard."
-                  : ""}
-            </span>
+
+            {/* Mobile Phone Pill */}
+            <a
+              href={`tel:${CONTACT_INFO.phoneRaw}`}
+              className="liquid-glass px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-body font-medium text-xs sm:text-sm md:text-base flex items-center gap-2.5 hover:scale-105 transition-transform min-h-[44px] text-white/90 hover:text-white border border-white/10"
+              aria-label={`Call Sahaya Savari: ${CONTACT_INFO.phone}`}
+            >
+              <Phone className="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true" />
+              <span>{CONTACT_INFO.phone}</span>
+            </a>
+
+            {/* Secondary / Domain Email */}
+            <div className="liquid-glass rounded-full font-body flex items-center border border-white/10 hover:border-white/20 transition-all p-1.5 sm:p-2 gap-1 sm:gap-2">
+              <button
+                type="button"
+                onClick={() => copyToClipboard(CONTACT_INFO.secondaryEmail)}
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white font-medium text-xs sm:text-sm transition-colors cursor-pointer"
+                aria-label={`Copy ${CONTACT_INFO.secondaryEmail} to clipboard`}
+                title="Click to copy domain email"
+              >
+                {copiedEmail === CONTACT_INFO.secondaryEmail ? (
+                  <Check className="w-4 h-4 text-emerald-400" />
+                ) : (
+                  <Mail className="w-4 h-4 text-white/60" />
+                )}
+                <span>{CONTACT_INFO.secondaryEmail}</span>
+                {copiedEmail === CONTACT_INFO.secondaryEmail && (
+                  <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded-full ml-1">
+                    Copied
+                  </span>
+                )}
+              </button>
+            </div>
+
+            {/* Location Pill */}
             <a
               href="https://www.google.com/maps/search/Madurai,+Tamil+Nadu"
               target="_blank"
               rel="noopener noreferrer"
-              className="liquid-glass px-8 py-4 rounded-full font-body font-medium text-lg flex items-center gap-3 hover:scale-105 transition-transform min-h-[48px]"
-              aria-label="View location: Madurai, Tamil Nadu on Google Maps"
+              className="liquid-glass px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-body font-medium text-xs sm:text-sm md:text-base flex items-center gap-2.5 hover:scale-105 transition-transform min-h-[44px] text-white/80 hover:text-white border border-white/10"
+              aria-label={`View location: ${CONTACT_INFO.location} on Google Maps`}
             >
-              <MapPin className="w-5 h-5" aria-hidden="true" /> Madurai, Tamil Nadu
+              <MapPin className="w-4 h-4 text-rose-400 shrink-0" aria-hidden="true" />
+              <span>{CONTACT_INFO.location}</span>
             </a>
           </div>
         </div>
@@ -143,13 +175,13 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
                 {
                   icon: <Linkedin size={20} aria-hidden="true" />,
                   label: "LinkedIn",
-                  onClick: () => window.open("https://www.linkedin.com/in/sahaya-savari", "_blank"),
+                  onClick: () => window.open(CONTACT_INFO.linkedin, "_blank"),
                   ariaLabel: "Visit LinkedIn profile",
                 },
                 {
                   icon: <Github size={20} aria-hidden="true" />,
                   label: "GitHub",
-                  onClick: () => window.open("https://github.com/sahaya-savari", "_blank"),
+                  onClick: () => window.open(CONTACT_INFO.github, "_blank"),
                   ariaLabel: "Visit GitHub profile",
                 },
                 {
@@ -167,7 +199,7 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
                 {
                   icon: <Mail size={20} aria-hidden="true" />,
                   label: "Email",
-                  onClick: () => window.open("mailto:contact@sahayasavari.dev"),
+                  onClick: () => window.open(`mailto:${CONTACT_INFO.primaryEmail}`),
                   ariaLabel: "Send email to Sahaya Savari",
                 },
               ]}

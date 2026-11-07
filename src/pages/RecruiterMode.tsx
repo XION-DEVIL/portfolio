@@ -1,9 +1,26 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@/lib/router-compat";
-import { ArrowLeft, Download, Mail, ExternalLink, Copy, Check, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  Download,
+  Mail,
+  ExternalLink,
+  Copy,
+  Check,
+  Sparkles,
+  Phone,
+} from "lucide-react";
 import SEOHead from "../components/SEOHead";
 import { SITE_URL, createBreadcrumbSchema } from "../seo";
-import { EXPERIENCES, HONORS_AND_AWARDS, EDUCATION_HISTORY, PROJECTS } from "../data";
+import {
+  EXPERIENCES,
+  HONORS_AND_AWARDS,
+  EDUCATION_HISTORY,
+  PROJECTS,
+  CONTACT_INFO,
+  TOP_SKILLS,
+  LANGUAGES,
+} from "../data";
 
 export default function RecruiterMode() {
   const [copiedAts, setCopiedAts] = useState(false);
@@ -15,28 +32,44 @@ export default function RecruiterMode() {
 
   const handleCopyAts = () => {
     const atsText = [
-      "# Sahaya Savari F — AI Engineer / Full Stack Developer",
-      "Email: contact@sahayasavari.dev | Portfolio: https://sahayasavari.dev | GitHub: https://github.com/sahaya-savari | LinkedIn: https://www.linkedin.com/in/sahaya-savari",
-      "Availability: Summer/Fall 2026 | Location: Trichy / Madurai, India (Open to Remote / Relocation)",
+      "# Sahaya Savari F — Student AI/ML Engineer | Full Stack Developer",
+      `Email: ${CONTACT_INFO.primaryEmail} | Phone: ${CONTACT_INFO.phone} | Portfolio: ${CONTACT_INFO.website} | GitHub: ${CONTACT_INFO.github} | LinkedIn: ${CONTACT_INFO.linkedin}`,
+      "Availability: Summer/Fall 2026 | Location: Madurai, Tamil Nadu, India (Open to Remote / Relocation)",
       "",
       "## Professional Summary",
-      "M.Sc. Artificial Intelligence student & B.Sc. Data Science graduate with hands-on industry internship experience in Web Development and Technical SEO at HodoLabs Technologies. Hackathon champion (AIxcelerate 2026 Overall Winner) experienced in developing end-to-end AI applications, Python systems, and scalable React/TypeScript web apps. Actively seeking AI/ML Engineer, Python Developer, or Full Stack Developer roles.",
+      "M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Tiruchirappalli, and B.Sc. Data science graduate from Thiagarajar College, Madurai. Digital Marketing Intern at HodoLabs with proven expertise in technical SEO, PageSpeed optimization, and web architecture. 2x Hackathon achiever (Overall Champion out of 66 teams at AIxcelerate 2026, Top 5 Finalist out of 110 teams at VibeCraft 2026). Strong hands-on foundation across PostgreSQL, Node.js, React.js, Python, and Machine Learning.",
       "",
-      "## Core Competencies",
-      "- Languages: Python, TypeScript, JavaScript, SQL",
-      "- AI & ML: Machine Learning, Scikit-Learn, Predictive Modeling, Data Analytics",
-      "- Frontend & Full Stack: React, Next.js, Vite, Tailwind CSS, Framer Motion, IndexedDB, Node.js, Firebase, Vercel",
+      "## Top Skills & Competencies",
+      `- Top Verified Skills: ${TOP_SKILLS.join(", ")}`,
+      `- Languages: Python, TypeScript, JavaScript, SQL, HTML/CSS`,
+      `- AI & Machine Learning: Scikit-learn, Regression, Classification, Model Evaluation, Prompt Engineering, Data Analytics`,
+      `- Web & Backend: React.js, Next.js, Node.js, PostgreSQL, Tailwind CSS, Vite, Firebase, Vercel, REST APIs`,
+      `- Languages Spoken: ${LANGUAGES.map((l) => `${l.language} (${l.proficiency})`).join(", ")}`,
+      "",
+      "## Work Experience",
+      "- Digital Marketing Intern — HodoLabs, Madurai, Tamil Nadu, India (June 2026 – Present)",
+      "  * Conduct in-depth technical SEO audits, site architecture reviews, and PageSpeed optimizations across client web properties.",
+      "  * Analyze organic search visibility, crawlability, and conversion metrics to optimize digital acquisition funnels.",
+      "  * Manage Google Business Profiles and marketing analytics reporting.",
       "",
       "## Top Projects",
-      "- NelSync AI: Overall Champion at AIxcelerate 2026 Hackathon (66 teams). AI layer for paddy procurement in Tamil Nadu across four stages: predict, optimize, schedule, monitor.",
-      "- VibeCraft 2026: Winner (5th of 110 teams) at SRM IST Trichy YUVA'26. Dual campus web suite: Attendance Predictor & Smart Room Locator.",
+      "- NelSync AI: Overall Champion at AIxcelerate 2026 Hackathon (66 teams). 4-stage AI optimization layer for paddy procurement in Tamil Nadu: predict, optimize, schedule, monitor.",
+      "- VibeCraft 2026 (NeuraGenZers): Top 5 Finalist (out of 110 teams) at SRM IST Trichy YUVA'26. Dual campus web suite: Attendance Predictor & Smart Room Locator.",
       "- PrepMind AI: Live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and fallback question banks.",
       "- Daily Spark: Offline-first PWA habit tracker built with React, TypeScript, and IndexedDB with Capacitor Android support.",
       "- Portfolio Website: High-performance SPA with sub-second TTI, manual Vite chunk splitting, and WCAG AA accessibility.",
       "",
+      "## Honors & Awards",
+      "- AIxcelerate 2026 - Overall Champion (Dhanalakshmi Srinivasan University, 66 teams)",
+      "- Top 5 Finalist (Out of 110 Teams) - VibeCraft 2026 Hackathon (SRM IST Trichy)",
+      "- BOOTFEST 2K26 - Quiz Winner & Capture The Flag Runner-up (Bishop Heber College)",
+      "- Achievers Day - Interdepartmental Contest Winner (Certificate of Merit) (St. Joseph's College)",
+      "- AION 2K26 – Event In-Charge (Treasure Titans) (St. Joseph's College)",
+      "",
       "## Education",
       "- M.Sc. Artificial Intelligence (July 2025 – May 2027) — St. Joseph's College (Autonomous), Tiruchirappalli",
-      "- B.Sc. Data Science (August 2022 – May 2025) — Thiagarajar College, Madurai",
+      "- B.Sc. Data science (August 2022 – May 2025) — Thiagarajar College, Madurai",
+      "- HSC, BIO-MATHS (Maths Physics Chemistry Biology) (June 2020 – July 2022) — St. Mary's Higher Secondary School, Madurai",
     ].join("\n");
 
     navigator.clipboard.writeText(atsText);
@@ -81,21 +114,29 @@ export default function RecruiterMode() {
           Back to Portfolio
         </Link>
 
-        <header className="mb-12 border-b border-white/10 pb-8 flex justify-between items-start">
+        <header className="mb-12 border-b border-white/10 pb-8 flex flex-col md:flex-row justify-between items-start gap-6">
           <div>
-            <h1 className="text-4xl font-heading font-bold tracking-tight mb-2">Sahaya Savari F</h1>
-            <p className="text-xl font-body text-white/70 mb-4">
-              AI Engineer / Full Stack Developer
+            <h1 className="text-3xl sm:text-4xl font-heading font-bold tracking-tight mb-2">
+              Sahaya Savari F
+            </h1>
+            <p className="text-lg sm:text-xl font-body text-white/70 mb-4">
+              Student AI/ML Engineer | Full Stack Developer
             </p>
-            <div className="flex flex-wrap gap-4 text-sm font-body text-white/50">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm font-body text-white/60">
               <a
-                href="mailto:contact@sahayasavari.dev"
+                href={`mailto:${CONTACT_INFO.primaryEmail}`}
                 className="flex items-center gap-1.5 hover:text-white transition-colors"
               >
-                <Mail className="w-4 h-4" /> contact@sahayasavari.dev
+                <Mail className="w-4 h-4 text-emerald-400" /> {CONTACT_INFO.primaryEmail}
               </a>
               <a
-                href="https://github.com/sahaya-savari"
+                href={`tel:${CONTACT_INFO.phoneRaw}`}
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Phone className="w-4 h-4 text-cyan-400" /> {CONTACT_INFO.phone}
+              </a>
+              <a
+                href={CONTACT_INFO.github}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 hover:text-white transition-colors"
@@ -103,7 +144,7 @@ export default function RecruiterMode() {
                 <ExternalLink className="w-4 h-4" /> github.com/sahaya-savari
               </a>
               <a
-                href="https://www.linkedin.com/in/sahaya-savari"
+                href={CONTACT_INFO.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 hover:text-white transition-colors"
@@ -112,7 +153,7 @@ export default function RecruiterMode() {
               </a>
             </div>
           </div>
-          <div className="no-print flex items-center gap-3">
+          <div className="no-print flex items-center gap-3 shrink-0">
             <button
               onClick={handleCopyAts}
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-xs sm:text-sm transition-all cursor-pointer ${
@@ -140,11 +181,13 @@ export default function RecruiterMode() {
             Professional Summary
           </h2>
           <p className="text-base font-body leading-relaxed text-white/80">
-            M.Sc. Artificial Intelligence student & B.Sc. Data Science graduate with hands-on
-            industry internship experience in Web Development and Technical SEO at HodoLabs
-            Technologies. Hackathon champion (AIxcelerate 2026 Overall Winner) experienced in
-            developing end-to-end AI applications, Python systems, and scalable React/TypeScript web
-            apps. Actively seeking AI/ML Engineer, Python Developer, or Full Stack Developer roles.
+            M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous),
+            Tiruchirappalli, and B.Sc. Data science graduate from Thiagarajar College, Madurai.
+            Digital Marketing Intern at HodoLabs with practical expertise in technical SEO,
+            PageSpeed optimization, and web architecture. 2x Hackathon achiever (Overall Champion
+            out of 66 teams at AIxcelerate 2026, Top 5 Finalist out of 110 teams at VibeCraft 2026).
+            Strong hands-on foundation in PostgreSQL, Node.js, React.js, Python, and Machine
+            Learning.
           </p>
         </section>
 

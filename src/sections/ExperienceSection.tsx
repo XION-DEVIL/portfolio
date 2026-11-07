@@ -31,14 +31,14 @@ const ExperienceSection = memo(() => {
               Hackathon Honors.
             </h2>
             <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed">
-              Demonstrated hands-on experience in technical SEO, PageSpeed audits, and full stack
-              engineering at HodoLabs Technologies, combined with championship wins in competitive
-              AI hackathons.
+              Demonstrated experience as Digital Marketing Intern at HodoLabs with focus on
+              technical SEO, PageSpeed optimizations, and web performance, combined with
+              championship honors in competitive AI hackathons and technical symposia.
             </p>
           </div>
 
           {/* Tab Controls */}
-          <div className="flex items-center gap-2 p-1.5 liquid-glass rounded-full border border-white/10 self-start lg:self-end">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 p-1.5 liquid-glass rounded-2xl sm:rounded-full border border-white/10 self-start lg:self-end">
             <button
               type="button"
               onClick={() => setActiveTab("experience")}

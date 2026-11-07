@@ -12,10 +12,11 @@ export const personEntity = {
   alternateName: "Sahaya Savari",
   image: `${SITE_URL}/profile.jpg`,
   url: SITE_URL,
-  jobTitle: "AI/ML & Full Stack Developer",
+  jobTitle: "Student AI/ML Engineer & Full Stack Developer",
   description:
-    "M.Sc. Artificial Intelligence Student, AI Engineer, Python Developer, and Full Stack Developer building Machine Learning solutions, Python automation tools, and responsive React applications.",
-  email: "contact@sahayasavari.dev",
+    "Portfolio of Sahaya Savari F, an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Tiruchirappalli, Digital Marketing Intern at HodoLabs, 2x Hackathon Achiever, specializing in PostgreSQL, Node.js, React.js, Python, and Machine Learning.",
+  email: "sahayasavari.info@gmail.com",
+  telephone: "+91-6385648514",
   // Current student affiliation — not alumniOf as degree is ongoing
   affiliation: {
     "@type": "EducationalOrganization",
@@ -24,12 +25,13 @@ export const personEntity = {
   // Occupation reflects demonstrated and active role
   hasOccupation: {
     "@type": "Occupation",
-    name: "AI Engineer & Full Stack Developer",
+    name: "Student AI/ML Engineer & Digital Marketing Intern",
     occupationLocation: {
       "@type": "Country",
       name: "India",
     },
-    skills: "Machine Learning, Data Analytics, Python, React, Next.js, TypeScript, SQL",
+    skills:
+      "PostgreSQL, Node.js, React.js, Python, Machine Learning, Data Analytics, Technical SEO",
   },
   sameAs: [
     "https://www.linkedin.com/in/sahaya-savari",

@@ -67,13 +67,13 @@ const CertificationsSection = memo(() => {
                           Credential {cred.rank || `0${idx + 1}`}
                         </span>
                         <span className="text-[11px] font-mono text-white/70">
-                          {idx === 0
-                            ? "Specialization"
-                            : idx === 1
-                              ? "IIT Madras"
-                              : idx === 2
-                                ? "NIELIT Certified"
-                                : "HodoLabs"}
+                          {cred.issuer.includes("IBM")
+                            ? "IBM Specialization"
+                            : cred.issuer.includes("NIELIT")
+                              ? "NIELIT Certified"
+                              : cred.issuer.includes("IIT") || cred.issuer.includes("NPTEL")
+                                ? "IIT Madras"
+                                : "HodoLabs Certified"}
                         </span>
                       </div>
                     </div>

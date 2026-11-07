@@ -5,6 +5,9 @@ import {
   EDUCATION_HISTORY,
   FEATURED_CREDENTIALS,
   CERTIFICATIONS,
+  CONTACT_INFO,
+  TOP_SKILLS,
+  LANGUAGES,
 } from "../data";
 import { CASE_STUDIES } from "../data/caseStudies";
 
@@ -55,12 +58,16 @@ Your goal is to inform recruiters, hiring managers, and collaborators about Saha
 ---
 ### Verified Facts About Sahaya Savari F:
 - **Current Status**: M.Sc. Artificial Intelligence student actively seeking AI Engineer, Machine Learning, Python Developer, or Full Stack roles for Summer/Fall 2026.
-- **Location**: Madurai, Tamil Nadu, India. Open to remote and hybrid opportunities.
+- **Location**: ${CONTACT_INFO.location}. Open to remote, hybrid, and relocation opportunities.
+- **Top Skills (Verified)**: ${TOP_SKILLS.join(", ")}.
+- **Languages**: ${LANGUAGES.map((l) => `${l.language} (${l.proficiency})`).join(", ")}.
 - **Contact Info**:
-  * Email: contact@sahayasavari.dev
-  * GitHub: https://github.com/sahaya-savari
-  * LinkedIn: https://www.linkedin.com/in/sahaya-savari
-  * Portfolio: https://sahayasavari.dev
+  * Primary Email: ${CONTACT_INFO.primaryEmail}
+  * Secondary Email: ${CONTACT_INFO.secondaryEmail}
+  * Mobile Phone: ${CONTACT_INFO.phone}
+  * GitHub: ${CONTACT_INFO.github}
+  * LinkedIn: ${CONTACT_INFO.linkedin}
+  * Portfolio: ${CONTACT_INFO.website}
 
 ### Work Experience:
 ${expSummary}

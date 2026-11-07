@@ -33,13 +33,30 @@ describe("AI Knowledge Engine", () => {
   it("answers work experience questions accurately", () => {
     const res = answerQuestion("What was your work experience at HodoLabs?");
     expect(res).toContain("HodoLabs");
+    expect(res).toContain("Digital Marketing Intern");
     expect(res).toContain("AION 2K26");
   });
 
-  it("answers contact requests with valid email and LinkedIn links", () => {
+  it("answers contact requests with valid email, phone, and LinkedIn links", () => {
     const res = answerQuestion("How can I contact Sahaya?");
+    expect(res).toContain("sahayasavari.info@gmail.com");
     expect(res).toContain("contact@sahayasavari.dev");
+    expect(res).toContain("6385648514");
     expect(res).toContain("linkedin.com/in/sahaya-savari");
+  });
+
+  it("answers education requests including all 3 verified academic levels", () => {
+    const res = answerQuestion("Tell me about your education background");
+    expect(res).toContain("St. Joseph's College (Autonomous), Tiruchirappalli");
+    expect(res).toContain("Thiagarajar College");
+    expect(res).toContain("St. Mary's Higher Secondary School");
+  });
+
+  it("answers skills requests with LinkedIn top skills", () => {
+    const res = answerQuestion("What are your technical skills?");
+    expect(res).toContain("PostgreSQL");
+    expect(res).toContain("Node.js");
+    expect(res).toContain("React.js");
   });
 
   it("provides non-empty suggestions list", () => {
