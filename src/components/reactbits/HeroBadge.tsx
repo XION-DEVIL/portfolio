@@ -11,7 +11,7 @@ function useBadge() {
   const [badge, setBadge] = useState<{ front: string; back: string } | null>(null);
   useEffect(() => {
     const img = new Image();
-    img.src = `${import.meta.env.BASE_URL}profile.jpg`;
+    img.src = `${import.meta.env.BASE_URL}profile.webp`;
     const draw = (photo: HTMLImageElement | null) => {
       const W = 800,
         H = 1125;
@@ -23,6 +23,7 @@ function useBadge() {
         g.fillStyle = "#0b0b14";
         g.fillRect(0, 0, W, H);
         if (photo) {
+          // Photo fills the whole card (cover crop, focused near the top).
           const s = Math.max(W / photo.width, H / photo.height);
           const dw = photo.width * s,
             dh = photo.height * s;
@@ -33,8 +34,22 @@ function useBadge() {
       };
       setBadge({ front: make(false), back: make(true) });
     };
-    img.onload = () => draw(img);
-    img.onerror = () => draw(null);
+
+    if (img.complete && img.naturalWidth > 0) {
+      draw(img);
+    } else {
+      img.onload = () => draw(img);
+      img.onerror = () => {
+        const fallback = new Image();
+        fallback.src = `${import.meta.env.BASE_URL}profile.jpg`;
+        if (fallback.complete && fallback.naturalWidth > 0) {
+          draw(fallback);
+        } else {
+          fallback.onload = () => draw(fallback);
+          fallback.onerror = () => draw(null);
+        }
+      };
+    }
   }, []);
   return badge;
 }
@@ -54,7 +69,7 @@ export default function HeroBadge() {
       strapLength={0.2}
       breeze={0.3}
       intro={false}
+      interactive={true}
     />
   );
 }
-

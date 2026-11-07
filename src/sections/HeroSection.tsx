@@ -82,56 +82,37 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     }
   }, []);
 
-  // Performance & CWV: Only load heavy 3D WebGL Lanyard and ParticleText on desktop after actual user interaction
+  // Interactive 3D Lanyard ID Card (Pull and play physics on all devices)
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const isDesktopWithHover = window.matchMedia(
-      "(min-width: 769px) and (hover: hover) and (pointer: fine)",
-    ).matches;
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!isDesktopWithHover || isReducedMotion) return;
+    if (isReducedMotion) return;
+
+    // Enable immediately after hydration tick so users can grab and pull right away
+    const timer = setTimeout(() => {
+      setEnableInteractiveEffects(true);
+    }, 120);
 
     const onUserInteraction = () => {
-      window.removeEventListener("pointermove", onUserInteraction);
-      window.removeEventListener("scroll", onUserInteraction);
       setEnableInteractiveEffects(true);
     };
-
-    window.addEventListener("pointermove", onUserInteraction, { once: true, passive: true });
-    window.addEventListener("scroll", onUserInteraction, { once: true, passive: true });
+    window.addEventListener("pointerdown", onUserInteraction, { once: true, passive: true });
+    window.addEventListener("touchstart", onUserInteraction, { once: true, passive: true });
 
     return () => {
-      window.removeEventListener("pointermove", onUserInteraction);
-      window.removeEventListener("scroll", onUserInteraction);
+      clearTimeout(timer);
+      window.removeEventListener("pointerdown", onUserInteraction);
+      window.removeEventListener("touchstart", onUserInteraction);
     };
   }, []);
 
-  // Ambient botanical video: plays smoothly on both desktop & mobile, loading right after initial render
+  // Ambient botanical flowers video: loads and plays automatically across all screen sizes
   useEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const connection = (
-      navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
-    ).connection;
-    const constrainedConnection =
-      connection?.saveData || /(2g|3g)/.test(connection?.effectiveType || "");
+    if (prefersReducedMotion) return;
 
-    if (prefersReducedMotion || constrainedConnection) return;
-
-    const events = ["scroll", "pointerdown", "touchstart", "keydown"] as const;
-    const startVideo = () => {
-      events.forEach((e) => window.removeEventListener(e, startVideo));
-      setShouldLoadVideo(true);
-    };
-
-    events.forEach((e) => window.addEventListener(e, startVideo, { once: true, passive: true }));
-    // Auto-start video after 600ms so mobile & desktop show the flowing background without delay
-    const timer = setTimeout(startVideo, 600);
-
-    return () => {
-      events.forEach((e) => window.removeEventListener(e, startVideo));
-      clearTimeout(timer);
-    };
+    setShouldLoadVideo(true);
   }, []);
 
   return (
@@ -141,18 +122,27 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       aria-label="Introduction"
       className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent"
     >
-      {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
+      {/* Background ambient visual on all screens (responsive flowers image + flowing video) */}
       <div
         className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        <div
-          className={`relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0 bg-contain bg-center bg-no-repeat transition-opacity duration-1000 ${
-            isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-40"
-          }`}
-          style={{ backgroundImage: `url(${HERO_POSTER})`, minHeight: "340px" }}
-        >
-          {/* Ambient botanical background video */}
+        <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
+          {/* Ambient botanical flowers poster image */}
+          <img
+            src={HERO_POSTER}
+            alt=""
+            width={960}
+            height={540}
+            fetchPriority="high"
+            decoding="async"
+            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
+              isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-50"
+            }`}
+            aria-hidden="true"
+          />
+
+          {/* Ambient botanical flowers background video */}
           {shouldLoadVideo && (
             <video
               src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
@@ -161,12 +151,12 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               loop
               muted
               playsInline
-              preload="none"
+              preload="auto"
               width={1920}
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
               className={`absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? "opacity-40" : "opacity-0"
+                isVideoLoaded ? "opacity-50" : "opacity-0"
               }`}
               aria-hidden="true"
             />
