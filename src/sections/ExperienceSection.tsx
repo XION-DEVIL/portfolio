@@ -173,9 +173,15 @@ const ExperienceSection = memo(() => {
                         }`}
                       >
                         {isGrandChampion ? (
-                          <Trophy className="w-3.5 h-3.5 text-amber-400 shrink-0" aria-hidden="true" />
+                          <Trophy
+                            className="w-3.5 h-3.5 text-amber-400 shrink-0"
+                            aria-hidden="true"
+                          />
                         ) : (
-                          <Award className="w-3.5 h-3.5 text-white/70 shrink-0" aria-hidden="true" />
+                          <Award
+                            className="w-3.5 h-3.5 text-white/70 shrink-0"
+                            aria-hidden="true"
+                          />
                         )}
                         <span>{award.badge}</span>
                       </span>

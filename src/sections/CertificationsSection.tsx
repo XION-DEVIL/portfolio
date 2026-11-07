@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Award, ArrowUpRight, Database, Code, Brain } from "lucide-react";
+import { Award, ArrowUpRight, Database, Code, Brain, Terminal } from "lucide-react";
 import { CERTIFICATIONS, FEATURED_CREDENTIALS } from "../data";
 import SectionBadge from "../components/ui/SectionBadge";
 
@@ -36,7 +36,7 @@ const CertificationsSection = memo(() => {
               Featured Credentials
             </h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-7xl mx-auto">
             {FEATURED_CREDENTIALS.map((cred, idx) => (
               <div
                 key={cred.title}
@@ -55,8 +55,10 @@ const CertificationsSection = memo(() => {
                           <Award className="w-5 h-5 text-amber-400" aria-hidden="true" />
                         ) : idx === 1 ? (
                           <Brain className="w-5 h-5 text-indigo-400" aria-hidden="true" />
+                        ) : idx === 2 ? (
+                          <Code className="w-5 h-5 text-purple-400" aria-hidden="true" />
                         ) : (
-                          <Code className="w-5 h-5 text-emerald-400" aria-hidden="true" />
+                          <Terminal className="w-5 h-5 text-emerald-400" aria-hidden="true" />
                         )}
                       </div>
                       <div className="flex flex-col">
@@ -64,7 +66,13 @@ const CertificationsSection = memo(() => {
                           Credential {cred.rank || `0${idx + 1}`}
                         </span>
                         <span className="text-[11px] font-mono text-white/70">
-                          {idx === 0 ? "Specialization" : idx === 1 ? "IIT Madras" : "NIELIT Certified"}
+                          {idx === 0
+                            ? "Specialization"
+                            : idx === 1
+                              ? "IIT Madras"
+                              : idx === 2
+                                ? "NIELIT Certified"
+                                : "HodoLabs"}
                         </span>
                       </div>
                     </div>

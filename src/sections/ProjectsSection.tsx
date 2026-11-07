@@ -545,11 +545,10 @@ const ProjectsSection = memo(() => {
                 AI-Powered <br /> Projects.
               </h2>
               <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
-                Explore my portfolio of production-grade software applications, Machine Learning
-                models, and Artificial Intelligence solutions. Each featured project showcases full
-                stack architecture built with Python, React, TypeScript, FastAPI, and
-                Firebase—combining structured LLM prompt pipelines, real-time databases, and
-                responsive UI design.
+                Explore my portfolio of software applications, Machine Learning models, and web
+                solutions. Each featured project showcases practical architecture built with Python,
+                React, Next.js, TypeScript, and responsive UI design—focused on real-world utility
+                and verified competition results.
               </p>
             </div>
             <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">

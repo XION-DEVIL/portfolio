@@ -83,6 +83,10 @@ export function answerQuestion(query: string): string {
     );
   }
 
+  if (has(q, ["vibecraft", "neuragenzers", "attendance", "free class"])) {
+    return `VibeCraft 2026 (NeuraGenZers) — Winner, 5th place out of 110 teams at SRM IST Trichy (YUVA'26).\n\nTwo campus web apps combined into one live deployment:\n• Round 1: Student Attendance Predictor & Planner (subject-wise projections, 75% threshold, detention detection, OD simulator).\n• Round 2: Free Class Locator & Smart Search Floor Manager (floor-wise room grid, filters, AI natural-language search via Gemini API).\n\nDataset: 13 sections, 120 OCR-verified subject records.\nStack: Next.js 16, React 19, TypeScript 5, Tailwind CSS v4, Recharts 3, Gemini API, Vercel.\nLive App: https://neuragenzers.vercel.app/`;
+  }
+
   if (has(q, ["project", "built", "portfolio work", "apps"])) {
     return `Sahaya has built ${PROJECTS.length} major projects:\n\n${PROJECTS.map(
       (p) => `• ${p.title} — ${p.tag}: ${p.stack}`,
@@ -101,7 +105,7 @@ export function answerQuestion(query: string): string {
 
   if (has(q, ["skill", "tech", "stack", "language", "tools", "know"])) {
     const stack = Array.from(new Set(PROJECTS.flatMap((p) => p.techStack ?? p.stack.split(" · "))));
-    return `Sahaya is an AI Engineer, Python Developer, and Full Stack Developer.\n\nCore Competencies: Machine Learning, Computer Vision, Python (FastAPI/Flask), React, TypeScript, SEO & Web Performance.\n\nTechnologies used across his work: ${stack.join(", ")}.`;
+    return `Sahaya is an AI Engineer, Python Developer, and Full Stack Developer.\n\nCore Competencies: Machine Learning, Data Analytics, Python, React, Next.js, TypeScript, SQL, and Web Performance.\n\nTechnologies used across his work: ${stack.join(", ")}.`;
   }
 
   if (has(q, ["contact", "hire", "email", "reach", "linkedin", "available"])) {
@@ -112,7 +116,7 @@ export function answerQuestion(query: string): string {
     return "Hello! Ask me about Sahaya’s work experience, hackathons, projects, skills, education, or how to contact him.";
   }
 
-  return `I couldn't find that in Sahaya's portfolio. Try asking about: experience (HodoLabs), hackathons (AIxcelerate winner), projects (NelSync AI, PrepMind AI), skills, education, or contact details.`;
+  return `I couldn't find that in Sahaya's portfolio. Try asking about: experience (HodoLabs), hackathons (AIxcelerate, VibeCraft), projects (NelSync AI, VibeCraft), skills, education, or contact details.`;
 }
 
 export const SUGGESTIONS: [string, string][] = [

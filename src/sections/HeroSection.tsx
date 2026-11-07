@@ -37,8 +37,7 @@ const StaticHeroName = () => (
     aria-hidden="true"
     className="text-[clamp(1.8rem,5.8vw,5.8rem)] font-heading font-extrabold tracking-tight whitespace-nowrap inline-block select-none"
     style={{
-      backgroundImage:
-        "radial-gradient(circle, #ffffff 42%, #818cf8 50%, transparent 58%)",
+      backgroundImage: "radial-gradient(circle, #ffffff 42%, #818cf8 50%, transparent 58%)",
       backgroundSize: "3px 3px",
       WebkitBackgroundClip: "text",
       backgroundClip: "text",

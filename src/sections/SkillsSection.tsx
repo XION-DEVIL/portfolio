@@ -73,11 +73,12 @@ const SkillsSection = memo(() => {
             "Python",
             "React",
             "TypeScript",
-            "FastAPI",
-            "Firebase",
+            "Next.js",
+            "Tailwind CSS",
             "SQL",
             "Machine Learning",
-            "Docker",
+            "Data Analytics",
+            "Git & GitHub",
           ].map((name) => (
             <span
               key={name}
@@ -94,9 +95,8 @@ const SkillsSection = memo(() => {
               Technologies &amp; Core Tools
             </h3>
             <p className="text-white/60 font-body font-light text-sm max-w-2xl">
-              Programming languages, frameworks, backend frameworks, and databases I am actively
-              learning, practicing, and utilizing across my software development and hackathon
-              projects.
+              Languages, libraries, and tools I have actively shipped in live projects, verified in
+              certifications, or practiced in academic labs.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -105,25 +105,25 @@ const SkillsSection = memo(() => {
                 domain: "AI & Machine Learning",
                 color: "text-purple-400",
                 borderColor: "border-purple-500/20",
-                items: ["Python", "Machine Learning", "Artificial Intelligence", "REST APIs"],
+                items: ["Python", "Machine Learning", "Data Analytics", "Problem Solving"],
               },
               {
-                domain: "Languages",
+                domain: "Languages & Core",
                 color: "text-cyan-400",
                 borderColor: "border-cyan-500/20",
-                items: ["TypeScript", "JavaScript", "Java", "SQL"],
+                items: ["TypeScript", "JavaScript", "SQL", "PostgreSQL"],
               },
               {
-                domain: "Frontend & UI",
+                domain: "Frontend & Web",
                 color: "text-emerald-400",
                 borderColor: "border-emerald-500/20",
-                items: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+                items: ["React", "Next.js", "Tailwind CSS", "Vite"],
               },
               {
-                domain: "Backend & Cloud",
+                domain: "Tools & Deployment",
                 color: "text-amber-400",
                 borderColor: "border-amber-500/20",
-                items: ["FastAPI", "Firebase", "Docker", "Git & GitHub"],
+                items: ["Git & GitHub", "Vercel", "Firebase", "Recharts"],
               },
             ].map((group) => (
               <div
@@ -165,39 +165,43 @@ const SkillsSection = memo(() => {
 
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
           <div className="space-y-2">
-            <SkillAccordion title="Artificial Intelligence" icon={Brain}>
+            <SkillAccordion title="Artificial Intelligence & ML" icon={Brain}>
               <ul className="space-y-4">
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
                   <span>
-                    • Machine Learning model development, training, and evaluation for practical AI
-                    workflows.
+                    • Machine Learning model prototyping, regression, and classification algorithms.
                   </span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 rounded-full shrink-0">
-                    Hands-on Project
+                    Shipped Project
                   </span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
                   <span>
-                    • LLM integration, prompt engineering, and structured response validation.
+                    • Exploratory data analysis, feature evaluation, and metric validation.
+                  </span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 rounded-full shrink-0">
+                    Certified (IBM)
+                  </span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>
+                    • Generative AI API integration with Gemini API and structured outputs.
                   </span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">
-                    Actively Exploring
+                    Shipped Project
                   </span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• RAG Pipelines and context injection.</span>
-                  <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">
-                    Actively Learning
-                  </span>
-                </li>
-                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• Natural Language Processing and text analysis.</span>
+                  <span>• Natural Language Processing and text feature extraction.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">
                     Academic Study
                   </span>
                 </li>
                 <li className="flex items-start justify-between gap-4">
-                  <span>• Computer Vision and image classification.</span>
+                  <span>
+                    • Currently learning: Deep Learning architectures and model deployment
+                    pipelines.
+                  </span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-amber-400 border border-amber-500/30 bg-amber-500/10 px-1.5 py-0.5 rounded-full shrink-0">
                     Currently Learning
                   </span>
@@ -208,20 +212,20 @@ const SkillsSection = memo(() => {
               <ul className="space-y-4">
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
                   <span>
-                    • Python Developer workflows for backend development with Flask and FastAPI.
+                    • Python data pipelines, automation scripting, and algorithmic modeling.
                   </span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">
                     Core Foundation
                   </span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• Data processing with Pandas and NumPy.</span>
+                  <span>• Data processing and transformation with Pandas and NumPy.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 rounded-full shrink-0">
                     Applied in Projects
                   </span>
                 </li>
                 <li className="flex items-start justify-between gap-4">
-                  <span>• API development and third-party integrations.</span>
+                  <span>• Relational database querying and data normalization with SQL.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">
                     Hands-on Project
                   </span>
@@ -232,25 +236,25 @@ const SkillsSection = memo(() => {
               <ul className="space-y-4">
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
                   <span>
-                    • React and TypeScript for accessible, responsive frontend development.
+                    • React, Next.js, and TypeScript for accessible, responsive web applications.
                   </span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">
-                    Hands-on Project
+                    Shipped Projects
                   </span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• Responsive UI design with Tailwind CSS.</span>
+                  <span>• Responsive UI design with Tailwind CSS and Recharts data charts.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 rounded-full shrink-0">
                     Proficient in Projects
                   </span>
                 </li>
                 <li className="flex items-start justify-between gap-4">
                   <span>
-                    • Full Stack Developer architecture across client state, APIs, Firebase, and
-                    deployment.
+                    • Client-side persistence (IndexedDB, Capacitor) and hosting with Vercel and
+                    Firebase.
                   </span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">
-                    Actively Learning
+                    Production Deployed
                   </span>
                 </li>
               </ul>
@@ -319,7 +323,7 @@ const SkillsSection = memo(() => {
                     experiences.
                   </p>
                   <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
-                    {["Python", "React", "TypeScript", "FastAPI", "SQL"].map((t) => (
+                    {["Python", "React", "Next.js", "TypeScript", "SQL"].map((t) => (
                       <span
                         key={t}
                         className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80"
@@ -338,18 +342,20 @@ const SkillsSection = memo(() => {
                     Intelligence by design.
                   </h3>
                   <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
-                    Developing Artificial Intelligence and Machine Learning solutions that learn,
-                    adapt, and solve real-world problems with precision and purpose.
+                    Developing Machine Learning models and analytics solutions that learn, adapt,
+                    and solve real-world problems with precision and purpose.
                   </p>
                   <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
-                    {["TensorFlow", "PyTorch", "NLP", "LLMs", "Computer Vision"].map((t) => (
-                      <span
-                        key={t}
-                        className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                    {["Machine Learning", "Data Analytics", "Scikit-Learn", "Python", "SQL"].map(
+                      (t) => (
+                        <span
+                          key={t}
+                          className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80"
+                        >
+                          {t}
+                        </span>
+                      ),
+                    )}
                   </div>
                 </div>
               )}

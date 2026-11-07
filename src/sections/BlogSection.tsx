@@ -86,9 +86,8 @@ const BlogSection = memo(() => {
                 Developer Blog &amp; <br /> Technical Insights.
               </h2>
               <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed">
-                Practical engineering write-ups covering computer vision in agriculture, technical
-                SEO &amp; Core Web Vitals optimization, offline-first React state management, and
-                high-throughput async Python backends.
+                Practical engineering write-ups covering technical SEO &amp; Core Web Vitals
+                optimization at HodoLabs and offline-first React architecture with IndexedDB.
               </p>
             </div>
             <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">

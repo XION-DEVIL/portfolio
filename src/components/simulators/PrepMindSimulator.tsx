@@ -22,19 +22,19 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 1,
-    topic: "Python Async & FastAPI",
+    topic: "React & Client-Side Resilience",
     question:
-      "In FastAPI, why should CPU-bound ML model inference be run in a ProcessPoolExecutor or dedicated worker rather than directly inside an async def endpoint?",
+      "When designing an interactive study platform with external AI APIs, why is a deterministic fallback question bank essential for high-availability user experience?",
     options: [
-      "Async def endpoints in Python run on the main asyncio event loop; CPU-bound tasks block all other concurrent requests.",
-      "FastAPI strictly disallows numpy or scikit-learn imports inside async def routines.",
-      "Async functions cannot access memory greater than 512 MB in Python 3.12.",
-      "The Python GIL prevents asyncio from executing network I/O calls.",
+      "It ensures students can continue practice sessions without interruption even during upstream AI service downtime or network drops.",
+      "Browsers require offline JSON fallbacks before executing any fetch requests.",
+      "It forces the browser to disable JavaScript garbage collection.",
+      "React state machines cannot render without a static database seed.",
     ],
     correct: 0,
     explanation:
-      "Python asyncio is cooperative single-threaded multitasking. A CPU-bound task executes continuously on the main thread, freezing the event loop and blocking all other concurrent HTTP connections until it finishes. Offloading to a process pool or task worker maintains microsecond async latency.",
-    schemaCheck: "PydanticV2: EvaluationRubric(latency_score=0.98, concurrency_safe=True)",
+      "Network-dependent AI APIs can experience latency spikes, rate limits, or transient outages. Supplying pre-validated local fallback questions guarantees zero downtime for learners practicing topic modules.",
+    schemaCheck: "ClientResilience: FallbackQuestionBank(status='active', uninterrupted=True)",
   },
   {
     id: 2,

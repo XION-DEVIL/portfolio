@@ -79,8 +79,8 @@ export default function BlogPage() {
           <p className="text-white/70 leading-relaxed">
             Welcome to my technical engineering blog. Here I document practical development
             insights, architectural patterns, and engineering notes across Artificial Intelligence,
-            Machine Learning pipelines, Python backend services with FastAPI, and full-stack React
-            and TypeScript web development.
+            Machine Learning pipelines, Python development, and full-stack React and TypeScript web
+            software.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-white/10 text-xs">
             <div>

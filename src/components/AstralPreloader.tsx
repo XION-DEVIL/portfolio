@@ -45,8 +45,8 @@ const PHASES: TelemetryPhase[] = [
   {
     minPct: 92,
     badge: "STACK",
-    highlight: "PYTHON · FASTAPI · REACT · TYPESCRIPT",
-    subtext: "High-throughput ML APIs & modern responsive frontend",
+    highlight: "PYTHON · MACHINE LEARNING · REACT · TYPESCRIPT",
+    subtext: "Data analytics pipelines & modern responsive frontend",
   },
   {
     minPct: 100,

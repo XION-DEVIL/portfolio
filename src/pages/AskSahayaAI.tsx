@@ -72,19 +72,23 @@ export default function AskSahayaAI() {
     switch (cmd) {
       case "help":
         output =
-          "Available commands:\n  • projects   — List production & hackathon projects\n  • nelsync    — 1st Place Champion project details (AIxcelerate 2026)\n  • skills     — Technical competencies & ML stack\n  • experience — Work history & internships (HodoLabs)\n  • contact    — Email, GitHub, and LinkedIn links\n  • clear      — Clear the terminal screen\n  • help       — Show this command manual";
+          "Available commands:\n  • projects   — List production & hackathon projects\n  • nelsync    — 1st Place Champion project details (AIxcelerate 2026)\n  • vibecraft  — Winner project details (VibeCraft 2026, 5th of 110)\n  • skills     — Technical competencies & ML stack\n  • experience — Work history & internships (HodoLabs)\n  • contact    — Email, GitHub, and LinkedIn links\n  • clear      — Clear the terminal screen\n  • help       — Show this command manual";
         break;
       case "projects":
         output =
-          "1. NelSync AI — 1st Place Overall Champion at AIxcelerate 2026 (Agri-tech ML Logistics)\n2. PrepMind AI — AI-Powered Technical Interview Readiness Platform (Python / FastAPI / Supabase)\n3. Daily Spark — Minimalist Offline-First Habit Tracker (React / TypeScript / IndexedDB / Capacitor)\n4. Portfolio Website — High-Performance SPA with sub-second TTI & WCAG AA accessibility";
+          "1. NelSync AI — 1st Place Overall Champion at AIxcelerate 2026 (Agri-tech ML Logistics)\n2. VibeCraft 2026 (NeuraGenZers) — Winner, 5th of 110 Teams (Dual Campus Web Apps)\n3. PrepMind AI — Web-based Exam Prep & Topic Practice Platform (React / TypeScript)\n4. Daily Spark — Minimalist Offline-First Habit Tracker (React / TypeScript / IndexedDB / Capacitor)\n5. Portfolio Website — High-Performance SPA with sub-second TTI & WCAG AA accessibility";
+        break;
+      case "vibecraft":
+        output =
+          "🏆 VibeCraft 2026 (NeuraGenZers) — Winner, 5th of 110 Teams (SRM IST Trichy YUVA'26)\nTwo campus apps in one live Vercel deployment: Round 1 Attendance Predictor & Planner + Round 2 Free Class Locator & Smart Search Floor Manager.\nLive URL: https://neuragenzers.vercel.app/";
         break;
       case "nelsync":
         output =
-          "🏆 NelSync AI (1st Place Overall Champion — AIxcelerate 2026)\nAn integrated Python data science pipeline predicting paddy grain moisture, quality grade, and transit spoilage risks to balance regional procurement station queues.";
+          "🏆 NelSync AI (Overall Champion — AIxcelerate 2026, 66 teams)\nAn AI layer for paddy procurement in Tamil Nadu with four stages: predict, optimize, schedule, and monitor. Built by a team of 4 led by Jeeva Loganathan; contribution: first pitch deck, research, coordination, and Q&A prep.\nVideo Demo: https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view?pli=1";
         break;
       case "skills":
         output =
-          "• Languages: Python, TypeScript, JavaScript, SQL\n• AI & ML: Scikit-Learn, Predictive Modeling, Prompt Pipelines, Structured JSON Validation\n• Web & APIs: React, Vite, Tailwind CSS, FastAPI, Supabase, Firebase, IndexedDB";
+          "• Languages: Python, TypeScript, JavaScript, SQL\n• AI & ML: Machine Learning, Scikit-Learn, Predictive Modeling, Data Analytics\n• Web & Tools: React, Next.js, Vite, Tailwind CSS, Node.js, PostgreSQL, Firebase, Vercel, Git & GitHub";
         break;
       case "experience":
         output =
@@ -274,22 +278,22 @@ export default function AskSahayaAI() {
                     <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center shrink-0">
                       <Bot className="w-4 h-4" />
                     </div>
-                  <div className="p-4 rounded-2xl bg-white text-black rounded-tl-none font-body text-sm flex items-center gap-1.5">
-                    <span
-                      className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
-                      style={{ animationDelay: "0ms" }}
-                    />
-                    <span
-                      className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
-                      style={{ animationDelay: "150ms" }}
-                    />
-                    <span
-                      className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
-                      style={{ animationDelay: "300ms" }}
-                    />
+                    <div className="p-4 rounded-2xl bg-white text-black rounded-tl-none font-body text-sm flex items-center gap-1.5">
+                      <span
+                        className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
+                        style={{ animationDelay: "0ms" }}
+                      />
+                      <span
+                        className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
+                        style={{ animationDelay: "150ms" }}
+                      />
+                      <span
+                        className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
+                        style={{ animationDelay: "300ms" }}
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
               <div ref={messagesEndRef} />
             </div>
             <div className="p-4 border-t border-white/10 bg-black/50">
@@ -407,7 +411,7 @@ export default function AskSahayaAI() {
           <p className="leading-relaxed text-white/80">
             Ask Sahaya AI is an interactive portfolio assistant built to answer questions regarding
             Sahaya Savari's technical background in Artificial Intelligence, Machine Learning
-            pipelines, Python APIs with FastAPI, React frontend development, and contact options.
+            models, Python development, React frontend architecture, and contact options.
           </p>
           <p className="text-white/50">
             Sample topics:{" "}

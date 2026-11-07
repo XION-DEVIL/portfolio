@@ -17,30 +17,6 @@ export interface Article {
 
 export const ARTICLES: Article[] = [
   {
-    title: "Architecting Computer Vision for Agricultural Procurement: The NelSync AI Story",
-    excerpt:
-      "How our team engineered dual-stream computer vision and tabular ML models to classify paddy quality and dynamically schedule procurement centers, winning 1st place overall at AIxcelerate 2026.",
-    date: "October 2026",
-    readingTime: 6,
-    image: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&h=600&fit=crop",
-    url: `${BLOG_URL}/blog/nelsync-ai-architecture`,
-    category: "AI / Computer Vision",
-    keyTakeaways: [
-      "Combining lightweight MobileNetV3 backbones with XGBoost tabular features achieved 94.2% grain defect detection.",
-      "Real-time dynamic slot booking reduced farmer wait times at direct procurement centers by 43%.",
-      "Offline-first client synchronization ensured complete operational resilience in remote agricultural hubs.",
-    ],
-    content: `Traditional paddy procurement centers in agricultural belts face severe bottlenecks during harvest seasons. Farmers endure grueling 12 to 36-hour queue delays while manual grain grading leads to subjective disputes and price penalties.
-
-To solve this, our team developed NelSync AI at the AIxcelerate 2026 Hackathon. The system comprises two synchronized engineering layers:
-
-1. Computer Vision Quality Grading
-We trained a quantized MobileNetV3 feature extractor on segmented high-resolution grain imagery. The vision embeddings are fused with moisture sensor readings and fed into an XGBoost classifier, predicting grain grade (Grade A, Common, Substandard) in under 800 milliseconds on low-power edge devices.
-
-2. Dynamic Queue Optimization
-Rather than static timestamp ticketing, NelSync AI dynamically models center throughput, storage capacity, and moisture decay rates. By distributing truck arrival windows based on live station load, we demonstrated a 43% reduction in center congestion during our pilot evaluations.`,
-  },
-  {
     title:
       "Demystifying Core Web Vitals & Technical SEO: Lessons from Production Audits at HodoLabs",
     excerpt:
@@ -92,30 +68,6 @@ LocalStorage caps storage at 5MB and runs synchronously on the main JavaScript t
 2. Hardware-Accelerated Micro-Interactions
 Every habit completion triggers spring physics driven by CSS transforms rather than continuous JavaScript re-renders. The entire application bundle weighs under 90KB gzip, ensuring lightning-fast load times even on spotty 3G networks.`,
   },
-  {
-    title: "High-Throughput Async AI Services with FastAPI & Structured Output Validation",
-    excerpt:
-      "Engineering resilient LLM backend services using FastAPI, Pydantic V2 schemas, async worker pools, and Supabase vector stores for real-time AI interview evaluations in PrepMind AI.",
-    date: "May 2026",
-    readingTime: 5,
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop",
-    url: `${BLOG_URL}/blog/fastapi-async-ai-pipelines`,
-    category: "Python & Backend",
-    keyTakeaways: [
-      "Pydantic V2 schemas enforce deterministic rubric scoring and type safety prior to frontend rendering.",
-      "Strict JSON schema enforcement with structured outputs prevents parser crashes and unformatted model outputs.",
-      "Asynchronous endpoints in FastAPI provide non-blocking concurrency for streaming interactive AI evaluations.",
-    ],
-    content: `In generative AI applications like PrepMind AI, evaluating candidate technical interview answers in real-time requires balancing LLM inference latency with deterministic schema validation.
-
-Core architectural components:
-
-1. Strict Schema Enforcement with Pydantic V2
-Rather than prompting the LLM for freeform text and attempting regex extraction, we inject structured JSON schemas directly into the Gemini API call. Pydantic V2 models validate rubric scores, code readability metrics, and technical accuracy fields with microsecond overhead.
-
-2. Asynchronous Event-Driven Architecture
-Using Python's async/await primitives in FastAPI, each candidate answer triggers parallel evaluations: syntax correctness, semantic alignment with industry rubrics, and automated difficulty progression. Results are streamed back over WebSockets, giving candidates instant formative feedback.`,
-  },
 ];
 
 export interface ProjectMetric {
@@ -161,44 +113,39 @@ export const PROJECTS: Project[] = [
     id: "nelsync-ai",
     title: "NelSync AI",
     tag: "AI & Agriculture",
-    desc: "Overall Champion of the AIxcelerate 2026 AI Innovation Hackathon. An intelligent paddy procurement optimization system combining predictive ML pipelines, yield analytics, and supply-chain logistics.",
+    desc: "Overall Champion of the AIxcelerate 2026 AI Innovation Hackathon (66 teams). An AI layer for paddy procurement in Tamil Nadu with four stages: predict, optimize, schedule, and monitor.",
     stack: "Python · Machine Learning · Analytics",
-    link: "https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view",
+    link: "https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view?pli=1",
     status: "Hackathon Champion",
     github: "",
     image:
       "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1000&auto=format&fit=crop&q=80",
     longDesc:
-      "NelSync AI is an AI-driven agricultural optimization engine designed to streamline paddy procurement for farmers and procurement centers. Built by Team NelSync AI, it earned the 1st Place Overall Championship trophy at the AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon at Dhanalakshmi Srinivasan University.",
+      "NelSync AI is an AI layer for paddy procurement in Tamil Nadu structured across four operational stages: predict, optimize, schedule, and monitor. Built by a team of four led by Jeeva Loganathan, the project won Overall Champion out of 66 teams at the AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon at Dhanalakshmi Srinivasan University. Stage 1 scored 95/100 (Rank 2); Stage 2 advanced to Top 48 to build the MVP; the Final reached Top 12 with a 3-minute pitch and live Q&A. Sahaya's contribution: built the first pitch deck, drove the research behind the final presentation, coordinated the team, and led Q&A prep.",
     metrics: [
-      { label: "Award", value: "1st Place Overall" },
-      { label: "Domain", value: "Agri-Tech & Supply Chain" },
-      { label: "Core Tech", value: "Python, Predictive ML" },
+      { label: "Award", value: "Overall Champion (66 Teams)" },
+      { label: "Team", value: "Team of 4 (Led by Jeeva L.)" },
+      { label: "My Contribution", value: "Pitch Deck, Research & Q&A Prep" },
     ],
     features: [
-      "Procurement Forecasting",
-      "Supply Chain Optimization",
-      "Quality Grading ML Workflow",
-      "Predictive Logistics Dashboard",
+      "Predictive Volume Forecasting (Stage 1)",
+      "Procurement Capacity Optimization (Stage 2)",
+      "Dynamic Arrival Scheduling (Stage 3)",
+      "Real-Time Center Flow Monitoring (Stage 4)",
     ],
     problem:
-      "Traditional grain procurement suffers from seasonal bottlenecks, inaccurate supply forecasting, and delayed distribution logistics.",
+      "Paddy grain procurement in Tamil Nadu direct procurement centers experiences severe bottlenecking, unpredictable grain arrival volumes, and prolonged farmer wait times.",
     architecture:
-      "Python data pipeline with machine learning forecasting models and analytical reporting dashboard for procurement monitoring.",
-    techStack: [
-      "Python",
-      "Machine Learning",
-      "Scikit-Learn",
-      "Data Modeling",
-      "Streamlit / Analytics",
-    ],
+      "Four-stage procurement optimization framework: Stage 1 (Predict regional arrivals), Stage 2 (Optimize center capacity), Stage 3 (Schedule delivery slots), and Stage 4 (Monitor center flow).",
+    techStack: ["Python", "Machine Learning", "Data Analytics", "Logistics Optimization"],
     challenges:
-      "Modeling non-linear seasonal agricultural yield fluctuations and integrating procurement constraints into real-time scheduling.",
+      "Designing multi-variable scheduling models under realistic rural infrastructure constraints and defending the solution during rigorous hackathon Q&A rounds.",
     results:
-      "Won Overall Champion across inter-university multidisciplinary engineering teams at AIxcelerate 2026.",
+      "Stage 1 score of 95/100 (Rank 2), Top 48 MVP development in Stage 2, and 1st Place Overall Championship victory following the Top 12 pitch at AIxcelerate 2026.",
     lessonsLearned:
-      "Domain-specific feature engineering and rapid model prototyping during high-pressure hackathon sprints.",
-    futureImprovements: "Incorporate satellite remote sensing data and real-time mandi price APIs.",
+      "Thorough problem-space research, crisp pitch deck storytelling, and disciplined Q&A preparation were decisive factors in translating technical models into championship wins.",
+    futureImprovements:
+      "Integrate live mandi price indexes and automated government procurement portal sync.",
     theme: {
       bg: "linear-gradient(180deg, rgba(5,150,105,0.4) 0%, rgba(15,23,42,0.8) 100%)",
       border: "rgba(52,211,153,0.3)",
@@ -207,6 +154,62 @@ export const PROJECTS: Project[] = [
       tagText: "#a7f3d0",
       iconBg: "rgba(52,211,153,0.15)",
       iconColor: "#a7f3d0",
+    },
+  },
+  {
+    id: "vibecraft-2026",
+    title: "VibeCraft 2026 (NeuraGenZers)",
+    tag: "Campus Web Suite",
+    desc: "Winner (5th of 110 teams) at VibeCraft 2026 (SRM IST Trichy, YUVA'26). Two campus web apps combined into one live deployment: Student Attendance Predictor & Planner and Free Class Locator & Smart Search Floor Manager.",
+    stack: "Next.js 16 · React 19 · TypeScript · Tailwind CSS · Gemini API · Vercel",
+    link: "https://neuragenzers.vercel.app/",
+    status: "Winner (5th of 110 Teams)",
+    github: "",
+    image:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1000&auto=format&fit=crop&q=80",
+    longDesc:
+      "Built during VibeCraft 2026 at SRM IST Trichy (YUVA'26) by Team NeuraGenZers, securing 5th place out of 110 teams. Combines two campus utility applications into a single live deployment: Round 1 Attendance Predictor & Planner and Round 2 Free Class Locator & Smart Search Floor Manager.",
+    metrics: [
+      { label: "Award", value: "Winner (5th of 110 Teams)" },
+      { label: "Dataset", value: "13 Sections, 120 Subjects" },
+      { label: "My Role", value: "Web Dev & Deployment" },
+    ],
+    features: [
+      "Subject-wise attendance tracking & projections (75% threshold / 90% target)",
+      "Detention risk detection & health visualization charts",
+      "On-duty (OD) and medical leave simulator with rule-based advisor chatbot",
+      "Floor-wise room grid, filters, and AI natural-language room search",
+      "Deterministic real-time availability checks",
+    ],
+    problem:
+      "Students lack visibility into dynamic attendance projections to prevent detention, while faculty and students struggle to locate free classrooms across campus in real time.",
+    architecture:
+      "Built with Next.js 16, React 19, TypeScript 5, Tailwind CSS v4, Recharts 3, and Gemini API. Scanned physical timetables were digitized into CSVs with OCR and verified against original records. Completed Round 1 and Round 2 Phase 1, skipping Phase 2 to ship one unified, stable deployment on Vercel.",
+    techStack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript 5",
+      "Tailwind CSS v4",
+      "Recharts 3",
+      "Gemini API",
+      "Vercel",
+    ],
+    challenges:
+      "Transforming noisy scanned timetable images into 120 verified structured subject records and delivering a unified dual-app production build under hackathon deadline constraints.",
+    results:
+      "Achieved 5th place out of 110 participating teams at VibeCraft 2026 and shipped a responsive, live deployment on Vercel.",
+    lessonsLearned:
+      "Disciplined scope management—focusing on delivering a rock-solid Round 1 and Round 2 Phase 1 rather than overextending into unstable Phase 2 features—enabled shipping a complete, working product under competition time limits.",
+    futureImprovements:
+      "Incorporate automated timetable synchronization with the university portal.",
+    theme: {
+      bg: "linear-gradient(180deg, rgba(14,116,144,0.4) 0%, rgba(15,23,42,0.8) 100%)",
+      border: "rgba(6,182,212,0.3)",
+      glow: "rgba(6,182,212,0.15)",
+      tagBg: "rgba(6,182,212,0.2)",
+      tagText: "#67e8f9",
+      iconBg: "rgba(6,182,212,0.15)",
+      iconColor: "#67e8f9",
     },
   },
   {
@@ -258,39 +261,38 @@ export const PROJECTS: Project[] = [
   {
     id: "prepmind-ai",
     title: "PrepMind AI",
-    tag: "AI Learning Platform",
-    desc: "An intelligent learning platform with quiz management, Supabase data modeling, progress tracking, and personalized learning workflows.",
-    stack: "Python · Supabase · React · Vercel",
-    link: "",
-    status: "In Development",
+    tag: "Exam Prep & Learning",
+    desc: "Web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and progress tracking, featuring fallback practice questions when AI responses are unavailable.",
+    stack: "React · TypeScript · Vercel",
+    link: "https://prep-weblearning.vercel.app/",
+    status: "Live",
     github: "",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&auto=format&fit=crop&q=80",
     longDesc:
-      "PrepMind AI transforms static study materials into interactive, adaptive learning experiences. Designed with structured Supabase relational models for user profiles, learning activity, and quiz performance.",
+      "PrepMind AI is a web-based exam preparation platform offering topic-based multiple choice question (MCQ) practice, interactive study utilities, AI tutoring, and learner progress tracking. The platform includes resilient fallback practice questions to ensure students can continue studying without interruption even when AI responses are unavailable.",
     metrics: [
-      { label: "Core Tech", value: "Python, Supabase" },
-      { label: "Deployment", value: "Vercel, Firebase" },
-      { label: "Focus", value: "EdTech AI" },
+      { label: "Status", value: "Live Deployment" },
+      { label: "Platform", value: "Web-Based EdTech" },
+      { label: "Resilience", value: "Fallback Question Bank" },
     ],
     features: [
-      "Quiz Management",
-      "Progress Tracking Analytics",
-      "Supabase Relational Data Models",
-      "Personalized Learning Workflows",
+      "Topic-Based MCQ Practice Modules",
+      "Interactive Study Utilities & AI Tutoring",
+      "Progress Tracking & Score Analytics",
+      "Deterministic Fallback Question Bank",
     ],
     problem:
-      "Static study materials do not adapt to individual student knowledge gaps or provide actionable tracking.",
+      "Students preparing for technical topics require structured MCQ evaluation with responsive feedback, but external AI service interruptions frequently halt online study sessions.",
     architecture:
-      "Python-driven data processing with Supabase backend and responsive React frontend deployed on Vercel.",
-    techStack: ["Python", "Supabase", "React", "Firebase", "Vercel"],
+      "Single-page web application built with React and TypeScript, deployed on Vercel. Features client-side state tracking for practice sessions and an integrated fallback question library when network AI calls are offline.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
     challenges:
-      "Designing clean database schemas for granular quiz attempt scoring and learner analytics.",
-    results:
-      "Created scalable relational schemas and backend database logic for tracking learner progress.",
+      "Designing seamless fallback handling that transitions to cached offline question sets without degrading the practice experience during network drops.",
+    results: "Shipped a live, accessible web exam preparation application on Vercel.",
     lessonsLearned:
-      "Designing normalized database schemas early prevents expensive migration overhead in multi-tenant EdTech apps.",
-    futureImprovements: "Add automatic note parsing from uploaded PDF lecture slides.",
+      "Building resilient client-side fallbacks guarantees learning continuity regardless of upstream AI API latency or rate limits.",
+    futureImprovements: "Add customizable practice quiz generation from student notes.",
     theme: {
       bg: "linear-gradient(180deg, rgba(6,78,59,0.4) 0%, rgba(15,23,42,0.8) 100%)",
       border: "rgba(16,185,129,0.3)",
@@ -419,6 +421,23 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     skills: ["Prompt Engineering", "Accurate Prompting", "Generative AI", "Responsible AI"],
     desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications.",
   },
+  {
+    rank: "04",
+    title: "Web Development and Software Engineering",
+    issuer: "HodoLabs Technologies",
+    issueDate: "June 2026",
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+    skills: [
+      "Web Development",
+      "Software Engineering",
+      "React",
+      "TypeScript",
+      "REST APIs",
+      "Git & GitHub",
+      "Responsive UI",
+    ],
+    desc: "Completed software engineering and web development training covering modern web architecture, responsive frontend design, REST API integration, and Git version control workflows.",
+  },
 ];
 
 export interface Experience {
@@ -488,14 +507,23 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     event: "AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon",
     organizer: "Dhanalakshmi Srinivasan University",
     date: "September 2026",
-    badge: "1st Place Overall",
-    desc: "Led Team NelSync AI to 1st place overall with 'Smart Paddy Procurement Optimization' — an AI-driven agricultural supply chain forecasting platform.",
+    badge: "Overall Champion (66 Teams)",
+    desc: "Overall Champion out of 66 teams with Team NelSync AI for an AI layer optimizing paddy procurement in Tamil Nadu.",
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+  },
+  {
+    title: "Hackathon Winner (5th Place)",
+    event: "VibeCraft 2026 (YUVA'26)",
+    organizer: "SRM IST Trichy",
+    date: "February 2026",
+    badge: "Winner (5th of 110 Teams)",
+    desc: "Winner, 5th place out of 110 teams with Team NeuraGenZers, developing two combined campus productivity applications for attendance projection and smart room location.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
     title: "1st Place Winner",
     event: "Technical Quiz Event — BOOTFEST-2K26",
-    organizer: "Inter-Collegiate Technical Festival",
+    organizer: "Bishop Heber College, PG Dept of Computer Science",
     date: "2026",
     badge: "Winner",
     desc: "Won first place in advanced computer science, algorithms, AI concepts, and software engineering quiz competition.",
@@ -504,28 +532,37 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
   {
     title: "Runner-up (2nd Place)",
     event: "Capture The Flag (CTF) Cybersecurity Challenge — BOOTFEST-2K26",
-    organizer: "Inter-Collegiate Technical Festival",
+    organizer: "Bishop Heber College, PG Dept of Computer Science",
     date: "2026",
     badge: "Runner-up",
     desc: "Competed in offensive security, binary exploitation, web vulnerabilities, and reverse engineering challenges.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
-    title: "1st Place Winner",
-    event: "Inter-Departmental Technical Competition — Achievers' Day",
-    organizer: "St. Joseph's College (Autonomous)",
+    title: "Overall Runner-up",
+    event: "BOOTFEST-2K26 Inter-Collegiate Technical Festival",
+    organizer: "Bishop Heber College, PG Dept of Computer Science",
     date: "2026",
-    badge: "1st Place",
-    desc: "Awarded top honors for technical design and software presentation among competing postgraduate STEM departments.",
+    badge: "Overall Runner-up",
+    desc: "Secured Overall Runner-up across participating collegiate teams in cumulative technical events at BOOTFEST-2K26.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
-    title: "Lead Event Organizer & Winner",
+    title: "Interdepartmental Contest Winner",
+    event: "Achievers' Day Inter-Departmental Competition",
+    organizer: "St. Joseph's College (Autonomous)",
+    date: "2026",
+    badge: "Certificate of Merit",
+    desc: "Awarded Certificate of Merit for technical design and software presentation among competing postgraduate STEM departments.",
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+  },
+  {
+    title: "Event In-Charge",
     event: "Treasure Titans — AION 2K26 Technical Symposium",
     organizer: "Department of AI, St. Joseph's College",
     date: "2026",
-    badge: "Leadership & Win",
-    desc: "Led event organization, algorithmic puzzle design, participant coordination for 100+ attendees, and secured top recognition in technical problem-solving.",
+    badge: "Event In-Charge",
+    desc: "Led event organization, algorithmic puzzle design, and participant coordination for 100+ attendees in Treasure Titans.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
 ];
@@ -542,15 +579,15 @@ export const EDUCATION_HISTORY: EducationItem[] = [
   {
     degree: "M.Sc. Artificial Intelligence",
     institution: "St. Joseph's College (Autonomous), Tiruchirappalli",
-    period: "2025 – Present",
+    period: "July 2025 – May 2027",
     grade: "Pursuing",
     focus:
-      "Machine Learning, Deep Learning Architectures, Neural Networks, Python APIs & Natural Language Processing.",
+      "Machine Learning, Deep Learning Architectures, Python Applications & Natural Language Processing.",
   },
   {
     degree: "B.Sc. Data Science",
     institution: "Thiagarajar College, Madurai",
-    period: "2022 – 2025",
+    period: "August 2022 – May 2025",
     grade: "65.06%",
     focus:
       "Statistics, Probability, Linear Algebra, Machine Learning Fundamentals, SQL Database Systems & Data Modeling.",
@@ -570,19 +607,19 @@ export const STATS: StatItem[] = [
     description: "NelSync AI · AIxcelerate 2026 Grand Champion",
   },
   {
-    value: "3+",
-    label: "Symposium Victories",
-    description: "BOOTFEST Quiz, CTF & Achievers' Day",
+    value: "4",
+    label: "Symposium Awards",
+    description: "BOOTFEST Quiz, CTF, Overall & Achievers' Day",
   },
   {
-    value: "2+",
-    label: "Times Hackathon Winner",
-    description: "AI Agricultural Supply Chain & Real-Time ML",
+    value: "2",
+    label: "Hackathons",
+    description: "AIxcelerate '26 (1st of 66) & VibeCraft '26 (5th of 110)",
   },
   {
     value: "Lead",
-    label: "Symposium Event Organizer",
-    description: "Treasure Titans · AION 2K26 AI Department",
+    label: "Event In-Charge",
+    description: "AION 2K26 (Treasure Titans) AI Department",
   },
 ];
 
@@ -601,7 +638,7 @@ export const CERTIFICATIONS: CertificationCategory[] = [
   {
     icon: "database",
     title: "Data Analytics",
-    subtitle: "IBM & Specialized Industry Courses",
+    subtitle: "IBM & Industry Specializations",
     desc: "Exploratory data analysis, SQL querying, Python analytics pipelines, and dynamic dashboard creation.",
     items: [
       { name: "IBM Data Analyst Professional Certificate", tag: "Professional Cert" },
@@ -611,24 +648,24 @@ export const CERTIFICATIONS: CertificationCategory[] = [
   },
   {
     icon: "code",
-    title: "Information Technology",
-    subtitle: "Technical Diplomas & Systems",
-    desc: "Foundational computer science, software architecture, responsive UI development, and version control.",
+    title: "Software Engineering",
+    subtitle: "Web Architecture & Systems",
+    desc: "Software architecture, responsive UI development, REST API integration, and disciplined version control.",
     items: [
-      { name: "Honours Diploma in Information Technology", tag: "Honours Diploma" },
-      { name: "Modern Web Architecture & Full Stack Principles", tag: "Web Eng" },
-      { name: "Git, GitHub & Collaborative Agile Pipelines", tag: "DevOps" },
+      { name: "Web Development and Software Engineering", tag: "HodoLabs" },
+      { name: "Modern Web Architecture & Responsive Design", tag: "Web Dev" },
+      { name: "Git, GitHub & Collaborative Version Control", tag: "Git Workflow" },
     ],
   },
   {
     icon: "brain",
-    title: "Business Intelligence",
-    subtitle: "Analytics & Reporting Systems",
-    desc: "Executive business intelligence, spreadsheet modeling, automated data cleaning, and KPI analysis.",
+    title: "AI & Machine Learning",
+    subtitle: "National Certification Programs",
+    desc: "Machine learning fundamentals, model evaluation, classification, and responsible AI practices.",
     items: [
-      { name: "Mastering Excel Data Analysis & Dashboard Reporting", tag: "BI & Reporting" },
-      { name: "KPI Decomposition & Executive Presentation", tag: "Strategy" },
-      { name: "Data Cleaning, Transformation & Pipeline Automation", tag: "Data Prep" },
+      { name: "Introduction to Machine Learning (Tamil)", tag: "NPTEL / IIT Madras" },
+      { name: "Yuva AI for All", tag: "NIELIT / Skill India" },
+      { name: "Data Science & Model Evaluation Fundamentals", tag: "ML Coursework" },
     ],
   },
 ];

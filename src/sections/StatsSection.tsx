@@ -25,7 +25,7 @@ const StatsSection = memo(() => {
           <div className="mb-10 md:mb-12">
             <SectionBadge>Snapshot</SectionBadge>
             <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-heading font-bold text-white tracking-tight mb-4">
-              Creative Mind. AI Heart.
+              Shipped Work &amp; Achievements.
             </h2>
             <p className="text-white/60 font-body font-light text-sm max-w-md mx-auto">
               Impactful metrics, verified hackathon victories, and technical competition

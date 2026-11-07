@@ -28,7 +28,9 @@ const resolveFontSize = (value, container, fontWeight, fontFamily) => {
   // Fast math parser for CSS clamp(min, val, max) to avoid DOM mutation and forced reflow
   const clampMatch =
     typeof value === "string" &&
-    value.match(/^clamp\(\s*([\d.]+)(rem|px|vw)\s*,\s*([\d.]+)(rem|px|vw)\s*,\s*([\d.]+)(rem|px|vw)\s*\)$/i);
+    value.match(
+      /^clamp\(\s*([\d.]+)(rem|px|vw)\s*,\s*([\d.]+)(rem|px|vw)\s*,\s*([\d.]+)(rem|px|vw)\s*\)$/i,
+    );
   if (clampMatch && typeof window !== "undefined") {
     const toPx = (num: string, unit: string) => {
       const n = parseFloat(num);
@@ -193,7 +195,10 @@ const ParticleText = ({
       const base = s.color;
       const highlight = s.highlightColor;
       const needsComputed =
-        !base || INHERIT.test(String(base).trim()) || !highlight || INHERIT.test(String(highlight).trim());
+        !base ||
+        INHERIT.test(String(base).trim()) ||
+        !highlight ||
+        INHERIT.test(String(highlight).trim());
       const current = needsComputed ? window.getComputedStyle(container).color || "#000000" : "";
       const pick = (value) => (!value || INHERIT.test(String(value).trim()) ? current : value);
       const finalBase = pick(base);
@@ -647,7 +652,10 @@ const ParticleText = ({
       const isMobile = nextWidth < 768;
       const minP = isMobile ? 480 : 800;
       const maxP = isMobile ? 1200 : 4800;
-      const maxParticles = Math.max(minP, Math.min(maxP, Math.floor((nextWidth * nextHeight) / (isMobile ? 110 : 90))));
+      const maxParticles = Math.max(
+        minP,
+        Math.min(maxP, Math.floor((nextWidth * nextHeight) / (isMobile ? 110 : 90))),
+      );
       const stride = Math.max(1, Math.ceil(targets.length / maxParticles));
       const selected = targets.filter((_, index) => index % stride === 0);
       const intro = introPending && !reducedMotion;

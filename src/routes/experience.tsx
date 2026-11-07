@@ -12,4 +12,3 @@ export const Route = createFileRoute("/experience")({
     }),
   component: ExperiencePage,
 });
-

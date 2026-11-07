@@ -45,7 +45,15 @@ export default function ArchitectureInspector() {
         jobTitle: "AI Engineer & Full Stack Developer",
         url: "https://sahayasavari.dev",
         sameAs: ["https://github.com/sahaya-savari", "https://www.linkedin.com/in/sahaya-savari"],
-        knowsAbout: ["Python", "Machine Learning", "FastAPI", "React", "TypeScript", "IndexedDB"],
+        knowsAbout: [
+          "Python",
+          "Machine Learning",
+          "Data Analytics",
+          "React",
+          "Next.js",
+          "TypeScript",
+          "IndexedDB",
+        ],
       },
       {
         "@type": "SoftwareApplication",

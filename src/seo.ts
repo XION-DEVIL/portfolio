@@ -14,7 +14,7 @@ export const personEntity = {
   url: SITE_URL,
   jobTitle: "AI/ML & Full Stack Developer",
   description:
-    "M.Sc. Artificial Intelligence Student, AI Engineer, Python Developer, and Full Stack Developer building Machine Learning solutions, Python APIs, React applications, and LLM-integrated tools.",
+    "M.Sc. Artificial Intelligence Student, AI Engineer, Python Developer, and Full Stack Developer building Machine Learning solutions, Python automation tools, and responsive React applications.",
   email: "contact@sahayasavari.dev",
   // Current student affiliation — not alumniOf as degree is ongoing
   affiliation: {
@@ -29,7 +29,7 @@ export const personEntity = {
       "@type": "Country",
       name: "India",
     },
-    skills: "Machine Learning, Python, React, TypeScript, FastAPI, LLM Applications",
+    skills: "Machine Learning, Data Analytics, Python, React, Next.js, TypeScript, SQL",
   },
   sameAs: [
     "https://www.linkedin.com/in/sahaya-savari",
@@ -41,27 +41,21 @@ export const personEntity = {
   knowsAbout: [
     "Artificial Intelligence",
     "Machine Learning",
-    "Deep Learning",
-    "Natural Language Processing",
-    "Computer Vision",
-    "LLM Applications",
-    "AI Agent Architecture",
-    "Generative AI",
-    "Prompt Engineering",
+    "Data Analytics",
     "Python",
-    "FastAPI",
-    "Flask",
     "React",
+    "Next.js",
     "TypeScript",
+    "Tailwind CSS",
+    "SQL",
+    "PostgreSQL",
+    "Git & GitHub",
     "Full Stack Development",
     "Web Development",
     "Firebase",
     "REST APIs",
-    "GitHub Actions CI/CD",
-    "Pydantic",
-    "Data Analysis",
     "Software Development",
-    "Open Source",
+    "Cybersecurity Fundamentals",
   ],
 };
 

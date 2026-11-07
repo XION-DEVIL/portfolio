@@ -57,4 +57,3 @@ export async function sendChatMessage(
     return answerQuestion(lastUserMessage);
   }
 }
-

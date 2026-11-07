@@ -25,9 +25,9 @@ Sahaya Savari F (known publicly as Sahaya Savari) is an AI Engineer, Python Deve
 currently pursuing a Master of Science (M.Sc.) in Artificial Intelligence at St. Joseph's College (Autonomous),
 Tiruchirappalli (Trichy), Tamil Nadu, India.
 
-He builds production-style Machine Learning solutions, Python-based REST APIs (FastAPI, Flask), React web
-applications with TypeScript, Firebase-hosted deployments, and LLM-integrated tools. His portfolio demonstrates
-practical expertise across the full AI and web development stack.
+He builds practical Machine Learning models, Python data science pipelines, React and Next.js web
+applications with TypeScript, and client-side offline tools. His portfolio emphasizes shipped work,
+verified hackathon championships, and solid engineering discipline.
 
 - **Primary Search Entity**: Sahaya Savari / Sahaya Savari F
 - **Location**: Madurai / Tiruchirappalli, Tamil Nadu, India
@@ -53,48 +53,56 @@ practical expertise across the full AI and web development stack.
 ## Technical Skills
 
 ### Artificial Intelligence & Machine Learning
-- Core Domains: Machine Learning, Deep Learning, Natural Language Processing, Computer Vision
-- Frameworks: TensorFlow, PyTorch
-- LLM Development: LLM Applications, AI Agent Architecture, Prompt Engineering, Generative AI
-- Tools: OpenAI API, NPTEL-certified Machine Learning fundamentals
+- Core Domains: Machine Learning, Data Analytics, Model Evaluation, Predictive Modeling
+- Tools: Python, Scikit-Learn, Pandas, NumPy
+- Certified: NPTEL IIT Madras (Introduction to Machine Learning), NIELIT (Yuva AI for All)
 
 ### Python Development
-- Frameworks: FastAPI, Flask
-- Libraries: Pandas, NumPy
-- Focus Areas: REST API Development, Automation Scripting, Data Wrangling, JSON Schema Validation (Pydantic V2)
+- Core: Python 3, Data Pipelines, Automation Scripts
+- Libraries: Pandas, NumPy, Scikit-Learn
+- Focus Areas: Data Wrangling, Algorithmic Prototyping, Relational Data Modeling
 
 ### Full Stack & Web Development
-- Frontend: React 19, TypeScript, Tailwind CSS v4, Vite 7, Framer Motion, GSAP
-- Infrastructure: Firebase Hosting CDN, GitHub Actions CI/CD, Static HTML Pre-rendering
-- Media: HLS.js video streaming, IndexedDB client storage, Service Worker fundamentals
-- SEO Engineering: Schema.org JSON-LD, OpenGraph, Static Pre-rendering, AI Discoverability (llms.txt)
+- Frontend: React 19, Next.js 16, TypeScript, Tailwind CSS v4, Vite, Recharts 3
+- Infrastructure: Vercel, Firebase Hosting CDN
+- Storage: IndexedDB offline client storage, Capacitor Android runtime
+- SEO Engineering: Schema.org JSON-LD, OpenGraph, Static Pre-rendering
 
 ### Data & Analytics
-- Tools: SQL, Matplotlib, Seaborn, IBM Cognos Analytics
-- Completed: IBM Data Analyst Specialization (9 courses)
+- Tools: SQL, PostgreSQL, Microsoft Excel, IBM Cognos Analytics
+- Completed: IBM Data Analyst Professional Certificate (Specialization)
 
 ---
 
 ## Project Specifications
 
-### 1. NelSync AI — Smart Agriculture Logistics & Predictive Yield Analytics (1st Place Overall Champion)
-- **Type**: AI Agri-Tech & Yield Analytics Platform
-- **Status**: 1st Place Overall Champion — AIxcelerate 2026 Hackathon
-- **Tech Stack**: Python, Scikit-Learn, React, FastAPI, Tailwind CSS
-- **Architecture**: Machine learning-driven agricultural logistics and yield analytics platform featuring procurement forecasting, supply chain risk prediction, and predictive logistics scheduling.
-- **Key Features**: Predictive procurement forecasting, supply chain risk mitigation, yield analytics, interactive dashboard.
+### 1. NelSync AI — AI Paddy Procurement Optimization Layer (Overall Champion)
+- **Type**: Agricultural Logistics Optimization
+- **Status**: Overall Champion — AIxcelerate 2026 Hackathon (66 teams)
+- **Tech Stack**: Python, Machine Learning, Data Analytics, Logistics Optimization
+- **Architecture**: Four-stage procurement optimization framework: Stage 1 (Predict regional arrivals), Stage 2 (Optimize center capacity), Stage 3 (Schedule delivery slots), and Stage 4 (Monitor center flow).
+- **Key Milestones**: Stage 1: 95/100 (Rank 2); Stage 2: Top 48 MVP; Final: Top 12, 3-minute pitch and live Q&A victory. Built by team of four led by Jeeva Loganathan.
+- **My Contribution**: Built the first pitch deck, drove research behind the final presentation, coordinated the team, and led Q&A defense.
 - **Project Overview**: https://sahayasavari.dev/projects/nelsync-ai
 
-### 2. PrepMind AI — Full-Stack AI Interview & Quiz Preparation Platform
-- **Type**: AI Education & Assessment Platform
-- **Status**: In Development
-- **Tech Stack**: Python, FastAPI, Supabase, React, Tailwind CSS
-- **Architecture**: Full-stack adaptive quiz and technical interview preparation platform with real-time score tracking, schema-validated structured quiz generation, and Supabase database persistence.
-- **Key Features**: Dynamic quiz generation, context-aware question evaluation, adaptive difficulty scaling, Supabase Auth and persistent progress tracking.
-- **Challenge**: Ensuring strict schema conformance in LLM generated quiz questions without latency degradation.
+### 2. VibeCraft 2026 (NeuraGenZers) — Dual Campus Web Suite (Winner, 5th of 110 Teams)
+- **Type**: Campus Web Applications
+- **Status**: Winner (5th Place of 110 Teams) — SRM IST Trichy YUVA'26
+- **Tech Stack**: Next.js 16, React 19, TypeScript 5, Tailwind CSS v4, Recharts 3, Gemini API, Vercel
+- **Architecture**: Combined dual-app platform: Round 1 Attendance Predictor & Planner (75% threshold, detention detection, OD simulator) + Round 2 Free Class Locator & Smart Search Floor Manager (room grid, filters, natural-language search).
+- **Data Scope**: 13 sections, 120 OCR-verified subject records.
+- **My Role**: Web development, deployment on Vercel, and final presentation deck.
+- **Live URL**: https://neuragenzers.vercel.app/
+
+### 3. PrepMind AI — Web-Based Exam Prep & Practice Platform
+- **Type**: EdTech Practice Application
+- **Status**: Live
+- **Tech Stack**: React, TypeScript, Tailwind CSS, Vercel
+- **Architecture**: Web exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and learner progress tracking. Includes deterministic fallback practice questions when AI responses are unavailable.
+- **Live URL**: https://prep-weblearning.vercel.app/
 - **Project Overview**: https://sahayasavari.dev/projects/prepmind-ai
 
-### 3. Daily Spark — Offline-First Habit Tracker
+### 4. Daily Spark — Offline-First Habit Tracker
 - **Type**: Productivity Application
 - **Status**: Live
 - **Tech Stack**: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
@@ -173,49 +181,49 @@ Intelligence at St. Joseph's College (Autonomous), Trichy, India. His work spans
 Python APIs, React web applications, and LLM-integrated tools. Portfolio: https://sahayasavari.dev
 
 **What does Sahaya Savari specialize in?**
-He specializes in AI/ML Engineering (TensorFlow, PyTorch, OpenAI API), Python backend development (FastAPI, Flask),
-Full Stack web development (React, TypeScript, Firebase), and LLM application architecture including prompt
-engineering and AI agent design.
+He specializes in AI/ML Engineering, Python, Full Stack web development (React, Next.js, TypeScript), and practical AI product integrations with reliable fallback systems.
 
 **What technologies does Sahaya Savari use?**
-Python, FastAPI, Flask, React 19, TypeScript, Tailwind CSS v4, Vite 7, Firebase Hosting, TensorFlow, PyTorch,
-OpenAI API, Pydantic V2, IndexedDB, Framer Motion, GitHub Actions.
+Python, React, Next.js, TypeScript, Tailwind CSS, Vite, Node.js, PostgreSQL, SQL, Git, GitHub, Gemini API, Vercel, Firebase Hosting, IndexedDB, and Capacitor.
 
 **What AI projects has Sahaya Savari built?**
-- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon — an AI agricultural logistics platform with predictive procurement forecasting and supply chain analytics.
-- PrepMind AI: a full-stack AI quiz & interview preparation platform with schema-validated structured outputs and Supabase persistence.
+- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon — an AI layer for paddy procurement in Tamil Nadu with predictive procurement, optimization, and supply-chain logistics.
+- VibeCraft 2026: Winner (5th Place of 110 teams) at YUVA'26 — unified campus platform combining Student Attendance Predictor & Planner with Free Class Locator & Smart Search Floor Manager.
+- PrepMind AI: a live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and offline-resilient fallback questions.
 - Daily Spark: an offline-first habit tracker with IndexedDB storage and Capacitor Android build.
-- Portfolio Website: high-performance SPA featuring schema.org JSON-LD, static pre-rendering, and llms.txt documentation for LLM indexing agents.
+- Portfolio Website: high-performance web platform featuring schema.org JSON-LD, static pre-rendering, and llms.txt documentation for LLM indexing agents.
 
 **What work experience does Sahaya Savari have?**
 - HodoLabs Technologies Pvt. Ltd. (Jun 2026 - Present): Digital Marketing & Technical SEO Intern — optimized web architectures for search engine indexing, core web vitals, and metadata workflows.
 - HodoLabs Technologies Pvt. Ltd. (May 2026 - Jun 2026): Web Development Trainee — built responsive UI components, semantic layouts, and DOM event workflows.
 
 **What awards and honors has Sahaya Savari received?**
-- 1st Place Overall Champion — AIxcelerate 2026 Hackathon (Team NelSync AI)
-- 1st Place Winner — Technical Quiz Event (BOOTFEST-2K26, Inter-Collegiate)
+- 1st Place Overall Champion — AIxcelerate 2026 Hackathon (Team NelSync AI, 66 teams)
+- Winner (5th Place of 110 teams) — VibeCraft 2026 Hackathon (Team NeuraGenZers, SRM IST Trichy YUVA'26)
+- 1st Place Winner — Technical Quiz Event (BOOTFEST-2K26, Bishop Heber College PG Dept of CS)
 - Runner-up (2nd Place) — Capture The Flag (CTF) Cybersecurity Challenge (BOOTFEST-2K26)
-- 1st Place Winner — Inter-Departmental Technical Competition (Achievers' Day 2026)
-- Lead Event Organizer — 'Treasure Titans' Technical Event (AION 2K26)
+- Overall Runner-up — BOOTFEST-2K26 Inter-Collegiate Technical Festival
+- 1st Place Winner (Certificate of Merit) — Inter-Departmental Technical Competition (Achievers' Day 2026, St. Joseph's College)
+- Event In-Charge — 'Treasure Titans' Technical Event (AION 2K26)
 
 **Where can Sahaya Savari's projects be found?**
 - Project case studies: https://sahayasavari.dev/projects
 - NelSync AI case study: https://sahayasavari.dev/projects/nelsync-ai
+- VibeCraft 2026 case study: https://sahayasavari.dev/projects/vibecraft-2026
 - Daily Spark case study: https://sahayasavari.dev/projects/daily-spark
 - GitHub repositories: https://github.com/sahaya-savari
 
 **Where can Sahaya Savari's technical writing be found?**
-- In-portfolio technical deep-dives covering AI Agent loops in Async Python, Pydantic V2 core validation, Tailwind CSS v4 performance, and client-side IndexedDB architecture.
+- In-portfolio technical writing covering Core Web Vitals optimization, responsive architecture, and offline-first web applications.
 
 **How can I contact or hire Sahaya Savari?**
 Email: contact@sahayasavari.dev — LinkedIn: https://www.linkedin.com/in/sahaya-savari
 He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions for Summer/Fall 2026.
 
 **What certifications does Sahaya Savari hold?**
-IBM Data Analyst Specialization (Coursera, 2024), Introduction to Machine Learning (NPTEL/IIT Madras, 2026),
-and Yuva AI for All (NIELIT/Skill India, 2026).
+IBM Data Analyst Specialization (Coursera), Yuva AI for All (NIELIT), Introduction to Machine Learning (NPTEL / IIT Madras), and Web Development and Software Engineering (HodoLabs).
 
 ---
 
 *Source: https://sahayasavari.dev | Extended Reference for LLM Indexing Agents*
-*Last Updated: 2026-11-06*
+*Last Updated: 2026-11-07*

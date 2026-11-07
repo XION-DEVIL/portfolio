@@ -24,18 +24,19 @@ export default function RecruiterMode() {
       "",
       "## Core Competencies",
       "- Languages: Python, TypeScript, JavaScript, SQL",
-      "- AI & ML: Machine Learning, Scikit-Learn, Predictive Modeling, Prompt Pipelines, Structured JSON Validation",
-      "- Frontend & Full Stack: React, Vite, Tailwind CSS, Framer Motion, IndexedDB, Firebase, Supabase, FastAPI",
+      "- AI & ML: Machine Learning, Scikit-Learn, Predictive Modeling, Data Analytics",
+      "- Frontend & Full Stack: React, Next.js, Vite, Tailwind CSS, Framer Motion, IndexedDB, Node.js, Firebase, Vercel",
       "",
       "## Top Projects",
-      "- NelSync AI: 1st Place Overall Champion at AIxcelerate 2026 Hackathon. Predictive ML grain spoilage forecasting & procurement supply chain optimization in Python.",
+      "- NelSync AI: Overall Champion at AIxcelerate 2026 Hackathon (66 teams). AI layer for paddy procurement in Tamil Nadu across four stages: predict, optimize, schedule, monitor.",
+      "- VibeCraft 2026: Winner (5th of 110 teams) at SRM IST Trichy YUVA'26. Dual campus web suite: Attendance Predictor & Smart Room Locator.",
+      "- PrepMind AI: Live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and fallback question banks.",
       "- Daily Spark: Offline-first PWA habit tracker built with React, TypeScript, and IndexedDB with Capacitor Android support.",
-      "- PrepMind AI: Concept ed-tech platform featuring asynchronous Python LLM rubric evaluations and Supabase relational data modeling.",
       "- Portfolio Website: High-performance SPA with sub-second TTI, manual Vite chunk splitting, and WCAG AA accessibility.",
       "",
       "## Education",
-      "- M.Sc. Artificial Intelligence (2024–2026) — St. Joseph's College (Autonomous), Trichy",
-      "- B.Sc. Data Science (2021–2024) — St. Joseph's College (Autonomous), Trichy",
+      "- M.Sc. Artificial Intelligence (July 2025 – May 2027) — St. Joseph's College (Autonomous), Tiruchirappalli",
+      "- B.Sc. Data Science (August 2022 – May 2025) — Thiagarajar College, Madurai",
     ].join("\n");
 
     navigator.clipboard.writeText(atsText);
@@ -195,12 +196,12 @@ export default function RecruiterMode() {
               </ul>
             </div>
             <div>
-              <strong className="block text-white mb-2">Backend & Cloud</strong>
+              <strong className="block text-white mb-2">Backend &amp; Tools</strong>
               <ul className="space-y-1 text-white/80">
-                <li>FastAPI / Flask</li>
-                <li>Supabase / Firebase</li>
+                <li>Node.js / SQL / PostgreSQL</li>
+                <li>Firebase / Vercel</li>
                 <li>Git / GitHub</li>
-                <li>RESTful APIs / Docker</li>
+                <li>RESTful APIs</li>
               </ul>
             </div>
           </div>
@@ -221,7 +222,7 @@ export default function RecruiterMode() {
                 "Machine Learning",
                 "React",
                 "TypeScript",
-                "Supabase",
+                "Next.js",
                 "IndexedDB",
               ].map((skill) => (
                 <button

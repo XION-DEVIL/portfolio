@@ -101,24 +101,32 @@ export default function ResumePage() {
               <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
                 Education
               </h3>
-              <p className="font-medium text-white">M.Sc. Artificial Intelligence</p>
-              <p className="text-xs text-white/60">St. Joseph's College (Autonomous), Trichy</p>
+              <p className="font-medium text-white">
+                M.Sc. Artificial Intelligence (July 2025 – May 2027)
+              </p>
+              <p className="text-xs text-white/60">
+                St. Joseph's College (Autonomous), Tiruchirappalli
+              </p>
+              <p className="font-medium text-white mt-1">
+                B.Sc. Data Science (August 2022 – May 2025)
+              </p>
+              <p className="text-xs text-white/60">Thiagarajar College, Madurai</p>
             </div>
             <div>
               <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
                 Core Tech Stack
               </h3>
               <p className="text-xs text-white/80 leading-relaxed">
-                Python, TypeScript, React, FastAPI, LLM Prompt Engineering, Firebase, Vite, Tailwind
-                CSS
+                Python, TypeScript, React, Next.js, SQL, Machine Learning, Data Analytics, Firebase,
+                Vite, Tailwind CSS
               </p>
             </div>
           </div>
 
           <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
             <span>
-              <strong>Selected Projects:</strong> NelSync AI (1st Place Hackathon Winner), PrepMind
-              AI, Daily Spark, Portfolio Architecture
+              <strong>Selected Projects:</strong> NelSync AI (Overall Hackathon Champion), VibeCraft
+              2026 (Winner, 5th of 110), PrepMind AI, Daily Spark, Portfolio Architecture
             </span>
             <a
               href={RESUME_FILE_URL}

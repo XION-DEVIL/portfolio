@@ -64,7 +64,7 @@ Your goal is to inform recruiters, hiring managers, and collaborators about Saha
 
 ### Work Experience:
 ${expSummary}
-- **Leadership**: Lead Symposium Event Organizer — Treasure Titans · AION 2K26 (National Level Technical Symposium).
+- **Leadership**: Event In-Charge, AION 2K26 (Treasure Titans) · Department of AI, St. Joseph's College.
 
 ### Hackathons & Honors:
 ${awardsSummary}
@@ -79,4 +79,3 @@ ${eduSummary}
 ${certSummary}
 `;
 }
-

@@ -44,8 +44,8 @@ const OpenSourceSection = memo(() => {
               </div>
               <h3 className="font-heading font-bold text-xl text-white">Modular Architecture</h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                Writing reusable Python libraries, custom React hooks, and standalone REST API
-                utilities designed for easy integration and developer adoption.
+                Writing modular React components, custom hooks, and structured Python utilities
+                designed for clean maintainability and clear developer adoption.
               </p>
             </div>
 
@@ -53,10 +53,12 @@ const OpenSourceSection = memo(() => {
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                 <GitCommit className="w-5 h-5 text-blue-400" aria-hidden="true" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-white">Version Control & CI/CD</h3>
+              <h3 className="font-heading font-bold text-xl text-white">
+                Version Control &amp; Hygiene
+              </h3>
               <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                Maintaining disciplined Git commit hygiene, comprehensive README documentation,
-                continuous testing pipelines, and Dockerized environments.
+                Maintaining disciplined Git commit hygiene, structured commit messages, and
+                comprehensive project documentation.
               </p>
             </div>
 

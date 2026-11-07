@@ -25,26 +25,27 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
         <div>
           <SectionBadge>About Me</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-12">
-            Building intelligent <br /> AI-powered solutions.
+            Engineering with <br /> purpose &amp; discipline.
           </h2>
           <div className="space-y-8 text-white/60 font-body font-light text-lg leading-relaxed max-w-xl">
             <p>
               I am <strong>Sahaya Savari</strong>, an M.Sc. Artificial Intelligence student at St.
-              Joseph's College (Autonomous), Trichy, and an{" "}
-              <strong>AI/ML &amp; Full Stack Developer</strong>. I am deeply passionate about
-              building AI-powered applications, Machine Learning models, and scalable web software
-              that transition from prototypes into production systems.
+              Joseph's College (Autonomous), Tiruchirappalli, with a strong foundation in B.Sc. Data
+              Science from Thiagarajar College, Madurai.
             </p>
             <p>
-              My background brings together Python development, REST API engineering with FastAPI,
-              and full stack software development using React, TypeScript, and Firebase. I
-              specialize in transforming complex data requirements into robust backends, accessible
-              UI components, and verifiably reliable intelligent software.
+              My focus centers on{" "}
+              <strong>Artificial Intelligence, Machine Learning, and Cybersecurity</strong>,
+              developed through hands-on engineering projects, competitive hackathons, and practical
+              industry internship experience. I believe exceptional software outcomes require a
+              balance of clean technical execution, teamwork, leadership, clear communication, and
+              dependable coordination.
             </p>
             <p>
-              My technical focus spans LLM prompt engineering, context-injected AI pipelines, model
-              evaluation metrics, interactive analytics dashboards, and high-performance web
-              applications tailored for real-world usability.
+              Whether organizing technical symposiums, coordinating multi-stage hackathon
+              deliverables, or shipping resilient web applications with React, Next.js, and Python,
+              I bring disciplined curiosity, focus, and verifiable work to every team I collaborate
+              with.
             </p>
           </div>
         </div>
@@ -68,7 +69,8 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   What I Know
                 </h4>
                 <p className="text-sm font-body text-white/80 font-light">
-                  Python, React, TypeScript, Prompt Engineering, SQL, Firebase, and data analysis.
+                  Python, React, TypeScript, Next.js, Tailwind CSS, SQL, Machine Learning, and Data
+                  Analytics.
                 </p>
               </div>
               <div>
@@ -76,7 +78,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   What I'm Learning
                 </h4>
                 <p className="text-sm font-body text-white/80 font-light">
-                  Advanced Deep Learning, Vector Databases, System Design.
+                  System Design, Advanced ML Modeling, and Practical Cybersecurity.
                 </p>
               </div>
               <div>
@@ -169,7 +171,8 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                       Key Strengths
                     </span>
                     <span className="text-white/80 font-body text-sm block font-medium">
-                      Python ML Pipelines · Context-Injected Prompts · Full-Stack React/TS
+                      Python ML &amp; Analytics · React/Next.js Web Apps · Team Leadership &amp;
+                      Coordination
                     </span>
                   </div>
                   <div>
@@ -177,9 +180,9 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                       Value Contribution
                     </span>
                     <span className="text-white/80 font-body text-sm block font-light leading-relaxed">
-                      Building end-to-end intelligent applications (Daily Spark offline PWA,
-                      PrepMind AI concept) and implementing schema-validated data workflows using
-                      Python, FastAPI, and React.
+                      Delivering shipped, reliable software (Daily Spark offline habit tracker,
+                      VibeCraft campus suite, PrepMind AI) and driving problem research and team
+                      coordination in high-stakes competitions.
                     </span>
                   </div>
                 </div>

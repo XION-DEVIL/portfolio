@@ -84,7 +84,7 @@ export default function NelSyncSimulator() {
         </div>
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <a
-            href="https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view"
+            href="https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view?pli=1"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs text-black bg-white hover:bg-white/90 px-3.5 py-1.5 rounded-lg font-semibold transition-all shadow cursor-pointer"

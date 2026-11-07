@@ -7,34 +7,33 @@ export default function DevDashboard() {
       label: "M.Sc AI Program",
       value: "St. Joseph's",
       icon: BookOpen,
-      desc: "Active research in Generative AI, LLMs, and Neural Network design.",
+      desc: "Applied coursework in Machine Learning, Deep Learning, and Python software.",
     },
     {
       label: "Major Projects",
       value: `${PROJECTS.length} Systems`,
       icon: Code,
-      desc: "NelSync AI (Hackathon Winner), PrepMind AI, Daily Spark, and modern web software.",
+      desc: "NelSync AI (Hackathon Winner), VibeCraft 2026, PrepMind AI, Daily Spark, and modern web software.",
     },
     {
       label: "Credentials Earned",
-      value: `${FEATURED_CREDENTIALS.length} Specializations`,
+      value: `${FEATURED_CREDENTIALS.length} Certifications`,
       icon: Award,
-      desc: "Verified IBM Data Analyst Specialization and accredited professional diplomas.",
+      desc: "Verified IBM Data Analyst Specialization, NPTEL IIT Madras, and accredited credentials.",
     },
   ];
 
   const topics = [
     {
-      name: "Generative AI",
-      level: "Active Exploration",
-      details:
-        "Structured prompt injection, schema mapping validation, token context window optimization.",
+      name: "Applied AI",
+      level: "Hands-on Projects",
+      details: "Practical API integration, structured data outputs, and interactive student tools.",
     },
     {
       name: "Machine Learning",
       level: "Core Studies",
       details:
-        "Loss parameter tuning, predictive classification models, exploratory data regressions.",
+        "Predictive classification models, exploratory data regressions, and model evaluation metrics.",
     },
     {
       name: "Data Analytics",

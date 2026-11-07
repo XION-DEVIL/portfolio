@@ -16,6 +16,7 @@ Portfolio and professional website of Sahaya Savari F.
 ## Featured Projects
 
 - [NelSync AI](https://sahayasavari.dev/projects/nelsync-ai): Smart Paddy Procurement Optimization system. 1st Place Overall Champion @ AIxcelerate 2026 Hackathon.
+- [VibeCraft 2026 (NeuraGenZers)](https://sahayasavari.dev/projects/vibecraft-2026): Winner (5th of 110 teams) @ SRM IST Trichy YUVA'26. Dual campus web applications combining attendance projection and smart room location. Live at https://neuragenzers.vercel.app/
 - [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): Adaptive technical interview readiness and quiz platform built with Python, FastAPI, Supabase, and React (In Development).
 - [Daily Spark](https://sahayasavari.dev/projects/daily-spark): Offline-first habit and streak tracking application built with React, TypeScript, and IndexedDB.
 - [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React 19, Vite, and hardware-accelerated animations.
@@ -23,9 +24,12 @@ Portfolio and professional website of Sahaya Savari F.
 ## Experience & Honors
 
 - **HodoLabs Technologies Pvt. Ltd.**: Digital Marketing & Technical SEO Intern (Jun 2026–Present) · Web Development Trainee (May–Jun 2026).
-- **🏆 Overall Champion**: AIxcelerate 2026 AI Hackathon (Team NelSync AI) · Dhanalakshmi Srinivasan University.
-- **🥇 1st Place**: State-Level Technical Quiz · BOOTFEST-2K26.
+- **🏆 Overall Champion**: AIxcelerate 2026 AI Hackathon (Team NelSync AI, 66 teams) · Dhanalakshmi Srinivasan University.
+- **Winner (5th Place)**: VibeCraft 2026 Hackathon (Team NeuraGenZers, 110 teams) · SRM IST Trichy (YUVA'26).
+- **🥇 1st Place**: State-Level Technical Quiz · BOOTFEST-2K26 (Bishop Heber College).
 - **🥈 Runner-Up**: Capture The Flag (CTF) Cybersecurity Challenge · BOOTFEST-2K26.
+- **🥈 Overall Runner-Up**: BOOTFEST-2K26 Inter-Collegiate Technical Festival.
+- **Certificate of Merit**: Interdepartmental Contest Winner · Achievers' Day, St. Joseph's College.
 - **Education**: M.Sc. Artificial Intelligence @ St. Joseph's College (2025–Present) · B.Sc. Data Science @ Thiagarajar College (2022–2025, 65.06%).
 
 ## Optional

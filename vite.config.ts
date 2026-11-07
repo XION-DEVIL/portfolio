@@ -52,6 +52,7 @@ export default defineConfig({
               { path: "/resume" },
               { path: "/projects" },
               { path: "/projects/nelsync-ai" },
+              { path: "/projects/vibecraft-2026" },
               { path: "/projects/daily-spark" },
               { path: "/projects/prepmind-ai" },
               { path: "/projects/portfolio-website" },
