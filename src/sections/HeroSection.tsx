@@ -166,8 +166,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-black/10" />
       </div>
 
-      {/* Main hero content */}
-      <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full">
+      {/* Main hero content framed with left & right container borders */}
+      <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full max-w-screen-xl mx-auto border-x border-white/[0.08] px-4 md:px-8">
         <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
           <div className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
             <span
@@ -204,19 +204,19 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-5">
-              <span className="font-heading font-medium text-fluid-hero-role text-white/85">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full max-w-full px-2 sm:px-4 mt-5">
+              <span className="font-heading font-medium text-fluid-hero-role text-white/85 shrink-0">
                 I am a
               </span>
-              <div className="w-full max-w-[340px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
+              <div className="text-center sm:text-left inline-flex justify-center max-w-full">
                 <RotatingText
                   texts={[
                     "Student AI/ML Engineer",
                     "M.Sc. AI @ St. Joseph's",
-                    "Digital Marketing Intern @ HodoLabs",
+                    "Digital Marketing Intern",
                     "2x Hackathon Achiever",
                   ]}
-                  mainClassName="px-4 py-1.5 md:px-5 md:py-2 liquid-glass text-white overflow-hidden rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-lg"
+                  mainClassName="px-3.5 py-1 sm:px-5 sm:py-1.5 liquid-glass text-white overflow-hidden rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-lg max-w-full shrink-0"
                   staggerFrom="last"
                   splitBy="words"
                   initial={{ y: "100%" }}

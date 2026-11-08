@@ -1,13 +1,12 @@
 # Sahaya Savari F
 
 > Student AI/ML Engineer | M.Sc. Artificial Intelligence @ SJC | Digital Marketing Intern @ HodoLabs | 2x Hackathon Achiever
-> Madurai, Tamil Nadu, India · Mobile: +91 6385648514 · sahayasavari.info@gmail.com · contact@sahayasavari.dev
+> Madurai, Tamil Nadu, India · Mobile: +91 6385648514 · contact@sahayasavari.dev
 
 Portfolio and professional website of Sahaya Savari F.
 
 ## Contact & Profile
-- Primary Email: sahayasavari.info@gmail.com
-- Secondary Email: contact@sahayasavari.dev
+- Email: contact@sahayasavari.dev
 - Phone: +91 6385648514
 - LinkedIn: https://www.linkedin.com/in/sahaya-savari
 - GitHub: https://github.com/sahaya-savari

@@ -141,7 +141,7 @@ export default function AskSahayaAI() {
         break;
       case "contact":
         output =
-          "• Primary Email: sahayasavari.info@gmail.com\n• Secondary Email: contact@sahayasavari.dev\n• Phone: +91 6385648514\n• Location: Madurai, Tamil Nadu, India\n• LinkedIn: https://www.linkedin.com/in/sahaya-savari\n• GitHub: https://github.com/sahaya-savari\n• Portfolio: https://sahayasavari.dev";
+          "• Email: contact@sahayasavari.dev\n• Phone: +91 6385648514\n• Location: Madurai, Tamil Nadu, India\n• LinkedIn: https://www.linkedin.com/in/sahaya-savari\n• GitHub: https://github.com/sahaya-savari\n• Portfolio: https://sahayasavari.dev";
         break;
       case "clear":
         setTerminalHistory([]);

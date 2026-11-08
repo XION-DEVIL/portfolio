@@ -328,8 +328,7 @@ export function answerQuestion(query: string): string {
   ) {
     return (
       `📫 **Get in Touch with Sahaya Savari F:**\n\n` +
-      `• **Primary Email:** [${CONTACT_INFO.primaryEmail}](mailto:${CONTACT_INFO.primaryEmail})\n` +
-      `• **Secondary Email:** [${CONTACT_INFO.secondaryEmail}](mailto:${CONTACT_INFO.secondaryEmail})\n` +
+      `• **Email:** [${CONTACT_INFO.email}](mailto:${CONTACT_INFO.email})\n` +
       `• **Mobile Phone:** [${CONTACT_INFO.phone}](tel:${CONTACT_INFO.phoneRaw})\n` +
       `• **Location:** ${CONTACT_INFO.location}\n` +
       `• **LinkedIn:** [linkedin.com/in/sahaya-savari](${CONTACT_INFO.linkedin})\n` +

@@ -15,7 +15,7 @@ export const personEntity = {
   jobTitle: "Student AI/ML Engineer & Full Stack Developer",
   description:
     "Portfolio of Sahaya Savari F, an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Tiruchirappalli, Digital Marketing Intern at HodoLabs, 2x Hackathon Achiever, specializing in PostgreSQL, Node.js, React.js, Python, and Machine Learning.",
-  email: "sahayasavari.info@gmail.com",
+  email: "contact@sahayasavari.dev",
   telephone: "+91-6385648514",
   // Current student affiliation — not alumniOf as degree is ongoing
   affiliation: {

@@ -39,8 +39,8 @@ describe("AI Knowledge Engine", () => {
 
   it("answers contact requests with valid email, phone, and LinkedIn links", () => {
     const res = answerQuestion("How can I contact Sahaya?");
-    expect(res).toContain("sahayasavari.info@gmail.com");
     expect(res).toContain("contact@sahayasavari.dev");
+    expect(res).not.toContain("sahayasavari.info@gmail.com");
     expect(res).toContain("6385648514");
     expect(res).toContain("linkedin.com/in/sahaya-savari");
   });
@@ -76,12 +76,14 @@ describe("AI Knowledge Engine", () => {
 
     // Must contain verified LinkedIn data
     expect(llms).toContain("Digital Marketing Intern");
-    expect(llms).toContain("sahayasavari.info@gmail.com");
+    expect(llms).toContain("contact@sahayasavari.dev");
+    expect(llms).not.toContain("sahayasavari.info@gmail.com");
     expect(llms).toContain("6385648514");
     expect(llms).toContain("PostgreSQL, Node.js, React.js");
 
     expect(llmsFull).toContain("Digital Marketing Intern");
-    expect(llmsFull).toContain("sahayasavari.info@gmail.com");
+    expect(llmsFull).toContain("contact@sahayasavari.dev");
+    expect(llmsFull).not.toContain("sahayasavari.info@gmail.com");
     expect(llmsFull).toContain("6385648514");
   });
 });

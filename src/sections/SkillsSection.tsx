@@ -38,6 +38,20 @@ const SkillsSection = memo(() => {
       aria-label="Skills and capabilities"
       className="py-16 px-6 relative overflow-hidden"
     >
+      {/* Ambient botanical flowers backdrop */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none" aria-hidden="true">
+        <img
+          src={`${import.meta.env.BASE_URL}hero-ambient-poster.webp`}
+          alt=""
+          width={1280}
+          height={956}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-center opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90 pointer-events-none" />
+      </div>
+
       <div className="absolute inset-0 z-0 pointer-events-none">
         {isMounted && (
           <Suspense fallback={null}>

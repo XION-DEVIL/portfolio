@@ -62,8 +62,7 @@ Your goal is to inform recruiters, hiring managers, and collaborators about Saha
 - **Top Skills (Verified)**: ${TOP_SKILLS.join(", ")}.
 - **Languages**: ${LANGUAGES.map((l) => `${l.language} (${l.proficiency})`).join(", ")}.
 - **Contact Info**:
-  * Primary Email: ${CONTACT_INFO.primaryEmail}
-  * Secondary Email: ${CONTACT_INFO.secondaryEmail}
+  * Email: ${CONTACT_INFO.email}
   * Mobile Phone: ${CONTACT_INFO.phone}
   * GitHub: ${CONTACT_INFO.github}
   * LinkedIn: ${CONTACT_INFO.linkedin}

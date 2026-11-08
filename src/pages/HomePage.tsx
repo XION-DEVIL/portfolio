@@ -32,8 +32,30 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection setShowResume={setShowResume} />
 
-      {/* Content sections between Hero and Contact with DotPattern ambient subtle background */}
-      <div className="relative isolate overflow-hidden">
+      {/* Content sections between Hero and Contact with framed side borders and botanical flowers ambient backdrop */}
+      <div className="relative isolate overflow-hidden border-x border-white/[0.08] max-w-screen-xl mx-auto">
+        {/* Ambient botanical flowers backdrop (matching Hero Prism architecture) */}
+        <div
+          className="absolute inset-0 z-0 size-full overflow-hidden pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}hero-ambient-poster.webp`}
+            alt=""
+            width={1280}
+            height={956}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 size-full object-cover object-center opacity-25"
+            aria-hidden="true"
+          />
+          {/* Subtle dark gradient overlay to guarantee AAA contrast for all cards and text */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-black via-black/85 to-black pointer-events-none"
+            aria-hidden="true"
+          />
+        </div>
+
         <DotPattern
           width={28}
           height={28}
@@ -117,7 +139,7 @@ export default function HomePage() {
       </div>
 
       {/* 8. Contact CTA */}
-      <div id="contact">
+      <div id="contact" className="border-x border-white/[0.08] max-w-screen-xl mx-auto">
         <IntersectionLazy fallbackHeight="100vh">
           <ContactSection setShowCommandPalette={setShowCommandPalette} />
         </IntersectionLazy>

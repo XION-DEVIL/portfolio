@@ -1,6 +1,5 @@
 import { memo } from "react";
 
-import HlsVideo from "../components/HlsVideo";
 import SectionBadge from "../components/ui/SectionBadge";
 import Button from "../components/ui/PortfolioButton";
 
@@ -11,15 +10,17 @@ interface AboutSectionProps {
 const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
   return (
     <section aria-label="About me" className="relative py-16 px-6 overflow-hidden">
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <HlsVideo
-          src="https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8"
-          className="w-full h-full object-cover opacity-30"
-          poster="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=960"
-          width={1920}
-          height={1080}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none" aria-hidden="true">
+        <img
+          src={`${import.meta.env.BASE_URL}hero-ambient-poster.webp`}
+          alt=""
+          width={1280}
+          height={956}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-bottom opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 pointer-events-none" />
       </div>
       <div className="relative z-10 max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-start">
         <div>

@@ -46,8 +46,7 @@ verified hackathon championships, and solid engineering discipline.
 | Technical Blog   | https://blog.sahayasavari.dev                     |
 | GitHub           | https://github.com/sahaya-savari                  |
 | LinkedIn         | https://www.linkedin.com/in/sahaya-savari         |
-| Primary Email    | sahayasavari.info@gmail.com                       |
-| Secondary Email  | contact@sahayasavari.dev                          |
+| Primary Email    | contact@sahayasavari.dev                          |
 | Mobile Phone     | +91 6385648514                                    |
 | Location         | Madurai, Tamil Nadu, India                        |
 | Top Skills       | PostgreSQL, Node.js, React.js                     |
@@ -226,7 +225,7 @@ PostgreSQL, Node.js, React.js, Python, Scikit-learn, Next.js, TypeScript, Tailwi
 - In-portfolio technical writing covering Core Web Vitals optimization, responsive architecture, and offline-first web applications.
 
 **How can I contact or hire Sahaya Savari?**
-Primary Email: sahayasavari.info@gmail.com — Secondary Email: contact@sahayasavari.dev — Mobile: +91 6385648514 — LinkedIn: https://www.linkedin.com/in/sahaya-savari
+Email: contact@sahayasavari.dev — Mobile: +91 6385648514 — LinkedIn: https://www.linkedin.com/in/sahaya-savari
 He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions for Summer/Fall 2026.
 
 **What certifications does Sahaya Savari hold?**

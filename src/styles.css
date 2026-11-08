@@ -243,8 +243,8 @@
 }
 
 @utility text-fluid-hero-role {
-  font-size: clamp(1.4rem, 3.6vw, 2.75rem);
-  line-height: 1.15;
+  font-size: clamp(1.05rem, 2.4vw, 1.85rem);
+  line-height: 1.2;
 }
 
 @utility text-fluid-section-heading {

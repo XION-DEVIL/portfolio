@@ -370,8 +370,8 @@ export const CONTACT_INFO = {
   headline:
     "Student AI/ML Engineer | M.Sc. Artificial Intelligence @ SJC | Digital Marketing Intern @ HodoLabs | 2x Hackathon Achiever",
   location: "Madurai, Tamil Nadu, India",
-  primaryEmail: "sahayasavari.info@gmail.com",
-  secondaryEmail: "contact@sahayasavari.dev",
+  email: "contact@sahayasavari.dev",
+  primaryEmail: "contact@sahayasavari.dev",
   phone: "+91 6385648514",
   phoneDisplay: "+91 6385648514",
   phoneRaw: "6385648514",

@@ -63,28 +63,28 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
 
           {/* Contact Actions Grid */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-4xl mx-auto">
-            {/* Primary Email Pill */}
+            {/* Primary Domain Email Pill */}
             <div className="liquid-glass-strong rounded-full font-body flex items-center border border-white/10 hover:border-white/20 transition-all shadow-lg backdrop-blur-xl p-1.5 sm:p-2 gap-1 sm:gap-2 max-w-full">
               <button
                 type="button"
-                onClick={() => copyToClipboard(CONTACT_INFO.primaryEmail)}
+                onClick={() => copyToClipboard(CONTACT_INFO.email)}
                 className="flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-2 rounded-full hover:bg-white/10 text-white font-medium text-xs sm:text-sm md:text-base transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 touch-manipulation"
                 aria-label={
-                  copiedEmail === CONTACT_INFO.primaryEmail
-                    ? "Primary email copied to clipboard"
-                    : `Copy ${CONTACT_INFO.primaryEmail} to clipboard`
+                  copiedEmail === CONTACT_INFO.email
+                    ? "Email copied to clipboard"
+                    : `Copy ${CONTACT_INFO.email} to clipboard`
                 }
-                title="Click to copy primary email"
+                title="Click to copy email address"
               >
-                {copiedEmail === CONTACT_INFO.primaryEmail ? (
+                {copiedEmail === CONTACT_INFO.email ? (
                   <Check className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-emerald-400" />
                 ) : (
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-emerald-400 group-hover:text-emerald-300" />
                 )}
                 <span className="text-white group-hover:text-white/90 break-all sm:break-normal">
-                  {CONTACT_INFO.primaryEmail}
+                  {CONTACT_INFO.email}
                 </span>
-                {copiedEmail === CONTACT_INFO.primaryEmail && (
+                {copiedEmail === CONTACT_INFO.email && (
                   <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full ml-1">
                     Copied
                   </span>
@@ -94,9 +94,9 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
               <div className="w-[1px] h-6 bg-white/15 shrink-0" aria-hidden="true" />
 
               <a
-                href={`mailto:${CONTACT_INFO.primaryEmail}`}
+                href={`mailto:${CONTACT_INFO.email}`}
                 className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-white/15 text-white/70 hover:text-white transition-all group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shrink-0 touch-manipulation"
-                aria-label={`Open email client (mailto:${CONTACT_INFO.primaryEmail})`}
+                aria-label={`Open email client (mailto:${CONTACT_INFO.email})`}
                 title="Open mail client"
               >
                 <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -112,29 +112,6 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
               <Phone className="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true" />
               <span>{CONTACT_INFO.phone}</span>
             </a>
-
-            {/* Secondary / Domain Email */}
-            <div className="liquid-glass rounded-full font-body flex items-center border border-white/10 hover:border-white/20 transition-all p-1.5 sm:p-2 gap-1 sm:gap-2">
-              <button
-                type="button"
-                onClick={() => copyToClipboard(CONTACT_INFO.secondaryEmail)}
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white font-medium text-xs sm:text-sm transition-colors cursor-pointer"
-                aria-label={`Copy ${CONTACT_INFO.secondaryEmail} to clipboard`}
-                title="Click to copy domain email"
-              >
-                {copiedEmail === CONTACT_INFO.secondaryEmail ? (
-                  <Check className="w-4 h-4 text-emerald-400" />
-                ) : (
-                  <Mail className="w-4 h-4 text-white/60" />
-                )}
-                <span>{CONTACT_INFO.secondaryEmail}</span>
-                {copiedEmail === CONTACT_INFO.secondaryEmail && (
-                  <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded-full ml-1">
-                    Copied
-                  </span>
-                )}
-              </button>
-            </div>
 
             {/* Location Pill */}
             <a
