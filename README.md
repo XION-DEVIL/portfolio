@@ -92,6 +92,14 @@ src/
 
 ---
 
+## 🌐 Deployments & Backups
+
+- **Primary Production**: [https://sahaya-savari-portfolio.web.app](https://sahaya-savari-portfolio.web.app) (Firebase Hosting)
+- **GitHub Pages**: Automated via `.github/workflows/deploy-pages.yml`
+- **GitLab Pages Backup**: Automated via `.gitlab-ci.yml` (builds with Bun, publishes to `https://<namespace>.gitlab.io/<project>`)
+
+---
+
 ## 📜 Detailed Change History
 
 For historical release notes and documentation, see [docs/portfolio/CHANGELOG.md](./docs/portfolio/CHANGELOG.md).
