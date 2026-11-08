@@ -32,8 +32,8 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection setShowResume={setShowResume} />
 
-      {/* Content sections between Hero and Contact */}
-      <div className="relative isolate overflow-hidden max-w-screen-xl mx-auto">
+      {/* Content sections between Hero and Contact with framed side borders */}
+      <div className="relative isolate overflow-hidden border-x border-white/[0.08] max-w-screen-xl mx-auto">
         <DotPattern
           width={28}
           height={28}

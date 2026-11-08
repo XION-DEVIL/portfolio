@@ -115,288 +115,294 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       aria-label="Introduction"
       className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-black"
     >
-      {/* Background ambient botanical visual (seamlessly fills full Page 1 viewport) */}
-      <div
-        className="absolute inset-0 z-0 size-full overflow-hidden pointer-events-none select-none"
-        aria-hidden="true"
-      >
-        {/* Ambient botanical flowers poster image */}
-        <img
-          src={HERO_POSTER}
-          alt=""
-          width={1280}
-          height={956}
-          fetchPriority="high"
-          decoding="async"
-          className={`absolute inset-0 size-full object-cover object-bottom transition-opacity duration-1000 ${
-            isVideoLoaded ? "opacity-0" : "opacity-65"
-          }`}
+      {/* Framed hero container with side margins and borders matching page width */}
+      <div className="relative w-full max-w-screen-xl mx-auto border-x border-white/[0.08] flex-grow flex flex-col justify-between overflow-hidden">
+        {/* Background ambient botanical visual (framed inside container with side space/borders) */}
+        <div
+          className="absolute inset-0 z-0 size-full overflow-hidden pointer-events-none select-none"
           aria-hidden="true"
-        />
-
-        {/* Ambient botanical flowers background video (Prism hero.mp4) */}
-        {shouldLoadVideo && (
-          <video
-            src={HERO_VIDEO}
-            poster={HERO_POSTER}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
+        >
+          {/* Ambient botanical flowers poster image */}
+          <img
+            src={HERO_POSTER}
+            alt=""
             width={1280}
             height={956}
-            onCanPlay={() => setIsVideoLoaded(true)}
-            className={`absolute inset-0 size-full object-cover object-bottom transition-opacity duration-1000 ease-in-out ${
-              isVideoLoaded ? "opacity-65" : "opacity-0"
+            fetchPriority="high"
+            decoding="async"
+            className={`absolute inset-0 size-full object-cover object-bottom transition-opacity duration-1000 ${
+              isVideoLoaded ? "opacity-0" : "opacity-65"
             }`}
             aria-hidden="true"
           />
-        )}
 
-        {/* Atmospheric gradient overlays for seamless navbar and section blending */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-72 md:h-96 bg-gradient-to-t from-black via-black/85 to-transparent"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-32 md:h-44 bg-gradient-to-b from-black via-black/50 to-transparent"
-        />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-black/35" />
-      </div>
+          {/* Ambient botanical flowers background video (Prism hero.mp4) */}
+          {shouldLoadVideo && (
+            <video
+              src={HERO_VIDEO}
+              poster={HERO_POSTER}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              width={1280}
+              height={956}
+              onCanPlay={() => setIsVideoLoaded(true)}
+              className={`absolute inset-0 size-full object-cover object-bottom transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded ? "opacity-65" : "opacity-0"
+              }`}
+              aria-hidden="true"
+            />
+          )}
 
-      {/* Main hero content */}
-      <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-20 pb-8 sm:pt-22 sm:pb-10 md:pt-24 md:pb-12 w-full max-w-screen-xl mx-auto px-4 md:px-8">
-        <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
-          <div className="liquid-glass-strong border border-white/15 shadow-sm rounded-full px-4 py-1.5 mb-4 sm:mb-5 flex items-center gap-2.5">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            <span className="text-xs font-body font-medium text-white/90 tracking-wide">
-              Open to Opportunities · Summer 2027
-            </span>
-          </div>
-          <div className="relative mb-4 sm:mb-6 flex flex-col items-center justify-center w-full">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 relative w-full max-w-5xl mx-auto px-4">
-              <h1
-                aria-label="Sahaya Savari F"
-                className="font-heading not-italic font-semibold text-white order-2 md:order-1 mb-4 md:mb-0 text-center md:text-left shrink-0"
-                style={{ fontStyle: "normal" }}
-              >
-                <HeroHeadingName />
-              </h1>
-
-              {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
-              <div className="relative order-1 md:order-2 shrink-0 group">
-                <div className="relative w-[185px] h-[265px] sm:w-[215px] sm:h-[305px] lg:w-[235px] lg:h-[335px]">
-                  {enableInteractiveEffects ? (
-                    <div className="absolute -inset-x-[60px] -top-6 -bottom-6 sm:-inset-x-[70px] md:-inset-x-[95px] lg:-inset-x-[115px]">
-                      <Suspense fallback={<StaticBadgeCard />}>
-                        <HeroBadge />
-                      </Suspense>
-                    </div>
-                  ) : (
-                    <StaticBadgeCard />
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full max-w-full px-2 sm:px-4 mt-3 sm:mt-4">
-              <span className="font-heading font-medium text-fluid-hero-role text-white/85 shrink-0">
-                I am a
-              </span>
-              <div className="text-center sm:text-left inline-flex justify-center max-w-full">
-                <RotatingText
-                  texts={[
-                    "Student AI/ML Engineer",
-                    "M.Sc. AI @ St. Joseph's",
-                    "Digital Marketing Intern",
-                    "2x Hackathon Achiever",
-                  ]}
-                  mainClassName="px-4 py-1 sm:px-5 sm:py-1.5 liquid-glass-strong border border-white/20 text-white whitespace-nowrap rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-[0_4px_24px_rgba(255,255,255,0.08)] max-w-full shrink-0"
-                  staggerFrom="last"
-                  splitBy="words"
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
-                  exit={{ y: "-120%" }}
-                  staggerDuration={0.025}
-                  splitLevelClassName="overflow-visible pb-0.5"
-                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                  rotationInterval={4000}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* LCP Text: High contrast with subtle shadow for crisp readability over flowers */}
-          <p className="text-white/95 font-body font-normal text-sm sm:text-base md:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
-            M.Sc. Artificial Intelligence student building and shipping web applications with React,
-            TypeScript, Next.js, and Python. Deployed practical tools including Daily Spark,
-            PrepMind AI, and the VibeCraft campus apps. Seeking Summer 2027 internships in software
-            engineering, backend, and applied AI.
-          </p>
-
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
-            <RainbowButton onClick={() => setShowResume(true)} aria-label="View Resume">
-              View Resume
-              <ArrowUpRight
-                className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                aria-hidden="true"
-              />
-            </RainbowButton>
-            <a
-              href="#projects"
-              className="text-white/70 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]"
-              aria-label="View Projects"
-            >
-              View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
-            </a>
-          </div>
-
-          {/* Recruiter Quick View Card */}
+          {/* Atmospheric gradient overlays for seamless navbar and section blending */}
           <div
-            className="mt-12 w-full max-w-4xl rounded-3xl border border-white/[0.08] transition-all duration-700"
-            style={{
-              background: "rgba(10, 10, 14, 0.65)",
-              backdropFilter: "blur(20px)",
-              boxShadow: "0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.4)",
-            }}
-          >
-            <div className="grid md:grid-cols-3 gap-8 p-6 md:p-8 text-left">
-              {/* Left Column: Core Credentials & Bio info */}
-              <div className="md:col-span-2 space-y-6">
-                <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
-                  <div>
-                    <h2 className="text-white font-heading font-bold text-lg leading-none">
-                      Recruiter Quick View
-                    </h2>
-                    <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">
-                      Candidate profile summary
-                    </span>
-                  </div>
-                  <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1.5 shrink-0">
-                    <span
-                      className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
-                      aria-hidden="true"
-                    />
-                    Available Summer 2027
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-xs font-body">
-                  <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
-                      Education
-                    </span>
-                    <span className="text-white/90 font-medium">
-                      M.Sc. AI (Current) · B.Sc. Data Science
-                    </span>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
-                      Experience
-                    </span>
-                    <span className="text-white/90 font-medium">
-                      Digital Marketing Intern @ HodoLabs
-                    </span>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
-                      Target Roles
-                    </span>
-                    <span className="text-white/90 font-medium">
-                      Software Engineering, Backend Development, Applied AI
-                    </span>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
-                      Location &amp; Preference
-                    </span>
-                    <span className="text-white/90 font-medium">
-                      Madurai / Tamil Nadu · Remote / Relocate
-                    </span>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">
-                    Primary Stack
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {["Python", "React", "TypeScript", "Next.js", "SQL"].map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: CTA Actions */}
-              <div className="flex flex-col justify-center gap-4 bg-white/[0.01] border-t md:border-t-0 md:border-l border-white/[0.06] pt-6 md:pt-0 md:pl-8">
-                {/* 1-Click Resume Download */}
-                <a
-                  href={RESUME_URL}
-                  download="Sahaya_Savari_Resume.pdf"
-                  className="w-full text-center text-xs font-body font-semibold px-4 py-3.5 rounded-full bg-white text-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
-                  aria-label="Download PDF Resume"
-                >
-                  Download PDF Resume
-                </a>
-
-                {/* Get in Touch CTA */}
-                <a
-                  href="#contact"
-                  className="w-full text-center text-xs font-body font-medium px-4 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/90 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  aria-label="Get In Touch — Contact section"
-                >
-                  Get In Touch
-                </a>
-
-                {/* Profiles row */}
-                <div className="flex items-center justify-center gap-6 mt-2">
-                  <a
-                    href="https://github.com/sahaya-savari"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
-                    aria-label="GitHub (opens in new tab)"
-                  >
-                    GitHub
-                  </a>
-                  <span className="text-white/10" aria-hidden="true">
-                    |
-                  </span>
-                  <a
-                    href="https://www.linkedin.com/in/sahaya-savari"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
-                    aria-label="LinkedIn (opens in new tab)"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-72 md:h-96 bg-gradient-to-t from-black via-black/85 to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-32 md:h-44 bg-gradient-to-b from-black via-black/50 to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-0 bg-black/35"
+          />
         </div>
 
-        {/* Moved outside max-w-4xl to give FocusText full section width */}
-        <div
-          className="mt-8 md:mt-12 flex flex-col items-center gap-4 shrink-0 pointer-events-none w-full"
-          aria-hidden="true"
-        >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">
-            What I work with
+        {/* Main hero content */}
+        <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-20 pb-8 sm:pt-22 sm:pb-10 md:pt-24 md:pb-12 w-full px-4 md:px-8">
+          <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
+            <div className="liquid-glass-strong border border-white/15 shadow-sm rounded-full px-4 py-1.5 mb-4 sm:mb-5 flex items-center gap-2.5">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              </span>
+              <span className="text-xs font-body font-medium text-white/90 tracking-wide">
+                Open to Opportunities · Summer 2027
+              </span>
+            </div>
+            <div className="relative mb-4 sm:mb-6 flex flex-col items-center justify-center w-full">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 relative w-full max-w-5xl mx-auto px-4">
+                <h1
+                  aria-label="Sahaya Savari F"
+                  className="font-heading not-italic font-semibold text-white order-2 md:order-1 mb-4 md:mb-0 text-center md:text-left shrink-0"
+                  style={{ fontStyle: "normal" }}
+                >
+                  <HeroHeadingName />
+                </h1>
+
+                {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
+                <div className="relative order-1 md:order-2 shrink-0 group">
+                  <div className="relative w-[185px] h-[265px] sm:w-[215px] sm:h-[305px] lg:w-[235px] lg:h-[335px]">
+                    {enableInteractiveEffects ? (
+                      <div className="absolute -inset-x-[60px] -top-6 -bottom-6 sm:-inset-x-[70px] md:-inset-x-[95px] lg:-inset-x-[115px]">
+                        <Suspense fallback={<StaticBadgeCard />}>
+                          <HeroBadge />
+                        </Suspense>
+                      </div>
+                    ) : (
+                      <StaticBadgeCard />
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full max-w-full px-2 sm:px-4 mt-3 sm:mt-4">
+                <span className="font-heading font-medium text-fluid-hero-role text-white/85 shrink-0">
+                  I am a
+                </span>
+                <div className="text-center sm:text-left inline-flex justify-center max-w-full">
+                  <RotatingText
+                    texts={[
+                      "Student AI/ML Engineer",
+                      "M.Sc. AI @ St. Joseph's",
+                      "Digital Marketing Intern",
+                      "2x Hackathon Achiever",
+                    ]}
+                    mainClassName="px-4 py-1 sm:px-5 sm:py-1.5 liquid-glass-strong border border-white/20 text-white whitespace-nowrap rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-[0_4px_24px_rgba(255,255,255,0.08)] max-w-full shrink-0"
+                    staggerFrom="last"
+                    splitBy="words"
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-visible pb-0.5"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={4000}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* LCP Text: High contrast with subtle shadow for crisp readability over flowers */}
+            <p className="text-white/95 font-body font-normal text-sm sm:text-base md:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
+              M.Sc. Artificial Intelligence student building and shipping web applications with
+              React, TypeScript, Next.js, and Python. Deployed practical tools including Daily
+              Spark, PrepMind AI, and the VibeCraft campus apps. Seeking Summer 2027 internships in
+              software engineering, backend, and applied AI.
+            </p>
+
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
+              <RainbowButton onClick={() => setShowResume(true)} aria-label="View Resume">
+                View Resume
+                <ArrowUpRight
+                  className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  aria-hidden="true"
+                />
+              </RainbowButton>
+              <a
+                href="#projects"
+                className="text-white/70 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]"
+                aria-label="View Projects"
+              >
+                View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
+              </a>
+            </div>
+
+            {/* Recruiter Quick View Card */}
+            <div
+              className="mt-12 w-full max-w-4xl rounded-3xl border border-white/[0.08] transition-all duration-700"
+              style={{
+                background: "rgba(10, 10, 14, 0.65)",
+                backdropFilter: "blur(20px)",
+                boxShadow: "0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.4)",
+              }}
+            >
+              <div className="grid md:grid-cols-3 gap-8 p-6 md:p-8 text-left">
+                {/* Left Column: Core Credentials & Bio info */}
+                <div className="md:col-span-2 space-y-6">
+                  <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+                    <div>
+                      <h2 className="text-white font-heading font-bold text-lg leading-none">
+                        Recruiter Quick View
+                      </h2>
+                      <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">
+                        Candidate profile summary
+                      </span>
+                    </div>
+                    <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1.5 shrink-0">
+                      <span
+                        className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
+                        aria-hidden="true"
+                      />
+                      Available Summer 2027
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-xs font-body">
+                    <div>
+                      <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                        Education
+                      </span>
+                      <span className="text-white/90 font-medium">
+                        M.Sc. AI (Current) · B.Sc. Data Science
+                      </span>
+                    </div>
+                    <div>
+                      <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                        Experience
+                      </span>
+                      <span className="text-white/90 font-medium">
+                        Digital Marketing Intern @ HodoLabs
+                      </span>
+                    </div>
+                    <div>
+                      <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                        Target Roles
+                      </span>
+                      <span className="text-white/90 font-medium">
+                        Software Engineering, Backend Development, Applied AI
+                      </span>
+                    </div>
+                    <div>
+                      <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                        Location &amp; Preference
+                      </span>
+                      <span className="text-white/90 font-medium">
+                        Madurai / Tamil Nadu · Remote / Relocate
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">
+                      Primary Stack
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["Python", "React", "TypeScript", "Next.js", "SQL"].map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column: CTA Actions */}
+                <div className="flex flex-col justify-center gap-4 bg-white/[0.01] border-t md:border-t-0 md:border-l border-white/[0.06] pt-6 md:pt-0 md:pl-8">
+                  {/* 1-Click Resume Download */}
+                  <a
+                    href={RESUME_URL}
+                    download="Sahaya_Savari_Resume.pdf"
+                    className="w-full text-center text-xs font-body font-semibold px-4 py-3.5 rounded-full bg-white text-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                    aria-label="Download PDF Resume"
+                  >
+                    Download PDF Resume
+                  </a>
+
+                  {/* Get in Touch CTA */}
+                  <a
+                    href="#contact"
+                    className="w-full text-center text-xs font-body font-medium px-4 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/90 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    aria-label="Get In Touch — Contact section"
+                  >
+                    Get In Touch
+                  </a>
+
+                  {/* Profiles row */}
+                  <div className="flex items-center justify-center gap-6 mt-2">
+                    <a
+                      href="https://github.com/sahaya-savari"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
+                      aria-label="GitHub (opens in new tab)"
+                    >
+                      GitHub
+                    </a>
+                    <span className="text-white/10" aria-hidden="true">
+                      |
+                    </span>
+                    <a
+                      href="https://www.linkedin.com/in/sahaya-savari"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
+                      aria-label="LinkedIn (opens in new tab)"
+                    >
+                      LinkedIn
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <FocusText prefix="Data Analytics Python" focusText="Applied AI" className="" />
+
+          {/* Moved outside max-w-4xl to give FocusText full section width */}
+          <div
+            className="mt-8 md:mt-12 flex flex-col items-center gap-4 shrink-0 pointer-events-none w-full"
+            aria-hidden="true"
+          >
+            <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">
+              What I work with
+            </div>
+            <FocusText prefix="Data Analytics Python" focusText="Applied AI" className="" />
+          </div>
         </div>
       </div>
     </section>
