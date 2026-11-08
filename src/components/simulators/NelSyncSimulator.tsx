@@ -71,24 +71,25 @@ export default function NelSyncSimulator() {
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-6 sm:p-8 my-8 text-white">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-mono mb-2">
             <Sparkles className="w-3.5 h-3.5" />
-            Interactive Hackathon ML Model Simulator
+            Illustrative Demo · Procurement Logistics Simulator
           </div>
           <h3 className="text-xl font-heading tracking-tight">
-            Grain Moisture & Spoilage Predictor
+            Grain Moisture &amp; Spoilage Predictor
           </h3>
           <p className="text-xs text-white/60 font-body">
-            Simulate the AIxcelerate 2026 winning procurement logistics forecasting pipeline.
+            Illustrative client-side simulation demonstrating four-stage procurement logistics and
+            dispatch risk concepts from the AIxcelerate 2026 hackathon.
           </p>
         </div>
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <a
-            href="https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view?pli=1"
+            href="https://lnkd.in/ghBUvf4P"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs text-black bg-white hover:bg-white/90 px-3.5 py-1.5 rounded-lg font-semibold transition-all shadow cursor-pointer"
-            title="Watch the hackathon video demo on Google Drive"
+            title="Watch the hackathon video demo on LinkedIn"
           >
             <Play className="w-3 h-3 fill-black" /> Video Demo
           </a>

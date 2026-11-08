@@ -7,7 +7,7 @@ export const Route = createFileRoute("/resume")({
     buildSeoHead({
       title: "Resume & Curriculum Vitae | Sahaya Savari",
       description:
-        "View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer.",
+        "View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student and Student AI/ML Engineer.",
       url: `${SITE_URL}/resume`,
     }),
   component: ResumePage,

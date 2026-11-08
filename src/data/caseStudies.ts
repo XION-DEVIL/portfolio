@@ -54,7 +54,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Thorough problem research, structured pitch decks, and disciplined Q&A prep were decisive in securing the championship win.",
       "My contribution: built the first pitch deck, drove research behind the final presentation, coordinated the team, and led Q&A prep.",
     ],
-    demoUrl: "https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view?pli=1",
+    demoUrl: "https://lnkd.in/ghBUvf4P",
     statusBadge: "🏆 Overall Champion (66 Teams) — AIxcelerate 2026",
   },
   "prepmind-ai": {
@@ -120,8 +120,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     githubUrl: "https://github.com/sahaya-savari/daily-spark",
     demoUrl: "https://daily-spark-app-da74b.web.app",
     relatedArticle: {
-      title: "Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture",
-      url: "https://blog.sahayasavari.dev/blog/pydantic-v2-guide",
+      title: "Offline-First Web Apps: Managing State and Persistence with React & IndexedDB",
+      url: "https://blog.sahayasavari.dev/blog/offline-first-indexeddb-react",
     },
   },
   "portfolio-website": {
@@ -134,7 +134,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     overview:
       "A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.",
     problem:
-      "Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI Engineer and Full Stack Developer.",
+      "Standard portfolios fail to communicate the technical depth and design sensibility of a modern software engineer, web developer, and student AI/ML engineer.",
     goals: [
       "Achieve sub-second load times despite heavy animations.",
       "Implement an accessible, keyboard-navigable SPA architecture.",
@@ -164,11 +164,11 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     id: "vibecraft-2026",
     title: "VibeCraft 2026 (NeuraGenZers)",
     seoTitle: "VibeCraft 2026 | Dual Campus Web Apps | Sahaya Savari",
-    tagline: "Winner (5th Place of 110 Teams) at SRM IST Trichy YUVA'26",
+    tagline: "Top 5 Finalist (out of 110 Teams, 440 Participants) at SRM IST Trichy YUVA'26",
     image:
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1000&auto=format&fit=crop&q=80",
     overview:
-      "VibeCraft 2026 is a unified campus productivity web application built by Team NeuraGenZers at SRM IST Trichy (YUVA'26), securing 5th place out of 110 competing teams. It brings two critical campus workflows into a single live deployment: Round 1 Student Attendance Predictor & Planner and Round 2 Free Class Locator & Smart Search Floor Manager.",
+      "VibeCraft 2026 is a unified campus productivity web application built by Team NeuraGenZers at SRM IST Trichy (YUVA'26), securing Top 5 Finalist standing out of 110 competing teams (440 participants). It brings two critical campus workflows into a single live deployment: Round 1 Student Attendance Predictor & Planner and Round 2 Free Class Locator & Smart Search Floor Manager.",
     problem:
       "Students struggle to balance attendance against mandatory 75% eligibility thresholds and 90% academic targets, while navigating daily campus life without real-time visibility into vacant classrooms for group study and club work.",
     goals: [
@@ -198,7 +198,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Pruning out unstable secondary phase requirements to focus on bulletproof execution of core features earned higher judges' marks than unfinished feature bloat.",
       "My role centered on web development, deployment on Vercel, and crafting the final presentation deck.",
     ],
-    statusBadge: "Winner (5th of 110 Teams)",
+    statusBadge: "Top 5 Finalist (110 Teams) — VibeCraft 2026",
     demoUrl: "https://neuragenzers.vercel.app/",
   },
 };

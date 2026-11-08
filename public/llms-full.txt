@@ -31,7 +31,7 @@ verified hackathon championships, and solid engineering discipline.
 
 - **Primary Search Entity**: Sahaya Savari / Sahaya Savari F
 - **Location**: Madurai / Tiruchirappalli, Tamil Nadu, India
-- **Availability**: Open to AI/ML, Python, and Full Stack internship and entry-level roles (Summer/Fall 2026).
+- **Availability**: Open to Software Engineering, Backend Development, and Applied AI internship roles (Summer 2027).
 
 ---
 
@@ -88,9 +88,9 @@ verified hackathon championships, and solid engineering discipline.
 - **My Contribution**: Built the first pitch deck, drove research behind the final presentation, coordinated the team, and led Q&A defense.
 - **Project Overview**: https://sahayasavari.dev/projects/nelsync-ai
 
-### 2. VibeCraft 2026 (NeuraGenZers) — Dual Campus Web Suite (Winner, 5th of 110 Teams)
+### 2. VibeCraft 2026 (NeuraGenZers) — Dual Campus Web Suite (Top 5 Finalist of 110 Teams)
 - **Type**: Campus Web Applications
-- **Status**: Winner (5th Place of 110 Teams) — SRM IST Trichy YUVA'26
+- **Status**: Top 5 Finalist (out of 110 Teams, 440 Participants) — SRM IST Trichy YUVA'26
 - **Tech Stack**: Next.js 16, React 19, TypeScript 5, Tailwind CSS v4, Recharts 3, Gemini API, Vercel
 - **Architecture**: Combined dual-app platform: Round 1 Attendance Predictor & Planner (75% threshold, detention detection, OD simulator) + Round 2 Free Class Locator & Smart Search Floor Manager (room grid, filters, natural-language search).
 - **Data Scope**: 13 sections, 120 OCR-verified subject records.
@@ -179,7 +179,7 @@ verified hackathon championships, and solid engineering discipline.
   - Skills: Machine Learning, Classification, Regression, Model Evaluation
   - Verify: https://nptel.ac.in/noc/E_Certificate/NOC26CS73S47010190403177914
 - **Web Development and Software Engineering** — HodoLabs Technologies
-  - Issued: June 2026 | Credential ID: HODOLABS-SE-2026
+  - Issued: June 2026 | Credential ID: HL/TRN/SJCT/2026/822
   - Skills: Web Development, Software Engineering, React.js, Node.js, PostgreSQL, REST APIs
 
 ---
@@ -187,30 +187,31 @@ verified hackathon championships, and solid engineering discipline.
 ## Frequently Asked Questions
 
 **Who is Sahaya Savari?**
-Sahaya Savari F is a Student AI/ML Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial
-Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli, and a Digital Marketing Intern at HodoLabs. His work spans Machine Learning systems,
-Python APIs, React web applications, and LLM-integrated tools. Portfolio: https://sahayasavari.dev
+Sahaya Savari F is a Student AI/ML Engineer pursuing an M.Sc. in Artificial
+Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli, and a Digital Marketing Intern at HodoLabs. His work spans practical Machine Learning systems,
+React/TypeScript web applications, and web performance engineering. Portfolio: https://sahayasavari.dev
 
 **What does Sahaya Savari specialize in?**
-He specializes in AI/ML Engineering, Python, PostgreSQL, Node.js, React.js, and practical AI product integrations with reliable fallback systems.
+He specializes in Software Engineering, Backend Development, and Applied AI, with hands-on proficiency in PostgreSQL, Node.js, React.js, and Python.
 
 **What technologies does Sahaya Savari use?**
 PostgreSQL, Node.js, React.js, Python, Scikit-learn, Next.js, TypeScript, Tailwind CSS, Vite, SQL, Git, GitHub, Gemini API, Vercel, Firebase Hosting, IndexedDB, and Capacitor.
 
 **What AI projects has Sahaya Savari built?**
 - NelSync AI: Overall Champion at AIxcelerate 2026 Hackathon (66 teams) — an AI layer for paddy procurement in Tamil Nadu with predictive procurement, optimization, and supply-chain logistics.
-- VibeCraft 2026: Winner (Top 5 of 110 teams) at YUVA'26 — unified campus platform combining Student Attendance Predictor & Planner with Free Class Locator & Smart Search Floor Manager.
+- VibeCraft 2026: Top 5 Finalist (out of 110 teams, 440 participants) at YUVA'26 — unified campus platform combining Student Attendance Predictor & Planner with Free Class Locator & Smart Search Floor Manager.
 - PrepMind AI: a live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and offline-resilient fallback questions.
 - Daily Spark: an offline-first habit tracker with IndexedDB storage and Capacitor Android build.
 - Portfolio Website: high-performance web platform featuring schema.org JSON-LD, static pre-rendering, and llms.txt documentation for LLM indexing agents.
 
 **What work experience does Sahaya Savari have?**
 - HodoLabs (June 2026 - Present): Digital Marketing Intern — conducted technical SEO audits, PageSpeed optimizations, site architecture reviews, and web performance workflows across production web properties.
+- HodoLabs (May 2026 - June 2026): Web Development & Software Engineering Trainee — completed intensive 1-month training covering modern web architecture, responsive React design, Node.js backend fundamentals, and PostgreSQL.
 
 **What awards and honors has Sahaya Savari received?**
 1. AIxcelerate 2026 - Overall Champion (Team NelSync AI, 66 teams) · Dhanalakshmi Srinivasan University
-2. Top 5 Finalist (Out of 110 Teams) - VibeCraft 2026 Hackathon (Team NeuraGenZers, SRM IST Trichy YUVA'26)
-3. BOOTFEST 2K26 - Quiz Winner & Capture The Flag Runner-up (Bishop Heber College PG Dept of CS)
+2. Top 5 Finalist (Out of 110 Teams, 440 Participants) - VibeCraft 2026 Hackathon (Team NeuraGenZers, SRM IST Trichy YUVA'26)
+3. BOOTFEST 2K26 - Quiz Winner, CTF Runner-up & Overall Runner-up (Bishop Heber College PG Dept of CS)
 4. Achievers Day - Interdepartmental Contest Winner (Certificate of Merit) (St. Joseph's College Autonomous)
 5. AION 2K26 – Event In-Charge (Treasure Titans) (Department of AI, St. Joseph's College Autonomous)
 
@@ -226,7 +227,7 @@ PostgreSQL, Node.js, React.js, Python, Scikit-learn, Next.js, TypeScript, Tailwi
 
 **How can I contact or hire Sahaya Savari?**
 Email: contact@sahayasavari.dev — Mobile: +91 6385648514 — LinkedIn: https://www.linkedin.com/in/sahaya-savari
-He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions for Summer/Fall 2026.
+He is currently available for Summer 2027 internships in Software Engineering, Backend Development, and Applied AI.
 
 **What certifications does Sahaya Savari hold?**
 IBM Data Analyst Specialization (Coursera), Yuva AI for All (NIELIT), Introduction to Machine Learning (NPTEL / IIT Madras), and Web Development and Software Engineering (HodoLabs).

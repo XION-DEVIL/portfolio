@@ -19,7 +19,9 @@
 
 .text-rotate-word {
   display: inline-flex;
-  overflow: hidden;
+  overflow-x: visible;
+  overflow-y: hidden;
+  padding: 0 1px;
 }
 
 .text-rotate-lines {

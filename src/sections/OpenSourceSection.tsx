@@ -17,9 +17,9 @@ const OpenSourceSection = memo(() => {
               Open Source & <br /> GitHub Engineering.
             </h2>
             <p className="text-white/60 font-body font-light text-lg leading-relaxed">
-              I actively build, share, and contribute to open-source developer tools, Artificial
-              Intelligence utilities, and full-stack software repositories on GitHub. I believe in
-              clean code, transparent documentation, and reproducible architectures.
+              I build and publish developer tools, learning experiments, and full-stack software
+              repositories openly on GitHub. I believe in clean code, transparent documentation, and
+              reproducible architectures.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-4">

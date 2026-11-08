@@ -119,10 +119,10 @@ function FocusText({ className = "" }: FocusTextProps) {
                     className="absolute inset-0 pointer-events-none transition-opacity duration-300"
                     style={{ opacity: isActive ? 1 : 0 }}
                   >
-                    <div className="absolute top-0 left-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-l-2 md:border-l-4 border-white rounded-tl-lg" />
-                    <div className="absolute top-0 right-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-r-2 md:border-r-4 border-white rounded-tr-lg" />
-                    <div className="absolute bottom-0 left-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-l-2 md:border-l-4 border-white rounded-bl-lg" />
-                    <div className="absolute bottom-0 right-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-r-2 md:border-r-4 border-white rounded-br-lg" />
+                    <div className="absolute top-0 left-0 w-3.5 h-3.5 md:w-5 md:h-5 border-t-2 border-l-2 border-white/90" />
+                    <div className="absolute top-0 right-0 w-3.5 h-3.5 md:w-5 md:h-5 border-t-2 border-r-2 border-white/90" />
+                    <div className="absolute bottom-0 left-0 w-3.5 h-3.5 md:w-5 md:h-5 border-b-2 border-l-2 border-white/90" />
+                    <div className="absolute bottom-0 right-0 w-3.5 h-3.5 md:w-5 md:h-5 border-b-2 border-r-2 border-white/90" />
                   </div>
 
                   <span

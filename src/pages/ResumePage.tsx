@@ -31,7 +31,7 @@ export default function ResumePage() {
           url: `${SITE_URL}/resume`,
           name: "Resume | Sahaya Savari",
           description:
-            "View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer.",
+            "View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student and Student AI/ML Engineer.",
           author: { "@id": `${SITE_URL}/#person` },
         },
       ],
@@ -42,7 +42,7 @@ export default function ResumePage() {
     <>
       <SEOHead
         title="Resume & Curriculum Vitae | Sahaya Savari"
-        description="View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer."
+        description="View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student and Student AI/ML Engineer."
         url={`${SITE_URL}/resume`}
         schema={resumeSchema}
       />
@@ -74,7 +74,7 @@ export default function ResumePage() {
             <div>
               <h1 className="text-3xl md:text-4xl font-heading font-bold">Curriculum Vitae</h1>
               <p className="text-white/60 font-body text-sm">
-                Sahaya Savari · AI/ML & Full Stack Developer
+                Sahaya Savari · Student AI/ML Engineer
               </p>
             </div>
           </div>
@@ -90,9 +90,9 @@ export default function ResumePage() {
               Professional Positioning
             </h2>
             <p className="text-white/90 leading-relaxed">
-              M.Sc. Artificial Intelligence student specializing in Machine Learning engineering,
-              Python backend services, and modern React full-stack applications. Available for AI/ML
-              and software engineering internships & full-time roles (2026-2027).
+              M.Sc. Artificial Intelligence student building web apps with React, TypeScript,
+              Next.js, and Python. Seeking Summer 2027 internships in software engineering, backend,
+              and applied AI.
             </p>
           </div>
 
@@ -140,7 +140,7 @@ export default function ResumePage() {
           <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
             <span>
               <strong>Selected Projects:</strong> NelSync AI (Overall Hackathon Champion), VibeCraft
-              2026 (Winner, 5th of 110), PrepMind AI, Daily Spark, Portfolio Architecture
+              2026 (Top 5 Finalist of 110), PrepMind AI, Daily Spark, Portfolio Architecture
             </span>
             <a
               href={RESUME_FILE_URL}

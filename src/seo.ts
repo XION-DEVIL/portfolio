@@ -1,8 +1,8 @@
 export const SITE_URL = "https://sahayasavari.dev";
 export const SITE_NAME = "Sahaya Savari";
-export const DEFAULT_TITLE = "Sahaya Savari F | AI Engineer & M.Sc. AI Student";
+export const DEFAULT_TITLE = "Sahaya Savari F | Student AI/ML Engineer";
 export const DEFAULT_DESCRIPTION =
-  "Portfolio of Sahaya Savari F, an M.Sc. Artificial Intelligence student, AI Engineer, and Full Stack Developer building ML solutions and modern web applications.";
+  "M.Sc. AI student building and shipping web apps with React, TypeScript, Next.js and Python. Seeking Summer 2027 internships in software engineering, backend, and applied AI.";
 export const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const personEntity = {
@@ -12,9 +12,9 @@ export const personEntity = {
   alternateName: "Sahaya Savari",
   image: `${SITE_URL}/profile.jpg`,
   url: SITE_URL,
-  jobTitle: "Student AI/ML Engineer & Full Stack Developer",
+  jobTitle: "Student AI/ML Engineer",
   description:
-    "Portfolio of Sahaya Savari F, an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Tiruchirappalli, Digital Marketing Intern at HodoLabs, 2x Hackathon Achiever, specializing in PostgreSQL, Node.js, React.js, Python, and Machine Learning.",
+    "M.Sc. AI student building and shipping web apps with React, TypeScript, Next.js and Python. Seeking Summer 2027 internships in software engineering, backend, and applied AI.",
   email: "contact@sahayasavari.dev",
   telephone: "+91-6385648514",
   // Current student affiliation — not alumniOf as degree is ongoing
@@ -30,8 +30,7 @@ export const personEntity = {
       "@type": "Country",
       name: "India",
     },
-    skills:
-      "PostgreSQL, Node.js, React.js, Python, Machine Learning, Data Analytics, Technical SEO",
+    skills: "Python, React, TypeScript, Next.js, SQL, Machine Learning, Data Analytics",
   },
   sameAs: [
     "https://www.linkedin.com/in/sahaya-savari",

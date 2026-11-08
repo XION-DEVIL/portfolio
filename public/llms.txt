@@ -25,22 +25,22 @@ Portfolio and professional website of Sahaya Savari F.
 - [Resume](https://sahayasavari.dev/resume): Interactive resume viewer, 3-tier education history, and career milestones.
 - [Blog](https://sahayasavari.dev/blog): Technical articles on autonomous AI agents, Python data engineering, React performance, and modern web architectures.
 - [Recruiter Summary](https://sahayasavari.dev/recruiter): Concise summary for recruiters and hiring managers highlighting core competencies and availability.
-- [AI & Machine Learning](https://sahayasavari.dev/ai): Interactive AI CLI and portfolio assistant for Sahaya Savari F.
+- [Ask Sahaya](https://sahayasavari.dev/ai): Interactive portfolio assistant for Sahaya Savari F.
 
 ## Featured Projects
 
 - [NelSync AI](https://sahayasavari.dev/projects/nelsync-ai): Smart Paddy Procurement Optimization system. 1st Place Overall Champion @ AIxcelerate 2026 Hackathon (66 teams).
-- [VibeCraft 2026 (NeuraGenZers)](https://sahayasavari.dev/projects/vibecraft-2026): Winner (Top 5 of 110 teams) @ SRM IST Trichy YUVA'26. Dual campus web applications combining attendance projection and smart room location. Live at https://neuragenzers.vercel.app/
-- [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): Adaptive technical interview readiness and quiz platform built with React, TypeScript, and fallback question banks. Live at https://prep-weblearning.vercel.app/
+- [VibeCraft 2026 (NeuraGenZers)](https://sahayasavari.dev/projects/vibecraft-2026): Top 5 Finalist (out of 110 teams, 440 participants) @ SRM IST Trichy YUVA'26. Dual campus web applications combining attendance projection and smart room location. Live at https://neuragenzers.vercel.app/
+- [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): Live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and fallback question banks. Live at https://prep-weblearning.vercel.app/
 - [Daily Spark](https://sahayasavari.dev/projects/daily-spark): Offline-first habit and streak tracking application built with React, TypeScript, and IndexedDB with Capacitor Android support. Live at https://daily-spark-app-da74b.web.app
-- [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React 19, Vite, and hardware-accelerated animations.
+- [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React, TypeScript, Vite, and hardware-accelerated animations.
 
 ## Experience & Honors (1:1 LinkedIn Verified)
 
-- **HodoLabs**: Digital Marketing Intern (June 2026 – Present, Madurai, Tamil Nadu, India) · Technical SEO, PageSpeed optimizations, web architecture, and analytics.
+- **HodoLabs**: Digital Marketing Intern (June 2026 – Present) & Web Development & Software Engineering Trainee (May 2026 – June 2026, Madurai, Tamil Nadu, India) · Technical SEO, PageSpeed optimizations, web architecture, and analytics.
 - **🏆 Overall Champion**: AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon (Team NelSync AI, 66 teams) · Dhanalakshmi Srinivasan University.
 - **Top 5 Finalist (Out of 110 Teams)**: VibeCraft 2026 Hackathon (Team NeuraGenZers, 110 teams) · SRM IST Trichy (YUVA'26).
-- **Quiz Winner & Capture The Flag Runner-up**: BOOTFEST 2K26 · Bishop Heber College, PG Dept of Computer Science.
+- **Quiz Winner, CTF Runner-up & Overall Runner-up**: BOOTFEST 2K26 · Bishop Heber College, PG Dept of Computer Science.
 - **Interdepartmental Contest Winner (Certificate of Merit)**: Achievers Day · St. Joseph's College (Autonomous), Tiruchirappalli.
 - **Event In-Charge (Treasure Titans)**: AION 2K26 Technical Symposium · Department of AI, St. Joseph's College (Autonomous), Tiruchirappalli.
 - **Education**:

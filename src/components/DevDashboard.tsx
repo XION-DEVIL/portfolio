@@ -13,7 +13,7 @@ export default function DevDashboard() {
       label: "Major Projects",
       value: `${PROJECTS.length} Systems`,
       icon: Code,
-      desc: "NelSync AI (Hackathon Winner), VibeCraft 2026, PrepMind AI, Daily Spark, and modern web software.",
+      desc: "NelSync AI (Overall Champion), VibeCraft 2026, PrepMind AI, Daily Spark, and modern web software.",
     },
     {
       label: "Credentials Earned",

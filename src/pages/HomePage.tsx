@@ -32,30 +32,8 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection setShowResume={setShowResume} />
 
-      {/* Content sections between Hero and Contact with framed side borders and botanical flowers ambient backdrop */}
-      <div className="relative isolate overflow-hidden border-x border-white/[0.08] max-w-screen-xl mx-auto">
-        {/* Ambient botanical flowers backdrop (matching Hero Prism architecture) */}
-        <div
-          className="absolute inset-0 z-0 size-full overflow-hidden pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <img
-            src={`${import.meta.env.BASE_URL}hero-ambient-poster.webp`}
-            alt=""
-            width={1280}
-            height={956}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 size-full object-cover object-center opacity-25"
-            aria-hidden="true"
-          />
-          {/* Subtle dark gradient overlay to guarantee AAA contrast for all cards and text */}
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-black via-black/85 to-black pointer-events-none"
-            aria-hidden="true"
-          />
-        </div>
-
+      {/* Content sections between Hero and Contact */}
+      <div className="relative isolate overflow-hidden max-w-screen-xl mx-auto">
         <DotPattern
           width={28}
           height={28}
@@ -65,16 +43,12 @@ export default function HomePage() {
           className="pointer-events-none fill-white/[0.035] [mask-image:linear-gradient(to_bottom,transparent,white_6rem,white_calc(100%-6rem),transparent)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,white_6rem,white_calc(100%-6rem),transparent)]"
         />
 
-        <div className="section-divider" aria-hidden="true" />
-
         {/* 1. About Me */}
         <div id="about">
           <IntersectionLazy fallbackHeight="100vh">
             <AboutSection setShowResume={setShowResume} />
           </IntersectionLazy>
         </div>
-
-        <div className="section-divider" aria-hidden="true" />
 
         {/* 2. Work Experience & Hackathons */}
         <div id="experience">
@@ -83,8 +57,6 @@ export default function HomePage() {
           </IntersectionLazy>
         </div>
 
-        <div className="section-divider" aria-hidden="true" />
-
         {/* 3. Technologies & Skills */}
         <div id="skills">
           <IntersectionLazy fallbackHeight="80vh">
@@ -92,14 +64,10 @@ export default function HomePage() {
           </IntersectionLazy>
         </div>
 
-        <div className="section-divider" aria-hidden="true" />
-
         {/* Stats Overview */}
         <IntersectionLazy fallbackHeight="40vh">
           <StatsSection />
         </IntersectionLazy>
-
-        <div className="section-divider" aria-hidden="true" />
 
         {/* 4. Featured Projects */}
         <div id="projects">
@@ -108,8 +76,6 @@ export default function HomePage() {
           </IntersectionLazy>
         </div>
 
-        <div className="section-divider" aria-hidden="true" />
-
         {/* 5. Developer Blog */}
         <div id="blog">
           <IntersectionLazy fallbackHeight="80vh">
@@ -117,16 +83,12 @@ export default function HomePage() {
           </IntersectionLazy>
         </div>
 
-        <div className="section-divider" aria-hidden="true" />
-
         {/* 6. Open Source / GitHub */}
         <div id="open-source">
           <IntersectionLazy fallbackHeight="60vh">
             <OpenSourceSection />
           </IntersectionLazy>
         </div>
-
-        <div className="section-divider" aria-hidden="true" />
 
         {/* Certifications */}
         <div id="certifications">
@@ -138,8 +100,8 @@ export default function HomePage() {
         <div className="section-divider" aria-hidden="true" />
       </div>
 
-      {/* 8. Contact CTA */}
-      <div id="contact" className="border-x border-white/[0.08] max-w-screen-xl mx-auto">
+      {/* 8. Contact CTA (Full-width cinematic footer spanning edge-to-edge) */}
+      <div id="contact" className="w-full">
         <IntersectionLazy fallbackHeight="100vh">
           <ContactSection setShowCommandPalette={setShowCommandPalette} />
         </IntersectionLazy>

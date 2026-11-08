@@ -326,7 +326,7 @@ export default function RootLayout() {
                     SF
                   </span>
                 </Link>
-                <span className="font-body text-xs font-medium tracking-widest hidden lg:flex items-center gap-2">
+                <span className="font-body text-xs font-medium tracking-widest hidden xl:flex items-center gap-2">
                   <span
                     className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
                     aria-hidden="true"
@@ -335,7 +335,7 @@ export default function RootLayout() {
                 </span>
                 <button
                   onClick={() => setShowCommandPalette(true)}
-                  className="font-body text-[11px] font-medium text-white/70 hidden lg:flex items-center gap-2.5 ml-4 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:text-white hover:border-white/20 transition-all duration-300 shadow-sm cursor-pointer group"
+                  className="font-body text-[11px] font-medium text-white/70 hidden 2xl:flex items-center gap-2.5 ml-4 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:text-white hover:border-white/20 transition-all duration-300 shadow-sm cursor-pointer group"
                 >
                   <Search
                     size={12}
@@ -347,78 +347,78 @@ export default function RootLayout() {
                   </kbd>
                 </button>
               </div>
-              <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
+              <div className="hidden md:flex liquid-glass px-3.5 md:px-4 lg:px-5 py-2 rounded-full items-center gap-2 md:gap-2.5 lg:gap-3.5 xl:gap-5 2xl:gap-6 backdrop-blur-md shrink-0">
                 <Link
                   to="/"
                   onClick={handleHomeClick}
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/" && activeSection === "home" ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/" && activeSection === "home" ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Home
                 </Link>
                 <Link
                   to="/about"
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/about" || (location.pathname === "/" && activeSection === "about") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/about" || (location.pathname === "/" && activeSection === "about") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   About
                 </Link>
                 <Link
                   to="/experience"
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/experience" ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/experience" ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Experience
                 </Link>
                 <Link
                   to="/resume"
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/resume" ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/resume" ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Resume
                 </Link>
                 <Link
                   to="/blog"
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/blog" ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/blog" ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Blog
                 </Link>
                 <Link
                   to="/skills"
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/skills" || (location.pathname === "/" && activeSection === "skills") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/skills" || (location.pathname === "/" && activeSection === "skills") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Skills
                 </Link>
                 <Link
                   to="/projects"
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname.startsWith("/projects") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname.startsWith("/projects") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Projects
                 </Link>
                 <Link
                   to="/certifications"
-                  className={`text-sm font-body font-medium transition-colors ${location.pathname === "/certifications" || (location.pathname === "/" && activeSection === "certifications") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/certifications" || (location.pathname === "/" && activeSection === "certifications") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Certs
                 </Link>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <a
                   href={`${appBase}resume.pdf`}
                   download
-                  className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-sm"
+                  className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-sm shrink-0"
                   aria-label="Download CV (Resume PDF)"
                 >
                   <Download size={13} />
-                  <span className="hidden lg:inline">Download CV</span>
+                  <span className="hidden xl:inline">Download CV</span>
                 </a>
                 <Link
                   to="/contact"
-                  className="hidden md:flex relative text-sm font-medium rounded-full h-10 pl-6 pr-14 group transition-all duration-500 hover:pl-14 hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center"
+                  className="hidden md:flex relative text-xs xl:text-sm font-medium rounded-full h-9 xl:h-10 pl-4 xl:pl-6 pr-11 xl:pr-14 group transition-all duration-500 hover:pl-11 hover:pr-4 xl:hover:pl-14 xl:hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center shrink-0"
                   aria-label="Get in touch — navigate to contact page"
                 >
                   <span className="relative z-10 transition-all duration-500">Get In Touch</span>
                   <div
-                    className="absolute right-1 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45"
+                    className="absolute right-1 w-7 h-7 xl:w-8 xl:h-8 bg-black text-white rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-32px)] xl:group-hover:right-[calc(100%-36px)] group-hover:rotate-45"
                     aria-hidden="true"
                   >
-                    <ArrowUpRight size={14} />
+                    <ArrowUpRight size={13} />
                   </div>
                 </Link>
                 <button
@@ -561,10 +561,10 @@ export default function RootLayout() {
           <Link
             to="/ai"
             className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-amber-300 hover:text-amber-200 transition-colors"
-            aria-label="Ask Sahaya AI"
+            aria-label="Ask Sahaya"
           >
             <Sparkles size={18} />
-            <span className="text-[9px] font-body font-semibold">AI CLI</span>
+            <span className="text-[9px] font-body font-semibold">Ask Sahaya</span>
           </Link>
           <Link
             to="/recruiter"

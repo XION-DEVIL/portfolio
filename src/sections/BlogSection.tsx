@@ -48,7 +48,7 @@ const ArticleCard = ({ article, onRead }: { article: Article; onRead: () => void
             <span>{article.readingTime} min read</span>
           </div>
         </div>
-        <h3 className="font-heading font-bold text-xl text-white mb-2 group-hover:text-purple-300 transition-colors">
+        <h3 className="font-heading font-bold text-xl text-white mb-2 group-hover:text-white/90 group-hover:underline decoration-white/40 underline-offset-4 transition-colors">
           {article.title}
         </h3>
         <p className="text-sm font-body font-light text-white/70 mb-6 flex-1 line-clamp-3">

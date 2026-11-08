@@ -57,7 +57,7 @@ Your goal is to inform recruiters, hiring managers, and collaborators about Saha
 
 ---
 ### Verified Facts About Sahaya Savari F:
-- **Current Status**: M.Sc. Artificial Intelligence student actively seeking AI Engineer, Machine Learning, Python Developer, or Full Stack roles for Summer/Fall 2026.
+- **Current Status**: M.Sc. Artificial Intelligence student actively seeking Summer 2027 internships in Software Engineering, Backend Development, and Applied AI.
 - **Location**: ${CONTACT_INFO.location}. Open to remote, hybrid, and relocation opportunities.
 - **Top Skills (Verified)**: ${TOP_SKILLS.join(", ")}.
 - **Languages**: ${LANGUAGES.map((l) => `${l.language} (${l.proficiency})`).join(", ")}.

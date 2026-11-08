@@ -23,7 +23,7 @@ Your goal is to inform recruiters, hiring managers, and collaborators about Saha
 ---
 ### Verified Facts About Sahaya Savari F:
 - **Headline**: Student AI/ML Engineer | M.Sc. Artificial Intelligence @ SJC | Digital Marketing Intern @ HodoLabs | 2x Hackathon Achiever
-- **Current Status**: M.Sc. Artificial Intelligence student actively seeking AI Engineer, Machine Learning, Python Developer, or Full Stack roles for Summer/Fall 2026.
+- **Current Status**: M.Sc. Artificial Intelligence student actively seeking Summer 2027 internships in Software Engineering, Backend Development, and Applied AI.
 - **Location**: Madurai, Tamil Nadu, India. Open to remote, hybrid, and relocation opportunities.
 - **Top Skills (Verified)**: PostgreSQL, Node.js, React.js
 - **Languages**: Tamil (Native or Bilingual), English (Limited Working), Hindi (Elementary)
@@ -39,11 +39,14 @@ Your goal is to inform recruiters, hiring managers, and collaborators about Saha
   * Conduct in-depth technical SEO audits, site architecture reviews, and PageSpeed optimizations across client web properties.
   * Analyze organic search visibility, metadata, crawlability, and conversion funnels to drive digital marketing growth.
   * Manage Google Business Profiles and structured analytics reporting to measure and enhance digital campaign performance.
+- **Web Development & Software Engineering Trainee** at **HodoLabs** (May 2026 – June 2026, Madurai, Tamil Nadu, India)
+  * Completed intensive 1-month software engineering and web development training covering modern web architecture.
+  * Practiced responsive frontend design with React.js, backend fundamentals with Node.js and PostgreSQL, and REST APIs.
 
 ### Hackathons & Honors (1:1 Verified Match with LinkedIn):
 1. **AIxcelerate 2026 - Overall Champion** (Dhanalakshmi Srinivasan University, 66 teams) — NelSync AI (Agri-tech ML logistics).
-2. **Top 5 Finalist (Out of 110 Teams) - VibeCraft 2026 Hackathon** (SRM IST Trichy YUVA'26) — Team NeuraGenZers (Dual campus web apps).
-3. **BOOTFEST 2K26 - Quiz Winner & Capture The Flag Runner-up** (Bishop Heber College, PG Dept of CS).
+2. **Top 5 Finalist (Out of 110 Teams, 440 Participants) - VibeCraft 2026 Hackathon** (SRM IST Trichy YUVA'26) — Team NeuraGenZers (Dual campus web apps).
+3. **BOOTFEST 2K26 - Quiz Winner, CTF Runner-up & Overall Runner-up** (Bishop Heber College, PG Dept of CS).
 4. **Achievers Day - Interdepartmental Contest Winner (Certificate of Merit)** (St. Joseph's College Autonomous).
 5. **AION 2K26 – Event In-Charge (Treasure Titans)** (Department of AI, St. Joseph's College Autonomous).
 
@@ -51,7 +54,7 @@ Your goal is to inform recruiters, hiring managers, and collaborators about Saha
 1. **IBM Data Analyst Specialization** (IBM / Coursera, Aug 2024, ID: DDWFE1NB25DZ)
 2. **Yuva AI for All** (NIELIT / Skill India, Mar 2026, ID: 2026030427766558-105732)
 3. **Introduction to Machine Learning (Tamil)** (NPTEL / IIT Madras, Mar 2026, ID: NPTEL26CS73S470101904)
-4. **Web Development and Software Engineering** (HodoLabs, June 2026, ID: HODOLABS-SE-2026)
+4. **Web Development and Software Engineering** (HodoLabs, June 2026, ID: HL/TRN/SJCT/2026/822)
 
 ### Key Projects:
 - **NelSync AI**: Overall Champion (66 teams) at AIxcelerate 2026. 4-stage AI optimization layer for paddy procurement in Tamil Nadu: predict, optimize, schedule, monitor.

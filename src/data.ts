@@ -20,7 +20,7 @@ export const ARTICLES: Article[] = [
     title:
       "Demystifying Core Web Vitals & Technical SEO: Lessons from Production Audits at HodoLabs",
     excerpt:
-      "Practical insights from conducting on-page SEO audits, slashing Largest Contentful Paint (LCP) from 30s to 1.9s, and restructuring JSON-LD schemas across high-traffic web properties.",
+      "Practical insights from conducting on-page SEO audits, optimizing Largest Contentful Paint (LCP) performance, and restructuring JSON-LD schemas across production web properties.",
     date: "August 2026",
     readingTime: 5,
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
@@ -115,7 +115,7 @@ export const PROJECTS: Project[] = [
     tag: "AI & Agriculture",
     desc: "Overall Champion of the AIxcelerate 2026 AI Innovation Hackathon (66 teams). An AI layer for paddy procurement in Tamil Nadu with four stages: predict, optimize, schedule, and monitor.",
     stack: "Python · Machine Learning · Analytics",
-    link: "https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view?pli=1",
+    link: "https://lnkd.in/ghBUvf4P",
     status: "Hackathon Champion",
     github: "",
     image:
@@ -160,17 +160,17 @@ export const PROJECTS: Project[] = [
     id: "vibecraft-2026",
     title: "VibeCraft 2026 (NeuraGenZers)",
     tag: "Campus Web Suite",
-    desc: "Winner (5th of 110 teams) at VibeCraft 2026 (SRM IST Trichy, YUVA'26). Two campus web apps combined into one live deployment: Student Attendance Predictor & Planner and Free Class Locator & Smart Search Floor Manager.",
+    desc: "Top 5 Finalist (out of 110 teams, 440 participants) at VibeCraft 2026 (SRM IST Trichy, YUVA'26). Two campus web apps combined into one live deployment: Student Attendance Predictor & Planner and Free Class Locator & Smart Search Floor Manager.",
     stack: "Next.js 16 · React 19 · TypeScript · Tailwind CSS · Gemini API · Vercel",
     link: "https://neuragenzers.vercel.app/",
-    status: "Winner (5th of 110 Teams)",
+    status: "Top 5 Finalist (out of 110 teams)",
     github: "",
     image:
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1000&auto=format&fit=crop&q=80",
     longDesc:
-      "Built during VibeCraft 2026 at SRM IST Trichy (YUVA'26) by Team NeuraGenZers, securing 5th place out of 110 teams. Combines two campus utility applications into a single live deployment: Round 1 Attendance Predictor & Planner and Round 2 Free Class Locator & Smart Search Floor Manager.",
+      "Built during VibeCraft 2026 at SRM IST Trichy (YUVA'26) by Team NeuraGenZers, securing Top 5 Finalist standing out of 110 teams (440 participants). Combines two campus utility applications into a single live deployment: Round 1 Attendance Predictor & Planner and Round 2 Free Class Locator & Smart Search Floor Manager.",
     metrics: [
-      { label: "Award", value: "Winner (5th of 110 Teams)" },
+      { label: "Award", value: "Top 5 Finalist (110 Teams)" },
       { label: "Dataset", value: "13 Sections, 120 Subjects" },
       { label: "My Role", value: "Web Dev & Deployment" },
     ],
@@ -197,7 +197,7 @@ export const PROJECTS: Project[] = [
     challenges:
       "Transforming noisy scanned timetable images into 120 verified structured subject records and delivering a unified dual-app production build under hackathon deadline constraints.",
     results:
-      "Achieved 5th place out of 110 participating teams at VibeCraft 2026 and shipped a responsive, live deployment on Vercel.",
+      "Achieved Top 5 Finalist standing out of 110 participating teams (440 participants) at VibeCraft 2026 and shipped a responsive, live deployment on Vercel.",
     lessonsLearned:
       "Disciplined scope management—focusing on delivering a rock-solid Round 1 and Round 2 Phase 1 rather than overextending into unstable Phase 2 features—enabled shipping a complete, working product under competition time limits.",
     futureImprovements:
@@ -454,7 +454,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     title: "Web Development and Software Engineering",
     issuer: "HodoLabs Technologies",
     issueDate: "June 2026",
-    credentialId: "HODOLABS-SE-2026",
+    credentialId: "HL/TRN/SJCT/2026/822",
     verifyUrl: "https://www.linkedin.com/in/sahaya-savari",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
     skills: [
@@ -504,6 +504,27 @@ export const EXPERIENCES: Experience[] = [
       "React.js",
     ],
   },
+  {
+    company: "HodoLabs",
+    location: "Madurai, Tamil Nadu, India",
+    role: "Web Development & Software Engineering Trainee",
+    period: "May 2026 – June 2026",
+    type: "Training",
+    highlights: [
+      "Completed intensive 1-month software engineering and web development training covering modern web architecture.",
+      "Practiced responsive frontend design with React.js, backend fundamentals with Node.js and PostgreSQL, and REST APIs.",
+      "Applied disciplined Git & GitHub version control workflows, leading to selection for the 6-month digital marketing internship.",
+    ],
+    skills: [
+      "Web Development",
+      "Software Engineering",
+      "React.js",
+      "Node.js",
+      "PostgreSQL",
+      "REST APIs",
+      "Git & GitHub",
+    ],
+  },
 ];
 
 export interface HonorAward {
@@ -531,34 +552,34 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     title: "Top 5 Finalist (Out of 110 Teams)",
     event: "VibeCraft 2026 Hackathon (YUVA'26)",
     organizer: "SRM IST Trichy",
-    date: "February 2026",
+    date: "September 2026",
     badge: "Top 5 Finalist (110 Teams)",
-    desc: "Top 5 Finalist out of 110 teams with Team NeuraGenZers, developing two combined campus productivity applications for attendance projection and smart room location.",
-    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-  },
-  {
-    title: "Quiz Winner & Capture The Flag Runner-up",
-    event: "BOOTFEST 2K26 Inter-Collegiate Technical Symposium",
-    organizer: "Bishop Heber College, PG Dept of Computer Science",
-    date: "2026",
-    badge: "Winner & Runner-up",
-    desc: "Quiz Winner in advanced algorithms and computer science concepts, and Capture The Flag (CTF) Cybersecurity Challenge Runner-up.",
+    desc: "Top 5 Finalist out of 110 teams (440 participants) with Team NeuraGenZers, developing two combined campus productivity applications for attendance projection and smart room location.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
     title: "Interdepartmental Contest Winner",
     event: "Achievers Day Interdepartmental Contest",
     organizer: "St. Joseph's College (Autonomous)",
-    date: "2026",
+    date: "March 2026",
     badge: "Certificate of Merit",
     desc: "Awarded Certificate of Merit for technical design and software presentation among competing postgraduate STEM departments.",
+    linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
+  },
+  {
+    title: "Quiz Winner, CTF Runner-up & Overall Runner-up",
+    event: "BOOTFEST 2K26 Inter-Collegiate Technical Symposium",
+    organizer: "Bishop Heber College, PG Dept of Computer Science",
+    date: "March 2026",
+    badge: "Winner & Runner-up",
+    desc: "Quiz Winner in advanced algorithms and computer science concepts, Capture The Flag (CTF) Cybersecurity Challenge Runner-up, and Overall Runner-up.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
   },
   {
     title: "Event In-Charge (Treasure Titans)",
     event: "AION 2K26 Technical Symposium",
     organizer: "Department of AI, St. Joseph's College",
-    date: "2026",
+    date: "February 2026",
     badge: "Event In-Charge",
     desc: "Led event organization, algorithmic puzzle design, and participant coordination for 100+ attendees in Treasure Titans.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
@@ -643,34 +664,12 @@ export const CERTIFICATIONS: CertificationCategory[] = [
   {
     icon: "database",
     title: "Data Analytics",
-    subtitle: "IBM & Industry Specializations",
+    subtitle: "IBM Specialization",
     desc: "Exploratory data analysis, SQL querying, Python analytics pipelines, and dynamic dashboard creation.",
     items: [
       { name: "IBM Data Analyst Professional Certificate", tag: "Professional Cert" },
       { name: "Python for Data Science, AI & Development", tag: "Core Python" },
       { name: "Relational Databases, SQL & PostgreSQL", tag: "Databases" },
-    ],
-  },
-  {
-    icon: "code",
-    title: "Software Engineering",
-    subtitle: "Web Architecture & Systems",
-    desc: "Software architecture, responsive UI development, REST API integration, and disciplined version control.",
-    items: [
-      { name: "Web Development and Software Engineering", tag: "HodoLabs" },
-      { name: "React.js & Node.js Architecture", tag: "Top Skills" },
-      { name: "Git, GitHub & Collaborative Version Control", tag: "Git Workflow" },
-    ],
-  },
-  {
-    icon: "brain",
-    title: "AI & Machine Learning",
-    subtitle: "National Certification Programs",
-    desc: "Machine learning fundamentals, model evaluation, classification, and responsible AI practices.",
-    items: [
-      { name: "Introduction to Machine Learning (Tamil)", tag: "NPTEL / IIT Madras" },
-      { name: "Yuva AI for All", tag: "NIELIT / Skill India" },
-      { name: "Data Science & Model Evaluation Fundamentals", tag: "ML Coursework" },
     ],
   },
 ];

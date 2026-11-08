@@ -117,19 +117,19 @@ export default function AskSahayaAI() {
     switch (cmd) {
       case "help":
         output =
-          "Available commands:\n  • projects   — List production & hackathon projects\n  • nelsync    — 1st Place Champion project details (AIxcelerate 2026)\n  • vibecraft  — Winner project details (VibeCraft 2026, 5th of 110)\n  • skills     — Technical competencies & ML stack\n  • experience — Work history & internships (HodoLabs)\n  • contact    — Email, GitHub, and LinkedIn links\n  • clear      — Clear the terminal screen\n  • help       — Show this command manual";
+          "Available commands:\n  • projects   — List production & hackathon projects\n  • nelsync    — 1st Place Champion project details (AIxcelerate 2026)\n  • vibecraft  — Top 5 Finalist project details (VibeCraft 2026, 110 teams)\n  • skills     — Technical competencies & ML stack\n  • experience — Work history & internships (HodoLabs)\n  • contact    — Email, GitHub, and LinkedIn links\n  • clear      — Clear the terminal screen\n  • help       — Show this command manual";
         break;
       case "projects":
         output =
-          "1. NelSync AI — 1st Place Overall Champion at AIxcelerate 2026 (Agri-tech ML Logistics)\n2. VibeCraft 2026 (NeuraGenZers) — Winner, 5th of 110 Teams (Dual Campus Web Apps)\n3. PrepMind AI — Web-based Exam Prep & Topic Practice Platform (React / TypeScript)\n4. Daily Spark — Minimalist Offline-First Habit Tracker (React / TypeScript / IndexedDB / Capacitor)\n5. Portfolio Website — High-Performance SPA with sub-second TTI & WCAG AA accessibility";
+          "1. NelSync AI — 1st Place Overall Champion at AIxcelerate 2026 (Agri-tech ML Logistics)\n2. VibeCraft 2026 (NeuraGenZers) — Top 5 Finalist (out of 110 Teams, 440 Participants) (Dual Campus Web Apps)\n3. PrepMind AI — Web-based Exam Prep & Topic Practice Platform (React / TypeScript)\n4. Daily Spark — Minimalist Offline-First Habit Tracker (React / TypeScript / IndexedDB / Capacitor)\n5. Portfolio Website — High-Performance SPA with sub-second TTI & WCAG AA accessibility";
         break;
       case "vibecraft":
         output =
-          "🏆 VibeCraft 2026 (NeuraGenZers) — Winner, 5th of 110 Teams (SRM IST Trichy YUVA'26)\nTwo campus apps in one live Vercel deployment: Round 1 Attendance Predictor & Planner + Round 2 Free Class Locator & Smart Search Floor Manager.\nLive URL: https://neuragenzers.vercel.app/";
+          "🎯 VibeCraft 2026 (NeuraGenZers) — Top 5 Finalist (out of 110 Teams, 440 Participants) (SRM IST Trichy YUVA'26)\nTwo campus apps in one live Vercel deployment: Round 1 Attendance Predictor & Planner + Round 2 Free Class Locator & Smart Search Floor Manager.\nLive URL: https://neuragenzers.vercel.app/";
         break;
       case "nelsync":
         output =
-          "🏆 NelSync AI (Overall Champion — AIxcelerate 2026, 66 teams)\nAn AI layer for paddy procurement in Tamil Nadu with four stages: predict, optimize, schedule, and monitor. Built by a team of 4 led by Jeeva Loganathan; contribution: first pitch deck, research, coordination, and Q&A prep.\nVideo Demo: https://drive.google.com/file/d/1rRhYHPqLeM1Q-yKeuZ8BuC9c1ds2WG5Q/view?pli=1";
+          "🏆 NelSync AI (Overall Champion — AIxcelerate 2026, 66 teams)\nAn AI layer for paddy procurement in Tamil Nadu with four stages: predict, optimize, schedule, and monitor. Built by a team of 4 led by Jeeva Loganathan; contribution: first pitch deck, research, coordination, and Q&A prep.\nVideo Demo: https://lnkd.in/ghBUvf4P";
         break;
       case "skills":
         output =
@@ -137,7 +137,7 @@ export default function AskSahayaAI() {
         break;
       case "experience":
         output =
-          "• Digital Marketing Intern @ HodoLabs (June 2026 – Present · Madurai, Tamil Nadu, India)\n  SEO technical audits, site architecture, PageSpeed optimization, and marketing analytics.";
+          "• Digital Marketing Intern @ HodoLabs (June 2026 – Present · Madurai, Tamil Nadu, India)\n  SEO technical audits, site architecture, PageSpeed optimization, and marketing analytics.\n• Web Development & Software Engineering Trainee @ HodoLabs (May 2026 – June 2026)\n  1-month training in modern web architecture, React.js, Node.js, and PostgreSQL.";
         break;
       case "contact":
         output =
@@ -168,9 +168,9 @@ export default function AskSahayaAI() {
           "@type": "WebPage",
           "@id": `${SITE_URL}/ai/#webpage`,
           url: `${SITE_URL}/ai`,
-          name: "Ask Sahaya AI | Portfolio Assistant for AI Engineering",
+          name: "Ask Sahaya | Portfolio Assistant",
           description:
-            "Chat with Sahaya Savari F's portfolio assistant to learn about his AI Engineer skills, Machine Learning projects, Python, React, TypeScript, and Firebase work.",
+            "Chat with Sahaya Savari F's portfolio assistant to learn about his software engineering, backend, and applied AI projects, Python, React, and TypeScript work.",
           author: { "@id": `${SITE_URL}/#person` },
         },
         askSahayaAIAppSchema,
@@ -329,16 +329,16 @@ export default function AskSahayaAI() {
                     </div>
                     <div className="p-4 rounded-2xl bg-white text-black rounded-tl-none font-body text-sm flex items-center gap-1.5">
                       <span
-                        className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
+                        className="w-1.5 h-1.5 bg-black/60 rounded-full animate-pulse"
                         style={{ animationDelay: "0ms" }}
                       />
                       <span
-                        className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
-                        style={{ animationDelay: "150ms" }}
+                        className="w-1.5 h-1.5 bg-black/60 rounded-full animate-pulse"
+                        style={{ animationDelay: "200ms" }}
                       />
                       <span
-                        className="w-1.5 h-1.5 bg-black/50 rounded-full animate-bounce"
-                        style={{ animationDelay: "300ms" }}
+                        className="w-1.5 h-1.5 bg-black/60 rounded-full animate-pulse"
+                        style={{ animationDelay: "400ms" }}
                       />
                     </div>
                   </div>

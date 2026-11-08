@@ -40,7 +40,6 @@
 .technology-marquee {
   overflow: hidden;
   margin: 2rem 0;
-  border-block: 1px solid var(--portfolio-card-border);
 }
 .technology-marquee-track {
   display: flex;

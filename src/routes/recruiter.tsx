@@ -7,7 +7,7 @@ export const Route = createFileRoute("/recruiter")({
     buildSeoHead({
       title: "Recruiter Summary & Technical Profile | Sahaya Savari",
       description:
-        "ATS-friendly recruiter summary for Sahaya Savari F, an AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student.",
+        "ATS-friendly recruiter summary for Sahaya Savari F, a Student AI/ML Engineer and M.Sc. Artificial Intelligence student seeking Summer 2027 internships in software engineering, backend, and applied AI.",
       url: `${SITE_URL}/recruiter`,
     }),
   component: RecruiterMode,

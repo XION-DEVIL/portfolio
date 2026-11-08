@@ -10,18 +10,6 @@ interface AboutSectionProps {
 const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
   return (
     <section aria-label="About me" className="relative py-16 px-6 overflow-hidden">
-      <div className="absolute inset-0 z-0 pointer-events-none select-none" aria-hidden="true">
-        <img
-          src={`${import.meta.env.BASE_URL}hero-ambient-poster.webp`}
-          alt=""
-          width={1280}
-          height={956}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover object-bottom opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 pointer-events-none" />
-      </div>
       <div className="relative z-10 max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-start">
         <div>
           <SectionBadge>About Me</SectionBadge>
@@ -31,25 +19,22 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
           <div className="space-y-8 text-white/60 font-body font-light text-lg leading-relaxed max-w-xl">
             <p>
               I am <strong>Sahaya Savari F</strong>, an M.Sc. Artificial Intelligence student at St.
-              Joseph's College (Autonomous), Tiruchirappalli, with a strong foundation in B.Sc. Data
+              Joseph's College (Autonomous), Tiruchirappalli, with a foundation in B.Sc. Data
               science from Thiagarajar College, Madurai, and currently a Digital Marketing Intern at
               HodoLabs.
             </p>
             <p>
-              My focus centers on{" "}
-              <strong>
-                Artificial Intelligence, Machine Learning, and Full-Stack Web Development
-              </strong>
-              , developed through hands-on engineering projects, competitive hackathons, and
-              practical industry internship experience. I believe exceptional software outcomes
-              require a balance of clean technical execution, teamwork, leadership, clear
-              communication, and dependable coordination.
+              My technical work centers on{" "}
+              <strong>Artificial Intelligence, Machine Learning, and Cybersecurity</strong>,
+              developed through hands-on software engineering projects, competitive hackathons, and
+              practical industry experience. I value clean code, strong system fundamentals,
+              teamwork, leadership, transparent communication, and disciplined coordination.
             </p>
             <p>
-              Whether organizing technical symposiums, coordinating multi-stage hackathon
-              deliverables, or shipping resilient applications with PostgreSQL, Node.js, React.js,
-              and Python, I bring disciplined curiosity, focus, and verifiable work to every team I
-              collaborate with.
+              Whether organizing campus technical symposiums as Event In-Charge, coordinating
+              multi-stage hackathon deliverables, or building applications with Python, React,
+              TypeScript, and SQL databases, I bring curiosity, rigor, and verified execution to
+              every team.
             </p>
           </div>
         </div>
@@ -64,8 +49,8 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   What I Do
                 </h4>
                 <p className="text-sm font-body text-white/80 font-light">
-                  Build AI-powered full-stack apps, Machine Learning pipelines, and portfolio
-                  projects that connect models to usable products.
+                  Build web applications, backend services, and applied AI systems that connect
+                  practical software engineering to verified user needs.
                 </p>
               </div>
               <div>
@@ -89,7 +74,8 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   What I'm Looking For
                 </h4>
                 <p className="text-sm font-body text-white/80 font-light">
-                  Summer/Fall 2026 AI/ML, Python Developer, or Full Stack Developer internships.
+                  Summer 2027 internships in Software Engineering, Backend Development, and Applied
+                  AI.
                 </p>
               </div>
             </div>
@@ -138,12 +124,11 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   </h4>
                 </div>
                 <h5 className="font-heading font-bold text-3xl text-white leading-tight">
-                  AI, ML, & Data Engineering Internships
+                  Software Engineering, Backend &amp; Applied AI Internships
                 </h5>
                 <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                  Looking for summer/fall 2026 co-ops or internship roles focused on Artificial
-                  Intelligence, machine learning pipelines, LLM prompt engineering, and intelligent
-                  web applications.
+                  Looking for Summer 2027 internship roles focused on software engineering, backend
+                  systems, applied AI, and modern web applications.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 text-xs font-mono text-white/50 border-t border-white/10 pt-4">
@@ -151,7 +136,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                     <span className="text-white/60 block text-[9px] uppercase tracking-wider mb-1">
                       Availability
                     </span>
-                    <span className="text-white">Summer / Fall 2026</span>
+                    <span className="text-white">Summer 2027</span>
                   </div>
                   <div>
                     <span className="text-white/60 block text-[9px] uppercase tracking-wider mb-1">

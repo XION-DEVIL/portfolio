@@ -12,7 +12,7 @@ const StaticBadgeCard = () => (
     {/* Hanging Lanyard Strap & Clip extending gracefully */}
     <div className="w-5 h-16 bg-gradient-to-b from-transparent via-[#18181b] to-[#18181b] border-x border-white/20 flex flex-col items-center justify-end -mb-1 z-10 shadow-md">
       <div className="w-6 h-2.5 bg-[#27272a] rounded-[2px] border border-white/30" />
-      <div className="w-3 h-2 border-b-2 border-x-2 border-zinc-400 rounded-b-sm" />
+      <div className="w-3 h-2 border-b border-x border-zinc-400" />
     </div>
 
     {/* ID Badge Card matching 3D Lanyard aspect ratio & dimensions */}
@@ -113,9 +113,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       ref={sectionRef}
       id="home"
       aria-label="Introduction"
-      className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent"
+      className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-black"
     >
-      {/* Background ambient botanical visual (Hirael Prism architecture: perfectly balanced scale) */}
+      {/* Background ambient botanical visual (seamlessly fills full Page 1 viewport) */}
       <div
         className="absolute inset-0 z-0 size-full overflow-hidden pointer-events-none select-none"
         aria-hidden="true"
@@ -128,8 +128,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           height={956}
           fetchPriority="high"
           decoding="async"
-          className={`absolute inset-0 size-full object-cover object-center transition-opacity duration-1000 ${
-            isVideoLoaded ? "opacity-0" : "opacity-85"
+          className={`absolute inset-0 size-full object-cover object-bottom transition-opacity duration-1000 ${
+            isVideoLoaded ? "opacity-0" : "opacity-65"
           }`}
           aria-hidden="true"
         />
@@ -147,38 +147,38 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             width={1280}
             height={956}
             onCanPlay={() => setIsVideoLoaded(true)}
-            className={`absolute inset-0 size-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
-              isVideoLoaded ? "opacity-85" : "opacity-0"
+            className={`absolute inset-0 size-full object-cover object-bottom transition-opacity duration-1000 ease-in-out ${
+              isVideoLoaded ? "opacity-65" : "opacity-0"
             }`}
             aria-hidden="true"
           />
         )}
 
-        {/* Prism-style atmospheric gradient overlays */}
+        {/* Atmospheric gradient overlays for seamless navbar and section blending */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-52 md:h-72 bg-gradient-to-t from-black via-black/80 to-transparent"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-72 md:h-96 bg-gradient-to-t from-black via-black/85 to-transparent"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 md:h-40 bg-gradient-to-b from-black/70 via-black/30 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-32 md:h-44 bg-gradient-to-b from-black via-black/50 to-transparent"
         />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-black/10" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-black/35" />
       </div>
 
-      {/* Main hero content framed with left & right container borders */}
-      <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full max-w-screen-xl mx-auto border-x border-white/[0.08] px-4 md:px-8">
+      {/* Main hero content */}
+      <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-20 pb-8 sm:pt-22 sm:pb-10 md:pt-24 md:pb-12 w-full max-w-screen-xl mx-auto px-4 md:px-8">
         <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
-          <div className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
-            <span
-              className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
-              aria-hidden="true"
-            ></span>
-            <span className="text-xs font-body font-medium text-white/80">
-              Open to Opportunities · Summer/Fall 2026
+          <div className="liquid-glass-strong border border-white/15 shadow-sm rounded-full px-4 py-1.5 mb-4 sm:mb-5 flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            </span>
+            <span className="text-xs font-body font-medium text-white/90 tracking-wide">
+              Open to Opportunities · Summer 2027
             </span>
           </div>
-          <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
+          <div className="relative mb-4 sm:mb-6 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 relative w-full max-w-5xl mx-auto px-4">
               <h1
                 aria-label="Sahaya Savari F"
@@ -204,7 +204,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               </div>
             </div>
 
-            <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full max-w-full px-2 sm:px-4 mt-5">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full max-w-full px-2 sm:px-4 mt-3 sm:mt-4">
               <span className="font-heading font-medium text-fluid-hero-role text-white/85 shrink-0">
                 I am a
               </span>
@@ -216,14 +216,14 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     "Digital Marketing Intern",
                     "2x Hackathon Achiever",
                   ]}
-                  mainClassName="px-3.5 py-1 sm:px-5 sm:py-1.5 liquid-glass text-white overflow-hidden rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-lg max-w-full shrink-0"
+                  mainClassName="px-4 py-1 sm:px-5 sm:py-1.5 liquid-glass-strong border border-white/20 text-white whitespace-nowrap rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-[0_4px_24px_rgba(255,255,255,0.08)] max-w-full shrink-0"
                   staggerFrom="last"
                   splitBy="words"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   exit={{ y: "-120%" }}
                   staggerDuration={0.025}
-                  splitLevelClassName="overflow-hidden pb-0.5"
+                  splitLevelClassName="overflow-visible pb-0.5"
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
                   rotationInterval={4000}
                 />
@@ -231,14 +231,15 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             </div>
           </div>
 
-          {/* LCP Text: Rendered immediately with optimal contrast */}
-          <p className="text-white/80 font-body font-light text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mb-8 md:mb-12 leading-relaxed">
-            M.Sc. Artificial Intelligence student building Machine Learning applications, Python
-            automation tools, and responsive web software with React and TypeScript. Highlighting
-            verified engineering projects for Summer/Fall 2026 opportunities.
+          {/* LCP Text: High contrast with subtle shadow for crisp readability over flowers */}
+          <p className="text-white/95 font-body font-normal text-sm sm:text-base md:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
+            M.Sc. Artificial Intelligence student building and shipping web applications with React,
+            TypeScript, Next.js, and Python. Deployed practical tools including Daily Spark,
+            PrepMind AI, and the VibeCraft campus apps. Seeking Summer 2027 internships in software
+            engineering, backend, and applied AI.
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
             <RainbowButton onClick={() => setShowResume(true)} aria-label="View Resume">
               View Resume
               <ArrowUpRight
@@ -281,7 +282,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                       className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
                       aria-hidden="true"
                     />
-                    Available Summer/Fall 2026
+                    Available Summer 2027
                   </span>
                 </div>
 
@@ -307,12 +308,12 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                       Target Roles
                     </span>
                     <span className="text-white/90 font-medium">
-                      AI/ML Engineer, Python Developer, Full Stack
+                      Software Engineering, Backend Development, Applied AI
                     </span>
                   </div>
                   <div>
                     <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
-                      Location & Preference
+                      Location &amp; Preference
                     </span>
                     <span className="text-white/90 font-medium">
                       Madurai / Tamil Nadu · Remote / Relocate
@@ -322,17 +323,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
                 <div className="pt-2">
                   <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">
-                    Primary & Top Skills
+                    Primary Stack
                   </span>
                   <div className="flex flex-wrap gap-1.5">
-                    {[
-                      "PostgreSQL",
-                      "Node.js",
-                      "React.js",
-                      "Python",
-                      "Machine Learning",
-                      "Data Analytics",
-                    ].map((skill) => (
+                    {["Python", "React", "TypeScript", "Next.js", "SQL"].map((skill) => (
                       <span
                         key={skill}
                         className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70"
@@ -402,7 +396,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">
             What I work with
           </div>
-          <FocusText prefix="Data AI Analytics" focusText="GenAI" className="" />
+          <FocusText prefix="Data Analytics Python" focusText="Applied AI" className="" />
         </div>
       </div>
     </section>

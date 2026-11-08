@@ -542,7 +542,7 @@ const ProjectsSection = memo(() => {
             <div className="max-w-2xl">
               <SectionBadge>Selected Work</SectionBadge>
               <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">
-                AI-Powered <br /> Projects.
+                Projects.
               </h2>
               <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
                 Explore my portfolio of software applications, Machine Learning models, and web

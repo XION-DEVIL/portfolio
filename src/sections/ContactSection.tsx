@@ -57,8 +57,8 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
             Let's Build <br /> Something.
           </h2>
           <p className="text-white/60 font-body font-light text-base sm:text-xl max-w-2xl mx-auto mb-10 md:mb-16">
-            I'm open to new projects, internships, and collaborations where AI, Machine Learning,
-            PostgreSQL, Node.js, React.js, and product thinking can create real-world impact.
+            Seeking Summer 2027 internships, engineering projects, and collaborations in software
+            engineering, backend development, and applied AI.
           </p>
 
           {/* Contact Actions Grid */}

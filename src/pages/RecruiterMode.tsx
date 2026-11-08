@@ -32,12 +32,12 @@ export default function RecruiterMode() {
 
   const handleCopyAts = () => {
     const atsText = [
-      "# Sahaya Savari F — Student AI/ML Engineer | Full Stack Developer",
+      "# Sahaya Savari F — Student AI/ML Engineer",
       `Email: ${CONTACT_INFO.primaryEmail} | Phone: ${CONTACT_INFO.phone} | Portfolio: ${CONTACT_INFO.website} | GitHub: ${CONTACT_INFO.github} | LinkedIn: ${CONTACT_INFO.linkedin}`,
-      "Availability: Summer/Fall 2026 | Location: Madurai, Tamil Nadu, India (Open to Remote / Relocation)",
+      "Availability: Summer 2027 | Target Roles: Software Engineering, Backend Development, Applied AI | Location: Madurai, Tamil Nadu, India (Open to Remote / Relocation)",
       "",
       "## Professional Summary",
-      "M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Tiruchirappalli, and B.Sc. Data science graduate from Thiagarajar College, Madurai. Digital Marketing Intern at HodoLabs with proven expertise in technical SEO, PageSpeed optimization, and web architecture. 2x Hackathon achiever (Overall Champion out of 66 teams at AIxcelerate 2026, Top 5 Finalist out of 110 teams at VibeCraft 2026). Strong hands-on foundation across PostgreSQL, Node.js, React.js, Python, and Machine Learning.",
+      "M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Tiruchirappalli, and B.Sc. Data science graduate from Thiagarajar College, Madurai. Digital Marketing Intern at HodoLabs with practical expertise in technical SEO, PageSpeed optimization, and web architecture. 2x Hackathon achiever (Overall Champion out of 66 teams at AIxcelerate 2026, Top 5 Finalist out of 110 teams at VibeCraft 2026). Strong hands-on foundation across PostgreSQL, Node.js, React.js, Python, and Machine Learning.",
       "",
       "## Top Skills & Competencies",
       `- Top Verified Skills: ${TOP_SKILLS.join(", ")}`,
@@ -51,6 +51,9 @@ export default function RecruiterMode() {
       "  * Conduct in-depth technical SEO audits, site architecture reviews, and PageSpeed optimizations across client web properties.",
       "  * Analyze organic search visibility, crawlability, and conversion metrics to optimize digital acquisition funnels.",
       "  * Manage Google Business Profiles and marketing analytics reporting.",
+      "- Web Development & Software Engineering Trainee — HodoLabs, Madurai, Tamil Nadu, India (May 2026 – June 2026)",
+      "  * Completed intensive 1-month software engineering and web development training covering modern web architecture.",
+      "  * Built responsive full-stack features with React.js, Node.js, PostgreSQL, and REST APIs with Git version control.",
       "",
       "## Top Projects",
       "- NelSync AI: Overall Champion at AIxcelerate 2026 Hackathon (66 teams). 4-stage AI optimization layer for paddy procurement in Tamil Nadu: predict, optimize, schedule, monitor.",
@@ -62,7 +65,7 @@ export default function RecruiterMode() {
       "## Honors & Awards",
       "- AIxcelerate 2026 - Overall Champion (Dhanalakshmi Srinivasan University, 66 teams)",
       "- Top 5 Finalist (Out of 110 Teams) - VibeCraft 2026 Hackathon (SRM IST Trichy)",
-      "- BOOTFEST 2K26 - Quiz Winner & Capture The Flag Runner-up (Bishop Heber College)",
+      "- BOOTFEST 2K26 - Quiz Winner, CTF Runner-up & Overall Runner-up (Bishop Heber College)",
       "- Achievers Day - Interdepartmental Contest Winner (Certificate of Merit) (St. Joseph's College)",
       "- AION 2K26 – Event In-Charge (Treasure Titans) (St. Joseph's College)",
       "",
@@ -101,7 +104,7 @@ export default function RecruiterMode() {
     <>
       <SEOHead
         title="Recruiter Summary & Technical Profile | Sahaya Savari"
-        description="ATS-friendly recruiter summary for Sahaya Savari F, an AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student."
+        description="ATS-friendly recruiter summary for Sahaya Savari F, a Student AI/ML Engineer and M.Sc. Artificial Intelligence student seeking Summer 2027 internships in software engineering, backend, and applied AI."
         url={`${SITE_URL}/recruiter`}
         schema={recruiterSchema}
       />
@@ -120,7 +123,7 @@ export default function RecruiterMode() {
               Sahaya Savari F
             </h1>
             <p className="text-lg sm:text-xl font-body text-white/70 mb-4">
-              Student AI/ML Engineer | Full Stack Developer
+              Student AI/ML Engineer
             </p>
             <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm font-body text-white/60">
               <a

@@ -82,7 +82,7 @@ export function answerQuestion(query: string): string {
 
   if (hasAny(q, ["vibecraft", "neuragenzers", "attendance", "free class", "yuva'26", "srm"])) {
     return (
-      `🏆 **VibeCraft 2026 (NeuraGenZers) — Winner (5th of 110 Teams)**\n\n` +
+      `🎯 **VibeCraft 2026 (NeuraGenZers) — Top 5 Finalist (out of 110 Teams, 440 Participants)**\n\n` +
       `Built under pressure at SRM IST Trichy during YUVA'26, this solution integrated two full campus utilities into a single production deployment:\n\n` +
       `• **Round 1 — Student Attendance Predictor & Planner:**\n` +
       `  Subject-wise projection models, 75% statutory detention warnings, smart OD duty simulation, and margin-of-error planning across 13 student sections.\n\n` +
@@ -212,7 +212,7 @@ export function answerQuestion(query: string): string {
       `2. **Rigorous Academic Base:** Pursuing M.Sc in Artificial Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli with B.Sc. Data science from Thiagarajar College, Madurai.\n` +
       `3. **Full-Stack & Data Synergy:** Proven proficiency in PostgreSQL, Node.js, and React.js, bridging predictive ML models (Python) to responsive production interfaces.\n` +
       `4. **Industry-Grade Execution:** Hands-on Digital Marketing Intern experience at HodoLabs, technical SEO expertise, and disciplined web engineering.\n\n` +
-      `*Sahaya is actively available for AI/ML Engineering, Python Development, and Full Stack positions.*`
+      `*Sahaya is actively available for Summer 2027 internships in Software Engineering, Backend Development, and Applied AI.*`
     );
   }
 
@@ -343,7 +343,7 @@ export function answerQuestion(query: string): string {
   return (
     `🤔 I want to give you the most accurate answer regarding Sahaya's work!\n\n` +
     `You can ask me directly about:\n` +
-    `• **Hackathons:** *"What hackathons has Sahaya won?"* (AIxcelerate, VibeCraft)\n` +
+    `• **Hackathons:** *"Tell me about AIxcelerate or VibeCraft."* (AIxcelerate, VibeCraft)\n` +
     `• **Experience:** *"Tell me about his work at HodoLabs."*\n` +
     `• **Projects:** *"Explain NelSync AI or PrepMind."*\n` +
     `• **Skills:** *"What are his strongest languages and AI frameworks?"*\n` +
