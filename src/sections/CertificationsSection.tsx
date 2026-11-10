@@ -1,7 +1,8 @@
-import { memo } from "react";
-import { Award, ArrowUpRight, Database, Code, Brain, Terminal } from "lucide-react";
-import { CERTIFICATIONS, FEATURED_CREDENTIALS } from "../data";
+import { memo, useState, useCallback, useEffect } from "react";
+import { Award, ArrowUpRight, Database, Code, Brain, Terminal, Eye, X } from "lucide-react";
+import { CERTIFICATIONS, FEATURED_CREDENTIALS, FeaturedCredential } from "../data";
 import SectionBadge from "../components/ui/SectionBadge";
+import { lockScroll, unlockScroll } from "../utils/scrollLock";
 
 // Resolve string icon identifiers from data.ts to actual components
 const ICON_MAP: Record<
@@ -14,6 +15,26 @@ const ICON_MAP: Record<
 };
 
 const CertificationsSection = memo(() => {
+  const [previewCert, setPreviewCert] = useState<FeaturedCredential | null>(null);
+
+  const openPreview = useCallback((cred: FeaturedCredential) => {
+    setPreviewCert(cred);
+    lockScroll();
+  }, []);
+
+  const closePreview = useCallback(() => {
+    setPreviewCert(null);
+    unlockScroll();
+  }, []);
+
+  useEffect(() => {
+    if (!previewCert) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closePreview();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [previewCert, closePreview]);
   return (
     <section aria-label="Certifications and courses" className="py-16 px-6 relative">
       <div className="max-w-screen-xl mx-auto">
@@ -94,13 +115,31 @@ const CertificationsSection = memo(() => {
                   </h4>
 
                   {cred.image && (
-                    <div className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video bg-black/40">
+                    <div
+                      onClick={() => openPreview(cred)}
+                      className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video bg-neutral-900/90 relative group/img cursor-pointer flex items-center justify-center p-2.5 transition-colors hover:border-white/25"
+                    >
+                      {/* Ambient blurred backdrop so container is seamlessly filled */}
+                      <div
+                        className="absolute inset-0 bg-cover bg-center filter blur-md opacity-25 scale-125 pointer-events-none"
+                        style={{ backgroundImage: `url(${cred.image})` }}
+                      />
+
+                      {/* The certificate: fully contained and centered horizontally & vertically */}
                       <img
                         src={cred.image}
                         alt={`${cred.title} certificate`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="max-h-full max-w-full object-contain object-center relative z-10 transition-transform duration-300 group-hover/img:scale-105 shadow-md rounded"
                         loading="lazy"
                       />
+
+                      {/* Quick View Hover Indicator */}
+                      <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                        <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-black text-xs font-body font-semibold shadow-lg">
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>View Certificate</span>
+                        </span>
+                      </div>
                     </div>
                   )}
 
@@ -147,8 +186,19 @@ const CertificationsSection = memo(() => {
                   </div>
                 </div>
 
-                {/* Bottom CTA Button - locked to bottom */}
+                {/* Bottom CTA Buttons */}
                 <div className="mt-auto pt-4 flex flex-col gap-2 relative z-20">
+                  {cred.image && (
+                    <button
+                      type="button"
+                      onClick={() => openPreview(cred)}
+                      className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-white text-black text-xs font-body font-semibold transition-all duration-300 hover:scale-[1.02] min-h-[38px] cursor-pointer"
+                      aria-label={`View certificate preview for ${cred.title}`}
+                    >
+                      <Eye className="w-3.5 h-3.5 text-black/70" />
+                      <span>View Certificate</span>
+                    </button>
+                  )}
                   <a
                     href={
                       cred.verifyUrl ||
@@ -157,13 +207,17 @@ const CertificationsSection = memo(() => {
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-white text-black text-xs font-body font-semibold transition-all duration-300 hover:scale-[1.02] min-h-[38px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                    className={`w-full flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-body transition-all duration-300 min-h-[38px] ${
+                      cred.image
+                        ? "bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10"
+                        : "bg-white text-black font-semibold hover:scale-[1.02]"
+                    }`}
                     aria-label={`Verify ${cred.title} credential from ${cred.issuer}`}
                   >
                     <span>
                       {cred.issuer.includes("HodoLabs") ? "View on LinkedIn" : "Verify Credential"}
                     </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-black/60 group-hover:text-black" />
+                    <ArrowUpRight className={`w-3.5 h-3.5 ${cred.image ? "text-white/60" : "text-black/60"}`} />
                   </a>
                 </div>
               </div>
@@ -304,6 +358,90 @@ const CertificationsSection = memo(() => {
           </div>
         </div>
       </div>
+
+      {/* CERTIFICATE PREVIEW MODAL */}
+      {previewCert && (
+        <div 
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${previewCert.title} Certificate`}
+          className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200"
+          onClick={closePreview}
+        >
+          <div 
+            className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-neutral-950/95 border border-white/15 rounded-3xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* HEADER */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02]">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-white/10 text-white/90 border border-white/15">
+                  {previewCert.rank || "CERT"}
+                </span>
+                <div>
+                  <h3 className="font-heading font-bold text-lg text-white leading-tight">
+                    {previewCert.title}
+                  </h3>
+                  <p className="text-xs font-mono text-white/60">
+                    {previewCert.issuer} {previewCert.issueDate ? `· ${previewCert.issueDate}` : ''}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={closePreview}
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                aria-label="Close certificate preview"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* CERTIFICATE IMAGE VIEWPORT */}
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex items-center justify-center bg-black/60">
+              {previewCert.image && (
+                <img
+                  src={previewCert.image}
+                  alt={`${previewCert.title} certificate awarded by ${previewCert.issuer}`}
+                  className="max-h-[68vh] w-auto max-w-full object-contain rounded-xl shadow-2xl border border-white/10"
+                />
+              )}
+            </div>
+
+            {/* FOOTER */}
+            <div className="px-6 py-3.5 border-t border-white/10 bg-white/[0.02] flex items-center justify-between flex-wrap gap-3">
+              <div className="flex items-center gap-3 text-xs font-mono text-white/60">
+                {previewCert.credentialId && (
+                  <span>ID: <strong className="text-white/90">{previewCert.credentialId}</strong></span>
+                )}
+                {previewCert.score && (
+                  <span>Score: <strong className="text-white/90">{previewCert.score}</strong></span>
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                {previewCert.verifyUrl && (
+                  <a
+                    href={previewCert.verifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-black text-xs font-body font-semibold hover:bg-neutral-200 transition-colors"
+                  >
+                    <span>Verify at Issuer</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-black/70" />
+                  </a>
+                )}
+                <button
+                  type="button"
+                  onClick={closePreview}
+                  className="px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-body font-medium transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 });
