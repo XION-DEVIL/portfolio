@@ -1,9 +1,10 @@
-import { useState, memo, useEffect, useRef, useMemo } from 'react';
-import { Github, ArrowUpRight, Search, ExternalLink } from 'lucide-react';
-import { useNavigate, Link } from 'react-router-dom';
-import { PROJECTS, Project } from '../data';
-import SectionBadge from '../components/ui/SectionBadge';
-import './ProjectsSection.css';
+import { useState, memo, useEffect, useRef, useMemo } from "react";
+import { Github, ArrowUpRight, Search, ExternalLink, Trophy } from "lucide-react";
+import { useNavigate, Link } from "@/lib/router-compat";
+import { PROJECTS, Project } from "../data";
+import SectionBadge from "../components/ui/SectionBadge";
+import { useSpotlight } from "../components/reactbits/useSpotlight";
+import "./ProjectsSection.css";
 
 // ─── Pixel animation engine (inlined from React Bits PixelCard) ─────────────
 class Pixel {
@@ -33,7 +34,7 @@ class Pixel {
     y: number,
     color: string,
     speed: number,
-    delay: number
+    delay: number,
   ) {
     if (!context) throw new Error("Could not get 2d context for PixelCard");
     this.width = canvas.width;
@@ -62,22 +63,38 @@ class Pixel {
   }
   appear() {
     this.isIdle = false;
-    if (this.counter <= this.delay) { this.counter += this.counterStep; return; }
-    if (this.size >= this.maxSize) { this.isShimmer = true; }
-    if (this.isShimmer) { this._shimmer(); } else { this.size += this.sizeStep; }
+    if (this.counter <= this.delay) {
+      this.counter += this.counterStep;
+      return;
+    }
+    if (this.size >= this.maxSize) {
+      this.isShimmer = true;
+    }
+    if (this.isShimmer) {
+      this._shimmer();
+    } else {
+      this.size += this.sizeStep;
+    }
     this.draw();
   }
   disappear() {
     this.isShimmer = false;
     this.counter = 0;
-    if (this.size <= 0) { this.isIdle = true; return; }
+    if (this.size <= 0) {
+      this.isIdle = true;
+      return;
+    }
     this.size -= 0.1;
     this.draw();
   }
   _shimmer() {
     if (this.size >= this.maxSize) this.isReverse = true;
     else if (this.size <= this.minSize) this.isReverse = false;
-    this.isReverse ? (this.size -= this.speed) : (this.size += this.speed);
+    if (this.isReverse) {
+      this.size -= this.speed;
+    } else {
+      this.size += this.speed;
+    }
   }
 }
 
@@ -87,25 +104,29 @@ interface PixelCanvasProps {
   colors?: string;
 }
 
-function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa,#71717a' }: PixelCanvasProps = {}) {
+function usePixelCanvas({
+  gap = 8,
+  speed = 18,
+  colors = "#ffffff,#d4d4d8,#a1a1aa,#71717a",
+}: PixelCanvasProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const pixelsRef = useRef<Pixel[]>([]);
   const animRef = useRef<number | null>(null);
   const prevTimeRef = useRef<number>(performance.now());
   const reducedMotion = useRef(
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   ).current;
 
   const effectiveSpeed = reducedMotion ? 0 : Math.min(Math.max(speed, 0), 100) * 0.001;
-  const colorsArr = colors.split(',');
+  const colorsArr = colors.split(",");
 
   const init = () => {
     if (!containerRef.current || !canvasRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const w = Math.floor(rect.width);
     const h = Math.floor(rect.height);
-    const ctx = canvasRef.current.getContext('2d');
+    const ctx = canvasRef.current.getContext("2d");
     canvasRef.current.width = w;
     canvasRef.current.height = h;
     canvasRef.current.style.width = `${w}px`;
@@ -114,7 +135,8 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
     for (let x = 0; x < w; x += gap) {
       for (let y = 0; y < h; y += gap) {
         const color = colorsArr[Math.floor(Math.random() * colorsArr.length)];
-        const dx = x - w / 2, dy = y - h / 2;
+        const dx = x - w / 2,
+          dy = y - h / 2;
         const delay = reducedMotion ? 0 : Math.sqrt(dx * dx + dy * dy);
         pxs.push(new Pixel(canvasRef.current, ctx, x, y, color, effectiveSpeed, delay));
       }
@@ -122,13 +144,13 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
     pixelsRef.current = pxs;
   };
 
-  const animate = (fnName: 'appear' | 'disappear') => {
+  const animate = (fnName: "appear" | "disappear") => {
     animRef.current = requestAnimationFrame(() => animate(fnName));
     const now = performance.now();
     const passed = now - prevTimeRef.current;
     if (passed < 1000 / 60) return;
     prevTimeRef.current = now - (passed % (1000 / 60));
-    const ctx = canvasRef.current?.getContext('2d');
+    const ctx = canvasRef.current?.getContext("2d");
     if (!ctx || !canvasRef.current) return;
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     let allIdle = true;
@@ -139,20 +161,38 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
     if (allIdle && animRef.current) cancelAnimationFrame(animRef.current);
   };
 
-  const trigger = (fnName: 'appear' | 'disappear') => {
+  const trigger = (fnName: "appear" | "disappear") => {
     if (animRef.current) cancelAnimationFrame(animRef.current);
     animRef.current = requestAnimationFrame(() => animate(fnName));
   };
 
   useEffect(() => {
-    init();
-    const ro = new ResizeObserver(init);
-    if (containerRef.current) ro.observe(containerRef.current);
+    if (typeof window === "undefined") return;
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isReducedMotion) return;
+
+    let initialized = false;
+    const safeInit = () => {
+      if (!initialized) {
+        initialized = true;
+        init();
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("pointerenter", safeInit, { once: true, passive: true });
+      container.addEventListener("touchstart", safeInit, { once: true, passive: true });
+    }
+
     return () => {
-      ro.disconnect();
+      if (container) {
+        container.removeEventListener("pointerenter", safeInit);
+        container.removeEventListener("touchstart", safeInit);
+      }
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { canvasRef, containerRef, trigger };
@@ -161,18 +201,25 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
 // ─── Featured (large) project card ──────────────────────────────────────────
 const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
   const { canvasRef, containerRef, trigger } = usePixelCanvas();
+  const onPointerMove = useSpotlight();
 
   return (
     <div
       ref={containerRef}
+      onPointerMove={onPointerMove}
       role="button"
       tabIndex={0}
       onClick={onClick}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
-      onMouseEnter={() => trigger('appear')}
-      onMouseLeave={() => trigger('disappear')}
-      onFocus={() => trigger('appear')}
-      onBlur={() => trigger('disappear')}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      onMouseEnter={() => trigger("appear")}
+      onMouseLeave={() => trigger("disappear")}
+      onFocus={() => trigger("appear")}
+      onBlur={() => trigger("disappear")}
       className="project-card-featured group cursor-target"
       aria-label={`${p.title} — ${p.tag}. Click to view details.`}
     >
@@ -180,118 +227,45 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       <canvas ref={canvasRef} className="project-pixel-canvas" aria-hidden="true" />
 
       {/* All card content — z-10 above canvas */}
-      <div className="project-card-content grid lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <div className="flex flex-wrap gap-2 mb-6 md:mb-8 min-h-[68px] sm:min-h-[28px] items-start">
-            <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-purple-400 border border-purple-500/30 bg-purple-500/10">
+      <div className="project-card-content flex flex-col h-full">
+        {/* Top Header Row: Badges (left) and Action Buttons (right) */}
+        <div className="flex items-center justify-between gap-3 mb-5">
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-purple-400 border border-purple-500/30 bg-purple-500/10">
               Flagship Project
-            </div>
-            <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
+            </span>
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
               {p.tag}
-            </div>
-            <div className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${p.status === 'Live' ? 'text-green-400 border-green-500/30 bg-green-500/10' : 'text-amber-400 border-amber-500/30 bg-amber-500/10'}`}>
-              <span className={`w-1.5 h-1.5 rounded-full ${p.status === 'Live' ? 'bg-green-400' : 'bg-amber-400'}`} aria-hidden="true" />
-              {p.status}
-            </div>
-          </div>
-          <Link to={`/projects/${p.id}`} className="focus:outline-none" onClick={(e) => e.stopPropagation()}>
-            <h3 className="font-heading italic text-4xl md:text-5xl lg:text-6xl text-white mb-6 hover:text-white/80 transition-colors">{p.title}</h3>
-          </Link>
-          <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed mb-8 max-w-xl">{p.desc}</p>
-          <div className="flex flex-col sm:flex-row gap-4 text-xs font-body border-l-2 border-white/20 pl-4 py-2">
-            <div className="flex items-center gap-2">
-              <span className="text-white/60 uppercase tracking-wider text-[9px]">Stack:</span>
-              <span className="text-white/80">{p.stack.split(' · ').join(' • ')}</span>
-            </div>
-          </div>
-        </div>
-        <div className="flex items-center justify-start lg:justify-end gap-3 mt-4 lg:mt-0 lg:absolute lg:top-0 lg:right-0">
-          {p.link && (
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
-              style={{ background: 'transparent', color: '#fff' }}
-              onClick={(e) => e.stopPropagation()}
-              aria-label={`Open ${p.title} live demo in new tab`}
+            </span>
+            <span
+              className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
+                p.status.includes("Champion")
+                  ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
+                  : p.status === "Live"
+                    ? "text-green-400 border-green-500/30 bg-green-500/10"
+                    : "text-amber-400 border-amber-500/30 bg-amber-500/10"
+              }`}
             >
-              <ExternalLink className="w-5 h-5" aria-hidden="true" />
-            </a>
-          )}
-          {p.github && (
-            <a
-              href={p.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
-              style={{ background: 'transparent', color: '#fff' }}
-              onClick={(e) => e.stopPropagation()}
-              aria-label={`View ${p.title} source code on GitHub`}
-            >
-              <Github className="w-5 h-5" aria-hidden="true" />
-            </a>
-          )}
-          <div
-            className="w-12 h-12 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors border border-white/15"
-            style={{ background: 'rgba(255,255,255,0.1)', color: '#fff' }}
-            aria-hidden="true"
-          >
-            <ArrowUpRight className="w-5 h-5" />
+              {p.status.includes("Champion") ? (
+                <Trophy className="w-3 h-3 text-amber-400 shrink-0" aria-hidden="true" />
+              ) : (
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${p.status === "Live" ? "bg-green-400" : "bg-amber-400"}`}
+                  aria-hidden="true"
+                />
+              )}
+              <span>{p.status}</span>
+            </span>
           </div>
-        </div>
-      </div>
-      {/* Subtle ambient glow */}
-      <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-white/[0.03] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" aria-hidden="true" />
-    </div>
-  );
-};
 
-// ─── Grid project card ───────────────────────────────────────────────────────
-const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
-  const { canvasRef, containerRef, trigger } = usePixelCanvas();
-
-  return (
-    <div
-      ref={containerRef}
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
-      onMouseEnter={() => trigger('appear')}
-      onMouseLeave={() => trigger('disappear')}
-      onFocus={() => trigger('appear')}
-      onBlur={() => trigger('disappear')}
-      className="project-card-grid group cursor-target"
-      aria-label={`${p.title} — ${p.tag}. Click to view details.`}
-    >
-      {/* Pixel canvas — sits at z-0 */}
-      <canvas ref={canvasRef} className="project-pixel-canvas" aria-hidden="true" />
-
-      {/* Card content — z-10 */}
-      <div className="project-card-content">
-        <div className="flex justify-between items-start mb-6 md:mb-12 min-h-[84px] sm:min-h-[44px]">
-          <div className="flex flex-wrap gap-2">
-            <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
-              {p.tag}
-            </div>
-            <div className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
-              p.status === 'Live'
-                ? 'text-green-400 border-green-500/30 bg-green-500/10'
-                : 'text-amber-400 border-amber-500/30 bg-amber-500/10'
-            }`}>
-              <span className={`w-1.5 h-1.5 rounded-full ${p.status === 'Live' ? 'bg-green-400' : 'bg-amber-400'}`} aria-hidden="true" />
-              {p.status}
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 shrink-0">
             {p.link && (
               <a
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 min-h-[44px] min-w-[44px] border border-white/15"
-                style={{ background: 'transparent', color: '#fff' }}
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
+                style={{ background: "transparent", color: "#fff" }}
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Open ${p.title} live demo in new tab`}
               >
@@ -303,39 +277,190 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
                 href={p.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 min-h-[44px] min-w-[44px] border border-white/15"
-                style={{ background: 'transparent', color: '#fff' }}
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
+                style={{ background: "transparent", color: "#fff" }}
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`View ${p.title} source code on GitHub`}
               >
-                <Github className="w-5 h-5" aria-hidden="true" />
+                <Github className="w-4 h-4" aria-hidden="true" />
               </a>
             )}
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors border border-white/15"
-              style={{ background: 'rgba(255,255,255,0.1)', color: '#fff' }}
+              style={{ background: "rgba(255,255,255,0.1)", color: "#fff" }}
               aria-hidden="true"
             >
-              <ArrowUpRight className="w-5 h-5" />
+              <ArrowUpRight className="w-4 h-4" />
             </div>
           </div>
         </div>
-        <Link to={`/projects/${p.id}`} className="focus:outline-none" onClick={(e) => e.stopPropagation()}>
-          <h3 className="font-heading italic text-3xl text-white mb-4 hover:text-white/80 transition-colors">{p.title}</h3>
+
+        {/* Featured Showcase Layout: 2-column on desktop (lg:), clean uniform flow on mobile */}
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center flex-grow">
+          {/* Banner image: top on mobile (<lg), right column on desktop (lg:) */}
+          {p.image && (
+            <div className="order-1 lg:order-2 relative rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 aspect-video lg:aspect-[16/10] bg-black/40 group-hover:border-white/20 transition-all shadow-xl">
+              <img
+                src={p.image}
+                alt={`${p.title} banner`}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            </div>
+          )}
+
+          <div className="order-2 lg:order-1 flex flex-col justify-center">
+            <Link
+              to={`/projects/${p.id}`}
+              className="focus:outline-none"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="font-heading font-bold text-2xl sm:text-4xl lg:text-5xl text-white mb-3 hover:text-white/80 transition-colors">
+                {p.title}
+              </h3>
+            </Link>
+            <p className="text-white/70 font-body font-light text-sm sm:text-base lg:text-lg leading-relaxed mb-6 max-w-xl">
+              {p.desc}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 text-xs font-body border-l-2 border-white/20 pl-4 py-1.5 mt-auto">
+              <div className="flex items-center gap-2">
+                <span className="text-white/60 uppercase tracking-wider text-[9px]">Stack:</span>
+                <span className="text-white/80">{p.stack.split(" · ").join(" • ")}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Grid project card ───────────────────────────────────────────────────────
+const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
+  const { canvasRef, containerRef, trigger } = usePixelCanvas();
+  const onPointerMove = useSpotlight();
+
+  return (
+    <div
+      ref={containerRef}
+      onPointerMove={onPointerMove}
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      onMouseEnter={() => trigger("appear")}
+      onMouseLeave={() => trigger("disappear")}
+      onFocus={() => trigger("appear")}
+      onBlur={() => trigger("disappear")}
+      className="project-card-grid group cursor-target"
+      aria-label={`${p.title} — ${p.tag}. Click to view details.`}
+    >
+      {/* Pixel canvas — sits at z-0 */}
+      <canvas ref={canvasRef} className="project-pixel-canvas" aria-hidden="true" />
+
+      {/* Card content — z-10 */}
+      <div className="project-card-content flex flex-col h-full">
+        {/* Top Header Row: Badges (left) and Action Buttons (right) */}
+        <div className="flex items-center justify-between gap-3 mb-5">
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
+              {p.tag}
+            </span>
+            <span
+              className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
+                p.status.includes("Champion")
+                  ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
+                  : p.status === "Live"
+                    ? "text-green-400 border-green-500/30 bg-green-500/10"
+                    : "text-amber-400 border-amber-500/30 bg-amber-500/10"
+              }`}
+            >
+              {p.status.includes("Champion") ? (
+                <Trophy className="w-3 h-3 text-amber-400 shrink-0" aria-hidden="true" />
+              ) : (
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${p.status === "Live" ? "bg-green-400" : "bg-amber-400"}`}
+                  aria-hidden="true"
+                />
+              )}
+              <span>{p.status}</span>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            {p.link && (
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
+                style={{ background: "transparent", color: "#fff" }}
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`Open ${p.title} live demo in new tab`}
+              >
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </a>
+            )}
+            {p.github && (
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
+                style={{ background: "transparent", color: "#fff" }}
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`View ${p.title} source code on GitHub`}
+              >
+                <Github className="w-4 h-4" aria-hidden="true" />
+              </a>
+            )}
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors border border-white/15"
+              style={{ background: "rgba(255,255,255,0.1)", color: "#fff" }}
+              aria-hidden="true"
+            >
+              <ArrowUpRight className="w-4 h-4" />
+            </div>
+          </div>
+        </div>
+
+        {/* Project Image Banner */}
+        {p.image && (
+          <div className="rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 aspect-video mb-4 bg-black/40 group-hover:border-white/20 transition-all shadow-md">
+            <img
+              src={p.image}
+              alt={`${p.title} banner`}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+        )}
+
+        {/* Title & Desc */}
+        <Link
+          to={`/projects/${p.id}`}
+          className="focus:outline-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-2.5 hover:text-white/80 transition-colors">
+            {p.title}
+          </h3>
         </Link>
-        <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-8 flex-grow">{p.desc}</p>
-        <div className="flex flex-col gap-2 mt-auto text-xs font-body border-l-2 border-white/20 pl-3 py-1">
-          <div className="flex items-center">
-            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Status</span>
-            <span className="text-white/80">{p.status}</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Category</span>
-            <span className="text-white/80">{p.tag}</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Stack</span>
-            <span className="text-white/80">{p.stack.split(' · ').join(' • ')}</span>
+        <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-5 flex-grow">
+          {p.desc}
+        </p>
+
+        {/* Tech Stack Meta */}
+        <div className="flex flex-col gap-1.5 mt-auto text-xs font-body border-l-2 border-white/20 pl-3 py-1">
+          <div className="flex items-center gap-2">
+            <span className="text-white/60 uppercase tracking-wider text-[9px]">Stack:</span>
+            <span className="text-white/80">{p.stack.split(" · ").join(" • ")}</span>
           </div>
         </div>
       </div>
@@ -346,52 +471,60 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
 // ─── Section ─────────────────────────────────────────────────────────────────
 // ─── Section ─────────────────────────────────────────────────────────────────
 const CATEGORIES = [
-  'All',
-  'AI / ML',
-  'Python',
-  'React',
-  'Firebase',
-  'Full Stack',
-  'Data Analytics'
+  "All",
+  "AI / ML",
+  "Python",
+  "React",
+  "Firebase",
+  "Full Stack",
+  "Data Analytics",
 ];
 
 const ProjectsSection = memo(() => {
   const navigate = useNavigate();
-  const [search, setSearch] = useState('');
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
 
   const handleProjectClick = (p: Project) => {
     navigate(`/projects/${p.id}`);
   };
 
   const filteredProjects = useMemo(() => {
-    return PROJECTS.filter(p => {
+    return PROJECTS.filter((p) => {
       // Category match logic
       let matchesCategory = false;
-      if (activeCategory === 'All') {
+      if (activeCategory === "All") {
         matchesCategory = true;
-      } else if (activeCategory === 'AI / ML') {
-        matchesCategory = p.stack.toLowerCase().includes('ai') || p.techStack.some(t => /ai|ml|llm|openai/i.test(t));
-      } else if (activeCategory === 'Python') {
-        matchesCategory = p.stack.toLowerCase().includes('python') || p.techStack.some(t => /python/i.test(t));
-      } else if (activeCategory === 'React') {
-        matchesCategory = p.stack.toLowerCase().includes('react') || p.techStack.some(t => /react/i.test(t));
-      } else if (activeCategory === 'Firebase') {
-        matchesCategory = p.techStack.some(t => /firebase/i.test(t));
-      } else if (activeCategory === 'Full Stack') {
-        matchesCategory = p.stack.toLowerCase().includes('vite') || p.techStack.some(t => /typescript|tailwind|vite/i.test(t));
-      } else if (activeCategory === 'Data Analytics') {
-        matchesCategory = p.techStack.some(t => /analytics|sql/i.test(t)) || p.title === 'Daily Spark';
+      } else if (activeCategory === "AI / ML") {
+        matchesCategory =
+          p.stack.toLowerCase().includes("ai") ||
+          p.techStack.some((t) => /ai|ml|llm|openai/i.test(t));
+      } else if (activeCategory === "Python") {
+        matchesCategory =
+          p.stack.toLowerCase().includes("python") || p.techStack.some((t) => /python/i.test(t));
+      } else if (activeCategory === "React") {
+        matchesCategory =
+          p.stack.toLowerCase().includes("react") || p.techStack.some((t) => /react/i.test(t));
+      } else if (activeCategory === "Firebase") {
+        matchesCategory = p.techStack.some((t) => /firebase/i.test(t));
+      } else if (activeCategory === "Full Stack") {
+        matchesCategory =
+          p.stack.toLowerCase().includes("vite") ||
+          p.techStack.some((t) => /typescript|tailwind|vite/i.test(t));
+      } else if (activeCategory === "Data Analytics") {
+        matchesCategory =
+          p.techStack.some((t) => /analytics|sql/i.test(t)) || p.title === "Daily Spark";
       }
 
       // Search match logic (matches title, desc, stack, techStack array, or tag)
       const q = search.toLowerCase();
-      const matchesSearch = !search ||
+      const matchesSearch =
+        !search ||
         p.title.toLowerCase().includes(q) ||
         p.desc.toLowerCase().includes(q) ||
         p.tag.toLowerCase().includes(q) ||
         p.stack.toLowerCase().includes(q) ||
-        p.techStack.some(t => t.toLowerCase().includes(q));
+        p.techStack.some((t) => t.toLowerCase().includes(q));
 
       return matchesCategory && matchesSearch;
     });
@@ -399,33 +532,43 @@ const ProjectsSection = memo(() => {
 
   return (
     <>
-      <section aria-label="Selected projects" className="py-16 px-6 relative overflow-hidden projects-section-bg">
+      <section
+        aria-label="Selected projects"
+        className="py-16 px-6 relative overflow-hidden projects-section-bg"
+      >
         <div className="max-w-screen-xl mx-auto relative z-10">
-          
           {/* Header Row */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
             <div className="max-w-2xl">
               <SectionBadge>Selected Work</SectionBadge>
-              <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">AI-Powered <br/> Projects.</h2>
+              <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">
+                Projects.
+              </h2>
               <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
-                Explore my portfolio of production-grade software applications, Machine Learning models, and Artificial Intelligence solutions. Each featured project showcases full stack architecture built with Python, React, TypeScript, FastAPI, and Firebase—combining structured LLM prompt pipelines, real-time databases, and responsive UI design.
+                Explore my portfolio of software applications, Machine Learning models, and web
+                solutions. Each featured project showcases practical architecture built with Python,
+                React, Next.js, TypeScript, and responsive UI design—focused on real-world utility
+                and verified competition results.
               </p>
             </div>
             <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
-              Ask me for live demos, repository code samples, or architecture walkthroughs of any featured project.
+              Ask me for live demos, repository code samples, or architecture walkthroughs of any
+              featured project.
             </p>
           </div>
 
           {/* Interactive Controls Filter Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-white/[0.06]">
-            
             {/* Search Input field */}
             <div className="relative w-full md:max-w-xs">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" aria-hidden="true" />
+              <Search
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30"
+                aria-hidden="true"
+              />
               <input
                 type="text"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search stack, title, or keywords..."
                 className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white font-body text-xs placeholder:text-white/30 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all"
                 aria-label="Search projects"
@@ -433,8 +576,12 @@ const ProjectsSection = memo(() => {
             </div>
 
             {/* Category Quick Tags Selector */}
-            <div className="flex flex-wrap gap-2 items-center" role="tablist" aria-label="Project categories">
-              {CATEGORIES.map(cat => {
+            <div
+              className="flex flex-wrap gap-2 items-center"
+              role="tablist"
+              aria-label="Project categories"
+            >
+              {CATEGORIES.map((cat) => {
                 const isActive = activeCategory === cat;
                 return (
                   <button
@@ -443,9 +590,9 @@ const ProjectsSection = memo(() => {
                     aria-selected={isActive}
                     onClick={() => setActiveCategory(cat)}
                     className={`px-4 py-2 rounded-full text-xs font-body font-medium transition-all cursor-pointer min-h-[36px] ${
-                      isActive 
-                        ? 'bg-white text-black border-transparent shadow' 
-                        : 'bg-white/[0.03] text-white/60 border border-white/10 hover:bg-white/[0.06] hover:text-white'
+                      isActive
+                        ? "bg-white text-black border-transparent shadow"
+                        : "bg-white/[0.03] text-white/60 border border-white/10 hover:bg-white/[0.06] hover:text-white"
                     }`}
                   >
                     {cat}
@@ -458,9 +605,11 @@ const ProjectsSection = memo(() => {
           {/* Dynamic Grid Results Container */}
           {filteredProjects.length > 0 ? (
             <div className="space-y-6">
-              
               {/* Flagship featured card (always render first matched project as featured) */}
-              <FeaturedCard p={filteredProjects[0]} onClick={() => handleProjectClick(filteredProjects[0])} />
+              <FeaturedCard
+                p={filteredProjects[0]}
+                onClick={() => handleProjectClick(filteredProjects[0])}
+              />
 
               {/* Grid cards for subsequent matches */}
               {filteredProjects.length > 1 && (
@@ -476,13 +625,18 @@ const ProjectsSection = memo(() => {
             <div className="flex flex-col items-center justify-center py-20 px-6 rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-xl text-center space-y-4">
               <Search className="w-10 h-10 text-white/20" aria-hidden="true" />
               <div>
-                <h3 className="font-heading italic text-2xl text-white">No Matching Projects</h3>
+                <h3 className="font-heading font-bold text-2xl text-white">No Matching Projects</h3>
                 <p className="text-white/70 font-body font-light text-sm mt-1 max-w-sm">
-                  We couldn't find any projects matching "<span className="text-white/90">{search}</span>" in this filter category. Try another keyword.
+                  We couldn't find any projects matching "
+                  <span className="text-white/90">{search}</span>" in this filter category. Try
+                  another keyword.
                 </p>
               </div>
               <button
-                onClick={() => { setSearch(''); setActiveCategory('All'); }}
+                onClick={() => {
+                  setSearch("");
+                  setActiveCategory("All");
+                }}
                 className="px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 text-xs font-body transition-colors cursor-pointer"
               >
                 Reset Search Filters

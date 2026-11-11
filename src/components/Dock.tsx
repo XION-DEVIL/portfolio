@@ -1,8 +1,19 @@
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { Children, cloneElement, useEffect, useRef, useState } from 'react';
-import './Dock.css';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { Children, cloneElement, useEffect, useRef, useState } from "react";
+import "./Dock.css";
 
-function DockItem({ children, className = '', onClick, href, ariaLabel, mouseX, spring, distance, magnification, baseItemSize }: any) {
+function DockItem({
+  children,
+  className = "",
+  onClick,
+  href,
+  ariaLabel,
+  mouseX,
+  spring,
+  distance,
+  magnification,
+  baseItemSize,
+}: any) {
   const ref = useRef<HTMLDivElement>(null);
   const isHovered = useMotionValue(0);
 
@@ -11,12 +22,16 @@ function DockItem({ children, className = '', onClick, href, ariaLabel, mouseX, 
     return val - rect.x - baseItemSize / 2;
   });
 
-  const targetSize = useTransform(mouseDistance, [-distance, 0, distance], [baseItemSize, magnification, baseItemSize]);
+  const targetSize = useTransform(
+    mouseDistance,
+    [-distance, 0, distance],
+    [baseItemSize, magnification, baseItemSize],
+  );
   const size = useSpring(targetSize, spring);
   const scale = useTransform(size, (s) => (s as unknown as number) / baseItemSize);
 
   const Component = href ? motion.a : motion.div;
-  
+
   return (
     <Component
       {...(href ? { href, target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -37,12 +52,12 @@ function DockItem({ children, className = '', onClick, href, ariaLabel, mouseX, 
   );
 }
 
-function DockLabel({ children, className = '', ...rest }: any) {
+function DockLabel({ children, className = "", ...rest }: any) {
   const { isHovered } = rest;
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = isHovered.on('change', (latest: number) => {
+    const unsubscribe = isHovered.on("change", (latest: number) => {
       setIsVisible(latest === 1);
     });
     return () => unsubscribe();
@@ -66,18 +81,18 @@ function DockLabel({ children, className = '', ...rest }: any) {
   );
 }
 
-function DockIcon({ children, className = '' }: any) {
+function DockIcon({ children, className = "" }: any) {
   return <div className={`dock-icon ${className}`}>{children}</div>;
 }
 
 export default function Dock({
   items,
-  className = '',
+  className = "",
   spring = { mass: 0.1, stiffness: 150, damping: 12 },
   magnification = 70,
   distance = 200,
   panelHeight = 68,
-  baseItemSize = 50
+  baseItemSize = 50,
 }: any) {
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
@@ -88,8 +103,8 @@ export default function Dock({
       setIsMobile(window.innerWidth < 480);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile, { passive: true });
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile, { passive: true });
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const responsiveBaseItemSize = isMobile ? 42 : baseItemSize;

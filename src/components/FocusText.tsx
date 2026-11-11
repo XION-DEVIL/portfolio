@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, memo } from 'react';
+import { useState, useRef, useEffect, useCallback, memo } from "react";
 
 const WORDS = ["Data", "AI", "Analytics", "GenAI"];
 
@@ -56,9 +56,9 @@ function FocusText({ className = "" }: FocusTextProps) {
     };
 
     // INP-1 Fix: passive listener so scroll/resize cannot block main thread
-    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       clearTimeout(debounceTimer);
       if (measureRafRef.current) cancelAnimationFrame(measureRafRef.current);
     };
@@ -66,10 +66,9 @@ function FocusText({ className = "" }: FocusTextProps) {
 
   useEffect(() => {
     if (!containerRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0 }
-    );
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
+      threshold: 0,
+    });
     observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, []);
@@ -85,49 +84,54 @@ function FocusText({ className = "" }: FocusTextProps) {
   return (
     // CLS-4 Fix: Fixed height container prevents siblings from shifting when
     // the track position is measured and updated after mount.
-    <div ref={containerRef} className={`relative w-full h-[100px] md:h-[140px] flex items-center ${className}`}>
+    <div
+      ref={containerRef}
+      className={`relative w-full h-[100px] md:h-[140px] flex items-center overflow-hidden ${className}`}
+    >
       {/* Centered wide container to prevent browser layout clipping */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[2000px] flex items-center justify-center pointer-events-none">
         {/* Centering anchor for the track */}
         <div className="relative w-0 h-0 flex items-center justify-start overflow-visible pointer-events-auto">
-          <div 
+          <div
             ref={trackRef}
             className="absolute left-0 flex items-center gap-6 md:gap-10 whitespace-nowrap transition-transform duration-500 ease-out"
-            style={{ transform: `translate3d(${xOffset}px, 0, 0)`, willChange: 'transform' }}
+            style={{ transform: `translate3d(${xOffset}px, 0, 0)`, willChange: "transform" }}
           >
             {WORDS.map((word, index) => {
               const isActive = index === activeIndex;
               const isGenAI = word === "GenAI";
-              
+
               return (
                 <div
                   key={word}
-                  ref={(el) => { itemRefs.current[index] = el; }}
+                  ref={(el) => {
+                    itemRefs.current[index] = el;
+                  }}
                   className="relative shrink-0 flex items-center justify-center px-4 py-2 md:px-8 md:py-4 transition-all duration-500 ease-out"
                   style={{
-                    transform: isActive ? 'scale(1.15)' : 'scale(0.85)',
+                    transform: isActive ? "scale(1.15)" : "scale(0.85)",
                     opacity: isActive ? 1 : 0.35,
-                    willChange: "transform, opacity"
+                    willChange: "transform, opacity",
                   }}
                 >
                   {/* Focus Brackets - Only visible on active item */}
-                  <div 
+                  <div
                     className="absolute inset-0 pointer-events-none transition-opacity duration-300"
                     style={{ opacity: isActive ? 1 : 0 }}
                   >
-                    <div className="absolute top-0 left-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-l-2 md:border-l-4 border-white rounded-tl-lg" />
-                    <div className="absolute top-0 right-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-r-2 md:border-r-4 border-white rounded-tr-lg" />
-                    <div className="absolute bottom-0 left-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-l-2 md:border-l-4 border-white rounded-bl-lg" />
-                    <div className="absolute bottom-0 right-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-r-2 md:border-r-4 border-white rounded-br-lg" />
+                    <div className="absolute top-0 left-0 w-3.5 h-3.5 md:w-5 md:h-5 border-t-2 border-l-2 border-white/90" />
+                    <div className="absolute top-0 right-0 w-3.5 h-3.5 md:w-5 md:h-5 border-t-2 border-r-2 border-white/90" />
+                    <div className="absolute bottom-0 left-0 w-3.5 h-3.5 md:w-5 md:h-5 border-b-2 border-l-2 border-white/90" />
+                    <div className="absolute bottom-0 right-0 w-3.5 h-3.5 md:w-5 md:h-5 border-b-2 border-r-2 border-white/90" />
                   </div>
 
-                  <span 
+                  <span
                     className="text-4xl md:text-5xl lg:text-6xl leading-none text-white whitespace-nowrap z-10"
                     style={{
-                      fontFamily: isGenAI ? 'var(--font-heading)' : 'var(--font-body)',
-                      fontWeight: isGenAI ? 'normal' : 800,
-                      fontStyle: isGenAI ? 'italic' : 'normal',
-                      WebkitFontSmoothing: 'antialiased'
+                      fontFamily: isGenAI ? "var(--font-heading)" : "var(--font-body)",
+                      fontWeight: isGenAI ? 700 : 800,
+                      fontStyle: "normal",
+                      WebkitFontSmoothing: "antialiased",
                     }}
                   >
                     {word}

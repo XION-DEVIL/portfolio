@@ -1,18 +1,26 @@
-import fs from "fs";
-import crypto from "crypto";
-import path from "path";
-import { fileURLToPath } from "url";
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
+import fs from "node:fs";
+import crypto from "node:crypto";
+import path from "node:path";
+import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { apiChatPlugin } from "./server/apiChatPlugin";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const pagesBase = normalizeBase(process.env["PAGES_BASE"] ?? "/");
 
+function normalizeBase(base: string) {
+  let value = base.trim() || "/";
+  if (!value.startsWith("/")) value = `/${value}`;
+  if (!value.endsWith("/")) value = `${value}/`;
+  return value;
+}
+
+// Cache-busting hash for /resume.pdf links (carried over from the original portfolio).
 const getResumeHash = () => {
   try {
-    const filePath = path.resolve(__dirname, "public/resume.pdf");
-    const fileBuffer = fs.readFileSync(filePath);
+    const fileBuffer = fs.readFileSync(path.resolve(process.cwd(), "public/resume.pdf"));
     return crypto.createHash("md5").update(fileBuffer).digest("hex").slice(0, 8);
   } catch {
     return Date.now().toString(36);
@@ -20,75 +28,45 @@ const getResumeHash = () => {
 };
 
 export default defineConfig({
+  base: process.env["PAGES_BASE"] ? pagesBase : "/",
   define: {
     __RESUME_HASH__: JSON.stringify(getResumeHash()),
   },
-  plugins: [
-    react(),
-    tailwindcss(),
-    // Note: vite-plugin-compression removed — Firebase Hosting automatically
-    // applies Brotli/Gzip compression at the CDN edge, making pre-compression
-    // redundant. The plugin also had a Windows path bug that produced broken
-    // output paths (dist/D:/...) so compressed files were never served.
-  ],
-  base: '/',
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  build: {
-    // Disable sourcemaps in production — reduces bundle size ~30%
-    sourcemap: false,
-    // Raise chunk size warning limit (pdf.worker.min and hls are legitimately large)
-    chunkSizeWarningLimit: 1200,
-    // Use esbuild for fast, small output
-    minify: 'esbuild',
-    // Target modern browsers — enables more aggressive dead-code elimination
-    // Raised from es2020/chrome90 to es2022/chrome105 for smaller output
-    // (class fields, nullish coalescing, optional chaining emit natively)
-    target: ['es2022', 'chrome105', 'firefox104', 'safari16'],
-    modulePreload: {
-      polyfill: false,
-      resolveDependencies: (_filename, deps) => {
-        return deps.filter(dep => 
-          !dep.includes('react-pdf') && 
-          !dep.includes('framer-motion') && 
-          !dep.includes('ogl') && 
-          !dep.includes('hls')
-        );
-      },
-    },
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          // PDF viewer — only loads when resume modal is opened
-          if (id.includes('react-pdf') || id.includes('pdfjs-dist')) {
-            return 'react-pdf';
+  plugins: [
+    tanstackStart(
+      process.env["PRERENDER"] !== "false"
+        ? {
+            server: { entry: "server" },
+            router: { basepath: process.env["PAGES_BASE"] ? pagesBase : "/" },
+            pages: [
+              { path: "/" },
+              { path: "/about" },
+              { path: "/skills" },
+              { path: "/certifications" },
+              { path: "/contact" },
+              { path: "/ai" },
+              { path: "/blog" },
+              { path: "/experience" },
+              { path: "/recruiter" },
+              { path: "/resume" },
+              { path: "/projects" },
+              { path: "/projects/nelsync-ai" },
+              { path: "/projects/vibecraft-2026" },
+              { path: "/projects/daily-spark" },
+              { path: "/projects/prepmind-ai" },
+              { path: "/projects/portfolio-website" },
+            ],
+            prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
           }
-          // framer-motion — loads async via LazyMotion in main.tsx
-          if (id.includes('framer-motion')) {
-            return 'framer-motion';
-          }
-          // HLS — lazily initialized per-section via IntersectionObserver
-          if (id.includes('hls.js') || id.includes('hls/')) {
-            return 'hls';
-          }
-
-          // OGL (Galaxy WebGL) — only loads when Skills/hero section is visible
-          if (id.includes('ogl')) {
-            return 'ogl';
-          }
-          // lucide-react — tree-shakeable icon library
-          if (id.includes('lucide-react')) {
-            return 'lucide';
-          }
-          // React core — stable, long-lived cache entry
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'react-vendor';
-          }
-        },
-      },
-    },
-  },
+        : { server: { entry: "server" } },
+    ),
+    react(),
+    tailwindcss(),
+    apiChatPlugin(),
+  ],
 });

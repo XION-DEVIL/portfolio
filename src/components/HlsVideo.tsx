@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 /**
  * INP-6 Fix: Cache the hls.js module at module level.
@@ -19,23 +19,23 @@ import React, { useEffect, useRef, useState } from 'react';
 let hlsModuleCache: Promise<any> | null = null;
 const getHlsModule = () => {
   if (!hlsModuleCache) {
-    hlsModuleCache = import('hls.js');
+    hlsModuleCache = import("hls.js");
   }
   return hlsModuleCache;
 };
 
-const HlsVideo = ({ 
-  src, 
-  className, 
-  style, 
+const HlsVideo = ({
+  src,
+  className,
+  style,
   desaturated = false,
   poster,
   width,
-  height
-}: { 
-  src: string; 
-  className?: string; 
-  style?: React.CSSProperties; 
+  height,
+}: {
+  src: string;
+  className?: string;
+  style?: React.CSSProperties;
   desaturated?: boolean;
   poster?: string;
   width?: number | string;
@@ -58,7 +58,7 @@ const HlsVideo = ({
           video.pause();
         }
       },
-      { threshold: 0.1, rootMargin: '100px' } // Preload when video is 100px close
+      { threshold: 0.1, rootMargin: "100px" }, // Preload when video is 100px close
     );
 
     observer.observe(video);
@@ -84,7 +84,7 @@ const HlsVideo = ({
         });
         hls.loadSource(src);
         hls.attachMedia(video);
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = src;
       }
     };
@@ -96,20 +96,20 @@ const HlsVideo = ({
   }, [hasIntersected, src]);
 
   return (
-    <video 
-      ref={videoRef} 
-      className={className} 
-      style={{ 
-        ...style, 
-        filter: desaturated ? 'saturate(0)' : undefined,
-      }} 
+    <video
+      ref={videoRef}
+      className={className}
+      style={{
+        ...style,
+        filter: desaturated ? "saturate(0)" : undefined,
+      }}
       width={width}
       height={height}
       poster={poster}
-      autoPlay 
-      loop 
-      muted 
-      playsInline 
+      autoPlay
+      loop
+      muted
+      playsInline
       aria-hidden="true"
       preload="none"
     />

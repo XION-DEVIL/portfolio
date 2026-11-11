@@ -1,65 +1,36 @@
-# Node
-node_modules/
-npm-debug.log
-yarn-error.log
+# Logs
+logs
 *.log
-.npm-cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Build
-dist/
-dist-ssr/
+node_modules
+dist
+dist-ssr
+.output
+.vinxi
+.tanstack/**
+.nitro
+# Environment secrets
+.env
+.env.*
+.dev.vars
 *.local
 
+# Firebase
+.firebase/
+
 # Editor directories and files
+.lighthouseci/
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
 *.ntvs*
-*.class
-*.exe
-*.dll
-*.so
-*.dylib
-
-# Vite
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.*
-!.env.example
-
-# Firebase
-.firebase/
-firebase-debug.log*
-ui-debug.log*
-*-debug.log
-
-# Generated reports & scratch files
-lighthouse-report*.json
-scratch_*.json
-*.tmp
-.tmp-*
-temp*.txt
-
-# Local AI agent tooling
-.agents/
-
-# Private AI agent context
-AI_PROJECT_CONTEXT.md
-AI_AGENT_WORKFLOW.md
-
-# OS/editor temporary files
-Thumbs.db
-Desktop.ini
-*.swp
-*.swo
-
-# Portfolio
-portfolio.md
-PLAN.md
-TEMP.md
-
+*.njsproj
+*.sln
+*.sw?

@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useState, lazy, Suspense } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Download, FileText, ExternalLink } from 'lucide-react';
-import SEOHead from '../components/SEOHead';
-import ErrorBoundary from '../components/ErrorBoundary';
-import { SITE_URL, createBreadcrumbSchema } from '../seo';
+import { useEffect, useMemo, useState, lazy, Suspense } from "react";
+import { Link } from "@/lib/router-compat";
+import { ArrowLeft, Download, FileText, ExternalLink } from "lucide-react";
+import SEOHead from "../components/SEOHead";
+import ErrorBoundary from "../components/ErrorBoundary";
+import { SITE_URL, createBreadcrumbSchema } from "../seo";
 
-const RESUME_FILE_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+const RESUME_FILE_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 
-const ResumeViewer = lazy(() => import('../components/ResumeViewer'));
+const ResumeViewer = lazy(() => import("../components/ResumeViewer"));
 
 export default function ResumePage() {
   const [showCanvasViewer, setShowCanvasViewer] = useState(false);
@@ -18,20 +18,21 @@ export default function ResumePage() {
 
   const resumeSchema = useMemo(() => {
     const breadcrumb = createBreadcrumbSchema([
-      { name: 'Home', url: SITE_URL },
-      { name: 'Resume', url: `${SITE_URL}/resume` },
+      { name: "Home", url: SITE_URL },
+      { name: "Resume", url: `${SITE_URL}/resume` },
     ]);
     return {
-      '@context': 'https://schema.org',
-      '@graph': [
+      "@context": "https://schema.org",
+      "@graph": [
         breadcrumb,
         {
-          '@type': 'WebPage',
-          '@id': `${SITE_URL}/resume/#webpage`,
+          "@type": "WebPage",
+          "@id": `${SITE_URL}/resume/#webpage`,
           url: `${SITE_URL}/resume`,
-          name: 'Resume | Sahaya Savari',
-          description: 'View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer.',
-          author: { '@id': `${SITE_URL}/#person` },
+          name: "Resume | Sahaya Savari",
+          description:
+            "View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student and Student AI/ML Engineer.",
+          author: { "@id": `${SITE_URL}/#person` },
         },
       ],
     };
@@ -39,25 +40,25 @@ export default function ResumePage() {
 
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="Resume & Curriculum Vitae | Sahaya Savari"
-        description="View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer."
+        description="View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student and Student AI/ML Engineer."
         url={`${SITE_URL}/resume`}
         schema={resumeSchema}
       />
       <div className="pt-28 pb-20 px-4 md:px-6 max-w-screen-md mx-auto min-h-screen">
         <div className="mb-8 flex items-center justify-between">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors font-body text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Portfolio Home
           </Link>
 
-          <a 
-            href={RESUME_FILE_URL} 
-            download="Sahaya_Savari_Resume.pdf" 
+          <a
+            href={RESUME_FILE_URL}
+            download="Sahaya_Savari_Resume.pdf"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-body font-medium hover:bg-white/90 transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
@@ -71,38 +72,83 @@ export default function ResumePage() {
               <FileText className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl md:text-4xl font-heading italic">Curriculum Vitae</h1>
-              <p className="text-white/60 font-body text-sm">Sahaya Savari · AI/ML & Full Stack Developer</p>
+              <h1 className="text-3xl md:text-4xl font-heading font-bold">Curriculum Vitae</h1>
+              <p className="text-white/60 font-body text-sm">
+                Sahaya Savari · Student AI/ML Engineer
+              </p>
             </div>
           </div>
         </header>
 
         {/* Semantic Resume Highlights Summary */}
-        <section aria-label="Curriculum Vitae Summary" className="mb-10 p-6 rounded-2xl bg-white/[0.02] border border-white/10 font-body text-sm text-white/80 space-y-4">
+        <section
+          aria-label="Curriculum Vitae Summary"
+          className="mb-10 p-6 rounded-2xl bg-white/[0.02] border border-white/10 font-body text-sm text-white/80 space-y-4"
+        >
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Professional Positioning</h2>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
+              Professional Positioning
+            </h2>
             <p className="text-white/90 leading-relaxed">
-              M.Sc. Artificial Intelligence student specializing in Machine Learning engineering, Python backend services, and modern React full-stack applications. Available for AI/ML and software engineering internships in Summer/Fall 2026.
+              M.Sc. Artificial Intelligence student building web apps with React, TypeScript,
+              Next.js, and Python. Seeking Summer 2027 internships in software engineering, backend,
+              and applied AI.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-white/10">
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Education</h3>
-              <p className="font-medium text-white">M.Sc. Artificial Intelligence</p>
-              <p className="text-xs text-white/60">St. Joseph's College (Autonomous), Trichy</p>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
+                Education
+              </h3>
+              <p className="font-medium text-white">
+                M.Sc. Artificial Intelligence (July 2025 – May 2027)
+              </p>
+              <p className="text-xs text-white/60">
+                St. Joseph's College (Autonomous), Tiruchirappalli
+              </p>
+              <p className="font-medium text-white mt-2">
+                B.Sc. Data science (August 2022 – May 2025)
+              </p>
+              <p className="text-xs text-white/60">Thiagarajar College, Madurai</p>
+              <p className="font-medium text-white mt-2">HSC, BIO-MATHS (June 2020 – July 2022)</p>
+              <p className="text-xs text-white/60">St. Mary's Higher Secondary School, Madurai</p>
             </div>
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Core Tech Stack</h3>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
+                Top Skills &amp; Stack
+              </h3>
+              <p className="text-xs text-white/80 leading-relaxed mb-3">
+                <strong className="text-white">Top Skills:</strong> PostgreSQL, Node.js, React.js
+                <br />
+                <strong className="text-white">AI &amp; Data:</strong> Python, Machine Learning,
+                Data Analytics, Scikit-learn
+                <br />
+                <strong className="text-white">Tools &amp; Web:</strong> TypeScript, Next.js, Vite,
+                Tailwind CSS, Git
+              </p>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
+                Current Role
+              </h3>
               <p className="text-xs text-white/80 leading-relaxed">
-                Python, TypeScript, React, FastAPI, LLM Prompt Engineering, Firebase, Vite, Tailwind CSS
+                <strong className="text-white">Digital Marketing Intern</strong> @ HodoLabs (June
+                2026 – Present)
               </p>
             </div>
           </div>
 
           <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <span><strong>Selected Projects:</strong> PrepMind AI, Daily Spark, Portfolio Architecture</span>
-            <a href={RESUME_FILE_URL} download="Sahaya_Savari_Resume.pdf" className="text-purple-300 hover:text-white underline font-medium">Download Official Resume (PDF)</a>
+            <span>
+              <strong>Selected Projects:</strong> NelSync AI (Overall Hackathon Champion), VibeCraft
+              2026 (Top 5 Finalist of 110), PrepMind AI, Daily Spark, Portfolio Architecture
+            </span>
+            <a
+              href={RESUME_FILE_URL}
+              download="Sahaya_Savari_Resume.pdf"
+              className="text-purple-300 hover:text-white underline font-medium"
+            >
+              Download Official Resume (PDF)
+            </a>
           </div>
         </section>
 
@@ -124,12 +170,18 @@ export default function ResumePage() {
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Open in Tab</span>
               </a>
-              <span className="text-white/20" aria-hidden="true">|</span>
+              <span className="text-white/20" aria-hidden="true">
+                |
+              </span>
               <button
                 type="button"
-                onClick={() => setShowCanvasViewer(prev => !prev)}
+                onClick={() => setShowCanvasViewer((prev) => !prev)}
                 className="text-purple-300 hover:text-white transition-colors cursor-pointer"
-                aria-label={showCanvasViewer ? "Switch to native PDF preview" : "Switch to interactive canvas viewer"}
+                aria-label={
+                  showCanvasViewer
+                    ? "Switch to native PDF preview"
+                    : "Switch to interactive canvas viewer"
+                }
               >
                 {showCanvasViewer ? "Switch to Native Viewer" : "Use Canvas Viewer"}
               </button>
@@ -138,11 +190,13 @@ export default function ResumePage() {
 
           {showCanvasViewer ? (
             <ErrorBoundary>
-              <Suspense fallback={
-                <div className="min-h-[500px] rounded-2xl border border-white/10 bg-white/[0.02] flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white/50" />
-                </div>
-              }>
+              <Suspense
+                fallback={
+                  <div className="min-h-[500px] rounded-2xl border border-white/10 bg-white/[0.02] flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white/50" />
+                  </div>
+                }
+              >
                 <ResumeViewer inlineEmbed onClose={() => setShowCanvasViewer(false)} />
               </Suspense>
             </ErrorBoundary>
@@ -174,7 +228,7 @@ export default function ResumePage() {
                   <FileText className="w-8 h-8 text-purple-300" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-heading italic text-xl text-white">Curriculum Vitae</h3>
+                  <h3 className="font-heading font-bold text-xl text-white">Curriculum Vitae</h3>
                   <p className="text-white/60 text-xs font-body max-w-xs mx-auto leading-relaxed">
                     Tap below to open or download the complete PDF resume directly on your device.
                   </p>

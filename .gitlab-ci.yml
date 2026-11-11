@@ -1,0 +1,35 @@
+# GitLab CI/CD pipeline for automated GitLab Pages deployment
+# Builds the Vite + React + TanStack Start static portfolio using Bun
+
+image: oven/bun:latest
+
+pages:
+  stage: deploy
+  script:
+    - bun install --frozen-lockfile
+    - bun run typecheck
+    # Determine base path:
+    # If PAGES_BASE is provided as a CI/CD variable, respect it.
+    # Otherwise, if the project is a root user/group page (<group>.gitlab.io), use "/".
+    # If it is a standard project repository, use "/$CI_PROJECT_NAME/".
+    - |
+      if [ -z "$PAGES_BASE" ]; then
+        if [ "$CI_PROJECT_NAME" = "$CI_PROJECT_ROOT_NAMESPACE.gitlab.io" ]; then
+          export PAGES_BASE="/"
+        else
+          export PAGES_BASE="/$CI_PROJECT_NAME/"
+        fi
+      fi
+      echo "Building static site with PAGES_BASE=$PAGES_BASE"
+    - bun run build
+    # GitLab Pages requires the published artifacts to be in the 'public' directory.
+    # Replace Vite's source public folder with the prerendered production dist/client build.
+    - rm -rf public
+    - cp -r dist/client public
+    - cp public/index.html public/404.html
+    - touch public/.nojekyll
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

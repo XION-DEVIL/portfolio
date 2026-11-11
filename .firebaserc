@@ -1,15 +1,6 @@
 {
   "projects": {
     "default": "sahaya-savari-portfolio"
-  },
-  "targets": {
-    "sahaya-savari-portfolio": {
-      "hosting": {
-        "sahayasavari-dev": [
-          "sahaya-savari-portfolio"
-        ]
-      }
-    }
-  },
-  "etags": {}
+  }
 }
+

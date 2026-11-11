@@ -1,6 +1,6 @@
-import { Helmet } from 'react-helmet-async';
-import { DEFAULT_IMAGE, SITE_NAME, SITE_URL } from '../seo';
-
+// Title, description, canonical, Open Graph and Twitter tags are set by each
+// route's head() (see buildSeoHead in ../seo). This component keeps emitting
+// the page's JSON-LD schema exactly as before.
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -11,57 +11,12 @@ interface SEOHeadProps {
   robots?: string;
 }
 
-export default function SEOHead({ 
-  title, 
-  description, 
-  url = SITE_URL,
-  image = DEFAULT_IMAGE,
-  type = 'website',
-  schema,
-  robots = 'index, follow',
-}: SEOHeadProps) {
-  const canonicalUrl = url.replace(/\/$/, '') || SITE_URL;
-
+export default function SEOHead({ schema }: SEOHeadProps) {
+  if (!schema) return null;
   return (
-    <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="robots" content={robots} />
-      <meta name="author" content="Sahaya Savari" />
-      <link rel="canonical" href={canonicalUrl} />
-
-      {/* Identity connections — rel="me" links authoritative profiles to this domain */}
-      <link rel="me" href="https://github.com/sahaya-savari" />
-      <link rel="me" href="https://www.linkedin.com/in/sahaya-savari" />
-
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content={type} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
-      <meta property="og:image:secure_url" content={image} />
-      <meta property="og:image:type" content="image/jpeg" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={`${title} portfolio preview`} />
-      <meta property="og:site_name" content={SITE_NAME} />
-      <meta property="og:locale" content="en_US" />
-
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={canonicalUrl} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
-      <meta name="twitter:image:alt" content={`${title} portfolio preview`} />
-      
-      {/* JSON-LD Schema */}
-      {schema && (
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-      )}
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 }

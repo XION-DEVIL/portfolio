@@ -1,21 +1,49 @@
-import { BookOpen, Code, Award, CheckCircle } from 'lucide-react';
+import { BookOpen, Code, Award, CheckCircle } from "lucide-react";
+import { PROJECTS, FEATURED_CREDENTIALS } from "../data";
 
 export default function DevDashboard() {
   const stats = [
-    { label: "M.Sc AI Program", value: "St. Joseph's", icon: BookOpen, desc: "Active research in Generative AI, LLMs, and Neural Network design." },
-    { label: "Major Projects", value: "3 Applications", icon: Code, desc: "PrepMind AI, Daily Spark, and custom responsive web UI engines." },
-    { label: "Credentials Earned", value: "4 Certifications", icon: Award, desc: "Verified IBM Data Analyst, IIT NPTEL ML, NIELIT AI, and HodoLabs Web." }
+    {
+      label: "M.Sc AI Program",
+      value: "St. Joseph's",
+      icon: BookOpen,
+      desc: "Applied coursework in Machine Learning, Deep Learning, and Python software.",
+    },
+    {
+      label: "Major Projects",
+      value: `${PROJECTS.length} Systems`,
+      icon: Code,
+      desc: "NelSync AI (Overall Champion), VibeCraft 2026, PrepMind AI, Daily Spark, and modern web software.",
+    },
+    {
+      label: "Credentials Earned",
+      value: `${FEATURED_CREDENTIALS.length} Certifications`,
+      icon: Award,
+      desc: "Verified IBM Data Analyst Specialization, NPTEL IIT Madras, and accredited credentials.",
+    },
   ];
 
   const topics = [
-    { name: "Generative AI", level: "Active Exploration", details: "Structured prompt injection, schema mapping validation, token context window optimization." },
-    { name: "Machine Learning", level: "Core Studies", details: "Loss parameter tuning, predictive classification models, exploratory data regressions." },
-    { name: "Data Analytics", level: "Practical Competency", details: "Relational schema layouts, dashboard reporting, business metric modeling." }
+    {
+      name: "Applied AI",
+      level: "Hands-on Projects",
+      details: "Practical API integration, structured data outputs, and interactive student tools.",
+    },
+    {
+      name: "Machine Learning",
+      level: "Core Studies",
+      details:
+        "Predictive classification models, exploratory data regressions, and model evaluation metrics.",
+    },
+    {
+      name: "Data Analytics",
+      level: "Practical Competency",
+      details: "Relational schema layouts, dashboard reporting, business metric modeling.",
+    },
   ];
 
   return (
     <div className="w-full mt-10 md:mt-20 text-left space-y-8 md:space-y-12">
-      
       {/* Metrics Row */}
       <div className="grid md:grid-cols-3 gap-6">
         {stats.map((stat, idx) => {
@@ -27,8 +55,12 @@ export default function DevDashboard() {
                   <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-mono text-white/70 uppercase tracking-wider">{stat.label}</span>
-                  <span className="block text-xl font-heading italic text-white">{stat.value}</span>
+                  <span className="block text-[10px] font-mono text-white/70 uppercase tracking-wider">
+                    {stat.label}
+                  </span>
+                  <span className="block text-xl font-heading font-bold text-white">
+                    {stat.value}
+                  </span>
                 </div>
               </div>
               <p className="text-white/70 font-body font-light text-xs leading-relaxed">
@@ -42,17 +74,18 @@ export default function DevDashboard() {
       {/* Research & Topic Exploration */}
       <div className="p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-2xl">
         <div className="mb-8 border-b border-white/5 pb-4">
-          <h3 className="font-heading italic text-2xl text-white">Research & Learning Focus</h3>
+          <h3 className="font-heading font-bold text-2xl text-white">Research & Learning Focus</h3>
           <p className="text-white/70 font-body font-light text-xs mt-1">
-            Core subjects and methodologies actively explored through studies and application design.
+            Core subjects and methodologies actively explored through studies and application
+            design.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8">
           {topics.map((topic, idx) => (
             <div key={idx} className="space-y-2">
               <div className="flex items-center justify-between">
-                <h4 className="font-heading italic text-lg text-white/95">{topic.name}</h4>
+                <h4 className="font-heading font-bold text-lg text-white/95">{topic.name}</h4>
                 <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1">
                   <CheckCircle className="w-2.5 h-2.5" /> {topic.level}
                 </span>
@@ -64,7 +97,6 @@ export default function DevDashboard() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }

@@ -1,45 +1,129 @@
-import { useEffect, useState, memo } from 'react';
-import { Play, ArrowUpRight } from 'lucide-react';
-import RotatingText from '../components/RotatingText';
-import FocusText from '../components/FocusText';
-import { RainbowButton } from '../components/magicui/rainbow-button';
+import { useEffect, useState, memo, useRef, lazy, Suspense } from "react";
+const HeroBadge = lazy(() => import("../components/reactbits/HeroBadge"));
+import { Play, ArrowUpRight } from "lucide-react";
+import RotatingText from "../components/RotatingText";
+import FocusText from "../components/FocusText";
+import { RainbowButton } from "../components/magicui/rainbow-button";
+import { Text3DFlip } from "../components/magicui/text-3d-flip";
+
+// Static Badge Card fallback — visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
+const StaticBadgeCard = () => (
+  <div className="relative w-full h-full flex flex-col items-center justify-start pointer-events-none select-none animate-portrait-float">
+    {/* Hanging Lanyard Strap & Clip extending gracefully */}
+    <div className="w-5 h-16 bg-gradient-to-b from-transparent via-[#18181b] to-[#18181b] border-x border-white/20 flex flex-col items-center justify-end -mb-1 z-10 shadow-md">
+      <div className="w-6 h-2.5 bg-[#27272a] rounded-[2px] border border-white/30" />
+      <div className="w-3 h-2 border-b border-x border-zinc-400" />
+    </div>
+
+    {/* ID Badge Card matching 3D Lanyard aspect ratio & dimensions */}
+    <div className="relative w-[180px] h-[255px] sm:w-[205px] sm:h-[290px] lg:w-[230px] lg:h-[325px] rounded-2xl overflow-hidden border border-white/20 bg-[#0b0b14] shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex items-center justify-center">
+      <img
+        src={`${import.meta.env.BASE_URL}profile.webp`}
+        alt="Sahaya Savari F"
+        width={240}
+        height={340}
+        className="w-full h-full object-cover object-top"
+        loading="eager"
+        decoding="async"
+      />
+      <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-white/10 pointer-events-none" />
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/15 pointer-events-none" />
+    </div>
+  </div>
+);
+
+// Magic UI Text 3D Flip heading with Plus Jakarta Sans & reduced semibold weight
+const HeroHeadingName = () => (
+  <Text3DFlip
+    className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-heading font-semibold tracking-tight text-white inline-flex flex-wrap justify-center md:justify-start leading-[0.95] drop-shadow-[0_2px_24px_rgba(255,255,255,0.22)]"
+    textClassName="text-white"
+    flipTextClassName="text-white/85"
+    staggerDuration={0.035}
+    rotateDirection="top"
+  >
+    Sahaya Savari F
+  </Text3DFlip>
+);
 
 interface HeroSectionProps {
   setShowResume: (show: boolean) => void;
 }
 
-// Mux poster — high quality WebP ambient visual (7.2 KB)
-const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=960';
-
-const RESUME_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
+// Lovable Spotlight Studio ambient flower visual assets
+const HERO_POSTER = `${import.meta.env.BASE_URL}lovable-flower-poster.webp`;
+const HERO_VIDEO = `${import.meta.env.BASE_URL}lovable-flower.mp4`;
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [enableInteractiveEffects, setEnableInteractiveEffects] = useState(false);
 
+  // Interactive 3D Lanyard ID Card (Smooth 60fps desktop physics, crisp GPU CSS float on mobile)
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-    const constrainedConnection = connection?.saveData || /2g/.test(connection?.effectiveType || '');
+    if (typeof window === "undefined") return;
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobileOrTouch =
+      window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches;
+    if (isReducedMotion || isMobileOrTouch) return;
+
+    const timer = setTimeout(() => {
+      setEnableInteractiveEffects(true);
+    }, 150);
+
+    const onUserInteraction = () => {
+      setEnableInteractiveEffects(true);
+    };
+    window.addEventListener("pointerdown", onUserInteraction, { once: true, passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("pointerdown", onUserInteraction);
+    };
+  }, []);
+
+  // Ambient botanical flowers video from Lovable Spotlight Studio:
+  // Starts on load / after 1s or immediately on user interaction
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const connection = (
+      navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+    ).connection;
+    const constrainedConnection =
+      connection?.saveData || /(2g|3g)/.test(connection?.effectiveType || "");
 
     if (prefersReducedMotion || constrainedConnection) return;
 
-    const loadHeroVideo = () => setShouldLoadVideo(true);
-    const timer = window.setTimeout(loadHeroVideo, 1500);
-    window.addEventListener('load', loadHeroVideo, { once: true });
+    const start = () => setShouldLoadVideo(true);
+    const timer = window.setTimeout(start, 1000);
+    window.addEventListener("load", start, { once: true });
+
+    const events = ["scroll", "pointerdown", "touchstart", "keydown", "wheel"] as const;
+    events.forEach((e) => window.addEventListener(e, start, { once: true, passive: true }));
 
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener('load', loadHeroVideo);
+      window.removeEventListener("load", start);
+      events.forEach((e) => window.removeEventListener(e, start));
     };
   }, []);
 
   return (
-    <section id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
-      {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
-      <div className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <section
+      ref={sectionRef}
+      id="home"
+      aria-label="Introduction"
+      className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-black"
+    >
+      {/* Background ambient flower visual from Lovable Spotlight Studio */}
+      <div
+        className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none select-none overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
-          {/* Static ambient poster image - visible immediately on all viewports including mobile */}
+          {/* Ambient flower poster image */}
           <img
             src={HERO_POSTER}
             alt=""
@@ -48,15 +132,15 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             fetchPriority="low"
             decoding="async"
             className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
-              isVideoLoaded ? 'opacity-0 md:opacity-0' : 'opacity-40'
+              isVideoLoaded ? "opacity-0 md:opacity-0" : "opacity-40"
             }`}
             aria-hidden="true"
           />
 
-          {/* Deferred background video for capable screens */}
+          {/* Ambient flower video */}
           {shouldLoadVideo && (
             <video
-              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
+              src={HERO_VIDEO}
               autoPlay
               loop
               muted
@@ -67,92 +151,107 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               height={1080}
               onCanPlay={() => setIsVideoLoaded(true)}
               className={`absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-1000 ease-in-out ${
-                isVideoLoaded ? 'opacity-40' : 'opacity-0'
+                isVideoLoaded ? "opacity-40" : "opacity-0"
               }`}
               aria-hidden="true"
             />
           )}
         </div>
       </div>
+
+      {/* Ambient atmospheric dark overlays matching Lovable architecture */}
       <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1]" aria-hidden="true" />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1] pointer-events-none"
+        aria-hidden="true"
+      />
 
       {/* Main hero content */}
-      <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full">
+      <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-20 pb-8 sm:pt-22 sm:pb-10 md:pt-24 md:pb-12 w-full max-w-screen-xl mx-auto px-4 md:px-8">
         <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
-          <div className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
-            <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
+          <div className="liquid-glass-strong border border-white/15 shadow-sm rounded-full px-4 py-1.5 mb-4 sm:mb-5 flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            </span>
+            <span className="text-xs font-body font-medium text-white/90 tracking-wide">
+              Open to Opportunities · Summer 2027
+            </span>
           </div>
-          <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative w-full">
-              <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1 select-none text-center md:text-left">
-                Sahaya Savari&nbsp;F
+          <div className="relative mb-4 sm:mb-6 flex flex-col items-center justify-center w-full">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 relative w-full max-w-5xl mx-auto px-4">
+              <h1
+                aria-label="Sahaya Savari F"
+                className="font-heading not-italic font-semibold text-white order-2 md:order-1 mb-4 md:mb-0 text-center md:text-left shrink-0"
+                style={{ fontStyle: "normal" }}
+              >
+                <HeroHeadingName />
               </h1>
 
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
-              <div className="relative order-1 md:order-2 shrink-0 group animate-portrait-float">
-                {/* Multi-layered Atmospheric Glow Behind Portrait */}
-                <div 
-                  className="absolute inset-0 -m-6 sm:-m-10 md:-m-14 rounded-full bg-radial from-white/[0.18] via-indigo-500/[0.12] to-transparent blur-2xl md:blur-3xl pointer-events-none" 
-                  aria-hidden="true" 
-                />
-                <div 
-                  className="absolute inset-0 -m-3 sm:-m-6 rounded-full bg-gradient-to-tr from-purple-500/20 via-indigo-500/10 to-transparent blur-xl pointer-events-none" 
-                  aria-hidden="true" 
-                />
-                
-                {/* Lens / Glass Halo subtle ring */}
-                <div className="relative w-36 h-36 min-[390px]:w-40 min-[390px]:h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full p-[1.5px] bg-gradient-to-b from-white/40 via-white/15 to-transparent shadow-[0_15px_50px_rgba(0,0,0,0.8)]">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-black/60 backdrop-blur-sm relative">
-                    <picture>
-                      <source type="image/webp" media="(max-width: 640px)" srcSet="/profile.webp 400w, /profile-sm.webp 240w" sizes="(max-width: 640px) 160px, 256px" />
-                      <source type="image/webp" srcSet="/profile.webp" width={400} height={400} />
-                      <img
-                        src="/profile.jpg"
-                        alt="Sahaya Savari F"
-                        width={400}
-                        height={400}
-                        fetchPriority="high"
-                        className="w-full h-full object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-110"
-                      />
-                    </picture>
-                  </div>
+              <div className="relative order-1 md:order-2 shrink-0 group">
+                <div className="relative w-[185px] h-[265px] sm:w-[215px] sm:h-[305px] lg:w-[235px] lg:h-[335px]">
+                  {enableInteractiveEffects ? (
+                    <div className="absolute -inset-x-[60px] -top-6 -bottom-6 sm:-inset-x-[70px] md:-inset-x-[95px] lg:-inset-x-[115px]">
+                      <Suspense fallback={<StaticBadgeCard />}>
+                        <HeroBadge />
+                      </Suspense>
+                    </div>
+                  ) : (
+                    <StaticBadgeCard />
+                  )}
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4">
-              <span className="font-heading italic text-fluid-hero-role text-white/70">I am an</span>
-              <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full max-w-full px-2 sm:px-4 mt-3 sm:mt-4">
+              <span className="font-heading font-medium text-fluid-hero-role text-white/85 shrink-0">
+                I am a
+              </span>
+              <div className="text-center sm:text-left inline-flex justify-center max-w-full">
                 <RotatingText
-                  texts={["AI Engineer", "M.Sc. AI Student", "Python Developer", "Full Stack Developer"]}
-                  mainClassName="px-3.5 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
+                  texts={[
+                    "Student AI/ML Engineer",
+                    "M.Sc. AI @ St. Joseph's",
+                    "Digital Marketing Intern",
+                    "2x Hackathon Achiever",
+                  ]}
+                  mainClassName="px-4 py-1 sm:px-5 sm:py-1.5 liquid-glass-strong border border-white/20 text-white whitespace-nowrap rounded-xl font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center shadow-[0_4px_24px_rgba(255,255,255,0.08)] max-w-full shrink-0"
                   staggerFrom="last"
                   splitBy="words"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   exit={{ y: "-120%" }}
                   staggerDuration={0.025}
-                  splitLevelClassName="overflow-hidden pb-0.5"
+                  splitLevelClassName="overflow-visible pb-0.5"
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                  rotationInterval={2500}
+                  rotationInterval={4000}
                 />
               </div>
             </div>
           </div>
 
-          {/* LCP Text: Rendered immediately with optimal contrast */}
-          <p className="text-white/75 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed">
-            M.Sc. Artificial Intelligence student building Machine Learning applications, Python automation tools, and responsive web software with React and TypeScript. Highlighting verified engineering projects for Summer/Fall 2026 opportunities.
+          {/* LCP Text: High contrast with subtle shadow for crisp readability over flowers */}
+          <p className="text-white/95 font-body font-normal text-sm sm:text-base md:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
+            M.Sc. Artificial Intelligence student building and shipping web applications with React,
+            TypeScript, Next.js, and Python. Deployed practical tools including Daily Spark,
+            PrepMind AI, and the VibeCraft campus apps. Seeking Summer 2027 internships in software
+            engineering, backend, and applied AI.
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4">
             <RainbowButton onClick={() => setShowResume(true)} aria-label="View Resume">
               View Resume
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+              <ArrowUpRight
+                className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                aria-hidden="true"
+              />
             </RainbowButton>
-            <a href="#projects" className="text-white/70 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]" aria-label="View Projects">
+            <a
+              href="#projects"
+              className="text-white/70 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]"
+              aria-label="View Projects"
+            >
               View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
             </a>
           </div>
@@ -161,9 +260,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           <div
             className="mt-12 w-full max-w-4xl rounded-3xl border border-white/[0.08] transition-all duration-700"
             style={{
-              background: 'rgba(10, 10, 14, 0.65)',
-              backdropFilter: 'blur(20px)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.4)',
+              background: "rgba(10, 10, 14, 0.65)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.4)",
             }}
           >
             <div className="grid md:grid-cols-3 gap-8 p-6 md:p-8 text-left">
@@ -171,39 +270,67 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <div className="md:col-span-2 space-y-6">
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
                   <div>
-                    <h2 className="text-white font-heading italic text-lg leading-none">Recruiter Quick View</h2>
-                    <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">Candidate profile summary</span>
+                    <h2 className="text-white font-heading font-bold text-lg leading-none">
+                      Recruiter Quick View
+                    </h2>
+                    <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">
+                      Candidate profile summary
+                    </span>
                   </div>
                   <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1.5 shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
-                    Available Summer/Fall 2026
+                    <span
+                      className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
+                      aria-hidden="true"
+                    />
+                    Available Summer 2027
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-xs font-body">
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Education</span>
-                    <span className="text-white/90 font-medium">M.Sc. Artificial Intelligence</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Education
+                    </span>
+                    <span className="text-white/90 font-medium">
+                      M.Sc. AI (Current) · B.Sc. Data Science
+                    </span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Location</span>
-                    <span className="text-white/90 font-medium">Trichy / Madurai, India</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Experience
+                    </span>
+                    <span className="text-white/90 font-medium">
+                      Digital Marketing Intern @ HodoLabs
+                    </span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Target Roles</span>
-                    <span className="text-white/90 font-medium">AI Engineer, Python Developer, Full Stack Developer</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Target Roles
+                    </span>
+                    <span className="text-white/90 font-medium">
+                      Software Engineering, Backend Development, Applied AI
+                    </span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Preference</span>
-                    <span className="text-white/90 font-medium">Open to Remote / Relocation</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">
+                      Location &amp; Preference
+                    </span>
+                    <span className="text-white/90 font-medium">
+                      Madurai / Tamil Nadu · Remote / Relocate
+                    </span>
                   </div>
                 </div>
 
                 <div className="pt-2">
-                  <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">Primary Stack</span>
+                  <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">
+                    Primary Stack
+                  </span>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Python', 'Artificial Intelligence', 'Machine Learning', 'React', 'TypeScript', 'Firebase'].map(skill => (
-                      <span key={skill} className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70">
+                    {["Python", "React", "TypeScript", "Next.js", "SQL"].map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -243,7 +370,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                   >
                     GitHub
                   </a>
-                  <span className="text-white/10" aria-hidden="true">|</span>
+                  <span className="text-white/10" aria-hidden="true">
+                    |
+                  </span>
                   <a
                     href="https://www.linkedin.com/in/sahaya-savari"
                     target="_blank"
@@ -264,8 +393,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           className="mt-8 md:mt-12 flex flex-col items-center gap-4 shrink-0 pointer-events-none w-full"
           aria-hidden="true"
         >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">What I work with</div>
-          <FocusText prefix="Data AI Analytics" focusText="GenAI" className="" />
+          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">
+            What I work with
+          </div>
+          <FocusText prefix="Data Analytics Python" focusText="Applied AI" className="" />
         </div>
       </div>
     </section>

@@ -1,23 +1,52 @@
 # Sahaya Savari F
 
-> AI Engineer · Python Developer · Full Stack Developer · M.Sc. Artificial Intelligence Student
+> Student AI/ML Engineer | M.Sc. Artificial Intelligence @ SJC | Digital Marketing Intern @ HodoLabs | 2x Hackathon Achiever
+> Madurai, Tamil Nadu, India · Mobile: +91 6385648514 · contact@sahayasavari.dev
 
 Portfolio and professional website of Sahaya Savari F.
+
+## Contact & Profile
+- Email: contact@sahayasavari.dev
+- Phone: +91 6385648514
+- LinkedIn: https://www.linkedin.com/in/sahaya-savari
+- GitHub: https://github.com/sahaya-savari
+- Website: https://sahayasavari.dev
+- Top Skills: PostgreSQL, Node.js, React.js
+- Languages: Tamil (Native/Bilingual), English (Limited Working), Hindi (Elementary)
 
 ## Pages
 
 - [Home](https://sahayasavari.dev/): Portfolio home page with hero overview, skill highlights, and contact information.
+- [About](https://sahayasavari.dev/about): Biography, engineering philosophy, and academic background.
 - [Projects](https://sahayasavari.dev/projects): Engineering portfolio showcasing AI/ML applications, full-stack systems, and open-source tools.
-- [Resume](https://sahayasavari.dev/resume): Interactive resume viewer, education, career milestones, and verified skill credentials.
+- [Experience](https://sahayasavari.dev/experience): Digital Marketing Intern experience at HodoLabs and 5 hackathon honors.
+- [Skills](https://sahayasavari.dev/skills): Technical competencies, PostgreSQL, Node.js, React.js, Python, and Machine Learning.
+- [Certifications](https://sahayasavari.dev/certifications): 4 verified credentials (IBM, NIELIT, NPTEL IIT Madras, HodoLabs).
+- [Resume](https://sahayasavari.dev/resume): Interactive resume viewer, 3-tier education history, and career milestones.
 - [Blog](https://sahayasavari.dev/blog): Technical articles on autonomous AI agents, Python data engineering, React performance, and modern web architectures.
 - [Recruiter Summary](https://sahayasavari.dev/recruiter): Concise summary for recruiters and hiring managers highlighting core competencies and availability.
-- [AI & Machine Learning](https://sahayasavari.dev/ai): In-depth overview of Artificial Intelligence, Deep Learning, and LLM engineering expertise.
+- [Ask Sahaya](https://sahayasavari.dev/ai): Interactive portfolio assistant for Sahaya Savari F.
 
 ## Featured Projects
 
-- [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): LLM-powered educational platform transforming study materials into adaptive quizzes and summaries.
-- [Daily Spark](https://sahayasavari.dev/projects/daily-spark): Offline-first habit and streak tracking application built with React, TypeScript, and IndexedDB.
-- [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React 19, Vite 7, Tailwind CSS v4, and static HTML pre-rendering.
+- [NelSync AI](https://sahayasavari.dev/projects/nelsync-ai): Smart Paddy Procurement Optimization system. 1st Place Overall Champion @ AIxcelerate 2026 Hackathon (66 teams).
+- [VibeCraft 2026 (NeuraGenZers)](https://sahayasavari.dev/projects/vibecraft-2026): Top 5 Finalist (out of 110 teams, 440 participants) @ SRM IST Trichy YUVA'26. Dual campus web applications combining attendance projection and smart room location. Live at https://neuragenzers.vercel.app/
+- [PrepMind AI](https://sahayasavari.dev/projects/prepmind-ai): Live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and fallback question banks. Live at https://prep-weblearning.vercel.app/
+- [Daily Spark](https://sahayasavari.dev/projects/daily-spark): Offline-first habit and streak tracking application built with React, TypeScript, and IndexedDB with Capacitor Android support. Live at https://daily-spark-app-da74b.web.app
+- [Portfolio Website](https://sahayasavari.dev/projects/portfolio-website): High-performance portfolio built with React, TypeScript, Vite, and hardware-accelerated animations.
+
+## Experience & Honors (1:1 LinkedIn Verified)
+
+- **HodoLabs**: Digital Marketing Intern (June 2026 – Present) & Web Development & Software Engineering Trainee (May 2026 – June 2026, Madurai, Tamil Nadu, India) · Technical SEO, PageSpeed optimizations, web architecture, and analytics.
+- **🏆 Overall Champion**: AIxcelerate 2026 Multidisciplinary AI Innovation Hackathon (Team NelSync AI, 66 teams) · Dhanalakshmi Srinivasan University.
+- **Top 5 Finalist (Out of 110 Teams)**: VibeCraft 2026 Hackathon (Team NeuraGenZers, 110 teams) · SRM IST Trichy (YUVA'26).
+- **Quiz Winner, CTF Runner-up & Overall Runner-up**: BOOTFEST 2K26 · Bishop Heber College, PG Dept of Computer Science.
+- **Interdepartmental Contest Winner (Certificate of Merit)**: Achievers Day · St. Joseph's College (Autonomous), Tiruchirappalli.
+- **Event In-Charge (Treasure Titans)**: AION 2K26 Technical Symposium · Department of AI, St. Joseph's College (Autonomous), Tiruchirappalli.
+- **Education**:
+  1. Master of Science, AI · St. Joseph's College (Autonomous), Tiruchirappalli (July 2025 – May 2027)
+  2. Bachelor of Science, Data science · Thiagarajar College, Madurai (August 2022 – May 2025, 65.06%)
+  3. HSC, BIO-MATHS (Maths Physics Chemistry Biology) · St. Mary's Higher Secondary School, Madurai (June 2020 – July 2022)
 
 ## Optional
 

@@ -1,19 +1,28 @@
-import { memo } from 'react';
-import { ArrowUpRight, BookOpen, Clock, Calendar } from 'lucide-react';
-import { ARTICLES, Article, BLOG_URL } from '../data';
-import SectionBadge from '../components/ui/SectionBadge';
+import { memo, useState, useCallback } from "react";
+import { Link } from "@/lib/router-compat";
+import { ArrowUpRight, BookOpen, Clock, Calendar, ExternalLink } from "lucide-react";
+import { ARTICLES, Article } from "../data";
+import SectionBadge from "../components/ui/SectionBadge";
+import ArticleReaderModal from "../components/ArticleReaderModal";
 
-const ArticleCard = ({ article }: { article: Article }) => {
+const ArticleCard = ({ article, onRead }: { article: Article; onRead: () => void }) => {
   return (
-    <a
-      href={article.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative flex flex-col bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+    <div
+      onClick={onRead}
+      className="group relative flex flex-col bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden hover:bg-white/[0.04] hover:border-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 cursor-pointer"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onRead();
+        }
+      }}
+      aria-label={`Read article: ${article.title}`}
     >
       <div className="relative h-48 w-full overflow-hidden">
-        <img 
-          src={article.image} 
+        <img
+          src={article.image}
           alt={article.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
@@ -39,7 +48,7 @@ const ArticleCard = ({ article }: { article: Article }) => {
             <span>{article.readingTime} min read</span>
           </div>
         </div>
-        <h3 className="font-heading text-xl text-white mb-2 group-hover:text-purple-300 transition-colors">
+        <h3 className="font-heading font-bold text-xl text-white mb-2 group-hover:text-white/90 group-hover:underline decoration-white/40 underline-offset-4 transition-colors">
           {article.title}
         </h3>
         <p className="text-sm font-body font-light text-white/70 mb-6 flex-1 line-clamp-3">
@@ -47,62 +56,83 @@ const ArticleCard = ({ article }: { article: Article }) => {
         </p>
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/[0.06]">
           <span className="text-xs font-body font-medium text-white/80 group-hover:text-white transition-colors">
-            Read Article
+            Read Full Article
           </span>
           <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 group-hover:bg-white group-hover:text-black transition-colors">
             <ArrowUpRight className="w-4 h-4" />
           </div>
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 
 const BlogSection = memo(() => {
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedArticle(null);
+  }, []);
+
   return (
-    <section aria-label="Featured Articles" className="py-16 px-6 relative overflow-hidden">
-      <div className="max-w-screen-xl mx-auto relative z-10">
-        
-        {/* Header Row */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
-          <div className="max-w-2xl">
-            <SectionBadge>Writings & Articles</SectionBadge>
-            <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Developer Blog & <br/> Technical Insights.</h2>
-            <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed">
-              I author technical articles and engineering deep-dives covering Artificial Intelligence, Machine Learning workflows, Python API development with FastAPI, full stack React &amp; TypeScript optimizations, LLM prompt engineering, and Firebase cloud hosting. Read my latest articles below.
+    <>
+      <section aria-label="Featured Articles" className="py-16 px-6 relative overflow-hidden">
+        <div className="max-w-screen-xl mx-auto relative z-10">
+          {/* Header Row */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
+            <div className="max-w-2xl">
+              <SectionBadge>Writings & Articles</SectionBadge>
+              <h2 className="text-fluid-section-heading font-heading font-bold text-white tracking-tight leading-[0.9] mb-4">
+                Developer Blog &amp; <br /> Technical Insights.
+              </h2>
+              <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed">
+                Practical engineering write-ups covering technical SEO &amp; Core Web Vitals
+                optimization at HodoLabs and offline-first React architecture with IndexedDB.
+              </p>
+            </div>
+            <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
+              Interactive engineering notes with architecture breakdown and executive takeaways.
+              Click any card to read inline.
             </p>
           </div>
-          <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
-            In-depth engineering notes on web performance, AI system design, and full-stack software development.
-          </p>
-        </div>
 
-        {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {ARTICLES.map((article) => (
-            <ArticleCard key={article.title} article={article} />
-          ))}
-        </div>
+          {/* Articles Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
+            {ARTICLES.map((article) => (
+              <ArticleCard
+                key={article.title}
+                article={article}
+                onRead={() => setSelectedArticle(article)}
+              />
+            ))}
+          </div>
 
-        {/* View All Button */}
-        <div className="flex justify-center">
-          <a
-            href={`${BLOG_URL}/blog`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center justify-center gap-3 h-14 px-8 rounded-full bg-white text-black font-body font-medium text-sm overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-          >
-            <span className="relative z-10 flex items-center gap-2">
+          {/* Blog Navigation & LinkedIn */}
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/blog"
+              className="group relative inline-flex items-center justify-center gap-2.5 h-12 px-7 rounded-full bg-white text-black font-body font-medium text-xs sm:text-sm overflow-hidden hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
               <BookOpen className="w-4 h-4" />
-              View All Articles
-            </span>
-            <div className="absolute inset-0 bg-white/80 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
-            <ArrowUpRight className="relative z-10 w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-          </a>
+              <span>Explore Technical Blog</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+            </Link>
+            <a
+              href="https://www.linkedin.com/in/sahaya-savari/recent-activity/all/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white font-body text-xs sm:text-sm font-medium transition-all"
+            >
+              <span>Read on LinkedIn</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-60" />
+            </a>
+          </div>
         </div>
+      </section>
 
-      </div>
-    </section>
+      {/* Interactive Reader Modal */}
+      <ArticleReaderModal article={selectedArticle} onClose={handleCloseModal} />
+    </>
   );
 });
 

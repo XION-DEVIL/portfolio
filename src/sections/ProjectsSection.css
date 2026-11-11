@@ -28,8 +28,8 @@
 .project-card-featured {
   position: relative;
   overflow: hidden;
-  border-radius: 2.5rem;
-  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -37,8 +37,18 @@
   background: rgba(10, 10, 10, 0.78);
   backdrop-filter: blur(18px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   outline: none;
+}
+
+@media (min-width: 768px) {
+  .project-card-featured {
+    padding: 2rem;
+    border-radius: 1.75rem;
+  }
 }
 
 .project-card-featured:hover,
@@ -49,15 +59,17 @@
 }
 
 .project-card-featured:focus-visible {
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 /* ─── Grid cards ─── */
 .project-card-grid {
   position: relative;
   overflow: hidden;
-  border-radius: 1.5rem;
-  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -66,9 +78,19 @@
   background: rgba(10, 10, 10, 0.78);
   backdrop-filter: blur(18px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   outline: none;
   height: 100%;
+}
+
+@media (min-width: 768px) {
+  .project-card-grid {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+  }
 }
 
 .project-card-grid:hover,
@@ -79,11 +101,73 @@
 }
 
 .project-card-grid:focus-visible {
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .project-card-grid .project-card-content {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.project-card-featured,
+.project-card-grid {
+  min-width: 0;
+  background: var(--portfolio-card-surface);
+  border-color: var(--portfolio-card-border);
+  box-shadow: var(--portfolio-card-shadow);
+}
+.project-card-featured::after,
+.project-card-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    360px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    var(--portfolio-spotlight),
+    transparent 75%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+.project-card-featured:hover::after,
+.project-card-grid:hover::after {
+  opacity: 1;
+}
+.project-card-content {
+  min-width: 0;
+}
+.project-card-content h3,
+.project-card-content p {
+  overflow-wrap: anywhere;
+}
+@media (min-width: 1024px) {
+  .project-card-featured {
+    padding: 3rem;
+  }
+}
+@media (max-width: 480px) {
+  .project-card-featured {
+    padding: 1.25rem;
+  }
+  .project-card-grid {
+    padding: 1.25rem;
+  }
+  .project-card-grid .project-card-content > div:first-child {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card-featured:hover,
+  .project-card-grid:hover {
+    transform: none;
+  }
+  .project-card-featured::after,
+  .project-card-grid::after {
+    display: none;
+  }
 }

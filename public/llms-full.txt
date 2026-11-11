@@ -25,13 +25,13 @@ Sahaya Savari F (known publicly as Sahaya Savari) is an AI Engineer, Python Deve
 currently pursuing a Master of Science (M.Sc.) in Artificial Intelligence at St. Joseph's College (Autonomous),
 Tiruchirappalli (Trichy), Tamil Nadu, India.
 
-He builds production-style Machine Learning solutions, Python-based REST APIs (FastAPI, Flask), React web
-applications with TypeScript, Firebase-hosted deployments, and LLM-integrated tools. His portfolio demonstrates
-practical expertise across the full AI and web development stack.
+He builds practical Machine Learning models, Python data science pipelines, React and Next.js web
+applications with TypeScript, and client-side offline tools. His portfolio emphasizes shipped work,
+verified hackathon championships, and solid engineering discipline.
 
 - **Primary Search Entity**: Sahaya Savari / Sahaya Savari F
 - **Location**: Madurai / Tiruchirappalli, Tamil Nadu, India
-- **Availability**: Open to AI/ML, Python, and Full Stack internship and entry-level roles (Summer/Fall 2026).
+- **Availability**: Open to Software Engineering, Backend Development, and Applied AI internship roles (Summer 2027).
 
 ---
 
@@ -41,43 +41,71 @@ practical expertise across the full AI and web development stack.
 |------------------|---------------------------------------------------|
 | Full Name        | Sahaya Savari F                                   |
 | Public Name      | Sahaya Savari                                     |
+| Headline         | Student AI/ML Engineer \| M.Sc. AI @ SJC \| Digital Marketing Intern @ HodoLabs \| 2x Hackathon Achiever |
 | Portfolio        | https://sahayasavari.dev                          |
-| Technical Blog   | https://blog.sahayasavari.dev                      |
+| Technical Blog   | https://blog.sahayasavari.dev                     |
 | GitHub           | https://github.com/sahaya-savari                  |
-| LinkedIn         | https://www.linkedin.com/in/sahaya-savari          |
-| Email            | contact@sahayasavari.dev                           |
-| Location         | Madurai / Trichy, Tamil Nadu, India               |
+| LinkedIn         | https://www.linkedin.com/in/sahaya-savari         |
+| Primary Email    | contact@sahayasavari.dev                          |
+| Mobile Phone     | +91 6385648514                                    |
+| Location         | Madurai, Tamil Nadu, India                        |
+| Top Skills       | PostgreSQL, Node.js, React.js                     |
 
 ---
 
 ## Technical Skills
 
 ### Artificial Intelligence & Machine Learning
-- Core Domains: Machine Learning, Deep Learning, Natural Language Processing, Computer Vision
-- Frameworks: TensorFlow, PyTorch
-- LLM Development: LLM Applications, AI Agent Architecture, Prompt Engineering, Generative AI
-- Tools: OpenAI API, NPTEL-certified Machine Learning fundamentals
+- Core Domains: Machine Learning, Data Analytics, Model Evaluation, Predictive Modeling
+- Tools: Python, Scikit-Learn, Pandas, NumPy
+- Certified: NPTEL IIT Madras (Introduction to Machine Learning), NIELIT (Yuva AI for All)
 
 ### Python Development
-- Frameworks: FastAPI, Flask
-- Libraries: Pandas, NumPy
-- Focus Areas: REST API Development, Automation Scripting, Data Wrangling, JSON Schema Validation (Pydantic V2)
+- Core: Python 3, Data Pipelines, Automation Scripts
+- Libraries: Pandas, NumPy, Scikit-Learn
+- Focus Areas: Data Wrangling, Algorithmic Prototyping, Relational Data Modeling
 
 ### Full Stack & Web Development
-- Frontend: React 19, TypeScript, Tailwind CSS v4, Vite 7, Framer Motion, GSAP
-- Infrastructure: Firebase Hosting CDN, GitHub Actions CI/CD, Static HTML Pre-rendering
-- Media: HLS.js video streaming, IndexedDB client storage, Service Worker fundamentals
-- SEO Engineering: Schema.org JSON-LD, OpenGraph, Static Pre-rendering, AI Discoverability (llms.txt)
+- Frontend: React 19, Next.js 16, TypeScript, Tailwind CSS v4, Vite, Recharts 3
+- Infrastructure: Vercel, Firebase Hosting CDN
+- Storage: IndexedDB offline client storage, Capacitor Android runtime
+- SEO Engineering: Schema.org JSON-LD, OpenGraph, Static Pre-rendering
 
 ### Data & Analytics
-- Tools: SQL, Matplotlib, Seaborn, IBM Cognos Analytics
-- Completed: IBM Data Analyst Specialization (9 courses)
+- Tools: SQL, PostgreSQL, Microsoft Excel, IBM Cognos Analytics
+- Completed: IBM Data Analyst Professional Certificate (Specialization)
 
 ---
 
 ## Project Specifications
 
-### 1. Daily Spark — Offline-First Habit Tracker
+### 1. NelSync AI — AI Paddy Procurement Optimization Layer (Overall Champion)
+- **Type**: Agricultural Logistics Optimization
+- **Status**: Overall Champion — AIxcelerate 2026 Hackathon (66 teams)
+- **Tech Stack**: Python, Machine Learning, Data Analytics, Logistics Optimization
+- **Architecture**: Four-stage procurement optimization framework: Stage 1 (Predict regional arrivals), Stage 2 (Optimize center capacity), Stage 3 (Schedule delivery slots), and Stage 4 (Monitor center flow).
+- **Key Milestones**: Stage 1: 95/100 (Rank 2); Stage 2: Top 48 MVP; Final: Top 12, 3-minute pitch and live Q&A victory. Built by team of four led by Jeeva Loganathan.
+- **My Contribution**: Built the first pitch deck, drove research behind the final presentation, coordinated the team, and led Q&A defense.
+- **Project Overview**: https://sahayasavari.dev/projects/nelsync-ai
+
+### 2. VibeCraft 2026 (NeuraGenZers) — Dual Campus Web Suite (Top 5 Finalist of 110 Teams)
+- **Type**: Campus Web Applications
+- **Status**: Top 5 Finalist (out of 110 Teams, 440 Participants) — SRM IST Trichy YUVA'26
+- **Tech Stack**: Next.js 16, React 19, TypeScript 5, Tailwind CSS v4, Recharts 3, Gemini API, Vercel
+- **Architecture**: Combined dual-app platform: Round 1 Attendance Predictor & Planner (75% threshold, detention detection, OD simulator) + Round 2 Free Class Locator & Smart Search Floor Manager (room grid, filters, natural-language search).
+- **Data Scope**: 13 sections, 120 OCR-verified subject records.
+- **My Role**: Web development, deployment on Vercel, and final presentation deck.
+- **Live URL**: https://neuragenzers.vercel.app/
+
+### 3. PrepMind AI — Web-Based Exam Prep & Practice Platform
+- **Type**: EdTech Practice Application
+- **Status**: Live
+- **Tech Stack**: React, TypeScript, Tailwind CSS, Vercel
+- **Architecture**: Web exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and learner progress tracking. Includes deterministic fallback practice questions when AI responses are unavailable.
+- **Live URL**: https://prep-weblearning.vercel.app/
+- **Project Overview**: https://sahayasavari.dev/projects/prepmind-ai
+
+### 4. Daily Spark — Offline-First Habit Tracker
 - **Type**: Productivity Application
 - **Status**: Live
 - **Tech Stack**: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
@@ -88,19 +116,7 @@ practical expertise across the full AI and web development stack.
 - **Project Overview**: https://sahayasavari.dev/projects/daily-spark
 - **Source Code**: https://github.com/sahaya-savari/daily-spark
 
-### 2. PrepMind AI — LLM-Powered Study Companion
-- **Type**: AI Education Platform
-- **Status**: In Development
-- **Tech Stack**: Python, OpenAI API, React, Tailwind CSS
-- **Architecture**: Python-based LLM integration pipeline that accepts uploaded study materials and generates
-  flashcards, mock exams, and concept summaries. React frontend handles dynamic component rendering.
-- **Key Features**: Dynamic quiz generation, context-aware summarization, adaptive difficulty scaling,
-  upload-to-learn pipeline.
-- **Challenge**: Preventing LLM hallucinations during quiz generation via strict system prompts and context injection.
-- **Lesson**: Prompt engineering requires rigorous testing; structuring LLM output into strict JSON formats is
-  essential for reliable frontend rendering.
-
-### 3. Portfolio Website — AI Engineer SPA
+### 4. Portfolio Website — AI Engineer SPA
 - **Type**: Web Engineering & SPA Architecture
 - **Status**: Live
 - **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Firebase Hosting
@@ -145,60 +161,78 @@ practical expertise across the full AI and web development stack.
 
 ## Education & Certifications
 
-- **M.Sc. Artificial Intelligence** — St. Joseph's College (Autonomous), Tiruchirappalli (Currently Enrolled)
+### Education (LinkedIn Verified)
+1. **Master of Science, AI** — St. Joseph's College (Autonomous), Tiruchirappalli (July 2025 – May 2027)
+2. **Bachelor of Science, Data science** — Thiagarajar College, Madurai (August 2022 – May 2025, 65.06%)
+3. **HSC, BIO-MATHS (Maths Physics Chemistry Biology)** — St. Mary's Higher Secondary School, Madurai (June 2020 – July 2022)
+
+### Certifications (LinkedIn Verified)
 - **IBM Data Analyst Specialization** — IBM via Coursera
   - Issued: August 28, 2024 | Credential ID: DDWFE1NB25DZ
   - Skills: Python, SQL, Excel, Data Analysis, Data Visualization, IBM Cognos Analytics, Data Wrangling
   - Verify: https://www.coursera.org/account/accomplishments/specialization/DDWFE1NB25DZ
+- **Yuva AI for All** — NIELIT / Skill India
+  - Issued: March 2026 | Credential ID: 2026030427766558-105732
+  - Skills: Prompt Engineering, Generative AI, Responsible AI
 - **Introduction to Machine Learning (Tamil)** — NPTEL / IIT Madras
   - Issued: March 2026 | Credential ID: NPTEL26CS73S470101904
   - Skills: Machine Learning, Classification, Regression, Model Evaluation
   - Verify: https://nptel.ac.in/noc/E_Certificate/NOC26CS73S47010190403177914
-- **Yuva AI for All** — NIELIT / Skill India
-  - Issued: March 2026 | Credential ID: 2026030427766558-105732
-  - Skills: Prompt Engineering, Generative AI, Responsible AI
+- **Web Development and Software Engineering** — HodoLabs Technologies
+  - Issued: June 2026 | Credential ID: HL/TRN/SJCT/2026/822
+  - Skills: Web Development, Software Engineering, React.js, Node.js, PostgreSQL, REST APIs
 
 ---
 
 ## Frequently Asked Questions
 
 **Who is Sahaya Savari?**
-Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial
-Intelligence at St. Joseph's College (Autonomous), Trichy, India. His work spans Machine Learning systems,
-Python APIs, React web applications, and LLM-integrated tools. Portfolio: https://sahayasavari.dev
+Sahaya Savari F is a Student AI/ML Engineer pursuing an M.Sc. in Artificial
+Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli, and a Digital Marketing Intern at HodoLabs. His work spans practical Machine Learning systems,
+React/TypeScript web applications, and web performance engineering. Portfolio: https://sahayasavari.dev
 
 **What does Sahaya Savari specialize in?**
-He specializes in AI/ML Engineering (TensorFlow, PyTorch, OpenAI API), Python backend development (FastAPI, Flask),
-Full Stack web development (React, TypeScript, Firebase), and LLM application architecture including prompt
-engineering and AI agent design.
+He specializes in Software Engineering, Backend Development, and Applied AI, with hands-on proficiency in PostgreSQL, Node.js, React.js, and Python.
 
 **What technologies does Sahaya Savari use?**
-Python, FastAPI, Flask, React 19, TypeScript, Tailwind CSS v4, Vite 7, Firebase Hosting, TensorFlow, PyTorch,
-OpenAI API, Pydantic V2, IndexedDB, Framer Motion, GitHub Actions.
+PostgreSQL, Node.js, React.js, Python, Scikit-learn, Next.js, TypeScript, Tailwind CSS, Vite, SQL, Git, GitHub, Gemini API, Vercel, Firebase Hosting, IndexedDB, and Capacitor.
 
 **What AI projects has Sahaya Savari built?**
-PrepMind AI: a Python LLM pipeline that generates adaptive flashcards and mock exams from study materials.
-Portfolio Website: features a complete AI-discoverability architecture with schema.org JSON-LD, static
-pre-rendering, and llms.txt documentation for LLM indexing agents.
+- NelSync AI: Overall Champion at AIxcelerate 2026 Hackathon (66 teams) — an AI layer for paddy procurement in Tamil Nadu with predictive procurement, optimization, and supply-chain logistics.
+- VibeCraft 2026: Top 5 Finalist (out of 110 teams, 440 participants) at YUVA'26 — unified campus platform combining Student Attendance Predictor & Planner with Free Class Locator & Smart Search Floor Manager.
+- PrepMind AI: a live web-based exam prep platform with topic-based MCQ practice, interactive study tools, AI tutoring, and offline-resilient fallback questions.
+- Daily Spark: an offline-first habit tracker with IndexedDB storage and Capacitor Android build.
+- Portfolio Website: high-performance web platform featuring schema.org JSON-LD, static pre-rendering, and llms.txt documentation for LLM indexing agents.
+
+**What work experience does Sahaya Savari have?**
+- HodoLabs (June 2026 - Present): Digital Marketing Intern — conducted technical SEO audits, PageSpeed optimizations, site architecture reviews, and web performance workflows across production web properties.
+- HodoLabs (May 2026 - June 2026): Web Development & Software Engineering Trainee — completed intensive 1-month training covering modern web architecture, responsive React design, Node.js backend fundamentals, and PostgreSQL.
+
+**What awards and honors has Sahaya Savari received?**
+1. AIxcelerate 2026 - Overall Champion (Team NelSync AI, 66 teams) · Dhanalakshmi Srinivasan University
+2. Top 5 Finalist (Out of 110 Teams, 440 Participants) - VibeCraft 2026 Hackathon (Team NeuraGenZers, SRM IST Trichy YUVA'26)
+3. BOOTFEST 2K26 - Quiz Winner, CTF Runner-up & Overall Runner-up (Bishop Heber College PG Dept of CS)
+4. Achievers Day - Interdepartmental Contest Winner (Certificate of Merit) (St. Joseph's College Autonomous)
+5. AION 2K26 – Event In-Charge (Treasure Titans) (Department of AI, St. Joseph's College Autonomous)
 
 **Where can Sahaya Savari's projects be found?**
 - Project case studies: https://sahayasavari.dev/projects
+- NelSync AI case study: https://sahayasavari.dev/projects/nelsync-ai
+- VibeCraft 2026 case study: https://sahayasavari.dev/projects/vibecraft-2026
 - Daily Spark case study: https://sahayasavari.dev/projects/daily-spark
 - GitHub repositories: https://github.com/sahaya-savari
 
 **Where can Sahaya Savari's technical writing be found?**
-Technical blog at https://blog.sahayasavari.dev — covering AI Agent design, Pydantic V2, Tailwind CSS v4,
-and GitHub Actions CI/CD pipelines.
+- In-portfolio technical writing covering Core Web Vitals optimization, responsive architecture, and offline-first web applications.
 
 **How can I contact or hire Sahaya Savari?**
-Email: contact@sahayasavari.dev — LinkedIn: https://www.linkedin.com/in/sahaya-savari
-He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions.
+Email: contact@sahayasavari.dev — Mobile: +91 6385648514 — LinkedIn: https://www.linkedin.com/in/sahaya-savari
+He is currently available for Summer 2027 internships in Software Engineering, Backend Development, and Applied AI.
 
 **What certifications does Sahaya Savari hold?**
-IBM Data Analyst Specialization (Coursera, 2024), Introduction to Machine Learning (NPTEL/IIT Madras, 2026),
-and Yuva AI for All (NIELIT/Skill India, 2026).
+IBM Data Analyst Specialization (Coursera), Yuva AI for All (NIELIT), Introduction to Machine Learning (NPTEL / IIT Madras), and Web Development and Software Engineering (HodoLabs).
 
 ---
 
 *Source: https://sahayasavari.dev | Extended Reference for LLM Indexing Agents*
-*Last Updated: 2026-08-21*
+*Last Updated: 2026-11-07*
