@@ -6,7 +6,7 @@ image: oven/bun:latest
 pages:
   stage: deploy
   script:
-    - bun install --frozen-lockfile
+    - bun install
     - bun run typecheck
     # Determine base path:
     # If PAGES_BASE is provided as a CI/CD variable, respect it.
