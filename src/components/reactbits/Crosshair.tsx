@@ -389,10 +389,16 @@ const Crosshair = ({
       if (!event.relatedTarget) leave();
     };
 
+    let scrollRaf = 0;
     const onScroll = () => {
-      if (!state.inside) return;
-      retarget(document.elementFromPoint(state.clientX, state.clientY));
-      wake();
+      if (!state.inside || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = 0;
+        if (state.inside) {
+          retarget(document.elementFromPoint(state.clientX, state.clientY));
+          wake();
+        }
+      });
     };
 
     const observer = new ResizeObserver(resize);
@@ -409,6 +415,7 @@ const Crosshair = ({
     return () => {
       alive = false;
       cancelAnimationFrame(raf);
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
       observer.disconnect();
       scope.removeEventListener("pointermove", onMove);
       scope.removeEventListener("pointerdown", onDown);

@@ -25,9 +25,10 @@ export default function IntersectionLazy({
   children,
   fallbackHeight = "100vh",
 }: IntersectionLazyProps) {
-  // Identical initial markup on the server and client prevents hydration recovery.
-  const [hasIntersected, setHasIntersected] = useState(true);
-  const [isStable, setIsStable] = useState(true);
+  const isServer = typeof window === "undefined";
+  const hasHash = !isServer && Boolean(window.location.hash);
+  const [hasIntersected, setHasIntersected] = useState(isServer || hasHash);
+  const [isStable, setIsStable] = useState(isServer || hasHash);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // Intersection observer — fire early (400px before viewport)
@@ -48,7 +49,7 @@ export default function IntersectionLazy({
           observer.disconnect();
         }
       },
-      { rootMargin: "400px" },
+      { rootMargin: "600px" },
     );
 
     if (wrapperRef.current) observer.observe(wrapperRef.current);
@@ -87,16 +88,13 @@ export default function IntersectionLazy({
     return () => ro.disconnect();
   }, [hasIntersected, isStable]);
 
-  // Before intersection: stable placeholder div with fixed height
-  if (!hasIntersected) {
-    return <div ref={wrapperRef} style={{ minHeight: fallbackHeight }} aria-hidden="false" />;
-  }
-
   // While content has loaded but height hasn't stabilised yet: keep minHeight
   // so scroll position doesn't jump as children paint
   return (
     <div ref={wrapperRef} style={isStable ? undefined : { minHeight: fallbackHeight }}>
-      <Suspense fallback={<div style={{ minHeight: fallbackHeight }} />}>{children}</Suspense>
+      <Suspense fallback={<div style={{ minHeight: fallbackHeight }} />}>
+        {hasIntersected ? children : <div style={{ minHeight: fallbackHeight }} />}
+      </Suspense>
     </div>
   );
 }

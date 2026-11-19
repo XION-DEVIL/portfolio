@@ -14,32 +14,51 @@ export const revealLazySections = () => {
 };
 
 /**
- * Preload remaining lazy sections when browser is idle to ensure instant, stable navigation
- * without blocking first-paint or LCP.
+ * Preload remaining lazy sections sequentially when browser is truly idle to ensure
+ * instant, stable navigation without locking the main thread or causing input delay.
  */
 export const initLazyPreload = () => {
   if (typeof window === "undefined") return;
-  const preload = () => {
-    // Dynamic import fetches bundles into browser HTTP cache during idle frames
-    import("../sections/AboutSection");
-    import("../sections/ExperienceSection");
-    import("../sections/SkillsSection");
-    import("../sections/StatsSection");
-    import("../sections/ProjectsSection");
-    import("../sections/BlogSection");
-    import("../sections/OpenSourceSection");
-    import("../sections/CertificationsSection");
-    import("../sections/ContactSection");
+
+  const preloads = [
+    () => import("../sections/AboutSection"),
+    () => import("../sections/ExperienceSection"),
+    () => import("../sections/SkillsSection"),
+    () => import("../sections/StatsSection"),
+    () => import("../sections/ProjectsSection"),
+    () => import("../sections/BlogSection"),
+    () => import("../sections/OpenSourceSection"),
+    () => import("../sections/CertificationsSection"),
+    () => import("../sections/ContactSection"),
+  ];
+
+  let current = 0;
+  const runNext = (deadline?: { timeRemaining: () => number }) => {
+    while (current < preloads.length && (!deadline || deadline.timeRemaining() > 10)) {
+      preloads[current++]();
+    }
+    if (current < preloads.length) {
+      if ("requestIdleCallback" in window) {
+        (
+          window as unknown as {
+            requestIdleCallback: (cb: (d: { timeRemaining: () => number }) => void, opts?: { timeout: number }) => void;
+          }
+        ).requestIdleCallback(runNext, { timeout: 8000 });
+      } else {
+        setTimeout(() => runNext(), 500);
+      }
+    }
   };
 
+  // Wait until main thread settles after initial paint
   if ("requestIdleCallback" in window) {
     (
       window as unknown as {
-        requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => void;
+        requestIdleCallback: (cb: (d: { timeRemaining: () => number }) => void, opts?: { timeout: number }) => void;
       }
-    ).requestIdleCallback(preload, { timeout: 1800 });
+    ).requestIdleCallback(runNext, { timeout: 8000 });
   } else {
-    setTimeout(preload, 400);
+    setTimeout(() => runNext(), 2000);
   }
 };
 

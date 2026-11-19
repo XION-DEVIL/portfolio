@@ -68,23 +68,52 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches;
     if (isReducedMotion || isMobileOrTouch) return;
 
-    const timer = setTimeout(() => {
-      setEnableInteractiveEffects(true);
-    }, 150);
+    let idleId: number | undefined;
+    let timerId: ReturnType<typeof setTimeout> | undefined;
 
-    const onUserInteraction = () => {
+    const enable = () => {
       setEnableInteractiveEffects(true);
+    };
+
+    // Warm up interactive 3D physics badge after page is fully settled, or on hover
+    if ("requestIdleCallback" in window) {
+      idleId = (
+        window as unknown as {
+          requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number;
+        }
+      ).requestIdleCallback(enable, { timeout: 12000 });
+    } else {
+      timerId = setTimeout(enable, 8000);
+    }
+
+    // On user interaction: defer activation so the interaction itself runs unblocked
+    const onUserInteraction = () => {
+      window.removeEventListener("pointerdown", onUserInteraction);
+      if ("requestIdleCallback" in window) {
+        (
+          window as unknown as {
+            requestIdleCallback: (cb: () => void) => number;
+          }
+        ).requestIdleCallback(enable);
+      } else {
+        setTimeout(enable, 150);
+      }
     };
     window.addEventListener("pointerdown", onUserInteraction, { once: true, passive: true });
 
     return () => {
-      clearTimeout(timer);
+      if (idleId && "cancelIdleCallback" in window) {
+        (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(
+          idleId,
+        );
+      }
+      if (timerId) clearTimeout(timerId);
       window.removeEventListener("pointerdown", onUserInteraction);
     };
   }, []);
 
   // Ambient hero video:
-  // Starts on load / after 1s or immediately on user interaction
+  // Starts after page has settled or smoothly on first user interaction
   useEffect(() => {
     if (typeof window === "undefined") return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -97,16 +126,26 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     if (prefersReducedMotion || constrainedConnection) return;
 
     const start = () => setShouldLoadVideo(true);
-    const timer = window.setTimeout(start, 1000);
-    window.addEventListener("load", start, { once: true });
+    const startDeferred = () => {
+      if ("requestIdleCallback" in window) {
+        (
+          window as unknown as {
+            requestIdleCallback: (cb: () => void) => void;
+          }
+        ).requestIdleCallback(start);
+      } else {
+        setTimeout(start, 100);
+      }
+    };
+
+    const timer = window.setTimeout(startDeferred, 3000);
 
     const events = ["scroll", "pointerdown", "touchstart", "keydown", "wheel"] as const;
-    events.forEach((e) => window.addEventListener(e, start, { once: true, passive: true }));
+    events.forEach((e) => window.addEventListener(e, startDeferred, { once: true, passive: true }));
 
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener("load", start);
-      events.forEach((e) => window.removeEventListener(e, start));
+      events.forEach((e) => window.removeEventListener(e, startDeferred));
     };
   }, []);
 
@@ -189,7 +228,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               </h1>
 
               {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
-              <div className="relative order-1 md:order-2 shrink-0 group">
+              <div
+                className="relative order-1 md:order-2 shrink-0 group"
+                onPointerEnter={() => setEnableInteractiveEffects(true)}
+              >
                 <div className="relative w-[185px] h-[265px] sm:w-[215px] sm:h-[305px] lg:w-[235px] lg:h-[335px]">
                   {enableInteractiveEffects ? (
                     <div className="absolute -inset-x-[60px] -top-6 -bottom-6 sm:-inset-x-[70px] md:-inset-x-[95px] lg:-inset-x-[115px]">

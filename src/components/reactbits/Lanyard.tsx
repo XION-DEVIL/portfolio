@@ -343,7 +343,10 @@ const buildBandGeometry = (count) => {
   return geometry;
 };
 
+let cachedEnvironment = null;
+
 const buildEnvironment = (renderer) => {
+  if (cachedEnvironment) return cachedEnvironment;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0.035, 0.035, 0.04);
   const geometry = new THREE.PlaneGeometry(1, 1);
@@ -374,6 +377,7 @@ const buildEnvironment = (renderer) => {
   pmrem.dispose();
   geometry.dispose();
   materials.forEach((material) => material.dispose());
+  cachedEnvironment = target;
   return target;
 };
 
@@ -384,7 +388,11 @@ const makeCanvasTexture = (canvas, anisotropy) => {
   return texture;
 };
 
+let cachedGrainTexture = null;
+let cachedWeaveTexture = null;
+
 const buildGrainTexture = () => {
+  if (cachedGrainTexture) return cachedGrainTexture;
   const size = 128;
   const canvas = document.createElement("canvas");
   canvas.width = size;
@@ -419,10 +427,12 @@ const buildGrainTexture = () => {
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(5, 7);
+  cachedGrainTexture = texture;
   return texture;
 };
 
 const buildWeaveTexture = () => {
+  if (cachedWeaveTexture) return cachedWeaveTexture;
   const size = 128;
   const threads = 8;
   const random = seeded(19);
@@ -1293,8 +1303,19 @@ const Lanyard = ({
       body.angular.addScaledVector(up, FLIP_SPIN * direction);
     };
 
+    const isInsideContainer = (cx, cy, margin = 40) => {
+      const rect = container.getBoundingClientRect();
+      return (
+        cx >= rect.left - margin &&
+        cx <= rect.right + margin &&
+        cy >= rect.top - margin &&
+        cy <= rect.bottom + margin
+      );
+    };
+
     const onPointerDown = (event) => {
       if (!settingsRef.current.interactive || event.button > 0) return;
+      if (!isInsideContainer(event.clientX, event.clientY)) return;
       toPointer(event);
       const hit = pickCard();
       if (!hit) return;
@@ -1321,6 +1342,13 @@ const Lanyard = ({
 
     const onPointerMove = (event) => {
       if (!settingsRef.current.interactive) return;
+      if (!sim.grab && !isInsideContainer(event.clientX, event.clientY)) {
+        if (hovering) {
+          hovering = false;
+          setCursor("");
+        }
+        return;
+      }
       toPointer(event);
       if (sim.grab) {
         if (press && Math.hypot(event.clientX - press.x, event.clientY - press.y) > 6) press = null;
@@ -1345,7 +1373,9 @@ const Lanyard = ({
 
     const onTouchStart = (event) => {
       if (!settingsRef.current.interactive || event.touches.length !== 1) return;
-      toPointer(event.touches[0]);
+      const t = event.touches[0];
+      if (!isInsideContainer(t.clientX, t.clientY)) return;
+      toPointer(t);
       if (pickCard()) event.preventDefault();
     };
 
