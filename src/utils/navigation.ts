@@ -41,7 +41,10 @@ export const initLazyPreload = () => {
       if ("requestIdleCallback" in window) {
         (
           window as unknown as {
-            requestIdleCallback: (cb: (d: { timeRemaining: () => number }) => void, opts?: { timeout: number }) => void;
+            requestIdleCallback: (
+              cb: (d: { timeRemaining: () => number }) => void,
+              opts?: { timeout: number },
+            ) => void;
           }
         ).requestIdleCallback(runNext, { timeout: 8000 });
       } else {
@@ -54,7 +57,10 @@ export const initLazyPreload = () => {
   if ("requestIdleCallback" in window) {
     (
       window as unknown as {
-        requestIdleCallback: (cb: (d: { timeRemaining: () => number }) => void, opts?: { timeout: number }) => void;
+        requestIdleCallback: (
+          cb: (d: { timeRemaining: () => number }) => void,
+          opts?: { timeout: number },
+        ) => void;
       }
     ).requestIdleCallback(runNext, { timeout: 8000 });
   } else {

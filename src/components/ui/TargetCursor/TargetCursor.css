@@ -52,8 +52,12 @@
 }
 
 @keyframes target-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .target-cursor-spin-active {
@@ -71,5 +75,3 @@ body.hide-default-cursor,
 body.hide-default-cursor * {
   cursor: none !important;
 }
-
-

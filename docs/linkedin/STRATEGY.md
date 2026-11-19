@@ -1,6 +1,7 @@
 # 💼 LinkedIn Optimization Strategy
 
 ## Goal
+
 Transform Sahaya Savari F's LinkedIn profile from a student profile to a Junior/Entry-Level Software & AI Engineer profile that attracts recruiters from top tech companies.
 
 ---
@@ -8,10 +9,12 @@ Transform Sahaya Savari F's LinkedIn profile from a student profile to a Junior/
 ## 1. Profile Core Elements
 
 ### **Headline Formula**
+
 `AI Engineer & Full-Stack Developer | Python, React, TypeScript | M.Sc. AI '26 @ St. Joseph's College (Autonomous), Trichy`
-*Why:* Highly searchable keywords (AI Engineer, Full-Stack, Python, React, TypeScript) and immediately establishes M.Sc. AI degree and graduation year.
+_Why:_ Highly searchable keywords (AI Engineer, Full-Stack, Python, React, TypeScript) and immediately establishes M.Sc. AI degree and graduation year.
 
 ### **About Section**
+
 ```text
 I am an AI Engineer and Full Stack Developer specializing in building scalable web applications, machine learning solutions, and LLM agent pipelines. Currently pursuing an M.Sc. in Artificial Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli (Class of 2026), I have a strong foundation in Python, FastAPI, React 19, TypeScript, and modern AI engineering.
 
@@ -30,10 +33,12 @@ Tools & Infra: Git, GitHub Actions CI/CD, Firebase Hosting, Docker
 ## 2. Experience & Projects Section
 
 ### **Project Formatting**
+
 For projects like **PrepMind AI**:
+
 - **Title:** AI Engineer / Architectural Concept (Project: PrepMind AI)
 - **Status:** In Development / Architectural Concept & LLM Pipeline Prototype
-- **Description:** 
+- **Description:**
   - Designing an AI-driven interview preparation platform and LLM study companion using FastAPI, Python, and React.
   - Architecting prompt chains and structured output validation with Pydantic V2 for reliable concept quizzes and dynamic flashcards.
   - Designing responsive client interfaces with React and Tailwind CSS.
@@ -49,5 +54,6 @@ For projects like **PrepMind AI**:
 ---
 
 ## 4. Networking Strategy
+
 - **Alumni:** Connect with St. Joseph's College alumni working across target tech companies.
-- **Recruiters:** Send personalized connection requests to technical recruiters: *"Hi [Name], I'm an M.Sc. AI student specializing in Python, LLM applications, and React. I love the engineering work being done at [Company] and would love to connect to follow your updates!"*
+- **Recruiters:** Send personalized connection requests to technical recruiters: _"Hi [Name], I'm an M.Sc. AI student specializing in Python, LLM applications, and React. I love the engineering work being done at [Company] and would love to connect to follow your updates!"_

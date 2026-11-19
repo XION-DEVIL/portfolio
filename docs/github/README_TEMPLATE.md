@@ -40,12 +40,14 @@
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/sahaya-savari/[project-repo].git
    cd [project-repo]
    ```
 
 2. **Setup Frontend:**
+
    ```bash
    cd frontend
    npm install
@@ -72,6 +74,7 @@
 ## 👨‍💻 Author
 
 **Sahaya Savari F**
+
 - GitHub: [@sahaya-savari](https://github.com/sahaya-savari)
 - LinkedIn: [Sahaya Savari F](https://www.linkedin.com/in/sahaya-savari)
 - Portfolio: [sahayasavari.dev](https://sahayasavari.dev)
