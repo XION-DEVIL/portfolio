@@ -66,11 +66,6 @@ const CardImageSlider = ({
   if (photoList.length === 0) return null;
 
   const currentPhoto = photoList[currentIndex] || photoList[0];
-  const isPortrait =
-    currentPhoto?.url?.includes("portrait") ||
-    currentPhoto?.url?.includes("achievers-day-portrait");
-  const isCertificate = currentPhoto?.type === "certificate" || currentPhoto?.url?.includes("cert");
-  const shouldContain = isPortrait || isCertificate;
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -92,28 +87,23 @@ const CardImageSlider = ({
         "relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 bg-neutral-900/90 cursor-pointer border border-white/10 group-hover:border-white/25 transition-colors"
       }
     >
-      {/* Ambient blurred backdrop so portrait photos and certificates fit without harsh letterboxing */}
-      <div
-        className="absolute inset-0 bg-cover bg-center filter blur-xl opacity-30 scale-110 pointer-events-none"
-        style={{ backgroundImage: `url(${currentPhoto.url})` }}
-      />
+      {/* Clean high-contrast dark studio backing - eliminates any blurry backdrop artifacts */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#111622] via-[#0b0e14] to-[#06080c] pointer-events-none" />
 
-      {/* Main Photo: object-contain with gentle padding ensures user's head, face, and certificate are 100% visible */}
-      <img
-        key={currentPhoto.url}
-        src={currentPhoto.url}
-        alt={`${title} - image ${currentIndex + 1}`}
-        loading="lazy"
-        className={`w-full h-full relative z-10 ${
-          shouldContain ? "object-contain p-2 object-center" : "object-contain p-1 object-center"
-        } transition-transform duration-500 group-hover:scale-[1.02]`}
-      />
-
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+      {/* Main Image: 100% visible, centered, fitted with clean padding so no heads, people, or text are cropped */}
+      <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-5 z-10 pointer-events-none">
+        <img
+          key={currentPhoto.url}
+          src={currentPhoto.url}
+          alt={`${title} - image ${currentIndex + 1}`}
+          loading="eager"
+          className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl [image-rendering:-webkit-optimize-contrast] [image-rendering:high-quality]"
+        />
+      </div>
 
       {/* PHOTO COUNT BADGE */}
       {photoList.length > 1 && (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[11px] font-mono text-white/90">
+        <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-xs font-mono text-white/90 shadow-lg">
           <ImageIcon className="w-3.5 h-3.5 text-white/70" aria-hidden="true" />
           <span>
             {currentIndex + 1} / {photoList.length}
@@ -122,9 +112,9 @@ const CardImageSlider = ({
       )}
 
       {/* QUICK VIEW ON HOVER */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px] pointer-events-none">
-        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-black text-xs font-body font-semibold shadow-lg">
-          <Maximize2 className="w-3.5 h-3.5" aria-hidden="true" />
+      <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30 backdrop-blur-[2px] pointer-events-none">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-body font-semibold shadow-2xl">
+          <Maximize2 className="w-4 h-4" aria-hidden="true" />
           <span>View Lightbox</span>
         </div>
       </div>
@@ -135,7 +125,7 @@ const CardImageSlider = ({
           <button
             type="button"
             onClick={handlePrev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-md"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-lg"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -143,14 +133,14 @@ const CardImageSlider = ({
           <button
             type="button"
             onClick={handleNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-md"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-lg"
             aria-label="Next image"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
 
           {/* DOT INDICATORS (PROGRESS 1 BY 1) */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10">
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 shadow-lg">
             {photoList.map((_, i) => (
               <button
                 key={i}
@@ -160,7 +150,7 @@ const CardImageSlider = ({
                   setCurrentIndex(i);
                 }}
                 className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                  i === currentIndex ? "bg-amber-400 w-3.5" : "bg-white/40 w-1.5 hover:bg-white/70"
+                  i === currentIndex ? "bg-amber-400 w-4" : "bg-white/40 w-1.5 hover:bg-white/70"
                 }`}
                 aria-label={`Go to image ${i + 1}`}
               />
@@ -176,6 +166,7 @@ const ExperienceSection = memo(() => {
   const [activeTab, setActiveTab] = useState<"experience" | "awards">("awards");
   const [selectedAward, setSelectedAward] = useState<HonorAward | null>(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
   const [featuredHonorIndex, setFeaturedHonorIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -201,22 +192,26 @@ const ExperienceSection = memo(() => {
   const openLightbox = useCallback((award: HonorAward, photoIdx = 0) => {
     setSelectedAward(award);
     setActivePhotoIndex(photoIdx);
+    setIsZoomed(false);
     lockScroll();
   }, []);
 
   const closeLightbox = useCallback(() => {
     setSelectedAward(null);
     setActivePhotoIndex(0);
+    setIsZoomed(false);
     unlockScroll();
   }, []);
 
   const nextPhoto = useCallback(() => {
     if (!selectedAward || !selectedAward.images) return;
+    setIsZoomed(false);
     setActivePhotoIndex((prev) => (prev + 1) % selectedAward.images!.length);
   }, [selectedAward]);
 
   const prevPhoto = useCallback(() => {
     if (!selectedAward || !selectedAward.images) return;
+    setIsZoomed(false);
     setActivePhotoIndex(
       (prev) => (prev - 1 + selectedAward.images!.length) % selectedAward.images!.length,
     );
@@ -412,19 +407,19 @@ const ExperienceSection = memo(() => {
                 >
                   {/* LEFT: Standalone Large Event Photo Showcase */}
                   <div className="w-full lg:w-1/2 flex flex-col">
-                    <div className="relative w-full h-[320px] sm:h-[400px] lg:h-full lg:min-h-[460px] rounded-3xl overflow-hidden bg-neutral-900/90 border border-white/10 shadow-2xl group flex items-center justify-center">
+                    <div className="relative w-full h-[320px] sm:h-[400px] lg:h-full lg:min-h-[480px] rounded-3xl overflow-hidden bg-neutral-900/90 border border-white/10 hover:border-white/25 transition-colors shadow-2xl group flex items-center justify-center">
                       <CardImageSlider
                         images={award.images}
                         fallbackCover={award.coverImage}
                         title={award.title}
                         onOpenLightbox={(photoIdx) => openLightbox(award, photoIdx)}
-                        className="w-full h-full absolute inset-0 cursor-pointer"
+                        className="w-full h-full absolute inset-0 cursor-pointer group"
                       />
                     </div>
                   </div>
 
                   {/* RIGHT: Standalone Dark Glass Detail Card */}
-                  <div className="w-full lg:w-1/2 relative rounded-3xl border border-white/10 bg-[#0d1117]/95 backdrop-blur-2xl p-7 sm:p-9 lg:p-10 flex flex-col justify-between shadow-2xl min-h-[420px] lg:min-h-[460px]">
+                  <div className="w-full lg:w-1/2 relative rounded-3xl border border-white/10 bg-[#0d1117]/95 backdrop-blur-2xl p-7 sm:p-9 lg:p-10 flex flex-col justify-between shadow-2xl min-h-[460px] lg:min-h-[480px]">
                     <div>
                       {/* Top Row: Squircle Trophy Icon + Date */}
                       <div className="flex items-center justify-between gap-3 mb-4">
@@ -439,7 +434,7 @@ const ExperienceSection = memo(() => {
                       </div>
 
                       {/* Big Heading */}
-                      <h3 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-3 tracking-tight leading-snug">
+                      <h3 className="font-heading font-bold text-xl sm:text-2xl lg:text-3xl text-white mb-3 tracking-tight leading-tight">
                         {award.title}
                       </h3>
 
@@ -610,26 +605,48 @@ const ExperienceSection = memo(() => {
                   {selectedAward.date}
                 </span>
               </div>
-              <button
-                type="button"
-                onClick={closeLightbox}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-                aria-label="Close details modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <a
+                  href={selectedAward.images[activePhotoIndex].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono border border-white/15 transition-all shadow-sm"
+                  title="Open original high-definition photo in new tab"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">View Original HD</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={closeLightbox}
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  aria-label="Close details modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             {/* MODAL BODY (SCROLLABLE) */}
             <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
               {/* IMAGE VIEWER */}
-              <div className="relative rounded-2xl overflow-hidden bg-black/60 border border-white/10 flex items-center justify-center min-h-[260px] sm:min-h-[400px]">
+              <div className="relative rounded-2xl overflow-hidden bg-black/60 border border-white/10 flex items-center justify-center min-h-[300px] sm:min-h-[500px]">
                 <div className="relative w-full flex flex-col items-center">
-                  <div className="w-full flex items-center justify-center p-2 sm:p-4">
+                  <div
+                    onClick={() => setIsZoomed((prev) => !prev)}
+                    className={`w-full flex items-center justify-center p-2 sm:p-4 overflow-auto transition-all ${
+                      isZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
+                    }`}
+                    title={isZoomed ? "Click to reset zoom" : "Click to zoom 150%"}
+                  >
                     <img
                       src={selectedAward.images[activePhotoIndex].url}
                       alt={selectedAward.images[activePhotoIndex].caption}
-                      className={`max-h-[50vh] sm:max-h-[55vh] w-auto max-w-full object-contain rounded-xl shadow-lg`}
+                      className={`${
+                        isZoomed
+                          ? "max-h-none max-w-none scale-125 sm:scale-150 transition-transform duration-300"
+                          : "max-h-[70vh] sm:max-h-[78vh] w-auto max-w-full transition-transform duration-300"
+                      } object-contain rounded-xl shadow-2xl [image-rendering:-webkit-optimize-contrast] [image-rendering:high-quality]`}
                     />
                   </div>
 

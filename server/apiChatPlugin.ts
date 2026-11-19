@@ -50,7 +50,7 @@ export function apiChatPlugin(): Plugin {
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                  model: "qwen/qwen3.8-27b",
+                  model: process.env.GROQ_MODEL || "llama-3.3-70b-versatile",
                   messages: [
                     { role: "system", content: systemPrompt },
                     ...userMessages.slice(-6).map((m: { role: string; content: string }) => ({
