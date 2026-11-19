@@ -1,3 +1,8 @@
+# Local plan and scratch files
+PLAN.md
+TEMP.md
+portfolio.md
+
 # Logs
 logs
 *.log
@@ -6,6 +11,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.npm-cache/
 
 node_modules
 dist

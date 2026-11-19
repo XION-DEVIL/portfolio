@@ -50,9 +50,9 @@ interface HeroSectionProps {
 }
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
-// Lovable Spotlight Studio ambient flower visual assets
-const HERO_POSTER = `${import.meta.env.BASE_URL}lovable-flower-poster.webp`;
-const HERO_VIDEO = `${import.meta.env.BASE_URL}lovable-flower.mp4`;
+// Ambient hero background visual assets
+const HERO_POSTER = `${import.meta.env.BASE_URL}hero-ambient-poster.webp`;
+const HERO_VIDEO = `${import.meta.env.BASE_URL}hero-ambient.mp4`;
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -83,7 +83,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
     };
   }, []);
 
-  // Ambient botanical flowers video from Lovable Spotlight Studio:
+  // Ambient hero video:
   // Starts on load / after 1s or immediately on user interaction
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -117,13 +117,13 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       aria-label="Introduction"
       className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-black"
     >
-      {/* Background ambient flower visual from Lovable Spotlight Studio */}
+      {/* Background ambient visual */}
       <div
         className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none select-none overflow-hidden"
         aria-hidden="true"
       >
         <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
-          {/* Ambient flower poster image */}
+          {/* Ambient poster image */}
           <img
             src={HERO_POSTER}
             alt=""
@@ -137,7 +137,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             aria-hidden="true"
           />
 
-          {/* Ambient flower video */}
+          {/* Ambient video */}
           {shouldLoadVideo && (
             <video
               src={HERO_VIDEO}
@@ -159,7 +159,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
         </div>
       </div>
 
-      {/* Ambient atmospheric dark overlays matching Lovable architecture */}
+      {/* Ambient atmospheric dark overlays */}
       <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" aria-hidden="true" />
       <div
         className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1] pointer-events-none"

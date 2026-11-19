@@ -60,8 +60,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: `${import.meta.env.BASE_URL}favicon.png` },
-      { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}favicon.png` },
+      { rel: "icon", type: "image/svg+xml", href: `${import.meta.env.BASE_URL}favicon.svg?v=2` },
+      { rel: "icon", type: "image/png", href: `${import.meta.env.BASE_URL}favicon.png?v=2` },
+      { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}favicon.png?v=2` },
       { rel: "manifest", href: `${import.meta.env.BASE_URL}manifest.json` },
       { rel: "me", href: "https://github.com/sahaya-savari" },
       { rel: "me", href: "https://www.linkedin.com/in/sahaya-savari" },

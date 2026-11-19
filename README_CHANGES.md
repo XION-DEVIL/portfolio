@@ -141,14 +141,13 @@ Audited and synchronized all files across the repository against the official Li
 
 _Note: Per user instructions, this document and the updated README are preserved locally and have not been pushed to the remote repository._
 
-
 ---
 
 ## 🎨 Botanical Backdrop Framing & Contact Refinement (Prompt 9 & 10)
 
-| Enhancement | Problem Addressed | Resolution |
-| :--- | :--- | :--- |
-| **Unified Contact Email** | Dual emails (`sahayasavari.info@gmail.com` and `contact@sahayasavari.dev`) caused recruiter confusion. | Completely eliminated `sahayasavari.info@gmail.com` across all source code, CLI handlers, SEO schemas, public LLM dossiers, and Cloudflare Worker prompts. Single canonical email: `contact@sahayasavari.dev`. |
-| **Hero Text Clipping Fix** | "I am a [dent AI/ML Engir]" was horizontally clipped on both sides in the glass role capsule. | Removed the rigid `max-w-[340px]` constraint, tuned font size clamp from `clamp(1.4rem, ...)` to `clamp(1.05rem, 2.4vw, 1.85rem)`, and added `shrink-0 max-w-full`. |
-| **Framed Botanical Canvas** | Content below hero abruptly transitioned to a pitch-black void, disconnected from the botanical garden theme. | Extended the ambient botanical visual (`hero-ambient-poster.webp`) under the sections, framed by left and right borders (`border-x border-white/[0.08] max-w-screen-xl mx-auto`), layered with dark contrast overlays and Magic UI `DotPattern`. |
-| **About Section Visual Harmony** | Disjointed Mux video with dark wavy abstract texture clashed with the botanical hero flowers. | Replaced the external Mux video with the synchronized botanical ambient visual and gradient overlay for smooth visual continuity. |
+| Enhancement                      | Problem Addressed                                                                                             | Resolution                                                                                                                                                                                                                                       |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Unified Contact Email**        | Dual emails (`sahayasavari.info@gmail.com` and `contact@sahayasavari.dev`) caused recruiter confusion.        | Completely eliminated `sahayasavari.info@gmail.com` across all source code, CLI handlers, SEO schemas, public LLM dossiers, and Cloudflare Worker prompts. Single canonical email: `contact@sahayasavari.dev`.                                   |
+| **Hero Text Clipping Fix**       | "I am a [dent AI/ML Engir]" was horizontally clipped on both sides in the glass role capsule.                 | Removed the rigid `max-w-[340px]` constraint, tuned font size clamp from `clamp(1.4rem, ...)` to `clamp(1.05rem, 2.4vw, 1.85rem)`, and added `shrink-0 max-w-full`.                                                                              |
+| **Framed Botanical Canvas**      | Content below hero abruptly transitioned to a pitch-black void, disconnected from the botanical garden theme. | Extended the ambient botanical visual (`hero-ambient-poster.webp`) under the sections, framed by left and right borders (`border-x border-white/[0.08] max-w-screen-xl mx-auto`), layered with dark contrast overlays and Magic UI `DotPattern`. |
+| **About Section Visual Harmony** | Disjointed Mux video with dark wavy abstract texture clashed with the botanical hero flowers.                 | Replaced the external Mux video with the synchronized botanical ambient visual and gradient overlay for smooth visual continuity.                                                                                                                |

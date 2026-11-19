@@ -405,7 +405,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     issueDate: "August 28, 2024",
     credentialId: "DDWFE1NB25DZ",
     verifyUrl: "https://www.coursera.org/account/accomplishments/specialization/DDWFE1NB25DZ",
-    image: "/certificates/ibm-data-analyst-cert.jpg",
+    image: "/certificates/ibm-data-analyst-cert.jpg?v=hd3",
     skills: [
       "Python",
       "SQL",
@@ -428,7 +428,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     credentialId: "2026030427766558-105732",
     verifyUrl: "https://www.nielit.gov.in/",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "/certificates/nielit-ai-cert.jpg",
+    image: "/certificates/nielit-ai-cert.jpg?v=hd3",
     skills: ["Prompt Engineering", "Accurate Prompting", "Generative AI", "Responsible AI"],
     desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications.",
   },
@@ -439,7 +439,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     issueDate: "March 2026",
     credentialId: "NPTEL26CS73S470101904",
     verifyUrl: "https://nptel.ac.in/noc/E_Certificate/NOC26CS73S47010190403177914",
-    image: "/certificates/nptel-ml-cert.jpg",
+    image: "/certificates/nptel-ml-cert.jpg?v=hd3",
     score: "53%",
     credits: 3,
     skills: [
@@ -460,7 +460,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     credentialId: "HL/TRN/SJCT/2026/822",
     verifyUrl: "https://www.linkedin.com/in/sahaya-savari",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "/certificates/hodolabs-training-cert.png",
+    image: "/certificates/hodolabs-training-cert.png?v=hd3",
     skills: [
       "Web Development",
       "Software Engineering",
@@ -534,7 +534,7 @@ export const EXPERIENCES: Experience[] = [
 export interface HonorMedia {
   url: string;
   caption: string;
-  type?: 'photo' | 'certificate' | 'poster' | 'trophy';
+  type?: "photo" | "certificate" | "poster" | "trophy";
 }
 
 export interface HonorAward {
@@ -544,7 +544,7 @@ export interface HonorAward {
   date: string;
   badge: string;
   category?: string;
-  badgeVariant?: 'gold' | 'silver' | 'cyan' | 'purple';
+  badgeVariant?: "gold" | "silver" | "cyan" | "purple";
   desc: string;
   summary?: string;
   linkedinUrl?: string;
@@ -572,50 +572,56 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     category: "Competition",
     badgeVariant: "gold",
     desc: "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI — an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
-    summary: "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI — an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
+    summary:
+      "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI — an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
     caseStudyUrl: "/projects/nelsync-ai",
-    image: "/achievements/aixcelerate-presentation.jpg",
-    coverImage: "/achievements/aixcelerate-presentation.jpg",
+    image: "/achievements/aixcelerate-presentation.jpg?v=hd3",
+    coverImage: "/achievements/aixcelerate-presentation.jpg?v=hd3",
     teamName: "NelSync AI (Team DIT-029)",
     teamMembers: [
       "Sahaya Savari F (Team Lead & Presenter)",
       "Jeeva L",
       "Nandakumaaran N I",
-      "Chris Matthew"
+      "Chris Matthew",
     ],
     role: "Team Lead, AI System Architect & Sole Presenter",
     projectTitle: "NelSync AI — Smart Paddy Procurement Optimization",
-    projectDescription: "An intelligent, end-to-end agricultural logistics optimization system built for Direct Purchase Centres (DPCs). Features moisture loss risk modeling, predictive truck dispatch scheduling, and real-time farmer queue management to eliminate procurement bottlenecks.",
+    projectDescription:
+      "An intelligent, end-to-end agricultural logistics optimization system built for Direct Purchase Centres (DPCs). Features moisture loss risk modeling, predictive truck dispatch scheduling, and real-time farmer queue management to eliminate procurement bottlenecks.",
     highlights: [
       "Awarded 1st Place & Overall Champion out of 66 competing engineering teams",
       "Won ₹15,000 Cash Prize, Golden Trophy, and Certificates of Achievement",
       "Architected NelSync AI with predictive moisture loss & queue optimization models",
-      "Sole presenter across all rounds before DefineInfoTech and university leadership"
+      "Sole presenter across all rounds before DefineInfoTech and university leadership",
     ],
     tags: ["Artificial Intelligence", "Agricultural Logistics", "Optimization", "Team Lead"],
     images: [
       {
-        url: "/achievements/aixcelerate-presentation.jpg",
-        caption: "Sahaya Savari F pitching NelSync AI live at the microphone to jury and university dignitaries",
-        type: "photo"
+        url: "/achievements/aixcelerate-presentation.jpg?v=hd3",
+        caption:
+          "Sahaya Savari F pitching NelSync AI live at the microphone to jury and university dignitaries",
+        type: "photo",
       },
       {
-        url: "/achievements/aixcelerate-stage.jpg",
-        caption: "Stage presentation ceremony receiving the Overall Champion Trophy, Cheque & Certificates from Dhanalakshmi Srinivasan University leadership",
-        type: "photo"
+        url: "/achievements/aixcelerate-stage.jpg?v=hd3",
+        caption:
+          "Stage presentation ceremony receiving the Overall Champion Trophy, Cheque & Certificates from Dhanalakshmi Srinivasan University leadership",
+        type: "photo",
       },
       {
-        url: "/achievements/aixcelerate-cert.jpg",
-        caption: "Official Certificate of Achievement awarded to Sahaya Savari F as Overall Champion of AIxcelerate 2026",
-        type: "certificate"
+        url: "/achievements/aixcelerate-cert.jpg?v=hd3",
+        caption:
+          "Official Certificate of Achievement awarded to Sahaya Savari F as Overall Champion of AIxcelerate 2026",
+        type: "certificate",
       },
       {
-        url: "/achievements/aixcelerate-poster.jpg",
-        caption: "Official Winners Announcement poster featuring DIT-029 NelSync AI (St. Joseph's College) as Overall Champion",
-        type: "poster"
-      }
-    ]
+        url: "/achievements/aixcelerate-poster.jpg?v=hd3",
+        caption:
+          "Official Winners Announcement poster featuring DIT-029 NelSync AI (St. Joseph's College) as Overall Champion",
+        type: "poster",
+      },
+    ],
   },
   {
     title: "Overall Runners & Dual Winner — BOOTFEST-2K26",
@@ -626,50 +632,51 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     category: "National Symposium",
     badgeVariant: "gold",
     desc: "Led St. Joseph's College contingent to the Overall Runners Trophy. Clinched 1st Prize in Technical Quiz and 2nd Prize in Capture The Flag (CTF) cybersecurity challenge.",
-    summary: "Led St. Joseph's College contingent to the Overall Runners Trophy. Clinched 1st Prize in Technical Quiz and 2nd Prize in Capture The Flag (CTF) cybersecurity challenge.",
+    summary:
+      "Led St. Joseph's College contingent to the Overall Runners Trophy. Clinched 1st Prize in Technical Quiz and 2nd Prize in Capture The Flag (CTF) cybersecurity challenge.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "/achievements/bootfest-trophy.jpg",
-    coverImage: "/achievements/bootfest-trophy.jpg",
+    image: "/achievements/bootfest-trophy.jpg?v=hd3",
+    coverImage: "/achievements/bootfest-trophy.jpg?v=hd3",
     teamName: "St. Joseph's College Contingent",
-    teamMembers: [
-      "Sahaya Savari F",
-      "St. Joseph's College Delegation"
-    ],
+    teamMembers: ["Sahaya Savari F", "St. Joseph's College Delegation"],
     role: "Technical Quiz Lead & CTF Specialist",
     highlights: [
       "Secured the Prestigious Golden Overall Runners Trophy for St. Joseph's College",
       "🥇 Winner (1st Prize) — Technical Quiz Competition",
       "🥈 Runner (2nd Prize) — Capture The Flag (CTF) Cybersecurity Event",
-      "Contributed maximum podium points leading the college contingent"
+      "Contributed maximum podium points leading the college contingent",
     ],
     tags: ["Technical Quiz", "Capture The Flag (CTF)", "Cybersecurity", "Algorithms"],
     images: [
       {
-        url: "/achievements/bootfest-trophy.jpg",
+        url: "/achievements/bootfest-trophy.jpg?v=hd3",
         caption: "BOOTFEST-2K26 Overall Runners Gold Trophy won by St. Joseph's College",
-        type: "trophy"
+        type: "trophy",
       },
       {
-        url: "/achievements/bootfest-team.jpg",
-        caption: "Contingent on stage celebrating the Overall Runners Trophy with Bishop Heber College dignitaries and faculty",
-        type: "photo"
+        url: "/achievements/bootfest-team.jpg?v=hd3",
+        caption:
+          "Contingent on stage celebrating the Overall Runners Trophy with Bishop Heber College dignitaries and faculty",
+        type: "photo",
       },
       {
-        url: "/achievements/bootfest-stage.jpg",
+        url: "/achievements/bootfest-stage.jpg?v=hd3",
         caption: "Stage certificate and medal presentation ceremony by symposium coordinators",
-        type: "photo"
+        type: "photo",
       },
       {
-        url: "/achievements/bootfest-quiz-cert.jpg",
-        caption: "Official Winner Certificate (1st Place) in Technical Quiz awarded to Sahaya Savari F",
-        type: "certificate"
+        url: "/achievements/bootfest-quiz-cert.jpg?v=hd3",
+        caption:
+          "Official Winner Certificate (1st Place) in Technical Quiz awarded to Sahaya Savari F",
+        type: "certificate",
       },
       {
-        url: "/achievements/bootfest-ctf-cert.jpg",
-        caption: "Official Runner Certificate (2nd Place) in Capture The Flag (CTF) awarded to Sahaya Savari F",
-        type: "certificate"
-      }
-    ]
+        url: "/achievements/bootfest-ctf-cert.jpg?v=hd3",
+        caption:
+          "Official Runner Certificate (2nd Place) in Capture The Flag (CTF) awarded to Sahaya Savari F",
+        type: "certificate",
+      },
+    ],
   },
   {
     title: "Rank V Finalist — VibeCraft Season '26",
@@ -680,39 +687,39 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     category: "24H Hackathon",
     badgeVariant: "cyan",
     desc: "Top 5 Finalist out of 110 teams (440 participants) with Team NeuraGenZers, developing two combined campus productivity applications for attendance projection and smart room location.",
-    summary: "Competed in a rigorous 24-hour national hackathon against top engineering colleges, securing 5th Place (Rank V) with high jury acclaim for UI/UX and AI architecture.",
+    summary:
+      "Competed in a rigorous 24-hour national hackathon against top engineering colleges, securing 5th Place (Rank V) with high jury acclaim for UI/UX and AI architecture.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "/achievements/vibecraft-team.jpg",
-    coverImage: "/achievements/vibecraft-team.jpg",
+    image: "/achievements/vibecraft-team.jpg?v=hd3",
+    coverImage: "/achievements/vibecraft-team.jpg?v=hd3",
     teamName: "NeuraGenzers",
-    teamMembers: [
-      "Sahaya Savari F",
-      "NeuraGenzers Team"
-    ],
+    teamMembers: ["Sahaya Savari F", "NeuraGenzers Team"],
     role: "Frontend Architect & AI Integrator",
     highlights: [
       "Rank V (5th Place) among 100+ competing engineering and AI teams nationally",
       "24-Hour non-stop rapid software development and AI engineering marathon",
-      "Certificate of Achievement awarded for technical design and interface craftsmanship"
+      "Certificate of Achievement awarded for technical design and interface craftsmanship",
     ],
     tags: ["24H Hackathon", "SRM Yuva '26", "Generative UI", "Rapid Prototyping"],
     images: [
       {
-        url: "/achievements/vibecraft-team.jpg",
-        caption: "Team NeuraGenzers at the SRM Yuva '26 / VibeCraft Season '26 National Hackathon arena",
-        type: "photo"
+        url: "/achievements/vibecraft-team.jpg?v=hd3",
+        caption:
+          "Team NeuraGenzers at the SRM Yuva '26 / VibeCraft Season '26 National Hackathon arena",
+        type: "photo",
       },
       {
-        url: "/achievements/vibecraft-cert.jpg",
-        caption: "Certificate of Achievement awarded to Sahaya Savari F for securing 5th Place (Rank V)",
-        type: "certificate"
+        url: "/achievements/vibecraft-cert.jpg?v=hd3",
+        caption:
+          "Certificate of Achievement awarded to Sahaya Savari F for securing 5th Place (Rank V)",
+        type: "certificate",
       },
       {
-        url: "/achievements/vibecraft-poster.jpg",
+        url: "/achievements/vibecraft-poster.jpg?v=hd3",
         caption: "Official Winners Podium Announcement featuring Team NeuraGenzers in Rank V",
-        type: "poster"
-      }
-    ]
+        type: "poster",
+      },
+    ],
   },
   {
     title: "Academic & Contest Merit Award — Achievers' Day 2026",
@@ -723,33 +730,33 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     category: "Academic Merit",
     badgeVariant: "purple",
     desc: "Awarded Certificate of Merit for technical design and software presentation among competing postgraduate STEM departments.",
-    summary: "Honored on Achievers' Day at St. Joseph's College for outstanding performance and victory in collegiate interdepartmental technical competitions.",
+    summary:
+      "Honored on Achievers' Day at St. Joseph's College for outstanding performance and victory in collegiate interdepartmental technical competitions.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "/achievements/achievers-day-portrait.jpg",
-    coverImage: "/achievements/achievers-day-portrait.jpg",
+    image: "/achievements/achievers-day-portrait.jpg?v=hd3",
+    coverImage: "/achievements/achievers-day-portrait.jpg?v=hd3",
     teamName: "St. Joseph's College",
-    teamMembers: [
-      "Sahaya Savari F"
-    ],
+    teamMembers: ["Sahaya Savari F"],
     role: "Representative & Awardee",
     highlights: [
       "Certificate of Merit presented by college management and academic deans",
       "Recognized for consecutive technical contest victories and student leadership",
-      "Awarded for distinction in interdepartmental technical competitions"
+      "Awarded for distinction in interdepartmental technical competitions",
     ],
     tags: ["St. Joseph's College", "Achievers' Day", "Certificate of Merit", "Academic Excellence"],
     images: [
       {
-        url: "/achievements/achievers-day-portrait.jpg",
-        caption: "Sahaya Savari F holding the Certificate of Merit at St. Joseph's College during Achievers' Day",
-        type: "photo"
+        url: "/achievements/achievers-day-portrait.jpg?v=hd3",
+        caption:
+          "Sahaya Savari F holding the Certificate of Merit at St. Joseph's College during Achievers' Day",
+        type: "photo",
       },
       {
-        url: "/achievements/achievers-day-cert.jpg",
+        url: "/achievements/achievers-day-cert.jpg?v=hd3",
         caption: "Official Certificate of Merit awarded for Interdepartmental Contest Winners",
-        type: "certificate"
-      }
-    ]
+        type: "certificate",
+      },
+    ],
   },
   {
     title: "Event In-Charge (Treasure Titans) — AION 2K26",
@@ -760,25 +767,27 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     category: "Symposium Leadership",
     badgeVariant: "cyan",
     desc: "Served as Event In-Charge for 'Treasure Titans' at AION 2K26, a State-Level Technical Symposium conducted by the Department of Artificial Intelligence, St. Joseph's College.",
-    summary: "Served as Event In-Charge for 'Treasure Titans' at AION 2K26 State-Level Technical Symposium. Led event organization, technical puzzle design, and coordination across competing college teams.",
+    summary:
+      "Served as Event In-Charge for 'Treasure Titans' at AION 2K26 State-Level Technical Symposium. Led event organization, technical puzzle design, and coordination across competing college teams.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
-    image: "/achievements/aion-event-incharge-cert.jpg",
-    coverImage: "/achievements/aion-event-incharge-cert.jpg",
+    image: "/achievements/aion-event-incharge-cert.jpg?v=hd3",
+    coverImage: "/achievements/aion-event-incharge-cert.jpg?v=hd3",
     role: "Event In-Charge & Technical Coordinator",
     teamName: "St. Joseph's College (I - M.Sc. AI)",
     highlights: [
       "Awarded official Certificate of Appreciation by Principal and AI Department leadership",
       "Organized and directed the 'Treasure Titans' technical problem-solving event",
-      "Designed algorithmic challenges and coordinated state-level participants"
+      "Designed algorithmic challenges and coordinated state-level participants",
     ],
     tags: ["Event Leadership", "AION 2K26", "Dept of AI", "St. Joseph's College"],
     images: [
       {
-        url: "/achievements/aion-event-incharge-cert.jpg",
-        caption: "Official Certificate of Appreciation awarded to Sahaya Savari F for serving as Event In-Charge (Treasure Titans) at AION 2K26",
-        type: "certificate"
-      }
-    ]
+        url: "/achievements/aion-event-incharge-cert.jpg?v=hd3",
+        caption:
+          "Official Certificate of Appreciation awarded to Sahaya Savari F for serving as Event In-Charge (Treasure Titans) at AION 2K26",
+        type: "certificate",
+      },
+    ],
   },
 ];
 

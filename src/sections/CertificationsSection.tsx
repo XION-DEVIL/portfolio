@@ -1,5 +1,15 @@
 import { memo, useState, useCallback, useEffect } from "react";
-import { Award, ArrowUpRight, Database, Code, Brain, Terminal, Eye, X } from "lucide-react";
+import {
+  Award,
+  ArrowUpRight,
+  Database,
+  Code,
+  Brain,
+  Terminal,
+  Eye,
+  X,
+  ExternalLink,
+} from "lucide-react";
 import { CERTIFICATIONS, FEATURED_CREDENTIALS, FeaturedCredential } from "../data";
 import SectionBadge from "../components/ui/SectionBadge";
 import { lockScroll, unlockScroll } from "../utils/scrollLock";
@@ -16,14 +26,17 @@ const ICON_MAP: Record<
 
 const CertificationsSection = memo(() => {
   const [previewCert, setPreviewCert] = useState<FeaturedCredential | null>(null);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const openPreview = useCallback((cred: FeaturedCredential) => {
     setPreviewCert(cred);
+    setIsZoomed(false);
     lockScroll();
   }, []);
 
   const closePreview = useCallback(() => {
     setPreviewCert(null);
+    setIsZoomed(false);
     unlockScroll();
   }, []);
 
@@ -109,43 +122,40 @@ const CertificationsSection = memo(() => {
                     {cred.issuer}
                   </div>
 
-                  {/* Card Title */}
-                  <h4 className="font-heading font-bold text-xl text-white mb-3 leading-snug tracking-tight">
+                  {/* Card Title - standardized 2-line height so all certificate images align horizontally */}
+                  <h4 className="font-heading font-bold text-lg sm:text-xl text-white mb-3 leading-snug tracking-tight min-h-[3.25rem] lg:min-h-[3.5rem] flex items-start">
                     {cred.title}
                   </h4>
 
                   {cred.image && (
                     <div
                       onClick={() => openPreview(cred)}
-                      className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video bg-neutral-900/90 relative group/img cursor-pointer flex items-center justify-center p-2.5 transition-colors hover:border-white/25"
+                      className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-[16/10] bg-neutral-900/90 relative group/img cursor-pointer flex items-center justify-center p-2 transition-colors hover:border-white/25"
                     >
-                      {/* Ambient blurred backdrop so container is seamlessly filled */}
-                      <div
-                        className="absolute inset-0 bg-cover bg-center filter blur-md opacity-25 scale-125 pointer-events-none"
-                        style={{ backgroundImage: `url(${cred.image})` }}
-                      />
+                      {/* Clean high-contrast dark studio backing - eliminates blurry background duplicates */}
+                      <div className="absolute inset-0 bg-[#090c12] pointer-events-none" />
 
                       {/* The certificate: fully contained and centered horizontally & vertically */}
                       <img
                         src={cred.image}
                         alt={`${cred.title} certificate`}
-                        className="max-h-full max-w-full object-contain object-center relative z-10 transition-transform duration-300 group-hover/img:scale-105 shadow-md rounded"
-                        loading="lazy"
+                        className="max-h-full max-w-full object-contain object-center relative z-10 shadow-md rounded [image-rendering:-webkit-optimize-contrast] [image-rendering:high-quality]"
+                        loading="eager"
                       />
 
                       {/* Quick View Hover Indicator */}
                       <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
                         <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-black text-xs font-body font-semibold shadow-lg">
                           <Eye className="w-3.5 h-3.5" />
-                          <span>View Certificate</span>
+                          <span>View Full HD</span>
                         </span>
                       </div>
                     </div>
                   )}
 
-                  {/* Card Description - fully visible, no line-clamp truncation */}
+                  {/* Card Description - standardized min-height for uniform vertical alignment */}
                   {cred.desc && (
-                    <p className="text-white/70 font-body font-light text-xs leading-relaxed mb-4 flex-1">
+                    <p className="text-white/70 font-body font-light text-xs leading-relaxed mb-4 min-h-[5rem] lg:min-h-[5.5rem]">
                       {cred.desc}
                     </p>
                   )}
@@ -153,35 +163,39 @@ const CertificationsSection = memo(() => {
                   {/* Skills badges - standardized count & aligned height */}
                   {cred.skills && cred.skills.length > 0 && (
                     <div className="flex flex-wrap content-start gap-1.5 mb-4 min-h-[3.25rem]">
-                      {cred.skills.slice(0, 5).map((skill) => (
+                      {cred.skills.slice(0, 4).map((skill) => (
                         <span
                           key={skill}
-                          className="px-2 py-0.5 rounded-full text-[9px] font-mono text-white/50 bg-white/5 border border-white/5"
+                          className="px-2 py-0.5 rounded-full text-[9px] font-mono text-white/50 bg-white/5 border border-white/5 whitespace-nowrap"
                         >
                           {skill}
                         </span>
                       ))}
-                      {cred.skills.length > 5 && (
-                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono text-white/40 bg-white/[0.03] border border-white/5">
-                          +{cred.skills.length - 5}
+                      {cred.skills.length > 4 && (
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono text-white/40 bg-white/[0.03] border border-white/5 whitespace-nowrap">
+                          +{cred.skills.length - 4}
                         </span>
                       )}
                     </div>
                   )}
 
                   {/* Metadata grid - standardized height */}
-                  <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-mono text-white/50 mb-4 border-t border-white/5 pt-3 min-h-[52px]">
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-mono text-white/50 mb-4 border-t border-white/5 pt-3 min-h-[48px]">
                     <div>
                       <span className="text-white/60 block text-[8px] uppercase tracking-wider">
                         Issued
                       </span>
-                      {cred.issueDate || "June 2026"}
+                      <span className="text-white/80 block truncate">
+                        {cred.issueDate || "June 2026"}
+                      </span>
                     </div>
                     <div className="truncate" title={cred.credentialId}>
                       <span className="text-white/60 block text-[8px] uppercase tracking-wider">
-                        {cred.issuer.includes("NIELIT") ? "Certificate No." : "ID"}
+                        ID
                       </span>
-                      {cred.credentialId || "Verified"}
+                      <span className="text-white/80 block truncate font-mono">
+                        {cred.credentialId || "Verified"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -217,7 +231,9 @@ const CertificationsSection = memo(() => {
                     <span>
                       {cred.issuer.includes("HodoLabs") ? "View on LinkedIn" : "Verify Credential"}
                     </span>
-                    <ArrowUpRight className={`w-3.5 h-3.5 ${cred.image ? "text-white/60" : "text-black/60"}`} />
+                    <ArrowUpRight
+                      className={`w-3.5 h-3.5 ${cred.image ? "text-white/60" : "text-black/60"}`}
+                    />
                   </a>
                 </div>
               </div>
@@ -361,14 +377,14 @@ const CertificationsSection = memo(() => {
 
       {/* CERTIFICATE PREVIEW MODAL */}
       {previewCert && (
-        <div 
+        <div
           role="dialog"
           aria-modal="true"
           aria-label={`${previewCert.title} Certificate`}
           className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200"
           onClick={closePreview}
         >
-          <div 
+          <div
             className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-neutral-950/95 border border-white/15 rounded-3xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -383,27 +399,51 @@ const CertificationsSection = memo(() => {
                     {previewCert.title}
                   </h3>
                   <p className="text-xs font-mono text-white/60">
-                    {previewCert.issuer} {previewCert.issueDate ? `· ${previewCert.issueDate}` : ''}
+                    {previewCert.issuer} {previewCert.issueDate ? `· ${previewCert.issueDate}` : ""}
                   </p>
                 </div>
               </div>
-              <button
-                type="button"
-                onClick={closePreview}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-                aria-label="Close certificate preview"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                {previewCert.image && (
+                  <a
+                    href={previewCert.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono border border-white/15 transition-all shadow-sm"
+                    title="Open original high-definition certificate in new tab"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">View Original HD</span>
+                  </a>
+                )}
+                <button
+                  type="button"
+                  onClick={closePreview}
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  aria-label="Close certificate preview"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             {/* CERTIFICATE IMAGE VIEWPORT */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex items-center justify-center bg-black/60">
+            <div
+              onClick={() => setIsZoomed((prev) => !prev)}
+              className={`flex-1 overflow-y-auto p-4 sm:p-6 flex items-center justify-center bg-black/60 transition-all ${
+                isZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
+              }`}
+              title={isZoomed ? "Click to reset zoom" : "Click to zoom 150%"}
+            >
               {previewCert.image && (
                 <img
                   src={previewCert.image}
                   alt={`${previewCert.title} certificate awarded by ${previewCert.issuer}`}
-                  className="max-h-[68vh] w-auto max-w-full object-contain rounded-xl shadow-2xl border border-white/10"
+                  className={`${
+                    isZoomed
+                      ? "max-h-none max-w-none scale-125 sm:scale-150 transition-transform duration-300"
+                      : "max-h-[76vh] sm:max-h-[82vh] w-auto max-w-full transition-transform duration-300"
+                  } object-contain rounded-xl shadow-2xl border border-white/10 [image-rendering:-webkit-optimize-contrast] [image-rendering:high-quality]`}
                 />
               )}
             </div>
@@ -412,10 +452,14 @@ const CertificationsSection = memo(() => {
             <div className="px-6 py-3.5 border-t border-white/10 bg-white/[0.02] flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-3 text-xs font-mono text-white/60">
                 {previewCert.credentialId && (
-                  <span>ID: <strong className="text-white/90">{previewCert.credentialId}</strong></span>
+                  <span>
+                    ID: <strong className="text-white/90">{previewCert.credentialId}</strong>
+                  </span>
                 )}
                 {previewCert.score && (
-                  <span>Score: <strong className="text-white/90">{previewCert.score}</strong></span>
+                  <span>
+                    Score: <strong className="text-white/90">{previewCert.score}</strong>
+                  </span>
                 )}
               </div>
               <div className="flex items-center gap-2">
