@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [2026-11-20] — SwarmCursor Integration & Interactive Performance Optimization
+
+### Added
+
+- **React Bits `<SwarmCursor />` Integration**: Added WebGL2-powered instanced particle swarm cursor effect (`SwarmCursor.tsx` and `SwarmCursor.css`) in `src/components/reactbits/`.
+- **Site-Wide Dynamic Cursor**: Integrated `<SwarmCursor />` into `SiteCursor.tsx` with smooth burst physics on click, target locking around interactive links and buttons, and lazy initialization on desktop pointer movement.
+
+### Changed
+
+- **Interactive Performance (INP / TBT)**: Maintained sub-10ms input delay and low total blocking time through deferred cursor instantiation and viewport-isolated pointer listeners.
+
+---
+
 ## [2026-11-06] — Performance Optimization, Font Modernization & UI Realignment
 
 ### Added

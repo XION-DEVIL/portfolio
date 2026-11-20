@@ -1,21 +1,25 @@
-// Site-wide HUD crosshair cursor (browser-only, loaded lazily after the first mouse move).
-import type { ComponentType } from "react";
-import CrosshairRaw from "./Crosshair";
-
-// The source component is untyped JS; give it permissive prop types.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Crosshair = CrosshairRaw as unknown as ComponentType<Record<string, any>>;
+// Site-wide particle swarm cursor (browser-only, loaded lazily after the first mouse move on desktop).
+import SwarmCursor from "./SwarmCursor";
 
 export default function SiteCursor() {
   return (
-    <Crosshair
+    <SwarmCursor
+      className="fixed inset-0 pointer-events-none z-[9999]"
+      count={320}
+      size={2.4}
+      shape="dot"
+      spread={80}
+      speed={1}
+      swirl={0.65}
+      tail={0.5}
+      trail={0.6}
+      wander={0.4}
+      depth={0.6}
       color="#a5b4fc"
-      thickness={0.75}
-      opacity={0.6}
-      smoothing={0.25}
-      targetEffect="lock"
-      targetSelector="a, button, [role='button'], .cursor-target, [data-crosshair-target]"
-      showCoordinates
+      accentColor="#38bdf8"
+      clickEffect="burst"
+      idle="roam"
+      targets="a, button, [role='button'], input, textarea, select, .cursor-target, [data-swarm-target], [data-crosshair-target]"
     />
   );
 }
