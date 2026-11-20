@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "sahaya-savari-portfolio",
     "public": "dist/client",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "cleanUrls": true,

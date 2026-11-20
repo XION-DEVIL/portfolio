@@ -198,7 +198,17 @@ export function Text3DFlip({
     handleMouseLeave();
   };
 
-  const words = (children || "").trim().split(/\s+/).filter(Boolean);
+  const rawWords = (children || "").trim().split(/\s+/).filter(Boolean);
+  // Group words to prevent orphan letters (e.g. trailing initial "F") from wrapping alone onto a new line
+  const wordGroups: { word: string; globalWordIndex: number }[][] = [];
+  for (let i = 0; i < rawWords.length; i++) {
+    const isOrphan = i === rawWords.length - 1 && rawWords[i].length <= 2 && wordGroups.length > 0;
+    if (isOrphan) {
+      wordGroups[wordGroups.length - 1].push({ word: rawWords[i], globalWordIndex: i });
+    } else {
+      wordGroups.push([{ word: rawWords[i], globalWordIndex: i }]);
+    }
+  }
 
   return (
     <span
@@ -214,40 +224,47 @@ export function Text3DFlip({
         className="inline-flex flex-wrap items-center justify-center md:justify-start gap-x-[0.28em] leading-[0.95]"
         aria-hidden="true"
       >
-        {words.map((word, wordIndex) => (
-          <span key={wordIndex} className="inline-flex whitespace-nowrap">
-            {word.split("").map((char, charIndex) => (
-              <span
-                key={`${wordIndex}-${charIndex}`}
-                className="relative inline-block overflow-hidden [perspective:1000px] [-webkit-perspective:1000px]"
-              >
-                <span
-                  className={cn(
-                    "front-text inline-block transform-gpu transform-3d backface-hidden [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]",
-                    textClassName,
-                  )}
-                >
-                  {char}
-                </span>
-                <span
-                  className={cn(
-                    "back-text absolute left-0 top-0 inline-block transform-gpu transform-3d backface-hidden [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]",
-                    flipTextClassName,
-                  )}
-                  style={{
-                    transform: `${
-                      rotateDirection === "top" || rotateDirection === "bottom"
-                        ? `translateY(${rotateDirection === "top" ? "100%" : "-100%"})`
-                        : `translateX(${rotateDirection === "left" ? "100%" : "-100%"})`
-                    } ${
-                      rotateDirection === "top" || rotateDirection === "bottom"
-                        ? `rotateX(${rotateDirection === "top" ? "-90deg" : "90deg"})`
-                        : `rotateY(${rotateDirection === "left" ? "90deg" : "-90deg"})`
-                    }`,
-                  }}
-                >
-                  {char}
-                </span>
+        {wordGroups.map((group, groupIndex) => (
+          <span
+            key={groupIndex}
+            className="inline-flex flex-nowrap whitespace-nowrap gap-x-[0.28em]"
+          >
+            {group.map(({ word, globalWordIndex }) => (
+              <span key={globalWordIndex} className="inline-flex whitespace-nowrap">
+                {word.split("").map((char, charIndex) => (
+                  <span
+                    key={`${globalWordIndex}-${charIndex}`}
+                    className="relative inline-block overflow-hidden [perspective:1000px] [-webkit-perspective:1000px]"
+                  >
+                    <span
+                      className={cn(
+                        "front-text inline-block transform-gpu transform-3d backface-hidden [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]",
+                        textClassName,
+                      )}
+                    >
+                      {char}
+                    </span>
+                    <span
+                      className={cn(
+                        "back-text absolute left-0 top-0 inline-block transform-gpu transform-3d backface-hidden [transform-style:preserve-3d] [-webkit-transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]",
+                        flipTextClassName,
+                      )}
+                      style={{
+                        transform: `${
+                          rotateDirection === "top" || rotateDirection === "bottom"
+                            ? `translateY(${rotateDirection === "top" ? "100%" : "-100%"})`
+                            : `translateX(${rotateDirection === "left" ? "100%" : "-100%"})`
+                        } ${
+                          rotateDirection === "top" || rotateDirection === "bottom"
+                            ? `rotateX(${rotateDirection === "top" ? "-90deg" : "90deg"})`
+                            : `rotateY(${rotateDirection === "left" ? "90deg" : "-90deg"})`
+                        }`,
+                      }}
+                    >
+                      {char}
+                    </span>
+                  </span>
+                ))}
               </span>
             ))}
           </span>

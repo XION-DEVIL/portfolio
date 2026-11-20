@@ -6,16 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
-## [2026-11-20] — SwarmCursor Integration & Interactive Performance Optimization
+## [2026-11-20] — Mobile UX Realignment, Section Streamlining & SwarmCursor
 
 ### Added
 
-- **React Bits `<SwarmCursor />` Integration**: Added WebGL2-powered instanced particle swarm cursor effect (`SwarmCursor.tsx` and `SwarmCursor.css`) in `src/components/reactbits/`.
-- **Site-Wide Dynamic Cursor**: Integrated `<SwarmCursor />` into `SiteCursor.tsx` with smooth burst physics on click, target locking around interactive links and buttons, and lazy initialization on desktop pointer movement.
+- **React Bits `<SwarmCursor />` Integration**: Added WebGL2-powered instanced particle swarm cursor effect (`SwarmCursor.tsx` and `SwarmCursor.css`) in `src/components/reactbits/` with lazy desktop-only initialization.
+- **Universal Floating AI Chat Action Button**: Replaced the bulky mobile bottom dock with a sleek, responsive floating AI action button on the bottom right with safe-area insets.
+- **Enhanced Footer Layout**: Added balanced copyright and portfolio engineering terms notices to `ContactSection.tsx`.
 
 ### Changed
 
-- **Interactive Performance (INP / TBT)**: Maintained sub-10ms input delay and low total blocking time through deferred cursor instantiation and viewport-isolated pointer listeners.
+- **Hero Name Responsiveness**: Fixed mobile font scaling and orphan letter initial wrapping (`"F"`) by adjusting fluid clamp to `clamp(1.75rem, 7vw, 6.5rem)` and grouping trailing initials in `Text3DFlip.tsx`.
+- **Mobile Navigation Drawer**: Realigned and centered navigation drawer items with consistent typography, balanced vertical padding, and styled resume download action button.
+- **Sections Streamlined**: Removed Skills Evidence Matrix and Open Source & GitHub sections to focus content and optimize mobile DOM and bundle weight.
+- **Contact Footer Cleanup**: Removed mobile phone pill and dead spacing in the footer.
 
 ---
 

@@ -9,7 +9,6 @@ import {
   Copy,
   ArrowUpRight,
   ExternalLink,
-  Phone,
 } from "lucide-react";
 import HlsVideo from "../components/HlsVideo";
 import Dock from "../components/Dock";
@@ -103,16 +102,6 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
               </a>
             </div>
 
-            {/* Mobile Phone Pill */}
-            <a
-              href={`tel:${CONTACT_INFO.phoneRaw}`}
-              className="liquid-glass px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-body font-medium text-xs sm:text-sm md:text-base flex items-center gap-2.5 hover:scale-105 transition-transform min-h-[44px] text-white/90 hover:text-white border border-white/10"
-              aria-label={`Call Sahaya Savari: ${CONTACT_INFO.phone}`}
-            >
-              <Phone className="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true" />
-              <span>{CONTACT_INFO.phone}</span>
-            </a>
-
             {/* Location Pill */}
             <a
               href="https://www.google.com/maps/search/Madurai,+Tamil+Nadu"
@@ -127,54 +116,59 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
           </div>
         </div>
 
-        {/* Redesigned Balanced Footer Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 items-center pt-8 border-t border-white/10 gap-6 w-full text-center lg:text-left">
-          {/* Left Column: Logo & Name */}
-          <div className="flex items-center justify-center lg:justify-start gap-3">
+        {/* Polished Balanced Footer Grid */}
+        <div className="pt-8 mt-12 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 w-full text-center md:text-left">
+          {/* Left Column: Logo, Name & Role */}
+          <div className="flex flex-col sm:flex-row items-center gap-3">
             <div
               className="w-8 h-8 liquid-glass rounded-full flex items-center justify-center border border-white/20"
               aria-hidden="true"
             >
               <span className="font-heading text-sm font-bold">S</span>
             </div>
-            <span className="font-heading font-bold text-lg tracking-tight text-white">
-              Sahaya Savari F
-            </span>
+            <div className="flex flex-col items-center sm:items-start">
+              <span className="font-heading font-bold text-base sm:text-lg tracking-tight text-white">
+                Sahaya Savari F
+              </span>
+              <span className="text-[11px] font-body text-white/50 tracking-wider">
+                Full-Stack & Applied AI Engineer
+              </span>
+            </div>
           </div>
 
-          {/* Middle Column: Social Links Dock (Centered) */}
-          <div className="flex justify-center items-center min-w-0 w-full">
+          {/* Middle Column: Social Links Dock */}
+          <div className="flex justify-center items-center min-w-0">
             <Dock
-              panelHeight={68}
-              baseItemSize={50}
-              magnification={70}
+              panelHeight={64}
+              baseItemSize={46}
+              magnification={66}
               items={[
                 {
-                  icon: <Linkedin size={20} aria-hidden="true" />,
+                  icon: <Linkedin size={18} aria-hidden="true" />,
                   label: "LinkedIn",
                   onClick: () => window.open(CONTACT_INFO.linkedin, "_blank"),
                   ariaLabel: "Visit LinkedIn profile",
                 },
                 {
-                  icon: <Github size={20} aria-hidden="true" />,
+                  icon: <Github size={18} aria-hidden="true" />,
                   label: "GitHub",
                   onClick: () => window.open(CONTACT_INFO.github, "_blank"),
                   ariaLabel: "Visit GitHub profile",
                 },
                 {
-                  icon: <Search size={20} aria-hidden="true" />,
+                  icon: <Search size={18} aria-hidden="true" />,
                   label: "Search",
                   onClick: () => setShowCommandPalette(true),
                   ariaLabel: "Open spotlight search command palette",
                 },
                 {
-                  icon: <ExternalLink size={20} aria-hidden="true" />,
+                  icon: <ExternalLink size={18} aria-hidden="true" />,
                   label: "Resume",
                   onClick: () => window.open(RESUME_URL, "_blank"),
                   ariaLabel: "Open resume PDF in new tab",
                 },
                 {
-                  icon: <Mail size={20} aria-hidden="true" />,
+                  icon: <Mail size={18} aria-hidden="true" />,
                   label: "Email",
                   onClick: () => window.open(`mailto:${CONTACT_INFO.primaryEmail}`),
                   ariaLabel: "Send email to Sahaya Savari",
@@ -183,9 +177,10 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
             />
           </div>
 
-          {/* Right Column: Copyright */}
-          <div className="flex items-center justify-center lg:justify-end text-white/20 font-body text-[10px] uppercase tracking-widest">
-            © {new Date().getFullYear()} Sahaya Savari F — Designed & Built by Sahaya Savari F
+          {/* Right Column: Copyright & Portfolio Terms */}
+          <div className="flex flex-col items-center md:items-end text-white/40 font-body text-[11px] leading-relaxed tracking-wider">
+            <span>© {new Date().getFullYear()} Sahaya Savari F • All Rights Reserved</span>
+            <span className="text-white/30 text-[10px]">Portfolio & Engineering Terms apply</span>
           </div>
         </div>
       </div>

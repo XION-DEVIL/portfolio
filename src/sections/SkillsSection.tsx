@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, memo, lazy, Suspense } from "react";
 import { Database, Brain, Code, Terminal } from "lucide-react";
 import SkillAccordion from "../components/ui/SkillAccordion";
 import SectionBadge from "../components/ui/SectionBadge";
-import SkillsMatrix from "../components/SkillsMatrix";
 import { Marquee } from "../components/magicui/marquee";
 
 const Galaxy = lazy(() => import("../components/ui/Galaxy/Galaxy"));
@@ -149,19 +148,6 @@ const SkillsSection = memo(() => {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="mb-16">
-          <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <SectionBadge>Verified Evidence</SectionBadge>
-              <p className="text-white/70 font-body font-light max-w-xl text-sm">
-                Every skill listed is grounded in an academic lab, certification, or hands-on
-                project.
-              </p>
-            </div>
-          </div>
-          <SkillsMatrix />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24">

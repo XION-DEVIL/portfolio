@@ -5,7 +5,6 @@ import SEOHead from "../components/SEOHead";
 import { SITE_URL, createBreadcrumbSchema } from "../seo";
 
 const ProjectsSection = lazy(() => import("../sections/ProjectsSection"));
-const OpenSourceSection = lazy(() => import("../sections/OpenSourceSection"));
 
 export default function ProjectsPage() {
   useEffect(() => {
@@ -61,8 +60,6 @@ export default function ProjectsPage() {
           }
         >
           <ProjectsSection />
-          <div className="my-16 section-divider" aria-hidden="true" />
-          <OpenSourceSection />
         </Suspense>
       </div>
     </>

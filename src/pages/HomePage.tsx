@@ -15,7 +15,6 @@ const SkillsSection = lazy(() => import("../sections/SkillsSection"));
 const StatsSection = lazy(() => import("../sections/StatsSection"));
 const ProjectsSection = lazy(() => import("../sections/ProjectsSection"));
 const BlogSection = lazy(() => import("../sections/BlogSection"));
-const OpenSourceSection = lazy(() => import("../sections/OpenSourceSection"));
 const CertificationsSection = lazy(() => import("../sections/CertificationsSection"));
 const ContactSection = lazy(() => import("../sections/ContactSection"));
 
@@ -80,13 +79,6 @@ export default function HomePage() {
         <div id="blog">
           <IntersectionLazy fallbackHeight="80vh">
             <BlogSection />
-          </IntersectionLazy>
-        </div>
-
-        {/* 6. Open Source / GitHub */}
-        <div id="open-source">
-          <IntersectionLazy fallbackHeight="60vh">
-            <OpenSourceSection />
           </IntersectionLazy>
         </div>
 

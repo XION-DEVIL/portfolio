@@ -27,7 +27,6 @@ export const initLazyPreload = () => {
     () => import("../sections/StatsSection"),
     () => import("../sections/ProjectsSection"),
     () => import("../sections/BlogSection"),
-    () => import("../sections/OpenSourceSection"),
     () => import("../sections/CertificationsSection"),
     () => import("../sections/ContactSection"),
   ];

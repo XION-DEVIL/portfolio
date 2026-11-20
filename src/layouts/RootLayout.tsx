@@ -1,15 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from "react";
-import {
-  ArrowUpRight,
-  Menu,
-  X,
-  Search,
-  Sparkles,
-  Download,
-  Home,
-  Briefcase,
-  FileText,
-} from "lucide-react";
+import { ArrowUpRight, Menu, X, Search, Sparkles, Download } from "lucide-react";
 import { Outlet, useNavigate, useLocation, Link } from "@/lib/router-compat";
 
 import ClickSpark from "../components/ClickSpark";
@@ -447,75 +437,79 @@ export default function RootLayout() {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
-            className="fixed inset-0 z-[115] bg-black/95 backdrop-blur-2xl flex flex-col items-center overflow-y-auto px-6 py-20 transition-opacity duration-200"
+            className="fixed inset-0 z-[115] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center overflow-y-auto px-6 py-16 transition-opacity duration-200"
+            style={{
+              paddingTop: "max(5rem, calc(env(safe-area-inset-top, 0px) + 4rem))",
+              paddingBottom: "max(2rem, calc(env(safe-area-inset-bottom, 0px) + 2rem))",
+            }}
             onClick={() => setMobileMenuOpen(false)}
             onKeyDown={handleMobileMenuKeyDown}
           >
             <nav
-              className="flex flex-col items-center gap-6 my-auto"
+              className="flex flex-col items-center justify-center text-center gap-4 sm:gap-5 my-auto w-full max-w-sm"
               onClick={(e) => e.stopPropagation()}
               aria-label="Mobile navigation"
             >
               <Link
                 to="/"
                 onClick={handleHomeClick}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Home
               </Link>
               <Link
                 to="/about"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 About
               </Link>
               <Link
                 to="/experience"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Experience
               </Link>
               <Link
                 to="/resume"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Resume
               </Link>
               <Link
                 to="/blog"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Blog
               </Link>
               <Link
                 to="/skills"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Skills
               </Link>
               <Link
                 to="/projects"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Projects
               </Link>
               <Link
                 to="/certifications"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Certs
               </Link>
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl sm:text-4xl font-heading font-bold text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center"
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Contact
               </Link>
@@ -523,9 +517,9 @@ export default function RootLayout() {
                 href={`${appBase}resume.pdf`}
                 download
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-xl sm:text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2 mt-2"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-sm font-body font-medium text-white transition-all duration-200 mt-2 min-h-[44px]"
               >
-                <Download size={20} /> Download Resume PDF
+                <Download size={16} /> Download Resume PDF
               </a>
             </nav>
           </div>
@@ -535,62 +529,14 @@ export default function RootLayout() {
           <Outlet context={{ setShowResume, setShowCommandPalette }} />
         </main>
 
-        {/* Mobile Ergonomic Bottom Thumb-Dock (< 768px) */}
-        <nav
-          aria-label="Mobile quick navigation dock"
-          className="fixed bottom-3 left-1/2 -translate-x-1/2 z-[100] md:hidden px-4 py-2 rounded-full border border-white/15 bg-black/85 backdrop-blur-xl flex items-center gap-4 sm:gap-6 shadow-[0_8px_32px_rgba(0,0,0,0.8)] no-print"
-          style={{ paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))" }}
-        >
-          <Link
-            to="/"
-            onClick={handleHomeClick}
-            className={`flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center transition-colors ${activeSection === "home" ? "text-white" : "text-white/50 hover:text-white"}`}
-            aria-label="Home"
-          >
-            <Home size={18} />
-            <span className="text-[9px] font-body">Home</span>
-          </Link>
-          <Link
-            to="/projects"
-            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-white/50 hover:text-white transition-colors"
-            aria-label="Projects"
-          >
-            <Briefcase size={18} />
-            <span className="text-[9px] font-body">Projects</span>
-          </Link>
-          <Link
-            to="/ai"
-            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-amber-300 hover:text-amber-200 transition-colors"
-            aria-label="Ask Sahaya"
-          >
-            <Sparkles size={18} />
-            <span className="text-[9px] font-body font-semibold">Ask Sahaya</span>
-          </Link>
-          <Link
-            to="/recruiter"
-            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-white/50 hover:text-white transition-colors"
-            aria-label="Recruiter Summary"
-          >
-            <FileText size={18} />
-            <span className="text-[9px] font-body">Recruiter</span>
-          </Link>
-          <button
-            onClick={() => setShowCommandPalette(true)}
-            className="flex flex-col items-center gap-0.5 min-w-[44px] min-h-[44px] justify-center text-white/50 hover:text-white transition-colors cursor-pointer"
-            aria-label="Open search command palette"
-          >
-            <Search size={18} />
-            <span className="text-[9px] font-body">Search</span>
-          </button>
-        </nav>
-
-        {/* Desktop Ask Sahaya AI Floating Action Button (>= 768px) */}
+        {/* Universal Floating AI Chatbot Action Button (Mobile & Desktop) */}
         <Link
           to="/ai"
-          className="hidden md:flex fixed bottom-6 right-6 z-[100] w-14 h-14 bg-white text-black rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] items-center justify-center hover:scale-110 transition-transform hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] group"
-          aria-label="Ask Sahaya AI"
+          className="fixed right-5 md:right-6 z-[100] w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 bg-white text-black rounded-full shadow-[0_4px_24px_rgba(255,255,255,0.25)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] group no-print touch-manipulation"
+          style={{ bottom: "calc(1.25rem + env(safe-area-inset-bottom, 0px))" }}
+          aria-label="Ask Sahaya AI Assistant"
         >
-          <Sparkles className="w-6 h-6 group-hover:animate-pulse" />
+          <Sparkles className="w-5 h-5 md:w-6 md:h-6 group-hover:animate-pulse text-black" />
         </Link>
       </div>
 
